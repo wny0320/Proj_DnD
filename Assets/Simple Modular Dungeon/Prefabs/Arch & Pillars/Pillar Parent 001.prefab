@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: 4982019021288860265}
   m_Layer: 0
   m_Name: Pillar Parent 001
-  m_TagString: topo
+  m_TagString: pillar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

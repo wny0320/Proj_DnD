@@ -120,7 +120,7 @@ GameObject:
   - component: {fileID: 980925379716885586}
   m_Layer: 0
   m_Name: Doorway Parent 005
-  m_TagString: topo
+  m_TagString: wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

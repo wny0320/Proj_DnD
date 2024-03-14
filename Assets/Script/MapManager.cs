@@ -3,13 +3,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-using UnityEditor.Callbacks;
-using System.Reflection;
-using Unity.VisualScripting;
+using System.Linq;
 
 [InitializeOnLoad]
 public class MapManager : MonoBehaviour
 {
+    static MapManager()
+    {
+        EditorApplication.update += Update;
+    }
+    enum tags
+    {
+        wall,
+        floor,
+        pillar,
+        stair,
+    }
     [SerializeField]
     private string tagName = "topo";
     [SerializeField]
@@ -17,8 +26,9 @@ public class MapManager : MonoBehaviour
     [SerializeField]
     private Vector3 basis = new Vector3 (4, 4, 4);
     [SerializeField]
-    private Vector3 offset = new Vector3 (0, 2, 0);
-    private List<GameObject> topographyList = new List<GameObject> ();
+    private Vector3 gizmosOffset = new Vector3 (0, 2, 0);
+    [SerializeField]
+    private Vector3 topoOffset = new Vector3 (-2, 0, -2);
 
     private void mapSizeGizmos()
     {
@@ -26,74 +36,76 @@ public class MapManager : MonoBehaviour
         int basisY = (int)basis.y;
         int basisZ = (int)basis.z;
 
-        int offsetX = (int)offset.x;
-        int offsetY = (int)offset.y;
-        int offsetZ = (int)offset.z;
+        int offsetX = (int)gizmosOffset.x;
+        int offsetY = (int)gizmosOffset.y;
+        int offsetZ = (int)gizmosOffset.z;
 
-        for (int x = offsetX; x < mapSize.x; x+=basisX)
+        for (int x = offsetX; x < mapSize.x * 4; x+=basisX)
         {
-            for(int y = offsetY; y < mapSize.y; y+=basisY)
+            for(int y = offsetY; y < mapSize.y * 4; y+=basisY)
             {
-                for (int z = offsetZ; z < mapSize.z; z+=basisZ)
+                for (int z = offsetZ; z < mapSize.z * 4; z+=basisZ)
                 {
                     Gizmos.DrawWireCube(new Vector3(x,y,z), basis);
                 }
             }
         }
     }
-    private void topograpyManage()
+    private static void topographyManage(MapManager _map)
     {
-        EditorApplication.hierarchyChanged += () =>
+        Selection.selectionChanged += () =>
         {
-            GameObject[] selectObj = Selection.gameObjects;
-            foreach (GameObject sel in selectObj)
+            List<string> tagList = Enum.GetNames(typeof(tags)).ToList();
+            GameObject[] objList = Selection.gameObjects;
+            foreach (GameObject targetObj in objList)
             {
-                if (topographyList.Contains(sel))
-                    continue;
-                if(sel.CompareTag(tagName) == true)
-                    topographyList.Add(sel);
-            }
-            foreach (GameObject topo in topographyList)
-            {
-                if(topo == null)
-                    topographyList.Remove(topo);
+                string targetTag = targetObj.gameObject.tag;
+                if (tagList.Contains(targetTag) == true)
+                {
+                    Vector3 offset = Vector3.zero;
+                    float angle = targetObj.transform.rotation.eulerAngles.y;
+                    if (targetTag == tags.wall.ToString())
+                    {
+                        if((int)(angle/90) % 2 == 0)
+                            offset = new Vector3(_map.topoOffset.x, 0, 0);
+                        else
+                            offset = new Vector3(0, 0, _map.topoOffset.z);
+                    }
+                    if(targetTag == tags.pillar.ToString())
+                    {
+                        offset = _map.topoOffset;
+                    }
+                    else
+                    {
+                        offset = -_map.topoOffset;
+                    }
+                    Vector3 targetPos = (targetObj.transform.position + offset) / 4;
+                    if (targetPos.x > _map.mapSize.x || targetPos.y > _map.mapSize.y || targetPos.z > _map.mapSize.z
+                        || targetPos.x < 0 || targetPos.y < 0 || targetPos.z < 0)
+                        targetObj.SetActive(false);
+                    else
+                        targetObj.SetActive(true);
+                }
             }
         };
     }
-    private void indecentTopograpyMange()
+    private static void topographyMove()
     {
-        foreach (GameObject topo in topographyList)
-        {
-            bool outsideFlag = false;
-            if(transform.position.x > mapSize.x || transform.position.y > mapSize.y || transform.position.z > mapSize.z)
-                outsideFlag = true;
-            if(outsideFlag == true)
-            {
-                topo.SetActive(false);
-            }
-            else
-                topo.SetActive(true);
-        }
+        GameObject[] targetList = Selection.gameObjects;
     }
     private void OnDrawGizmos()
     {
         mapSizeGizmos();
     }
-    private void Awake()
+    static void Update()
     {
-        EditorApplication.update += Update;
-    }
-    // Start is called before the first frame update
-    private void Start()
-    {
-        
-    }
-    
-    // Update is called once per frame
-    private void Update()
-    {
-        Debug.Log("!");
-        topograpyManage();
-        indecentTopograpyMange();
+        MapManager mapManager = FindObjectOfType<MapManager>();
+        if (mapManager == null)
+        {
+            GameObject go = new GameObject();
+            mapManager = go.AddComponent<MapManager>();
+            go.name = typeof(MapManager).Name;
+        }
+        topographyManage(mapManager);
     }
 }
