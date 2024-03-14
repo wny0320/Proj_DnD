@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3146083388307954384}
   m_Layer: 0
   m_Name: Arch Variation 001
-  m_TagString: Untagged
+  m_TagString: topo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23,6 +23,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8215108828977529810}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -30,7 +31,6 @@ Transform:
   m_Children:
   - {fileID: 2496619754537105335}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2679499997503115356
 PrefabInstance:
@@ -85,7 +85,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7441375032286319519, guid: 77986cec85eec9c46919266dd0ab16de, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
+      propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: c4429e716a8e5ff458ed317643ba7799, type: 2}
     - target: {fileID: -5529640029656854054, guid: 77986cec85eec9c46919266dd0ab16de, type: 3}
@@ -153,11 +153,11 @@ PrefabInstance:
       value: Arch 001
       objectReference: {fileID: 0}
     - target: {fileID: 1582692324562156746, guid: 77986cec85eec9c46919266dd0ab16de, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
+      propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: c4429e716a8e5ff458ed317643ba7799, type: 2}
     - target: {fileID: 7866085375645520240, guid: 77986cec85eec9c46919266dd0ab16de, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
+      propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 2a7972b5d017274468310d1a9c1c7c96, type: 2}
     m_RemovedComponents: []
