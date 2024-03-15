@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Global : MonoBehaviour
+public class Global
 {
     public static Global Instance;
 }
