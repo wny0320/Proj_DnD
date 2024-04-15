@@ -1,15 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class Enums
+public enum TopoTags
 {
-    public enum TopoTags
-    {
-        Untagged,
-        wall,
-        floor,
-        pillar,
-        stair,
-    }
+    Untagged,
+    wall,
+    floor,
+    pillar,
+    stair,
+}
+
+public enum PlayerState
+{
+    Idle,
+    Move,
+
 }

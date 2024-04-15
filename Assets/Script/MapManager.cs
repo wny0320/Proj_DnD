@@ -19,7 +19,7 @@ public class MapManager : MonoBehaviour
     private Vector3Int selection = Vector3Int.zero;
 
     [SerializeField]
-    private Enums.TopoTags topoSelection;
+    private TopoTags topoSelection;
 
     [SerializeField]
     private List<GameObject> topoList = new List<GameObject>();
@@ -27,13 +27,13 @@ public class MapManager : MonoBehaviour
     {
         foreach (GameObject target in topoList)
         {
-            if (target.CompareTag(topoSelection.ToString()) == true && topoSelection != Enums.TopoTags.Untagged)
+            if (target.CompareTag(topoSelection.ToString()) == true && topoSelection != TopoTags.Untagged)
             {
                 GameObject go = target;
                 go.transform.position = selection;
                 Instantiate(go);
 
-                topoSelection = Enums.TopoTags.Untagged;
+                topoSelection = TopoTags.Untagged;
             }
         }
     }
