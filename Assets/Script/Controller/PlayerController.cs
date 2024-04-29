@@ -8,14 +8,10 @@ using UnityEngine.Playables;
 
 public class PlayerController : BaseController
 {
-    private Collider2D col;
-
-
     void Start()
     {
         rigidBody = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
-        col = GetComponent<Collider2D>();
 
         InitStateMachine();
 
@@ -35,11 +31,13 @@ public class PlayerController : BaseController
     private void InitStateMachine()
     {
         //상태 생성
+        PlayerMoveState MoveState = new PlayerMoveState(this, rigidBody, animator);
 
         //상태 추가
+        states.Add(PlayerState.Move, MoveState);
 
-        //state machine 초기값- Idle
-        //stateMachine = new StateMachine(IdleState);
+        //state machine 초기값
+        stateMachine = new StateMachine(MoveState);
     }
 
     public override void ChangeState(Enum state)

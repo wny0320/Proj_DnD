@@ -18,10 +18,24 @@ public class Manager : MonoBehaviour
     public static InputManager Input { get { return instance._input; } }
     #endregion
 
+    private void Awake()
+    {
+        Init();
+        Game.OnAwake();
+    }
+
+    private void Start()
+    {
+    }
 
     private void Update()
     {
         Input.OnUpdate();
+    }
+
+    private void FixedUpdate()
+    {
+        Input.OnFixedUpdate();
     }
 
     private static void Init()

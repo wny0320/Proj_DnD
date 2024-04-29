@@ -5,23 +5,17 @@ using UnityEngine;
 
 public class InputManager
 {
-    //델리게이트 연결로 인풋매니저 사용
-    KeyCode ChangeWeaponQ = KeyCode.Q;
-    KeyCode ChangeWeaponE = KeyCode.E;
-    KeyCode Up = KeyCode.W;
-    KeyCode Left = KeyCode.A;
-    KeyCode Down = KeyCode.S;
-    KeyCode Right = KeyCode.D;
-    KeyCode Dodge = KeyCode.Space;
+    public float mouseSpeed = 2f;
 
-    //밑의 대리자를 Global에 함수를 둘지 이곳에 둘지
-    public Action PlayerMove = null;
+    public Action PlayerMove;
+    public Action CameraMove;
 
     public void OnUpdate()
     {
-        if (!Input.anyKey) return;
-
-        //플레이어 이동 함수 정의 후 연결 해줘야됨
+        CameraMove.Invoke();
+    }
+    public void OnFixedUpdate()
+    {
         PlayerMove.Invoke();
     }
 }
