@@ -13,6 +13,14 @@ public class PlayerMoveState : BaseState
     Vector3 dir = Vector3.zero;
     Transform transform;
 
+    bool isCrouch = false;
+    bool isGrounded = true;
+    float speedReduction = 2f;
+
+    float walkSpeed = 5f; //임시 스피드
+    float jumpforce = 5f; //임시 점프
+    Vector3 originalScale; //임시 크기
+
     public PlayerMoveState(BaseController controller, Rigidbody rb = null, Animator animator = null) : base(controller, rb, animator)
     {
         if(cam == null) cam = Camera.main;
@@ -24,6 +32,7 @@ public class PlayerMoveState : BaseState
         Manager.Input.CameraMove += CameraMove;
 
         transform = controller.transform;
+        originalScale = transform.localScale;
     }
 
     public override void OnFixedUpdate()
@@ -40,6 +49,7 @@ public class PlayerMoveState : BaseState
 
     public override void OnStateUpdate()
     {
+        CheckGround();
     }
 
     private void CameraMove()
@@ -58,8 +68,61 @@ public class PlayerMoveState : BaseState
     private void PlayerMove()
     {
         dir = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        dir = transform.TransformDirection(dir) * 3; //임시 스피드
+        dir = transform.TransformDirection(dir) * walkSpeed;
 
-        rb.velocity = dir;
+        Vector3 velocity = rb.velocity;
+        Vector3 velocityChange = (dir - velocity);
+        velocityChange.y = 0;
+
+        rb.AddForce(velocityChange, ForceMode.VelocityChange);
+
+        if (isGrounded && Input.GetKeyDown(KeyCode.Space)) Jump();
+        Crouch();
+    }
+
+    private void Jump()
+    {
+        rb.AddForce(Vector3.up * jumpforce, ForceMode.Impulse);
+        isGrounded = false;
+    }
+
+    private void Crouch()
+    {
+        //웅크리기는 나중에 애니메이션 보고 해야될듯
+        //밑의 transform.localScale 부분 변경하면 될듯함
+
+        if (Input.GetKey(KeyCode.LeftControl))
+        {
+            if (isCrouch) return;
+
+            transform.localScale = new Vector3(originalScale.x, originalScale.y / 2, originalScale.z); 
+            walkSpeed /= speedReduction;
+            isCrouch = true;
+        }
+        else
+        {
+            if (!isCrouch) return;
+
+            transform.localScale = new Vector3(originalScale.x, originalScale.y, originalScale.z);
+            walkSpeed *= speedReduction;
+            isCrouch = false;
+        }
+    }
+
+    private void CheckGround()
+    {
+        Vector3 origin = new Vector3(transform.position.x, transform.position.y - (transform.localScale.y * .5f), transform.position.z);
+        Vector3 direction = transform.TransformDirection(Vector3.down);
+        float distance = .75f;
+
+        if (Physics.Raycast(origin, direction, out RaycastHit hit, distance))
+        {
+            Debug.DrawRay(origin, direction * distance, Color.red);
+            isGrounded = true;
+        }
+        else
+        {
+            isGrounded = false;
+        }
     }
 }
