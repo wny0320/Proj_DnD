@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerMoveState : BaseState
 {
+    const string PLAYER_MOVE = "PlayerMove";
+    const string PLAYER_JUMP = "PlayerJump";
     #region Camera
     Camera cam;
     float pitch = 0f; // ¼öÁ÷
@@ -69,9 +71,10 @@ public class PlayerMoveState : BaseState
         Vector3 velocity = rb.velocity;
         Vector3 velocityChange = (dir - velocity);
         velocityChange.y = 0;
-
+        
         rb.AddForce(velocityChange, ForceMode.VelocityChange);
-
+        if (velocity.x > 0.2f || velocity.z > 0.2f) animator.SetBool(PLAYER_MOVE, true);
+        else animator.SetBool(PLAYER_MOVE, false);
         if (isGrounded && Input.GetKeyDown(KeyCode.Space)) Jump();
     }
 

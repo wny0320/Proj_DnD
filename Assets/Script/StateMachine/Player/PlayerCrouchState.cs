@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerCrouchState : BaseState
 {
+    const string PLAYER_CROUCH = "PlayerCrouch";
     private float speedReduction = 2f;
 
     public PlayerCrouchState(BaseController controller, Rigidbody rb = null, Animator animator = null) : base(controller, rb, animator)
