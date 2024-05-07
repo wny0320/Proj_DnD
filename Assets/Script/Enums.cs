@@ -9,7 +9,19 @@ public enum TopoTags
 
 public enum PlayerState
 {
-    Idle,
     Move,
+    Crouch,
+}
 
+public enum EnemyState
+{
+    Move,
+    Attack,
+    Run
+}
+
+public enum EnemyType
+{
+    Human,
+    Monster
 }

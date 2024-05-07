@@ -13,13 +13,7 @@ public class PlayerMoveState : BaseState
     Vector3 dir = Vector3.zero;
     Transform transform;
 
-    bool isCrouch = false;
     bool isGrounded = true;
-    float speedReduction = 2f;
-
-    float walkSpeed = 5f; //임시 스피드
-    float jumpforce = 5f; //임시 점프
-    Vector3 originalScale; //임시 크기
 
     public PlayerMoveState(BaseController controller, Rigidbody rb = null, Animator animator = null) : base(controller, rb, animator)
     {
@@ -32,7 +26,6 @@ public class PlayerMoveState : BaseState
         Manager.Input.CameraMove += CameraMove;
 
         transform = controller.transform;
-        originalScale = transform.localScale;
     }
 
     public override void OnFixedUpdate()
@@ -50,6 +43,9 @@ public class PlayerMoveState : BaseState
     public override void OnStateUpdate()
     {
         CheckGround();
+
+        if (Input.GetKeyDown(KeyCode.LeftControl))
+            controller.ChangeState(PlayerState.Crouch);
     }
 
     private void CameraMove()
@@ -68,7 +64,7 @@ public class PlayerMoveState : BaseState
     private void PlayerMove()
     {
         dir = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        dir = transform.TransformDirection(dir) * walkSpeed;
+        dir = transform.TransformDirection(dir) * controller.stat.MoveSpeed;
 
         Vector3 velocity = rb.velocity;
         Vector3 velocityChange = (dir - velocity);
@@ -77,36 +73,12 @@ public class PlayerMoveState : BaseState
         rb.AddForce(velocityChange, ForceMode.VelocityChange);
 
         if (isGrounded && Input.GetKeyDown(KeyCode.Space)) Jump();
-        Crouch();
     }
 
     private void Jump()
     {
-        rb.AddForce(Vector3.up * jumpforce, ForceMode.Impulse);
+        rb.AddForce(Vector3.up * controller.stat.JumpForce, ForceMode.Impulse);
         isGrounded = false;
-    }
-
-    private void Crouch()
-    {
-        //웅크리기는 나중에 애니메이션 보고 해야될듯
-        //밑의 transform.localScale 부분 변경하면 될듯함
-
-        if (Input.GetKey(KeyCode.LeftControl))
-        {
-            if (isCrouch) return;
-
-            transform.localScale = new Vector3(originalScale.x, originalScale.y / 2, originalScale.z); 
-            walkSpeed /= speedReduction;
-            isCrouch = true;
-        }
-        else
-        {
-            if (!isCrouch) return;
-
-            transform.localScale = new Vector3(originalScale.x, originalScale.y, originalScale.z);
-            walkSpeed *= speedReduction;
-            isCrouch = false;
-        }
     }
 
     private void CheckGround()
