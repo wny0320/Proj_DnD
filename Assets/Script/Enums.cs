@@ -11,13 +11,15 @@ public enum PlayerState
 {
     Move,
     Crouch,
+    Die,
 }
 
 public enum EnemyState
 {
     Move,
     Attack,
-    Run
+    Run,
+    Die,
 }
 
 public enum EnemyType

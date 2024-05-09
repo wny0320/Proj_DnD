@@ -35,6 +35,7 @@ public class PlayerController : BaseController
         //상태 생성
         PlayerMoveState MoveState = new PlayerMoveState(this, rigidBody, animator);
         PlayerCrouchState CrouchState = new PlayerCrouchState(this, rigidBody, animator);
+        PlayerDieState DieState = new PlayerDieState(this, rigidBody, animator);
 
         //상태 추가
         states.Add(PlayerState.Move, MoveState);
