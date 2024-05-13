@@ -12,10 +12,12 @@ public class Manager : MonoBehaviour
     GameManager _game = new GameManager();
     DataManager _data = new DataManager();
     InputManager _input = new InputManager();
+    UIManager _ui= new UIManager();
 
     public static GameManager Game { get { return instance._game; } }
     public static DataManager Data { get { return instance._data; } }
     public static InputManager Input { get { return instance._input; } }
+    public static UIManager UI { get { return instance._ui; } }
     #endregion
 
     private void Awake()
