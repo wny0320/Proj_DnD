@@ -5,7 +5,7 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class EnemyController : BaseController
+public class EnemyController : BaseController, IReceiveAttack
 {
     [SerializeField]
     private EnemyType enemyType;
@@ -54,5 +54,10 @@ public class EnemyController : BaseController
     {
         int s = Convert.ToInt32(state);
         stateMachine.SetState(states[(EnemyState)s]);
+    }
+
+    public void OnHit(float damage)
+    {
+        //피격함수
     }
 }

@@ -9,9 +9,14 @@ public class PopupUI : MonoBehaviour
     {
         Manager.UI.DisplayPopup(this);
     }
-
     public virtual void OnClose()
     {
-        
+        //Destroy(gameObject);
     }
+
+    public void OnCloseEvent()
+    {
+        Manager.UI.ClosePopup();
+    }
+
 }

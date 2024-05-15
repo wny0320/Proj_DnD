@@ -9,7 +9,8 @@ public class UIManager
 
     public void OnUpdate()
     {
-        ClosePopup();
+        if(Input.GetKeyDown(KeyCode.Escape))
+            ClosePopup();
     }
 
     public void DisplayPopup(PopupUI popupUI)
@@ -21,14 +22,17 @@ public class UIManager
 
     //esc or 뒤로가기 버튼 누를 시 ui 처리
     public void ClosePopup()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (PopUpStack.Count <= 0) return;
+{
+        if (PopUpStack.Count <= 0) return;
 
-            PopupUI pop =  PopUpStack.Pop();
-            pop.OnPopup();
-            sortingOrder--;
-        }
+        PopupUI pop =  PopUpStack.Pop();
+        pop.OnClose();
+        sortingOrder--;
+    }
+
+    public void CloseAllPopup()
+    {
+        while(PopUpStack.Count > 0)
+            ClosePopup();
     }
 }

@@ -6,7 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Playables;
 
-public class PlayerController : BaseController
+public class PlayerController : BaseController, IReceiveAttack
 {
     void Start()
     {
@@ -49,5 +49,10 @@ public class PlayerController : BaseController
     {
         int s = Convert.ToInt32(state);
         stateMachine.SetState(states[(PlayerState)s]);
+    }
+
+    public void OnHit(float damage)
+    {
+        //피격 함수
     }
 }
