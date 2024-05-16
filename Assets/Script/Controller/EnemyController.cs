@@ -10,6 +10,8 @@ public class EnemyController : BaseController, IReceiveAttack
     [SerializeField]
     private EnemyType enemyType;
 
+    public List<Vector3> wayPoints = new();
+
     void Start()
     {
         rigidBody = GetComponent<Rigidbody>();
@@ -33,21 +35,29 @@ public class EnemyController : BaseController, IReceiveAttack
     private void InitStateMachine_Monster()
     {
         //상태 생성
+        EnemyMoveState MoveState = new EnemyMoveState(this, rigidBody, animator);
+        EnemyAttackState AttackState = new EnemyAttackState(this, rigidBody, animator);
 
         //상태 추가
+        states.Add(EnemyState.Move, MoveState);
+        states.Add(EnemyState.Attack, AttackState);
 
         //state machine 초기값
-        //stateMachine = new StateMachine(MoveState);
+        stateMachine = new StateMachine(MoveState);
     }
 
     private void InitStateMachine_Human()
     {
         //상태 생성
+        EnemyMoveState MoveState = new EnemyMoveState(this, rigidBody, animator);
+        EnemyAttackState AttackState = new EnemyAttackState(this, rigidBody, animator);
 
         //상태 추가
+        states.Add(EnemyState.Move, MoveState);
+        states.Add(EnemyState.Attack, AttackState);
 
         //state machine 초기값
-        //stateMachine = new StateMachine(MoveState);
+        stateMachine = new StateMachine(MoveState);
     }
 
     public override void ChangeState(Enum state)

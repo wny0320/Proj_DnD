@@ -932,13 +932,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1177754431}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5, y: 1, z: 5}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 20, y: 1, z: 20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &1177754436
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -952,7 +952,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stat: {fileID: 0}
-  enemyType: 0
+  enemyType: 1
+  wayPoints: []
 --- !u!114 &1177754437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -969,7 +970,7 @@ MonoBehaviour:
   _maxHp: 0
   _attack: 0
   _defense: 0
-  _moveSpeed: 0
+  _moveSpeed: 5
   _jumpForce: 0
   _attackSpeed: 0
 --- !u!195 &1177754438
@@ -1010,7 +1011,7 @@ GameObject:
   - component: {fileID: 1461105147}
   - component: {fileID: 1461105141}
   - component: {fileID: 1461105148}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: testPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}

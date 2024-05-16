@@ -8,6 +8,11 @@ using UnityEngine.Playables;
 
 public class PlayerController : BaseController, IReceiveAttack
 {
+    private void Awake()
+    {
+        Manager.Game.Player = gameObject;
+    }
+
     void Start()
     {
         rigidBody = GetComponent<Rigidbody>();
@@ -15,9 +20,6 @@ public class PlayerController : BaseController, IReceiveAttack
         stat = GetComponent<Stat>();
 
         InitStateMachine();
-
-        Manager.Game.Player = gameObject;
-        
     }
 
     void Update()

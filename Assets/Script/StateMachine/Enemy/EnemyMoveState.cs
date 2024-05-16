@@ -7,8 +7,10 @@ public class EnemyMoveState : BaseState
 {
     //적 추적 및 이동
     private bool isFind = false;
-    private float followingDistance = 15f;
-    private float attackDistance = 1.5f;
+    private float chaseDistance = 20f; //플레이어 추격 거리
+    private float forwardDetectRange = 15f; //전방 감지 거리
+    private float senseDetectRange = 5f; //주변 감지 거리
+    private float attackDistance = 2f;
 
     private NavMeshAgent agent;
     private Transform target;
@@ -17,7 +19,11 @@ public class EnemyMoveState : BaseState
     public EnemyMoveState(BaseController controller, Rigidbody rb = null, Animator animator = null) : base(controller, rb, animator)
     {
         agent = controller.GetComponent<NavMeshAgent>();
+        agent.speed = controller.stat.MoveSpeed;
+
         transform = controller.transform;
+
+        target = Manager.Game.Player.transform;
     }
 
     public override void OnFixedUpdate()
@@ -26,7 +32,7 @@ public class EnemyMoveState : BaseState
 
     public override void OnStateEnter()
     {
-        //Follow();
+        if (!DetectPlayer(10f)) isFind = false;
     }
 
     public override void OnStateExit()
@@ -36,25 +42,59 @@ public class EnemyMoveState : BaseState
 
     public override void OnStateUpdate()
     {
-        if (isFind) Follow();
-        else PatrolToFind();
+
+        if (!isFind)
+        {
+            Patrol();
+            DetectPlayer(senseDetectRange);
+        }
+        else Chase();
     }
 
-    private void PatrolToFind()
+    private void Patrol()
     {
-        // 바라보는 방향 탐지 어떻게 할 것인지
+        
     }
 
-    private void Follow()
+    private bool DetectPlayer(float DetectDistance)
+    {
+        //주변 탐지
+        Collider[] cols = Physics.OverlapSphere(transform.position, DetectDistance, 1 << 10);
+        foreach(Collider col in cols)
+        {
+            if (col.gameObject == Manager.Game.Player)
+            {
+                isFind = true;
+                return true;
+            }
+        }
+
+        // 전방 부채꼴 탐지
+        Vector3 dist = target.position - transform.position;
+        if(dist.magnitude <= forwardDetectRange)
+        {
+            float dot = Vector3.Dot(dist.normalized, transform.forward);
+            float theta = Mathf.Acos(dot);
+            float degree = Mathf.Rad2Deg * theta;
+
+            if (degree <= 40f) { isFind = true; return true; } //전방 
+        }
+
+        return false;
+    }
+
+    private void Chase()
     {
         float distance = CheckDistance();
-        if(distance <= attackDistance)
+        if(distance <= attackDistance + agent.radius)
         {
+            agent.SetDestination(transform.position); //멈추기
+
             controller.ChangeState(EnemyState.Attack);
             return;
         }
 
-        if (distance <= followingDistance)
+        if (distance <= chaseDistance)
             agent.SetDestination(target.position);
         else
             isFind = false;
@@ -78,5 +118,14 @@ public class EnemyMoveState : BaseState
         }
 
         return distance;
+    }
+
+    //enemytype가 사람일 때 실행될 함수
+    private bool CheckPlayerItemToRun()
+    {
+        //너무 도망만 가면 안되니 이에따른 조건 추가해야될듯
+        //플레이어 아이템 검사 - 도망: true, 맞다이: false
+
+        return false;
     }
 }
