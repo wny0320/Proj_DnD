@@ -77,7 +77,21 @@ public class EnemyMoveState : BaseState
             float theta = Mathf.Acos(dot);
             float degree = Mathf.Rad2Deg * theta;
 
-            if (degree <= 40f) { isFind = true; return true; } //Àü¹æ 
+            if (degree <= 40f) 
+            {
+                RaycastHit hit;
+                Physics.Raycast(transform.position, dist.normalized, out hit, forwardDetectRange + 3);
+
+                if(hit.collider.gameObject == target.gameObject)
+                {
+                    isFind = true;
+                    return true;
+                }
+                else
+                {
+                    Debug.Log(hit.collider.gameObject);
+                }
+            }
         }
 
         return false;
