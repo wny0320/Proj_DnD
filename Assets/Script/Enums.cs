@@ -27,3 +27,9 @@ public enum EnemyType
     Human,
     Monster
 }
+
+public enum EffectType
+{
+    Blood,
+
+}

@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67c75d8062ebd8045b759c8b7d94164f, type: 3}
+  m_Name: EffectCollector
+  m_EditorClassIdentifier: 
+  hiteffect: {fileID: 9109243077733504558, guid: cd58f5436f8afb24db8c069c622ecbb2, type: 3}
