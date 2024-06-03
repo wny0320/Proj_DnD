@@ -13,11 +13,13 @@ public class Manager : MonoBehaviour
     DataManager _data = new DataManager();
     InputManager _input = new InputManager();
     UIManager _ui= new UIManager();
+    InvenManager _inven = new InvenManager();
 
     public static GameManager Game { get { return instance._game; } }
     public static DataManager Data { get { return instance._data; } }
     public static InputManager Input { get { return instance._input; } }
     public static UIManager UI { get { return instance._ui; } }
+    public static InvenManager Inven { get { return instance._inven; } }
     #endregion
 
     private void Awake()
@@ -28,6 +30,7 @@ public class Manager : MonoBehaviour
 
     private void Start()
     {
+        Data.OnStart();
     }
 
     private void Update()

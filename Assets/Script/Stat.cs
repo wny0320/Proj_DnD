@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class Stat : MonoBehaviour
 {
+    //생성자로 아이템의 스탯을 만들 수 있게
+    public Stat(int hp, int maxHp)
+    {
+        _hp = hp;
+        _maxHp = maxHp;
+    }
     [SerializeField]
     protected int _hp;
     [SerializeField]
