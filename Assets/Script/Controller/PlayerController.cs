@@ -10,7 +10,6 @@ public class PlayerController : BaseController, IReceiveAttack
 {
     private void Awake()
     {
-        Manager.Game.Player = gameObject;
     }
 
     void Start()
@@ -19,6 +18,7 @@ public class PlayerController : BaseController, IReceiveAttack
         animator = GetComponent<Animator>();
         stat = GetComponent<Stat>();
 
+        Manager.Game.Player = gameObject;
         InitStateMachine();
     }
 
