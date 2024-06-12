@@ -9,6 +9,7 @@ public class InputManager
 
     public Action PlayerMove;
     public Action CameraMove;
+    public Action PlayerAttack;
 
     public void OnUpdate()
     {
@@ -17,5 +18,6 @@ public class InputManager
     public void OnFixedUpdate()
     {
         PlayerMove.Invoke();
+        PlayerAttack.Invoke();
     }
 }

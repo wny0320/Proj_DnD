@@ -6,6 +6,7 @@ public class PlayerMoveState : BaseState
 {
     const string PLAYER_MOVE = "PlayerMove";
     const string PLAYER_JUMP = "PlayerJump";
+    const string PLAYER_ATTACK = "PlayerAttack";
     #region Camera
     Camera cam;
     float pitch = 0f; // ¼öÁ÷
@@ -23,9 +24,11 @@ public class PlayerMoveState : BaseState
 
         Manager.Input.PlayerMove -= PlayerMove;
         Manager.Input.CameraMove -= CameraMove;
+        Manager.Input.PlayerAttack -= PlayerAttack;
 
         Manager.Input.PlayerMove += PlayerMove;
         Manager.Input.CameraMove += CameraMove;
+        Manager.Input.PlayerAttack += PlayerAttack;
 
         transform = controller.transform;
     }
@@ -73,7 +76,7 @@ public class PlayerMoveState : BaseState
         velocityChange.y = 0;
         
         rb.AddForce(velocityChange, ForceMode.VelocityChange);
-        if (velocity.x > 0.2f || velocity.z > 0.2f) animator.SetBool(PLAYER_MOVE, true);
+        if (Mathf.Abs(velocity.x) > 0.2f || Mathf.Abs(velocity.z) > 0.2f) animator.SetBool(PLAYER_MOVE, true);
         else animator.SetBool(PLAYER_MOVE, false);
         if (isGrounded && Input.GetKeyDown(KeyCode.Space)) Jump();
     }
@@ -99,5 +102,13 @@ public class PlayerMoveState : BaseState
         {
             isGrounded = false;
         }
+    }
+
+    private void PlayerAttack()
+    {
+        if (!controller.isAlive) return;
+
+        if (Input.GetMouseButtonDown(0))
+            animator.SetTrigger(PLAYER_ATTACK);
     }
 }
