@@ -35,6 +35,7 @@ public class PlayerMoveState : BaseState
 
     public override void OnFixedUpdate()
     {
+        //Debug.Log("isground" + isGrounded);
     }
 
     public override void OnStateEnter()
@@ -89,9 +90,9 @@ public class PlayerMoveState : BaseState
 
     private void CheckGround()
     {
-        Vector3 origin = new Vector3(transform.position.x, transform.position.y - (transform.localScale.y * .5f), transform.position.z);
+        Vector3 origin = new Vector3(transform.position.x, transform.position.y + (transform.localScale.y * .5f), transform.position.z);
         Vector3 direction = transform.TransformDirection(Vector3.down);
-        float distance = .75f;
+        float distance = 1f;
 
         if (Physics.Raycast(origin, direction, out RaycastHit hit, distance))
         {
@@ -102,6 +103,8 @@ public class PlayerMoveState : BaseState
         {
             isGrounded = false;
         }
+
+        //Debug.DrawRay(origin, direction, Color.red);
     }
 
     private void PlayerAttack()
