@@ -8,6 +8,8 @@ TagManager:
   - floor
   - pillar
   - stair
+  - Breakable
+  - Monster
   layers:
   - Default
   - TransparentFX

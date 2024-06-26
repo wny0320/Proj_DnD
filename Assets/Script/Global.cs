@@ -16,4 +16,7 @@ public static class Global
     //SFX 사용법 : Global.sfx.Play(Global.Sound.testclip);
     public static SoundManager sfx;
     public static EffectManager fx;
+
+    //무기
+    public static Weapon PlayerWeapon;
 }
