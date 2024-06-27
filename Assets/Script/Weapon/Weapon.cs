@@ -41,11 +41,12 @@ public class Weapon : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        IReceiveAttack attacked = other as IReceiveAttack;
-        if (other == null) return;
+        IReceiveAttack attacked = other.GetComponent<IReceiveAttack>();
+        if (attacked == null) return;
         if (hittedObject.Contains(other)) return;
 
         hittedObject.Add(other);
-        //attacked.OnHit();
+
+        attacked.OnHit(totalDamage);
     }
 }

@@ -55,6 +55,14 @@ public class PlayerController : BaseController, IReceiveAttack
 
     public void OnHit(float damage)
     {
-        //피격 함수
+        float dmg = Mathf.Max(1, damage - stat.Defense);
+        stat.Hp -= (int)dmg;
+        if (stat.Hp <= 0)
+        {
+            stat.Hp = 0;
+
+            //사망 처리 해야됨
+        }
     }
+
 }

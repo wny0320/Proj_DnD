@@ -40,18 +40,6 @@ public class Stat : MonoBehaviour
         Init();
     }
 
-    //피격은 인터페이스로 할건지 밑의 함수로 할건지 정해야 될듯
-    public virtual void OnAttacked(Stat attacker)
-    {
-        int damage = Mathf.Max(0, attacker.Attack - Defense);
-        Hp -= damage;
-        if (Hp <= 0)
-        {
-            Hp = 0;
-            //Ondead - 사망처리
-        }
-    }
-
     private void Init()
     {
         //스탯 초기값
