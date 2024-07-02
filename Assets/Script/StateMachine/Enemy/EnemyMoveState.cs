@@ -5,12 +5,19 @@ using UnityEngine.AI;
 
 public class EnemyMoveState : BaseState
 {
+    const string ENEMY_MOVE = "EnemyMove";
+    const string ENEMY_ATTACK = "EnemyAttack";
+
     //적 추적 및 이동
     private bool isFind = false;
     private float chaseDistance = 20f; //플레이어 추격 거리
     private float forwardDetectRange = 15f; //전방 감지 거리
     private float senseDetectRange = 5f; //주변 감지 거리
     private float attackDistance = 2f;
+
+    private float attackSpeed;
+    private float attackCooldown = 0f;
+    private bool canAttack = true;
 
     private NavMeshAgent agent;
     private Transform target;
@@ -24,15 +31,21 @@ public class EnemyMoveState : BaseState
         transform = controller.transform;
 
         target = Manager.Game.Player.transform;
+
+        attackSpeed = controller.stat.AttackSpeed;
     }
 
     public override void OnFixedUpdate()
     {
+        attackCooldown += Time.fixedDeltaTime;
+        if (attackCooldown > attackSpeed) { canAttack = true; attackCooldown = 0f; }
     }
 
     public override void OnStateEnter()
     {
         if (!DetectPlayer(10f)) isFind = false;
+
+        attackCooldown = 0f;
     }
 
     public override void OnStateExit()
@@ -49,6 +62,9 @@ public class EnemyMoveState : BaseState
             DetectPlayer(senseDetectRange);
         }
         else Chase();
+
+        if (Mathf.Abs(agent.velocity.x) > 0.2f || Mathf.Abs(agent.velocity.z) > 0.2f) animator.SetBool(ENEMY_MOVE, true);
+        else animator.SetBool(ENEMY_MOVE, false);
     }
 
     private void Patrol()
@@ -102,10 +118,16 @@ public class EnemyMoveState : BaseState
         float distance = CheckDistance();
         if(distance <= attackDistance + agent.radius)
         {
-            agent.SetDestination(transform.position); //멈추기
+            if(canAttack)
+            {
+                agent.SetDestination(transform.position); //멈추기
 
-            controller.ChangeState(EnemyState.Attack);
-            return;
+                controller.ChangeState(EnemyState.Attack);
+                animator.SetTrigger(ENEMY_ATTACK);
+                animator.SetBool(ENEMY_MOVE, false);
+                canAttack = false;
+                return;
+            }
         }
 
         if (distance <= chaseDistance)

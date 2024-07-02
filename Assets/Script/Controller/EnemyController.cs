@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyController : BaseController, IReceiveAttack
 {
@@ -37,10 +38,12 @@ public class EnemyController : BaseController, IReceiveAttack
         //상태 생성
         EnemyMoveState MoveState = new EnemyMoveState(this, rigidBody, animator);
         EnemyAttackState AttackState = new EnemyAttackState(this, rigidBody, animator);
+        EnemyDieState Diestate = new EnemyDieState(this, rigidBody, animator);
 
         //상태 추가
         states.Add(EnemyState.Move, MoveState);
         states.Add(EnemyState.Attack, AttackState);
+        states.Add(EnemyState.Die, Diestate);
 
         //state machine 초기값
         stateMachine = new StateMachine(MoveState);
@@ -51,10 +54,12 @@ public class EnemyController : BaseController, IReceiveAttack
         //상태 생성
         EnemyMoveState MoveState = new EnemyMoveState(this, rigidBody, animator);
         EnemyAttackState AttackState = new EnemyAttackState(this, rigidBody, animator);
+        EnemyDieState Diestate = new EnemyDieState(this, rigidBody, animator);
 
         //상태 추가
         states.Add(EnemyState.Move, MoveState);
         states.Add(EnemyState.Attack, AttackState);
+        states.Add(EnemyState.Die, Diestate);
 
         //state machine 초기값
         stateMachine = new StateMachine(MoveState);
@@ -76,8 +81,11 @@ public class EnemyController : BaseController, IReceiveAttack
 
             Debug.Log($"{name} die");
 
-            //임시
-            Destroy(gameObject);
+            GetComponent<NavMeshAgent>().SetDestination(transform.position);
+            GetComponent<NavMeshAgent>().velocity = Vector3.zero;
+            animator.SetBool("EnemyMove", false);
+
+            ChangeState(EnemyState.Die);
         }
     }
 }

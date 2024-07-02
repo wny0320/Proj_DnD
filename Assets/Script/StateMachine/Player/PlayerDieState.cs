@@ -15,6 +15,7 @@ public class PlayerDieState : BaseState
 
     public override void OnStateEnter()
     {
+
     }
 
     public override void OnStateExit()
