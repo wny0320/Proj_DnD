@@ -22,6 +22,7 @@ public class Manager : MonoBehaviour
     public static InvenManager Inven { get { return instance._inven; } }
     #endregion
 
+    public Coroutine invenCoroutine = null;
     private void Awake()
     {
         Init();
@@ -31,11 +32,13 @@ public class Manager : MonoBehaviour
     private void Start()
     {
         Data.OnStart();
+        Inven.OnStart();
     }
 
     private void Update()
     {
         Input.OnUpdate();
+        StartInvenCoroutine();
     }
 
     private void FixedUpdate()
@@ -57,5 +60,12 @@ public class Manager : MonoBehaviour
             DontDestroyOnLoad(go);
             instance = go.GetComponent<Manager>();
         }
+    }
+    public void StartInvenCoroutine()
+    {
+        if (invenCoroutine == null)
+            invenCoroutine = StartCoroutine(Inven.MoveItem());
+        else
+            return;
     }
 }

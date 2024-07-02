@@ -3,38 +3,31 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class DataManager
 {
     //데이터 매니저 - 데이터 관련
-    Dictionary<string, Dictionary<string, float>> itemData = new Dictionary<string, Dictionary<string, float>>();
+    Dictionary<string, Item> itemData = new Dictionary<string, Item>();
     public void OnStart()
     {
-        //데이터 들어가는 형식 확인용
-        //Dictionary<string, float> statDict = new Dictionary<string, float>();
-        //statDict.Add("hp", 1);
-        //itemData.Add("itemName", statDict);
-        //Json 아이템 데이터 형식
-        // {"itemName_Key":{"Hp":1,"MaxHp":2,"Attack":0,"Defense":0,"MoveSpeed":0.0,"AttackSpeed":0.0,"JumpForce":0.0}}
-        GetItemJson();
+        GetItemDataJson();
     }
     public string JsonSerialize(object _obj)
     {
-        return JsonConvert.SerializeObject(_obj);
+        return JsonConvert.SerializeObject(_obj, Formatting.Indented);
     }
     public object JsonDeserialize(string _jsonDatam, Type _type)
     {
         return JsonConvert.DeserializeObject(_jsonDatam, _type);
     }
-    public void GetItemJson()
+    public void GetItemDataJson()
     {
         string itemJsonPath = Path.Combine(Application.persistentDataPath, "itemData.Json");
-        if(File.Exists(itemJsonPath))
+        if (File.Exists(itemJsonPath))
         {
             string json = File.ReadAllText(itemJsonPath);
-            itemData = (Dictionary<string, Dictionary<string, float>>)JsonDeserialize(json, typeof(Dictionary<string, Dictionary<string, float>>));
+            itemData = (Dictionary<string, Item>)JsonDeserialize(json, typeof(Dictionary<string, Item>));
         }
         else
         {
@@ -43,8 +36,29 @@ public class DataManager
         }
         Debug.Log(itemJsonPath);
     }
-    public void InsertItemData()
+    public void SaveItemJson(string _json)
     {
-        
+        string itemJsonPath = Path.Combine(Application.persistentDataPath, "itemData.Json");
+        File.WriteAllText(itemJsonPath, _json);
+    }
+    //public void InsertTestItemData()
+    //{
+    //    Dictionary<string,Item> exampleDict = new Dictionary<string,Item>();
+    //    Stat exampleStat = new Stat(1,2);
+    //    Item exampleItem = new Item();
+    //    exampleItem.name = "exampleItem";
+    //    exampleItem.itemImageNum = 0;
+    //    exampleItem.itemStat = exampleStat;
+    //    exampleItem.equipPart = EquipPart.Chest;
+    //    exampleItem.itemSize = ItemSize.slot2x3;
+    //    exampleItem.itemMaxStack = 0;
+    //    exampleItem.itemStack = 0;
+    //    exampleDict.Add(exampleItem.name, exampleItem);
+    //    string exampleJson = JsonSerialize(exampleDict);
+    //    SaveItemJson(exampleJson);
+    //}
+    public Item GetItemFromJson(string _itemName)
+    {
+        return itemData[_itemName];
     }
 }

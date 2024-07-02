@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Stat : MonoBehaviour
+public class Stat
 {
     //생성자로 아이템의 스탯을 만들 수 있게
     public Stat(int hp, int maxHp)

@@ -6,7 +6,11 @@ using UnityEngine;
 public class Item : ScriptableObject
 {
     public string itemName;
-    public Sprite itemImage;
-    public string itemText;
+    public int itemImageNum;
+    //public string itemText; // 이 부분은 없어도 될거 같음
     public Stat itemStat;
+    public EquipPart equipPart;
+    public ItemSize itemSize;
+    public int itemMaxStack;
+    public int itemStack;
 }
