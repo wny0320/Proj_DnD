@@ -11,10 +11,12 @@ public class DataManager
     Dictionary<string, Item> itemData = new Dictionary<string, Item>();
     //아이템 데이터에 들어있는 키 순서대로 이미지 또한 들어가 있어서 itemIamges의 index를 itemImageNum에 넣으면 됨 
     List<Sprite> itemImages = new List<Sprite>();
-    public void OnStart()
+    const string ITEM_PATH = "Items/";
+    public void OnAwake()
     {
         GetItemDataJson();
         ItemImageImport();
+
     }
     public string JsonSerialize(object _obj)
     {
@@ -27,16 +29,29 @@ public class DataManager
     public void GetItemDataJson()
     {
         string itemJsonPath = Path.Combine(Application.persistentDataPath, "itemData.Json");
-        if (File.Exists(itemJsonPath))
+        // 해당 부분은 파일이 있을때 업데이트 안하게 하는걸로 리소스 아끼고 싶을때 추가
+        //if (File.Exists(itemJsonPath))
+        //{
+        //    string json = File.ReadAllText(itemJsonPath);
+        //    Dictionary<string, Item> existData = (Dictionary<string, Item>)JsonDeserialize(json, typeof(Dictionary<string, Item>));
+        //}
+        //else
+        //{
+        //    Item[] items = Resources.LoadAll<Item>(ITEM_PATH);
+        //    foreach (Item item in items)
+        //    {
+
+        //    }
+        //    string json = JsonSerialize(itemData);
+        //    File.WriteAllText(itemJsonPath, json);
+        //}
+        Item[] items = Resources.LoadAll<Item>(ITEM_PATH);
+        foreach (Item item in items)
         {
-            string json = File.ReadAllText(itemJsonPath);
-            itemData = (Dictionary<string, Item>)JsonDeserialize(json, typeof(Dictionary<string, Item>));
+            itemData.Add(item.itemName, item);
         }
-        else
-        {
-            string json = JsonSerialize(itemData);
-            File.WriteAllText(itemJsonPath, json);
-        }
+        string json = JsonSerialize(itemData);
+        File.WriteAllText(itemJsonPath, json);
         Debug.Log(itemJsonPath);
     }
     public void SaveItemJson(string _json)
@@ -66,11 +81,14 @@ public class DataManager
     }
     public void ItemImageImport()
     {
+        int index = 0;
         foreach(string itemName in itemData.Keys)
         {
-            string targetImagePath = "ItemImages/" + itemName + "Image";
+            itemData[itemName].itemImageNum = index;
+            string targetImagePath = ITEM_PATH + "ItemImages/" + itemName + "Image";
             Sprite targetItemImage = Resources.Load<Sprite>(targetImagePath);
             itemImages.Add(targetItemImage);
+            index++;
         }
     }
 }
