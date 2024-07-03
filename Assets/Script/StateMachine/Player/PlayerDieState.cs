@@ -15,7 +15,7 @@ public class PlayerDieState : BaseState
 
     public override void OnStateEnter()
     {
-
+        Debug.Log("player die");
     }
 
     public override void OnStateExit()

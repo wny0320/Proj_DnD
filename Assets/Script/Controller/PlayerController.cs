@@ -37,7 +37,7 @@ public class PlayerController : BaseController, IReceiveAttack
 
     private void InitStat()
     {
-        stat = new Stat(100, 100, 10, 10, 10, 10, 0);
+        stat = new Stat(100, 100, 100, 10, 10, 10, 0);
     }
 
     private void InitStateMachine()
@@ -50,6 +50,7 @@ public class PlayerController : BaseController, IReceiveAttack
         //상태 추가
         states.Add(PlayerState.Move, MoveState);
         states.Add(PlayerState.Crouch, CrouchState);
+        states.Add(PlayerState.Die, DieState);
 
         //state machine 초기값
         stateMachine = new StateMachine(MoveState);
@@ -69,7 +70,7 @@ public class PlayerController : BaseController, IReceiveAttack
         {
             stat.Hp = 0;
 
-            //사망 처리 해야됨
+            ChangeState(PlayerState.Die);
         }
     }
 

@@ -8,10 +8,12 @@ using UnityEngine.AI;
 
 public class EnemyController : BaseController, IReceiveAttack
 {
-    [SerializeField]
-    private EnemyType enemyType;
+    [SerializeField] private EnemyType enemyType;
+    [SerializeField] private EnemyWeapon weapon;
 
     public List<Vector3> wayPoints = new();
+
+    private Coroutine AttackCo = null;
 
     void Start()
     {
@@ -37,7 +39,7 @@ public class EnemyController : BaseController, IReceiveAttack
 
     private void InitStat()
     {
-        stat = new Stat(100, 100, 10, 10, 10, 10, 0);
+        stat = new Stat(100, 100, 100, 10, 10, 10, 5);
     }
 
     private void InitStateMachine_Monster()
@@ -76,6 +78,11 @@ public class EnemyController : BaseController, IReceiveAttack
     {
         int s = Convert.ToInt32(state);
         stateMachine.SetState(states[(EnemyState)s]);
+
+        if((EnemyState)s == EnemyState.Attack && AttackCo == null)
+        {
+            AttackCo = StartCoroutine(AttackCoroutine());
+        }
     }
 
     public void OnHit(float damage)
@@ -94,5 +101,15 @@ public class EnemyController : BaseController, IReceiveAttack
 
             ChangeState(EnemyState.Die);
         }
+    }
+
+    IEnumerator AttackCoroutine()
+    {
+        weapon.AttackStart();
+
+        yield return new WaitForSeconds(1.5f);
+
+        weapon.AttackEnd();
+        AttackCo = null;
     }
 }

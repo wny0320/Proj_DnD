@@ -23,7 +23,7 @@ public class Weapon : MonoBehaviour
 
     public void AttackStart(int level)
     {
-        Debug.Log("attack start");
+        //Debug.Log("attack start");
         totalDamage = damage + Manager.Game.Player.GetComponent<PlayerController>().stat.Attack;
         totalDamage += (totalDamage * (0.1f * level));
 
@@ -34,7 +34,7 @@ public class Weapon : MonoBehaviour
 
     public void AttackEnd()
     {
-        Debug.Log("Attack End");
+        //Debug.Log("Attack End");
 
         col.enabled = false;
     }

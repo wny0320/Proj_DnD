@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -18,10 +20,13 @@ public class EnemyMoveState : BaseState
     private float attackSpeed;
     private float attackCooldown = 0f;
     private bool canAttack = true;
+    private bool isAttacking = false;
 
     private NavMeshAgent agent;
     private Transform target;
     private Transform transform;
+
+    private Vector3 originPos;
 
     public EnemyMoveState(BaseController controller, Rigidbody rb = null, Animator animator = null) : base(controller, rb, animator)
     {
@@ -29,6 +34,7 @@ public class EnemyMoveState : BaseState
         agent.speed = controller.stat.MoveSpeed;
 
         transform = controller.transform;
+        originPos = transform.position;
 
         target = Manager.Game.Player.transform;
 
@@ -38,11 +44,14 @@ public class EnemyMoveState : BaseState
     public override void OnFixedUpdate()
     {
         attackCooldown += Time.fixedDeltaTime;
+
         if (attackCooldown > attackSpeed) { canAttack = true; attackCooldown = 0f; }
     }
 
     public override void OnStateEnter()
     {
+        isAttacking = false;
+
         if (!DetectPlayer(10f)) isFind = false;
 
         attackCooldown = 0f;
@@ -50,12 +59,11 @@ public class EnemyMoveState : BaseState
 
     public override void OnStateExit()
     {
-
+        isAttacking = false;
     }
 
     public override void OnStateUpdate()
     {
-
         if (!isFind)
         {
             Patrol();
@@ -118,22 +126,43 @@ public class EnemyMoveState : BaseState
         float distance = CheckDistance();
         if(distance <= attackDistance + agent.radius)
         {
-            if(canAttack)
+            if (!isAttacking)
             {
-                agent.SetDestination(transform.position); //¸ØÃß±â
-
-                controller.ChangeState(EnemyState.Attack);
-                animator.SetTrigger(ENEMY_ATTACK);
-                animator.SetBool(ENEMY_MOVE, false);
-                canAttack = false;
-                return;
+                Attack();
             }
+
+            return;
         }
 
-        if (distance <= chaseDistance)
+        float moveDist = (originPos - transform.position).magnitude;
+        if (moveDist > chaseDistance)
+        {
+            agent.SetDestination(originPos);
+            isFind = false;
+            return;
+        }
+        else if (distance <= chaseDistance)
             agent.SetDestination(target.position);
         else
             isFind = false;
+
+    }
+
+    private void Attack()
+    {
+        agent.SetDestination(transform.position); //¸ØÃß±â
+        agent.velocity = Vector3.zero;
+        transform.LookAt(new Vector3(target.position.x, transform.position.y, target.position.z));
+
+        if (canAttack)
+        {
+            animator.SetTrigger(ENEMY_ATTACK);
+            animator.SetBool(ENEMY_MOVE, false);
+            canAttack = false;
+            isAttacking = true;
+            controller.ChangeState(EnemyState.Attack);
+            return;
+        }
     }
 
     private float CheckDistance()
