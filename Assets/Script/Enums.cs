@@ -36,6 +36,7 @@ public enum EffectType
 
 public enum EquipPart
 {
+    NonEquip,
     Head,
     Chest,
     Arm,
@@ -63,4 +64,16 @@ public enum ItemType
     Consumable, // 소모품, 스택처리 2나 3까지
     Coin, // 파밍템중 동전류, 스택처리 10
     Antique, // 파밍템중 골동품류, 스택처리 안됨
+}
+
+public enum ItemRarity
+{
+    Junk,
+    Poor,
+    Common,
+    Uncommon,
+    Rare,
+    Epic,
+    Legendary,
+    Unique,
 }

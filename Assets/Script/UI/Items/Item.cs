@@ -7,10 +7,13 @@ public class Item : ScriptableObject
 {
     public string itemName;
     public int itemImageNum;
-    //public string itemText; // 이 부분은 없어도 될거 같음
+    public string itemText;
+    public ItemRarity itemRarity;
     public Stat itemStat;
+    public ItemType itemType;
     public EquipPart equipPart;
     public ItemSize itemSize;
     public int itemMaxStack;
+    [HideInInspector]
     public int itemStack;
 }

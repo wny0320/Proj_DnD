@@ -27,11 +27,11 @@ public class Manager : MonoBehaviour
     {
         Init();
         Game.OnAwake();
+        Data.OnAwake();
     }
 
     private void Start()
     {
-        Data.OnStart();
         Inven.OnStart();
     }
 

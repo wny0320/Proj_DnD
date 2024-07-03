@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Stat
+[CreateAssetMenu]
+public class Stat : ScriptableObject
 {
     //생성자로 아이템의 스탯을 만들 수 있게
     public Stat(int hp, int maxhp, int attack, int defense, float movespeed, float jumpforce, float attackspeed)
