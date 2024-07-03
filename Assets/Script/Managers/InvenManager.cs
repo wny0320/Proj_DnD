@@ -9,7 +9,7 @@ public class InvenManager
     List<SlotLine> slotLines = new List<SlotLine>();
     public int slotRowSize = 5;
     public int slotColumnSize = 9;
-    private const string INVENTORY_PATH = "Canvas/InvenPanel/ItemArea/Content";
+    private const string INVENTORY_PATH = "InvenCanvas/InvenPanel/ItemArea/Content";
     Transform inventoryParent;
 
     public void OnStart()

@@ -9,9 +9,12 @@ public class DataManager
 {
     //데이터 매니저 - 데이터 관련
     Dictionary<string, Item> itemData = new Dictionary<string, Item>();
+    //아이템 데이터에 들어있는 키 순서대로 이미지 또한 들어가 있어서 itemIamges의 index를 itemImageNum에 넣으면 됨 
+    List<Sprite> itemImages = new List<Sprite>();
     public void OnStart()
     {
         GetItemDataJson();
+        ItemImageImport();
     }
     public string JsonSerialize(object _obj)
     {
@@ -60,5 +63,14 @@ public class DataManager
     public Item GetItemFromJson(string _itemName)
     {
         return itemData[_itemName];
+    }
+    public void ItemImageImport()
+    {
+        foreach(string itemName in itemData.Keys)
+        {
+            string targetImagePath = "ItemImages/" + itemName + "Image";
+            Sprite targetItemImage = Resources.Load<Sprite>(targetImagePath);
+            itemImages.Add(targetItemImage);
+        }
     }
 }
