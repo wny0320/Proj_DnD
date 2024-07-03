@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Stat))]
 public class BaseController : MonoBehaviour
 {
     protected Rigidbody rigidBody;

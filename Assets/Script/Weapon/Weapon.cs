@@ -13,7 +13,7 @@ public class Weapon : MonoBehaviour
     protected Collider col;
     protected List<Collider> hittedObject = new();
 
-
+    
     public void SetGlobalWeapon()
     {
         Global.PlayerWeapon = this;

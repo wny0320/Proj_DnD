@@ -16,9 +16,12 @@ public class PlayerController : BaseController, IReceiveAttack
     {
         rigidBody = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
-        stat = GetComponent<Stat>();
 
         Manager.Game.Player = gameObject;
+
+        //initStat юс╫ц
+        InitStat();
+
         InitStateMachine();
     }
 
@@ -30,6 +33,11 @@ public class PlayerController : BaseController, IReceiveAttack
     private void FixedUpdate()
     {
         stateMachine?.StateFixtedUpdateFunc();
+    }
+
+    private void InitStat()
+    {
+        stat = new Stat(100, 100, 10, 10, 10, 10, 0);
     }
 
     private void InitStateMachine()

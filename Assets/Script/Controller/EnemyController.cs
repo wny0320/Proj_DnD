@@ -17,7 +17,9 @@ public class EnemyController : BaseController, IReceiveAttack
     {
         rigidBody = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
-        stat = GetComponent<Stat>();
+
+        //юс╫ц
+        InitStat();
 
         if (enemyType == EnemyType.Monster) InitStateMachine_Monster();
         else InitStateMachine_Human();
@@ -31,6 +33,11 @@ public class EnemyController : BaseController, IReceiveAttack
     private void FixedUpdate()
     {
         stateMachine?.StateFixtedUpdateFunc();
+    }
+
+    private void InitStat()
+    {
+        stat = new Stat(100, 100, 10, 10, 10, 10, 0);
     }
 
     private void InitStateMachine_Monster()

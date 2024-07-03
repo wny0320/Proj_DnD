@@ -5,11 +5,17 @@ using UnityEngine;
 public class Stat
 {
     //생성자로 아이템의 스탯을 만들 수 있게
-    public Stat(int hp, int maxHp)
+    public Stat(int hp, int maxhp, int attack, int defense, float movespeed, float jumpforce, float attackspeed)
     {
         _hp = hp;
-        _maxHp = maxHp;
+        _maxHp = maxhp;
+        _attack = attack;
+        _defense = defense;
+        _moveSpeed = movespeed;
+        _jumpForce = jumpforce;
+        _attackSpeed = attackspeed;
     }
+
     [SerializeField]
     protected int _hp;
     [SerializeField]
@@ -33,15 +39,4 @@ public class Stat
     public float MoveSpeed { get { return _moveSpeed; } set { _moveSpeed = value; } }
     public float AttackSpeed { get { return _attackSpeed; } set { _attackSpeed = value; } }
     public float JumpForce { get { return _jumpForce; } set { _jumpForce = value; } }
-
-
-    private void Awake()
-    {
-        Init();
-    }
-
-    private void Init()
-    {
-        //스탯 초기값
-    }
 }
