@@ -11,8 +11,6 @@ public class EnemyController : BaseController, IReceiveAttack
     [SerializeField] private EnemyType enemyType;
     [SerializeField] private EnemyWeapon weapon;
 
-    public List<Vector3> wayPoints = new();
-
     private Coroutine AttackCo = null;
 
     void Start()
@@ -107,6 +105,7 @@ public class EnemyController : BaseController, IReceiveAttack
     {
         weapon.AttackStart();
 
+        //이부분 어떻게 공격 애니메이션 관련 시간으로 수정해야됨
         yield return new WaitForSeconds(1.5f);
 
         weapon.AttackEnd();

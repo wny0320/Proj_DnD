@@ -27,6 +27,8 @@ public class EnemyMoveState : BaseState
     private Transform transform;
 
     private Vector3 originPos;
+    private List<Vector3> wayPoints = new List<Vector3>();
+    private int idx = 0;
 
     public EnemyMoveState(BaseController controller, Rigidbody rb = null, Animator animator = null) : base(controller, rb, animator)
     {
@@ -36,9 +38,15 @@ public class EnemyMoveState : BaseState
         transform = controller.transform;
         originPos = transform.position;
 
+        //타겟
         target = Manager.Game.Player.transform;
-
+        //공격 주기
         attackSpeed = controller.stat.AttackSpeed;
+
+        //패트롤 웨이 포인트
+        Transform wp = transform.Find("Waypoints");
+        foreach (Transform t in wp)
+            wayPoints.Add(t.position);
     }
 
     public override void OnFixedUpdate()
@@ -77,7 +85,10 @@ public class EnemyMoveState : BaseState
 
     private void Patrol()
     {
-        
+        agent.SetDestination(wayPoints[idx]);
+
+        if ((transform.position - wayPoints[idx]).magnitude <= 1)
+            idx = (idx + 1) % wayPoints.Count;
     }
 
     private bool DetectPlayer(float DetectDistance)
@@ -137,9 +148,14 @@ public class EnemyMoveState : BaseState
         float moveDist = (originPos - transform.position).magnitude;
         if (moveDist > chaseDistance)
         {
-            agent.SetDestination(originPos);
-            isFind = false;
-            return;
+            if (distance < senseDetectRange)
+                agent.SetDestination(target.position);
+            else
+            {
+                agent.SetDestination(originPos);
+                isFind = false;
+                return;
+            }
         }
         else if (distance <= chaseDistance)
             agent.SetDestination(target.position);
