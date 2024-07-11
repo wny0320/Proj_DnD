@@ -97,7 +97,7 @@ public class EnemyMoveState : BaseState
         Collider[] cols = Physics.OverlapSphere(transform.position, DetectDistance, 1 << 10);
         foreach(Collider col in cols)
         {
-            if (col.gameObject == Manager.Game.Player)
+            if (col.gameObject == target.gameObject)
             {
                 isFind = true;
                 return true;

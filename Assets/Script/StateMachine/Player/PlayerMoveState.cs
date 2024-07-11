@@ -7,11 +7,6 @@ public class PlayerMoveState : BaseState
     const string PLAYER_MOVE = "PlayerMove";
     const string PLAYER_JUMP = "PlayerJump";
     const string PLAYER_ATTACK = "PlayerAttack";
-    #region Camera
-    Camera cam;
-    float pitch = 0f; // 수직
-    float yaw = 0f; // 수평
-    #endregion
 
     Vector3 dir = Vector3.zero;
     Transform transform;
@@ -20,14 +15,10 @@ public class PlayerMoveState : BaseState
 
     public PlayerMoveState(BaseController controller, Rigidbody rb = null, Animator animator = null) : base(controller, rb, animator)
     {
-        if(cam == null) cam = Camera.main;
-
         Manager.Input.PlayerMove -= PlayerMove;
-        Manager.Input.CameraMove -= CameraMove;
         Manager.Input.PlayerAttack -= PlayerAttack;
 
         Manager.Input.PlayerMove += PlayerMove;
-        Manager.Input.CameraMove += CameraMove;
         Manager.Input.PlayerAttack += PlayerAttack;
 
         transform = controller.transform;
@@ -52,19 +43,6 @@ public class PlayerMoveState : BaseState
 
         if (Input.GetKeyDown(KeyCode.LeftControl))
             controller.ChangeState(PlayerState.Crouch);
-    }
-
-    private void CameraMove()
-    {
-        //플레이어가 인벤 열 때, 죽었을 때 안움직이게 조건 추가애햐됨
-
-        yaw = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * Manager.Input.mouseSpeed;
-        pitch -= Input.GetAxis("Mouse Y") * Manager.Input.mouseSpeed;
-
-        pitch = Mathf.Clamp(pitch, -90f, 90f);
-
-        transform.localRotation = Quaternion.Euler(0, yaw, 0);
-        cam.transform.localRotation = Quaternion.Euler(pitch, 0, 0);
     }
 
     private void PlayerMove()
