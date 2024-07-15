@@ -18,9 +18,11 @@ public class CameraController : MonoBehaviour
 
     void LateUpdate()
     {
+        if (Manager.Game.Player == null) return;
+
         CameraMove();
         transform.position = eye.position;
-        transform.position += transform.forward * 0.4f;
+        //transform.position += transform.forward * 0.2f;
     }
 
     private void CameraMove()
@@ -29,12 +31,12 @@ public class CameraController : MonoBehaviour
 
         //플레이어가 인벤 열 때, 죽었을 때 안움직이게 조건 추가애햐됨
 
-        yaw = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * Manager.Input.mouseSpeed;
+        yaw += Input.GetAxis("Mouse X") * Manager.Input.mouseSpeed;
         pitch -= Input.GetAxis("Mouse Y") * Manager.Input.mouseSpeed;
 
         pitch = Mathf.Clamp(pitch, -90f, 90f);
 
-        eye.root.localRotation = Quaternion.Euler(0, yaw, 0);
         transform.localRotation = Quaternion.Euler(pitch, yaw, 0);
+        eye.root.localRotation = Quaternion.Euler(0, yaw, 0);
     }
 }

@@ -39,6 +39,8 @@ public class PlayerMoveState : BaseState
 
     public override void OnStateUpdate()
     {
+        if (!controller.isAlive) return;
+
         CheckGround();
 
         if (Input.GetKeyDown(KeyCode.LeftControl))
@@ -47,6 +49,8 @@ public class PlayerMoveState : BaseState
 
     private void PlayerMove()
     {
+        if (!controller.isAlive) return;
+
         dir = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         dir = transform.TransformDirection(dir) * controller.stat.MoveSpeed;
 
@@ -62,6 +66,7 @@ public class PlayerMoveState : BaseState
 
     private void Jump()
     {
+        animator.SetTrigger(PLAYER_JUMP);
         rb.AddForce(Vector3.up * controller.stat.JumpForce, ForceMode.Impulse);
         isGrounded = false;
     }

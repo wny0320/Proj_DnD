@@ -15,7 +15,10 @@ public class PlayerDieState : BaseState
 
     public override void OnStateEnter()
     {
-        Debug.Log("player die");
+        animator.SetTrigger("PlayerDead");
+        controller.isAlive = false;
+        Manager.Game.isPlayerAlive = false;
+        Debug.Log("DEAD");
     }
 
     public override void OnStateExit()
