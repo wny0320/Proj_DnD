@@ -6,9 +6,11 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyController : BaseController, IReceiveAttack
+public class TravelerController : BaseController, IReceiveAttack
 {
-    [SerializeField] EnemyWeapon weapon;
+    [SerializeField] private EnemyWeapon weapon;
+
+    private Coroutine AttackCo = null;
 
     void Start()
     {
@@ -18,7 +20,7 @@ public class EnemyController : BaseController, IReceiveAttack
         //임시
         InitStat();
 
-        InitStateMachine_Monster();
+        InitStateMachine_Human();
     }
 
     void Update()
@@ -36,10 +38,10 @@ public class EnemyController : BaseController, IReceiveAttack
         stat = new Stat(100, 100, 100, 10, 10, 10, 5);
     }
 
-    private void InitStateMachine_Monster()
+    private void InitStateMachine_Human()
     {
         //상태 생성
-        EnemyMoveState MoveState = new EnemyMoveState(this, rigidBody, animator);
+        TravelerMoveState MoveState = new TravelerMoveState(this, rigidBody, animator);
         EnemyAttackState AttackState = new EnemyAttackState(this, rigidBody, animator, weapon);
         EnemyDieState Diestate = new EnemyDieState(this, rigidBody, animator);
 
@@ -56,6 +58,11 @@ public class EnemyController : BaseController, IReceiveAttack
     {
         int s = Convert.ToInt32(state);
         stateMachine.SetState(states[(EnemyState)s]);
+
+        if ((EnemyState)s == EnemyState.Attack && AttackCo == null)
+        {
+            AttackCo = StartCoroutine(AttackCoroutine());
+        }
     }
 
     public void OnHit(float damage)
@@ -74,5 +81,16 @@ public class EnemyController : BaseController, IReceiveAttack
 
             ChangeState(EnemyState.Die);
         }
+    }
+
+    IEnumerator AttackCoroutine()
+    {
+        weapon.AttackStart();
+
+        //이부분 어떻게 공격 애니메이션 관련 시간으로 수정해야됨
+        yield return new WaitForSeconds(1.5f);
+
+        weapon.AttackEnd();
+        AttackCo = null;
     }
 }

@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyMoveState : BaseState
+public class TravelerMoveState : BaseState
 {
     const string ENEMY_MOVE = "EnemyMove";
     const string ENEMY_ATTACK = "EnemyAttack";
@@ -30,7 +30,7 @@ public class EnemyMoveState : BaseState
     private List<Vector3> wayPoints = new List<Vector3>();
     private int idx = 0;
 
-    public EnemyMoveState(BaseController controller, Rigidbody rb = null, Animator animator = null) : base(controller, rb, animator)
+    public TravelerMoveState(BaseController controller, Rigidbody rb = null, Animator animator = null) : base(controller, rb, animator)
     {
         agent = controller.GetComponent<NavMeshAgent>();
         agent.speed = controller.stat.MoveSpeed;
@@ -95,7 +95,7 @@ public class EnemyMoveState : BaseState
     {
         //주변 탐지
         Collider[] cols = Physics.OverlapSphere(transform.position, DetectDistance, 1 << 10);
-        foreach(Collider col in cols)
+        foreach (Collider col in cols)
         {
             if (col.gameObject == target.gameObject)
             {
@@ -106,18 +106,18 @@ public class EnemyMoveState : BaseState
 
         // 전방 부채꼴 탐지
         Vector3 dist = target.position - transform.position;
-        if(dist.magnitude <= forwardDetectRange)
+        if (dist.magnitude <= forwardDetectRange)
         {
             float dot = Vector3.Dot(dist.normalized, transform.forward);
             float theta = Mathf.Acos(dot);
             float degree = Mathf.Rad2Deg * theta;
 
-            if (degree <= 40f) 
+            if (degree <= 40f)
             {
                 RaycastHit hit;
                 Physics.Raycast(transform.position, dist.normalized, out hit, forwardDetectRange + 3);
 
-                if(hit.collider.gameObject == target.gameObject)
+                if (hit.collider.gameObject == target.gameObject)
                 {
                     isFind = true;
                     return true;
@@ -135,7 +135,7 @@ public class EnemyMoveState : BaseState
     private void Chase()
     {
         float distance = CheckDistance();
-        if(distance <= attackDistance + agent.radius)
+        if (distance <= attackDistance + agent.radius)
         {
             if (!isAttacking)
             {
@@ -199,5 +199,10 @@ public class EnemyMoveState : BaseState
         }
 
         return distance;
+    }
+
+    private void RunBitchRun()
+    {
+
     }
 }
