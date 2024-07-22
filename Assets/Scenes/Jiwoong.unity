@@ -1892,6 +1892,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stat: {fileID: 0}
   isAlive: 1
+  animators:
+  - {fileID: 9100000, guid: aeb652fcc54e2c54893eb02a533ca72b, type: 2}
+  - {fileID: 9100000, guid: 1a145bd0696640748af3f4a396bb5d0b, type: 2}
 --- !u!4 &1607901040 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8700783698680967558, guid: 8dadda00a71133e4f8428be6272d614a, type: 3}
@@ -2290,7 +2293,7 @@ PrefabInstance:
     - target: {fileID: 5866666021909216657, guid: 8dadda00a71133e4f8428be6272d614a, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: aeb652fcc54e2c54893eb02a533ca72b, type: 2}
+      objectReference: {fileID: 9100000, guid: 1a145bd0696640748af3f4a396bb5d0b, type: 2}
     - target: {fileID: 5866666021909216657, guid: 8dadda00a71133e4f8428be6272d614a, type: 3}
       propertyPath: m_UpdateMode
       value: 0

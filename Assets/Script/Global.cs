@@ -20,6 +20,8 @@ public static class Global
     //무기
     public static Weapon PlayerWeapon;
 
-    //플레이어 생성시 뿌려줄 것
+    public static Action<WeaponType> ChangePlayerWeaponAnim;
+
+    //플레이어 생성시 뿌려줄 것 - 임시, 사용할지 모르겠음
     //public static Action<GameObject> PlayerSetted;
 }

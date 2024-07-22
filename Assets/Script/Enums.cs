@@ -14,18 +14,19 @@ public enum PlayerState
     Die,
 }
 
+public enum WeaponType
+{
+    Onehanded = 0,
+    Twohanded = 1,
+}
+
+
 public enum EnemyState
 {
     Move,
     Attack,
     Run,
     Die,
-}
-
-public enum EnemyType
-{
-    Human,
-    Monster
 }
 
 public enum EffectType

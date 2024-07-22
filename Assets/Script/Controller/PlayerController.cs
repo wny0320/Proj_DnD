@@ -2,14 +2,18 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
+using UnityEditor.Animations;
 using UnityEngine;
-using UnityEngine.Playables;
 
 public class PlayerController : BaseController, IReceiveAttack
 {
+    //enum 값 따라가게
+    //0-한손검, 1-양손검
+    [SerializeField] List<AnimatorController> animators = new List<AnimatorController>();
+
     private void Awake()
     {
+        Global.ChangePlayerWeaponAnim = ChangeWeaponAnimator;
     }
 
     void Start()
@@ -54,6 +58,11 @@ public class PlayerController : BaseController, IReceiveAttack
 
         //state machine 초기값
         stateMachine = new StateMachine(MoveState);
+    }
+
+    public void ChangeWeaponAnimator(WeaponType type)
+    {
+        animator.runtimeAnimatorController = animators[(int)type];
     }
 
     public override void ChangeState(Enum state)
