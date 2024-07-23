@@ -1751,7 +1751,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86a3c7529e161e44cbbf1be104f8e1fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eye: {fileID: 1607901040}
 --- !u!1 &1031246124
 GameObject:
   m_ObjectHideFlags: 0
@@ -1895,11 +1894,6 @@ MonoBehaviour:
   animators:
   - {fileID: 9100000, guid: aeb652fcc54e2c54893eb02a533ca72b, type: 2}
   - {fileID: 9100000, guid: 1a145bd0696640748af3f4a396bb5d0b, type: 2}
---- !u!4 &1607901040 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8700783698680967558, guid: 8dadda00a71133e4f8428be6272d614a, type: 3}
-  m_PrefabInstance: {fileID: 1982928761}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1819231753
 GameObject:
   m_ObjectHideFlags: 0
@@ -2290,6 +2284,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -0.005
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 8dadda00a71133e4f8428be6272d614a, type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 9000000, guid: 8dadda00a71133e4f8428be6272d614a, type: 3}
     - target: {fileID: 5866666021909216657, guid: 8dadda00a71133e4f8428be6272d614a, type: 3}
       propertyPath: m_Controller
       value: 

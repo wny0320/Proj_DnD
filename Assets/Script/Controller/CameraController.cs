@@ -8,8 +8,10 @@ public class CameraController : MonoBehaviour
     float yaw = 0f; // 수평
 
     //현재 눈이 인스펙터에서 끌어다 쓰고 있음 수정 해야됨
-    [SerializeField]
+    Animator animator = null;
+
     Transform eye = null;
+    Transform spine = null;
 
     void Start()
     {
@@ -19,10 +21,15 @@ public class CameraController : MonoBehaviour
     void LateUpdate()
     {
         if (Manager.Game.Player == null) return;
+        else if(animator == null)
+        {
+            animator = Manager.Game.Player.GetComponent<Animator>();
+            eye = animator.GetBoneTransform(HumanBodyBones.Head);
+            spine = animator.GetBoneTransform(HumanBodyBones.Spine);
+        }
 
         CameraMove();
         transform.position = eye.position;
-        //transform.position += transform.forward * 0.2f;
     }
 
     private void CameraMove()
@@ -38,5 +45,6 @@ public class CameraController : MonoBehaviour
 
         transform.localRotation = Quaternion.Euler(pitch, yaw, 0);
         eye.root.localRotation = Quaternion.Euler(0, yaw, 0);
+        spine.localRotation = Quaternion.Euler(0, 0, pitch);
     }
 }
