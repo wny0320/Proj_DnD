@@ -8,7 +8,7 @@ public class EnemyWeapon : MonoBehaviour
 {
     protected float totalDamage;
 
-    protected EnemyController controller;
+    protected BaseController controller;
     protected Collider col;
     protected List<Collider> hittedObject = new();
 

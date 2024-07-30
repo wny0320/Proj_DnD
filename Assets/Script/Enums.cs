@@ -27,6 +27,8 @@ public enum EnemyState
     Attack,
     Run,
     Die,
+    Attack2,
+    Attack3,
 }
 
 public enum EffectType

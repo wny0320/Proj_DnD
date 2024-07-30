@@ -6,7 +6,7 @@ public class EnemyOnehanded : EnemyWeapon
 {
     public override void AttackStart()
     {
-        if (controller == null) controller = transform.root.GetComponent<EnemyController>();
+        if (controller == null) controller = transform.root.GetComponent<BaseController>();
 
         totalDamage = controller.stat.Attack;
 

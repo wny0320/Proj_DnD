@@ -5,10 +5,11 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyMoveState : BaseState
+public class MinotaurMoveState : BaseState
 {
     const string ENEMY_MOVE = "EnemyMove";
     const string ENEMY_ATTACK = "EnemyAttack";
+    const string ENEMY_RUN = "EnemyRun";
 
     //적 추적 및 이동
     private bool isFind = false;
@@ -30,7 +31,7 @@ public class EnemyMoveState : BaseState
     private List<Vector3> wayPoints = new List<Vector3>();
     private int idx = 0;
 
-    public EnemyMoveState(BaseController controller, Rigidbody rb = null, Animator animator = null) : base(controller, rb, animator)
+    public MinotaurMoveState(BaseController controller, Rigidbody rb = null, Animator animator = null) : base(controller, rb, animator)
     {
         agent = controller.GetComponent<NavMeshAgent>();
         agent.speed = controller.stat.MoveSpeed;
@@ -74,8 +75,12 @@ public class EnemyMoveState : BaseState
         {
             Patrol();
             DetectPlayer(senseDetectRange);
+            animator.SetBool(ENEMY_RUN, false);
         }
-        else Chase();
+        else
+        {
+            Chase();
+        }
 
         if (Mathf.Abs(agent.velocity.x) > 0.2f || Mathf.Abs(agent.velocity.z) > 0.2f) animator.SetBool(ENEMY_MOVE, true);
         else animator.SetBool(ENEMY_MOVE, false);
@@ -96,7 +101,7 @@ public class EnemyMoveState : BaseState
 
         //주변 탐지
         Collider[] cols = Physics.OverlapSphere(transform.position, DetectDistance, 1 << 10);
-        foreach(Collider col in cols)
+        foreach (Collider col in cols)
         {
             if (col.gameObject == target.gameObject)
             {
@@ -107,18 +112,18 @@ public class EnemyMoveState : BaseState
 
         // 전방 부채꼴 탐지
         Vector3 dist = target.position - transform.position;
-        if(dist.magnitude <= forwardDetectRange)
+        if (dist.magnitude <= forwardDetectRange)
         {
             float dot = Vector3.Dot(dist.normalized, transform.forward);
             float theta = Mathf.Acos(dot);
             float degree = Mathf.Rad2Deg * theta;
 
-            if (degree <= 40f) 
+            if (degree <= 40f)
             {
                 RaycastHit hit;
                 Physics.Raycast(transform.position, dist.normalized, out hit, forwardDetectRange + 3);
 
-                if(hit.collider.gameObject == target.gameObject)
+                if (hit.collider.gameObject == target.gameObject)
                 {
                     isFind = true;
                     return true;
@@ -136,7 +141,7 @@ public class EnemyMoveState : BaseState
     private void Chase()
     {
         float distance = CheckDistance();
-        if(distance <= attackDistance + agent.radius)
+        if (distance <= attackDistance + agent.radius)
         {
             if (!isAttacking)
             {
@@ -163,6 +168,7 @@ public class EnemyMoveState : BaseState
         else
             isFind = false;
 
+        animator.SetBool(ENEMY_RUN, true);
     }
 
     private void Attack()
@@ -174,6 +180,7 @@ public class EnemyMoveState : BaseState
         if (canAttack)
         {
             animator.SetTrigger(ENEMY_ATTACK);
+            animator.SetBool(ENEMY_RUN, false);
             animator.SetBool(ENEMY_MOVE, false);
             canAttack = false;
             isAttacking = true;
