@@ -15,11 +15,18 @@ public class MinotaurAttack3State : BaseState
 
     public override void OnFixedUpdate()
     {
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Attack3"))
+        {
+            if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.95)
+            {
+                weapon.AttackEnd();
+                controller.ChangeState(EnemyState.Move);
+            }
+        }
     }
 
     public override void OnStateEnter()
     {
-        //Debug.Log("AATTAACCKK");
         weapon.AttackStart();
     }
 
@@ -29,14 +36,7 @@ public class MinotaurAttack3State : BaseState
 
     public override void OnStateUpdate()
     {
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Attack3"))
-        {
-            if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.95)
-            {
-                weapon.AttackEnd();
-                controller.ChangeState(EnemyState.Move);
-            }
-        }
+
     }
 
 }

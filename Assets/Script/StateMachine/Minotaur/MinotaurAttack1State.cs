@@ -16,37 +16,39 @@ public class MinotaurAttack1State : BaseState
 
     public override void OnFixedUpdate()
     {
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Attack1"))
+        {
+            if (isComboAttack && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.79)
+            {
+                animator.Play("Attack2");
+                controller.ChangeState(EnemyState.Attack2);
+                return;
+            }
+
+            if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.94)
+            {
+                weapon.AttackEnd();
+                controller.ChangeState(EnemyState.Move);
+            }
+        }
     }
 
     public override void OnStateEnter()
     {
-        //Debug.Log("AATTAACCKK");
         int n = Random.Range(0, 10);
-        //isComboAttack = n > 4 ? true : false;
+        isComboAttack = n > 4 ? true : false;
 
         weapon.AttackStart();
     }
 
     public override void OnStateExit()
     {
+
     }
 
     public override void OnStateUpdate()
     {
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Attack1"))
-        {
-            if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.95)
-            {
-                weapon.AttackEnd();
-                controller.ChangeState(EnemyState.Move);
-            }
 
-            if (isComboAttack)
-            {
-                animator.SetTrigger("EnemyAttack");
-                controller.ChangeState(EnemyState.Attack2);
-            }
-        }
     }
 
 }
