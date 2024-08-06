@@ -40,10 +40,16 @@ public class CrusaderController : BaseController, IReceiveAttack
     {
         //상태 생성
         CrusaderMoveState MoveState = new CrusaderMoveState(this, rigidBody, animator);
+        CrusaderAttack1State Attack1State = new CrusaderAttack1State(this, rigidBody, animator, weapon);
+        CrusaderAttack2State Attack2State = new CrusaderAttack2State(this, rigidBody, animator, weapon);
+        CrusaderAttack3State Attack3State = new CrusaderAttack3State(this, rigidBody, animator, weapon);
         EnemyDieState Diestate = new EnemyDieState(this, rigidBody, animator);
 
         //상태 추가
         states.Add(EnemyState.Move, MoveState);
+        states.Add(EnemyState.Attack, Attack1State);
+        states.Add(EnemyState.Attack2, Attack2State);
+        states.Add(EnemyState.Attack3, Attack3State);
         states.Add(EnemyState.Die, Diestate);
 
         //state machine 초기값

@@ -71,7 +71,11 @@ public class CrusaderMoveState : BaseState
             Traveling();
             DetectPlayer(senseDetectRange);
         }
-        else Chase();
+        else
+        {
+            Run();
+            Chase(); 
+        }
 
         if (Mathf.Abs(agent.velocity.x) > 0.2f || Mathf.Abs(agent.velocity.z) > 0.2f) animator.SetBool(ENEMY_MOVE, true);
         else animator.SetBool(ENEMY_MOVE, false);
@@ -94,6 +98,11 @@ public class CrusaderMoveState : BaseState
 
         if ((transform.position - randomPos).magnitude <= 1)
             randomPos = Vector3.zero;
+    }
+
+    private void Run()
+    { 
+
     }
 
     private bool DetectPlayer(float DetectDistance)
