@@ -46,6 +46,9 @@ public class MinotaurMoveState : BaseState
         Transform wp = transform.Find("Waypoints");
         foreach (Transform t in wp)
             wayPoints.Add(t.position);
+
+        Global.PlayerSetted -= GetPlayer;
+        Global.PlayerSetted += GetPlayer;
     }
 
     public override void OnFixedUpdate()
@@ -96,7 +99,7 @@ public class MinotaurMoveState : BaseState
 
     private bool DetectPlayer(float DetectDistance)
     {
-        if (target == null) target = GameObject.FindGameObjectWithTag("Player").transform;
+        //if (target == null) target = GameObject.FindGameObjectWithTag("Player").transform;
         if (target == null) return false;
 
         //ÁÖº¯ Å½Áö
@@ -177,6 +180,8 @@ public class MinotaurMoveState : BaseState
         agent.velocity = Vector3.zero;
         transform.LookAt(new Vector3(target.position.x, transform.position.y, target.position.z));
 
+        if (!Manager.Game.isPlayerAlive) return;
+
         if (canAttack)
         {
             animator.SetTrigger(ENEMY_ATTACK);
@@ -208,4 +213,6 @@ public class MinotaurMoveState : BaseState
 
         return distance;
     }
+
+    private void GetPlayer(Transform player) => target = player;
 }

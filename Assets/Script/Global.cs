@@ -23,5 +23,5 @@ public static class Global
     public static Action<WeaponType> ChangePlayerWeaponAnim;
 
     //플레이어 생성시 뿌려줄 것 - 임시, 사용할지 모르겠음
-    //public static Action<GameObject> PlayerSetted;
+    public static Action<Transform> PlayerSetted;
 }

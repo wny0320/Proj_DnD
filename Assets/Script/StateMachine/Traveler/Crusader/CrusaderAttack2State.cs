@@ -21,7 +21,7 @@ public class CrusaderAttack2State : BaseState
             if (isComboAttack && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.79)
             {
                 animator.Play("Attack3");
-                controller.ChangeState(EnemyState.Attack2);
+                controller.ChangeState(EnemyState.Attack3);
                 return;
             }
 

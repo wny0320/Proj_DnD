@@ -67,6 +67,7 @@ public class MinotaurAttack2State : BaseState
             IReceiveAttack attacked = col.GetComponent<IReceiveAttack>();
             if (attacked == null) continue;
             if(attackList.Contains(attacked)) continue;
+            if(attacked == controller.GetComponent<IReceiveAttack>()) continue;
 
             attacked.OnHit(controller.stat.Attack * 1.5f);
 

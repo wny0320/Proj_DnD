@@ -17,7 +17,7 @@ public class CrusaderMoveState : BaseState
     private float chaseDistance = 20f; //플레이어 추격 거리
     private float forwardDetectRange = 15f; //전방 감지 거리
     private float senseDetectRange = 5f; //주변 감지 거리
-    private float attackDistance = 2f;
+    private float attackDistance = 1f;
 
     private float attackSpeed;
     private float attackCooldown = 0f;
@@ -41,6 +41,9 @@ public class CrusaderMoveState : BaseState
 
         //공격 주기
         attackSpeed = controller.stat.AttackSpeed;
+
+        Global.PlayerSetted -= GetPlayer;
+        Global.PlayerSetted += GetPlayer;
     }
 
     public override void OnFixedUpdate()
@@ -107,7 +110,7 @@ public class CrusaderMoveState : BaseState
 
     private bool DetectPlayer(float DetectDistance)
     {
-        if (target == null) target = GameObject.FindGameObjectWithTag("Player").transform;
+        //if (target == null) target = GameObject.FindGameObjectWithTag("Player").transform;
         if (target == null) return false;
 
         //주변 탐지
@@ -189,6 +192,8 @@ public class CrusaderMoveState : BaseState
         agent.velocity = Vector3.zero;
         transform.LookAt(new Vector3(target.position.x, transform.position.y, target.position.z));
 
+        if (!Manager.Game.isPlayerAlive) return;
+
         if (canAttack)
         {
             animator.SetTrigger(ENEMY_ATTACK);
@@ -219,4 +224,6 @@ public class CrusaderMoveState : BaseState
 
         return distance;
     }
+
+    private void GetPlayer(Transform player) => target = player;
 }

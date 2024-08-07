@@ -27,6 +27,7 @@ public class PlayerController : BaseController, IReceiveAttack
         InitStat();
 
         InitStateMachine();
+        StartCoroutine(SetPlayer());
     }
 
     void Update()
@@ -83,4 +84,12 @@ public class PlayerController : BaseController, IReceiveAttack
         }
     }
 
+    IEnumerator SetPlayer()
+    {
+        while(Global.PlayerSetted == null)
+        {
+            yield return null;
+        }
+        Global.PlayerSetted.Invoke(transform);
+    }
 }
