@@ -13,7 +13,7 @@ public class WatcherController : BaseController, IReceiveAttack
     void Start()
     {
         rigidBody = GetComponent<Rigidbody>();
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
 
         //юс╫ц
         InitStat();
@@ -33,7 +33,7 @@ public class WatcherController : BaseController, IReceiveAttack
 
     private void InitStat()
     {
-        stat = new Stat(200, 100, 100, 10, 10, 10, 2);
+        stat = new Stat(200, 100, 100, 10, 1, 10, 2);
     }
 
     private void InitStateMachine_Monster()
@@ -65,11 +65,10 @@ public class WatcherController : BaseController, IReceiveAttack
         if (stat.Hp <= 0)
         {
             stat.Hp = 0;
+            rigidBody.velocity = Vector3.zero;
 
             Debug.Log($"{name} die");
 
-            GetComponent<NavMeshAgent>().SetDestination(transform.position);
-            GetComponent<NavMeshAgent>().velocity = Vector3.zero;
             animator.SetBool("EnemyMove", false);
 
             ChangeState(EnemyState.Die);

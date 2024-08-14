@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
@@ -13,9 +14,9 @@ public class WatcherMoveState : BaseState
     //적 추적 및 이동
     private bool isFind = false;
     private float chaseDistance = 20f; //플레이어 추격 거리
-    //private float forwardDetectRange = 15f; //전방 감지 거리
-    private float senseDetectRange = 5f; //주변 감지 거리
-    private float attackDistance = 2f;
+    private float senseDetectRange = 15f; //주변 감지 거리
+    private float attackDistance = 1f;
+    private float moveSpeed;
 
     private float attackSpeed;
     private float attackCooldown = 0f;
@@ -26,21 +27,15 @@ public class WatcherMoveState : BaseState
     private Transform transform;
 
     private Vector3 originPos;
-    private List<Vector3> wayPoints = new List<Vector3>();
-    private int idx = 0;
 
     public WatcherMoveState(BaseController controller, Rigidbody rb = null, Animator animator = null) : base(controller, rb, animator)
     {
         transform = controller.transform;
         originPos = transform.position;
-
+        moveSpeed = controller.stat.MoveSpeed;
         //공격 주기
         attackSpeed = controller.stat.AttackSpeed;
 
-        //패트롤 웨이 포인트
-        Transform wp = transform.Find("Waypoints");
-        foreach (Transform t in wp)
-            wayPoints.Add(t.position);
 
         Global.PlayerSetted -= GetPlayer;
         Global.PlayerSetted += GetPlayer;
@@ -71,12 +66,14 @@ public class WatcherMoveState : BaseState
     {
         if (!isFind)
         {
+            if ((transform.position - originPos).magnitude < 1f)
+                rb.velocity = Vector3.zero;
             DetectPlayer(senseDetectRange);
         }
         else Chase();
 
-        //if (Mathf.Abs(agent.velocity.x) > 0.2f || Mathf.Abs(agent.velocity.z) > 0.2f) animator.SetBool(ENEMY_MOVE, true);
-        //else animator.SetBool(ENEMY_MOVE, false);
+        if (Mathf.Abs(rb.velocity.x) > 0.2f || Mathf.Abs(rb.velocity.z) > 0.2f) animator.SetBool(ENEMY_MOVE, true);
+        else animator.SetBool(ENEMY_MOVE, false);
     }
 
     private bool DetectPlayer(float DetectDistance)
@@ -100,47 +97,57 @@ public class WatcherMoveState : BaseState
 
     private void Chase()
     {
-        //float distance = CheckDistance();
-        //if (distance <= attackDistance + agent.radius)
-        //{
-        //    if (!isAttacking)
-        //    {
-        //        Attack();
-        //    }
+        float distance = (transform.position - target.position).magnitude; 
+        if (distance <= attackDistance)
+        {
+            animator.SetBool(ENEMY_ATTACK, true);
+            transform.LookAt(target.position);
+            if (!isAttacking)
+            {
+                Attack();
+            }
 
-        //    return;
-        //}
+            return;
+        }
 
-        //float moveDist = (originPos - transform.position).magnitude;
-        //if (moveDist > chaseDistance)
-        //{
-        //    if (distance < senseDetectRange)
-        //        agent.SetDestination(target.position);
-        //    else
-        //    {
-        //        agent.SetDestination(originPos);
-        //        isFind = false;
-        //        return;
-        //    }
-        //}
-        //else if (distance <= chaseDistance)
-        //    agent.SetDestination(target.position);
-        //else
-        //    isFind = false;
+        float moveDist = (originPos - transform.position).magnitude;
+        if (moveDist > chaseDistance)
+        {
+            if (distance < senseDetectRange)
+            {
+                transform.LookAt(target);
+                rb.velocity = (target.position - transform.position) * moveSpeed;
+            }
+            else
+            {
+                animator.SetBool(ENEMY_ATTACK, false);
+
+                transform.LookAt(originPos);
+                rb.velocity = (originPos - transform.position) * moveSpeed;
+                isFind = false;
+                return;
+            }
+        }
+        else if (distance <= chaseDistance)
+        {
+            transform.LookAt(target);
+            rb.velocity = (target.position - transform.position) * moveSpeed;
+        }
+        else
+            isFind = false;
 
     }
 
     private void Attack()
     {
-        //agent.SetDestination(transform.position); //멈추기
-        //agent.velocity = Vector3.zero;
-        transform.LookAt(new Vector3(target.position.x, transform.position.y, target.position.z));
+        rb.velocity = Vector3.zero;
+        transform.LookAt(target);
 
         if (!Manager.Game.isPlayerAlive) return;
 
         if (canAttack)
         {
-            animator.SetTrigger(ENEMY_ATTACK);
+            animator.SetBool(ENEMY_ATTACK, true);
             animator.SetBool(ENEMY_MOVE, false);
             canAttack = false;
             isAttacking = true;
@@ -148,26 +155,6 @@ public class WatcherMoveState : BaseState
             return;
         }
     }
-
-    //private float CheckDistance()
-    //{
-    //    NavMeshPath path = new NavMeshPath();
-    //    agent.CalculatePath(target.position, path);
-
-    //    //경로 거리 계산을 위한 벡터
-    //    Vector3[] wayPoint = new Vector3[path.corners.Length + 2];
-    //    wayPoint[0] = transform.position;
-    //    wayPoint[wayPoint.Length - 1] = target.position;
-
-    //    float distance = 0f; //거리
-    //    for (int p = 0; p < path.corners.Length; p++)
-    //    {
-    //        wayPoint[p + 1] = path.corners[p];
-    //        distance += Vector3.Distance(wayPoint[p], wayPoint[p + 1]);
-    //    }
-
-    //    return distance;
-    //}
 
     private void GetPlayer(Transform player) => target = player;
 }

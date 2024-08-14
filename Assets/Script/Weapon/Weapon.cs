@@ -41,7 +41,7 @@ public class Weapon : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        IReceiveAttack attacked = other.GetComponent<IReceiveAttack>();
+        IReceiveAttack attacked = other.transform.root.GetComponent<IReceiveAttack>();
         if (attacked == null) return;
         if (hittedObject.Contains(other)) return;
 
