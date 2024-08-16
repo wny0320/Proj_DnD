@@ -27,9 +27,15 @@ public class CrusaderMoveState : BaseState
     private NavMeshAgent agent;
     private Transform target;
     private Transform transform;
-
+        
     private Vector3 originPos;
     private Vector3 randomPos = Vector3.zero;
+    private bool isArrived = false;
+    private float lookAroundTime = 0f;
+
+    private Vector3 fleePos= Vector3.zero;
+    private float fleeDistance = 10f;
+    private bool isFleeing = false;
 
     public CrusaderMoveState(BaseController controller, Rigidbody rb = null, Animator animator = null) : base(controller, rb, animator)
     {
@@ -56,6 +62,7 @@ public class CrusaderMoveState : BaseState
     public override void OnStateEnter()
     {
         isAttacking = false;
+        isArrived = false;
 
         if (!DetectPlayer(10f)) isFind = false;
 
@@ -65,6 +72,7 @@ public class CrusaderMoveState : BaseState
     public override void OnStateExit()
     {
         isAttacking = false;
+        isArrived = false;
     }
 
     public override void OnStateUpdate()
@@ -76,18 +84,40 @@ public class CrusaderMoveState : BaseState
         }
         else
         {
-            Run();
-            Chase(); 
+            //Á¶°Ç
+            if (true)
+                Flee();
+            else
+                Chase();
         }
 
-        if (Mathf.Abs(agent.velocity.x) > 0.2f || Mathf.Abs(agent.velocity.z) > 0.2f) animator.SetBool(ENEMY_MOVE, true);
-        else animator.SetBool(ENEMY_MOVE, false);
+        if (Mathf.Abs(agent.velocity.x) > 0.2f || Mathf.Abs(agent.velocity.z) > 0.2f)
+        {
+            if (isFleeing) { animator.SetBool(ENEMY_RUN, true); animator.SetBool(ENEMY_MOVE, false); }
+            else { animator.SetBool(ENEMY_MOVE, true); animator.SetBool(ENEMY_RUN, false); }
+        }
+        else
+        {
+            animator.SetBool(ENEMY_MOVE, false);
+            animator.SetBool(ENEMY_RUN, false);
+        }
     }
 
     private void Traveling()
     {
         if(randomPos == Vector3.zero)
         {
+            if(isArrived)
+            {
+                lookAroundTime += Time.deltaTime;
+                if(lookAroundTime >= 2.5f)
+                {
+                    isArrived = false;
+                    lookAroundTime = 0f;
+                }
+                return;
+            }
+
             Vector3 rand = Random.insideUnitSphere * travelingDistance;
             NavMeshHit hit;
             if (NavMesh.SamplePosition(rand + transform.position, out hit, travelingDistance, NavMesh.AllAreas))
@@ -99,13 +129,42 @@ public class CrusaderMoveState : BaseState
                 randomPos = Vector3.zero;
         }
 
-        if ((transform.position - randomPos).magnitude <= 1)
+        if ((transform.position - randomPos).magnitude <= 0.5f)
+        {
             randomPos = Vector3.zero;
+            isArrived= true;
+            if(Random.Range(0,10) > 5)
+                animator.Play("LookAround");
+        }
+
     }
 
-    private void Run()
-    { 
+    private void Flee()
+    {
+        isFleeing= true;
 
+        if (fleePos == Vector3.zero)
+        {
+            Vector3 dir = (transform.position - target.position).normalized;
+
+            Vector3 rand = (Random.insideUnitSphere + dir) * fleeDistance;
+            NavMeshHit hit;
+            if (NavMesh.SamplePosition(rand + transform.position, out hit, fleeDistance, NavMesh.AllAreas))
+            {
+                fleePos = hit.position;
+                agent.SetDestination(fleePos);
+            }
+            else
+                fleePos = Vector3.zero;
+        }
+
+        if ((transform.position - fleePos).magnitude <= 1f)
+        {
+            fleePos = Vector3.zero;
+            isFleeing = false;
+            isFind = false;
+            randomPos = Vector3.zero;
+        }
     }
 
     private bool DetectPlayer(float DetectDistance)
@@ -198,6 +257,7 @@ public class CrusaderMoveState : BaseState
         {
             animator.SetTrigger(ENEMY_ATTACK);
             animator.SetBool(ENEMY_MOVE, false);
+            animator.SetBool(ENEMY_RUN, false);
             canAttack = false;
             isAttacking = true;
             controller.ChangeState(EnemyState.Attack);

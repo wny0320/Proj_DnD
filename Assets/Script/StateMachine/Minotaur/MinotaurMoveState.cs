@@ -30,6 +30,8 @@ public class MinotaurMoveState : BaseState
     private Vector3 originPos;
     private List<Vector3> wayPoints = new List<Vector3>();
     private int idx = 0;
+    private bool isArrived = false;
+    private float lookAroundTime = 0f;
 
     public MinotaurMoveState(BaseController controller, Rigidbody rb = null, Animator animator = null) : base(controller, rb, animator)
     {
@@ -61,6 +63,7 @@ public class MinotaurMoveState : BaseState
     public override void OnStateEnter()
     {
         isAttacking = false;
+        isArrived = false;
 
         if (!DetectPlayer(10f)) isFind = false;
 
@@ -70,6 +73,7 @@ public class MinotaurMoveState : BaseState
     public override void OnStateExit()
     {
         isAttacking = false;
+        isArrived = false;
     }
 
     public override void OnStateUpdate()
@@ -93,8 +97,22 @@ public class MinotaurMoveState : BaseState
     {
         agent.SetDestination(wayPoints[idx]);
 
+        if(isArrived)
+        {
+            lookAroundTime += Time.deltaTime;
+            if (lookAroundTime >= 2f) 
+            { 
+                isArrived = false;
+                lookAroundTime = 0f;
+                idx = (idx + 1) % wayPoints.Count;
+            }
+            return;
+        }
+
         if ((transform.position - wayPoints[idx]).magnitude <= 1)
-            idx = (idx + 1) % wayPoints.Count;
+        {
+            isArrived = true;
+        }
     }
 
     private bool DetectPlayer(float DetectDistance)
