@@ -13,15 +13,27 @@ public class CameraController : MonoBehaviour
     Transform eye = null;
     Transform spine = null;
 
-    void Start()
-    {
+    //아이템 픽업
+    [SerializeField] private float reach = 1.5f;
+    [SerializeField] private LayerMask layerMask;
+    private RaycastHit hit;
+    private bool isPickupActivate = false;
 
+    private void FixedUpdate()
+    {
+        CheckInteractiveObj();
+        Interactive(hit);
     }
 
     void LateUpdate()
     {
+        SetCam();
+    }
+
+    private void SetCam()
+    {
         if (Manager.Game.Player == null) return;
-        else if(animator == null)
+        else if (animator == null)
         {
             animator = Manager.Game.Player.GetComponent<Animator>();
             eye = animator.GetBoneTransform(HumanBodyBones.Head);
@@ -46,5 +58,41 @@ public class CameraController : MonoBehaviour
         transform.localRotation = Quaternion.Euler(pitch, yaw, 0);
         eye.root.localRotation = Quaternion.Euler(0, yaw, 0);
         spine.localRotation = Quaternion.Euler(0, 0, pitch);
+    }
+
+    private void Interactive(RaycastHit hitted)
+    {
+        if(isPickupActivate && Input.GetKeyDown(KeyCode.F))
+        {
+            if (hit.transform.tag.Equals("Item"))
+            {
+                ItemFunc();
+            }
+            else if (hit.transform.tag.Equals("Door"))
+            {
+                DoorFunc();
+            }
+        }
+    }
+
+    private void CheckInteractiveObj()
+    {
+        //Debug.DrawRay(transform.position, transform.forward * reach, Color.red);
+
+        if(Physics.Raycast(transform.position, transform.forward, out hit, reach, layerMask))
+            isPickupActivate = true;
+        else
+            isPickupActivate = false;
+    }
+
+    private void ItemFunc()
+    {
+        Debug.Log("item");
+    }
+
+    private void DoorFunc()
+    {
+        Debug.Log("Door");
+
     }
 }
