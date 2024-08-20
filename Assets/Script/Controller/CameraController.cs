@@ -1,6 +1,8 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CameraController : MonoBehaviour
 {
@@ -16,8 +18,21 @@ public class CameraController : MonoBehaviour
     //아이템 픽업
     [SerializeField] private float reach = 1.5f;
     [SerializeField] private LayerMask layerMask;
+
+    [SerializeField] private GameObject InteractiveUI;
+    [SerializeField] private Image fImg;
+    [SerializeField] private Text intText;
+    [SerializeField] private Image circleProcess;
+    [SerializeField] private Text processText;
     private RaycastHit hit;
+
     private bool isPickupActivate = false;
+    private Coroutine interactingCo = null;
+
+    private void Start()
+    {
+
+    }
 
     private void FixedUpdate()
     {
@@ -62,15 +77,23 @@ public class CameraController : MonoBehaviour
 
     private void Interactive(RaycastHit hitted)
     {
-        if(isPickupActivate && Input.GetKeyDown(KeyCode.F))
+        if(interactingCo != null)
+        {
+            intText.enabled = false;
+            fImg.enabled = false;
+        }
+
+        if (isPickupActivate && Input.GetKeyDown(KeyCode.F))
         {
             if (hit.transform.tag.Equals("Item"))
             {
-                ItemFunc();
+                //아이템은 바로 실행
+                hitted.transform.GetComponent<Interactive>()?.InteractiveFunc();
             }
-            else if (hit.transform.tag.Equals("Door"))
+            else if (hit.transform.tag.Equals("Door") || hit.transform.tag.Equals("Chest"))
             {
-                DoorFunc();
+                //문 여는 코루틴
+                if(interactingCo == null) interactingCo = StartCoroutine(InteractionLoading(hitted));
             }
         }
     }
@@ -79,20 +102,49 @@ public class CameraController : MonoBehaviour
     {
         //Debug.DrawRay(transform.position, transform.forward * reach, Color.red);
 
-        if(Physics.Raycast(transform.position, transform.forward, out hit, reach, layerMask))
+        if (Physics.Raycast(transform.position, transform.forward, out hit, reach, layerMask))
+        {
             isPickupActivate = true;
+            InteractiveUI.SetActive(true);
+            intText.enabled = true;
+            fImg.enabled = true;
+            if (hit.transform.tag.Equals("Item")) intText.text = $"{hit.transform.name} 줍기";
+            else intText.text = $"{hit.transform.name} 열기";
+        }
         else
+        {
             isPickupActivate = false;
+            processText.enabled = false;
+            circleProcess.enabled = false;
+            InteractiveUI.SetActive(false);
+            if (interactingCo != null)
+            {
+                StopCoroutine(interactingCo);
+                interactingCo = null;
+            }
+        }
     }
 
-    private void ItemFunc()
+    IEnumerator InteractionLoading(RaycastHit hitted)
     {
-        Debug.Log("item");
-    }
+        processText.enabled = true;
+        circleProcess.enabled = true;
 
-    private void DoorFunc()
-    {
-        Debug.Log("Door");
+        float t = 0f;
+        circleProcess.fillAmount = 0f;
+        processText.text = "0%";
 
+        while(t <= 3f)
+        {
+            t += Time.deltaTime;    
+            yield return null;
+            processText.text = $"{Mathf.FloorToInt(t / 3 * 100)}%";
+            circleProcess.fillAmount = t / 3;
+        }
+
+        processText.enabled = false;
+        circleProcess.enabled = false;
+        interactingCo = null;
+        hitted.transform.GetComponent<Interactive>()?.InteractiveFunc();
     }
 }

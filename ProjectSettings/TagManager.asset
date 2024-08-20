@@ -12,6 +12,7 @@ TagManager:
   - Monster
   - Door
   - Item
+  - Chest
   layers:
   - Default
   - TransparentFX
