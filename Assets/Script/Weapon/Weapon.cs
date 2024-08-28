@@ -21,7 +21,7 @@ public class Weapon : MonoBehaviour
 
     public virtual void SetWeaponInfo() { }
 
-    public void AttackStart(int level)
+    public virtual void AttackStart(int level)
     {
         //Debug.Log("attack start");
         totalDamage = damage + Manager.Game.Player.GetComponent<PlayerController>().stat.Attack;

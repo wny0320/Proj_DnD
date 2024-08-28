@@ -13,6 +13,24 @@ public class OneHandedSword : Weapon
         SetWeaponInfo();
     }
 
+    public override void AttackStart(int level)
+    {
+        base.AttackStart(level);
+
+        switch(level)
+        {
+            case 0:
+                Global.sfx.Play(Global.Sound.onehandedSwing1, transform.position);
+                break;
+            case 1:
+                Global.sfx.Play(Global.Sound.onehandedSwing2, transform.position);
+                break;
+            case 2:
+                Global.sfx.Play(Global.Sound.onehandedStab, transform.position);
+                break;
+        }
+    }
+
     public override void SetWeaponInfo()
     {
         //여기에 데이터에서 가져오기 해야됨

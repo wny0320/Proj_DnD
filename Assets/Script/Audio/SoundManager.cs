@@ -29,7 +29,7 @@ public class SoundManager : MonoBehaviour
         sfxParent = new GameObject("Sfx").transform;
         sfxParent.SetParent(transform);
 
-        Init();
+        //Init();
     }
 
     public void Play(AudioClip clip)

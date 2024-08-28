@@ -12,5 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 492f8c1e321d2fd49a4a61d783189730, type: 3}
   m_Name: SoundCollector
   m_EditorClassIdentifier: 
-  hitClip: {fileID: 0}
-  breakBoxClip: {fileID: 0}
+  hitClip: {fileID: 8300000, guid: 5867b6f82cf9f5d4790afc9f8e166842, type: 3}
+  breakBoxClip: {fileID: 8300000, guid: 1b6fb74cf3eec6d499e52fdf542aea63, type: 3}
+  onehandedSwing1: {fileID: 8300000, guid: 6bb5218fa94172b4f90b10e98c9e8963, type: 3}
+  onehandedSwing2: {fileID: 8300000, guid: 89a5eff006cd4704ca82a49b1fe3bf9d, type: 3}
+  onehandedStab: {fileID: 8300000, guid: 6bbcf4d0171011e44b25cd7100994e4c, type: 3}
+  twohandedStab: {fileID: 8300000, guid: bd86beabc332a39488c2f4a351d7eda6, type: 3}
+  twohandedSwing: {fileID: 8300000, guid: 8bce06dadcac8cc4ba45f0de6921e726, type: 3}

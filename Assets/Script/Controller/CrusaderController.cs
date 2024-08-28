@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -66,6 +67,8 @@ public class CrusaderController : BaseController, IReceiveAttack
     {
         float dmg = Mathf.Max(1, damage - stat.Defense);
         stat.Hp -= (int)dmg;
+        Global.sfx.Play(Global.Sound.hitClip, transform.position);
+
         if (stat.Hp <= 0)
         {
             stat.Hp = 0;
