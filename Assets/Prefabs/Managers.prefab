@@ -44,3 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c017c9746dede9419c84bb6364156d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneLoaderCanvasGroup: {fileID: 784589063508559496, guid: 4860328115f367f48aa736ff07e5db40, type: 3}
+  progressBar: {fileID: 0}
