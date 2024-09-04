@@ -40,4 +40,16 @@ public class Stat : ScriptableObject
     public float MoveSpeed { get { return _moveSpeed; } set { _moveSpeed = value; } }
     public float AttackSpeed { get { return _attackSpeed; } set { _attackSpeed = value; } }
     public float JumpForce { get { return _jumpForce; } set { _jumpForce = value; } }
+    public Stat StatDeepCopy()
+    {
+        Stat stat = (Stat)CreateInstance(typeof(Stat));
+        stat.Hp = _hp;
+        stat.MaxHp = _maxHp;
+        stat.Attack = _attack;
+        stat.Defense = _defense;
+        stat.MoveSpeed = _moveSpeed;
+        stat.JumpForce = _jumpForce;
+        stat.AttackSpeed = _attackSpeed;
+        return stat;
+    }
 }

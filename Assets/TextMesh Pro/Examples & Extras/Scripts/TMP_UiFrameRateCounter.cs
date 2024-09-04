@@ -93,31 +93,31 @@ namespace TMPro.Examples
             {
                 case FpsCounterAnchorPositions.TopLeft:
                     m_TextMeshPro.alignment = TextAlignmentOptions.TopLeft;
-                    m_frameCounter_transform.pivot = new Vector2(0, 1);
-                    m_frameCounter_transform.anchorMin = new Vector2(0.01f, 0.99f);
-                    m_frameCounter_transform.anchorMax = new Vector2(0.01f, 0.99f);
-                    m_frameCounter_transform.anchoredPosition = new Vector2(0, 1);
+                    m_frameCounter_transform.pivot = new UnityEngine.Vector2(0, 1);
+                    m_frameCounter_transform.anchorMin = new UnityEngine.Vector2(0.01f, 0.99f);
+                    m_frameCounter_transform.anchorMax = new UnityEngine.Vector2(0.01f, 0.99f);
+                    m_frameCounter_transform.anchoredPosition = new UnityEngine.Vector2(0, 1);
                     break;
                 case FpsCounterAnchorPositions.BottomLeft:
                     m_TextMeshPro.alignment = TextAlignmentOptions.BottomLeft;
-                    m_frameCounter_transform.pivot = new Vector2(0, 0);
-                    m_frameCounter_transform.anchorMin = new Vector2(0.01f, 0.01f);
-                    m_frameCounter_transform.anchorMax = new Vector2(0.01f, 0.01f);
-                    m_frameCounter_transform.anchoredPosition = new Vector2(0, 0);
+                    m_frameCounter_transform.pivot = new UnityEngine.Vector2(0, 0);
+                    m_frameCounter_transform.anchorMin = new UnityEngine.Vector2(0.01f, 0.01f);
+                    m_frameCounter_transform.anchorMax = new UnityEngine.Vector2(0.01f, 0.01f);
+                    m_frameCounter_transform.anchoredPosition = new UnityEngine.Vector2(0, 0);
                     break;
                 case FpsCounterAnchorPositions.TopRight:
                     m_TextMeshPro.alignment = TextAlignmentOptions.TopRight;
-                    m_frameCounter_transform.pivot = new Vector2(1, 1);
-                    m_frameCounter_transform.anchorMin = new Vector2(0.99f, 0.99f);
-                    m_frameCounter_transform.anchorMax = new Vector2(0.99f, 0.99f);
-                    m_frameCounter_transform.anchoredPosition = new Vector2(1, 1);
+                    m_frameCounter_transform.pivot = new UnityEngine.Vector2(1, 1);
+                    m_frameCounter_transform.anchorMin = new UnityEngine.Vector2(0.99f, 0.99f);
+                    m_frameCounter_transform.anchorMax = new UnityEngine.Vector2(0.99f, 0.99f);
+                    m_frameCounter_transform.anchoredPosition = new UnityEngine.Vector2(1, 1);
                     break;
                 case FpsCounterAnchorPositions.BottomRight:
                     m_TextMeshPro.alignment = TextAlignmentOptions.BottomRight;
-                    m_frameCounter_transform.pivot = new Vector2(1, 0);
-                    m_frameCounter_transform.anchorMin = new Vector2(0.99f, 0.01f);
-                    m_frameCounter_transform.anchorMax = new Vector2(0.99f, 0.01f);
-                    m_frameCounter_transform.anchoredPosition = new Vector2(1, 0);
+                    m_frameCounter_transform.pivot = new UnityEngine.Vector2(1, 0);
+                    m_frameCounter_transform.anchorMin = new UnityEngine.Vector2(0.99f, 0.01f);
+                    m_frameCounter_transform.anchorMax = new UnityEngine.Vector2(0.99f, 0.01f);
+                    m_frameCounter_transform.anchoredPosition = new UnityEngine.Vector2(1, 0);
                     break;
             }
         }

@@ -45,6 +45,7 @@ public enum EquipPart
     Arm,
     Leg,
     Foot,
+    Weapon,
 }
 
 public enum ItemSize

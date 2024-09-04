@@ -35,12 +35,13 @@ public class Manager : MonoBehaviour
     private void Start()
     {
         Inven.OnStart();
+        StartInvenCoroutine();
     }
 
     private void Update()
     {
         Input.OnUpdate();
-        StartInvenCoroutine();
+        Inven.OnUpdate();
     }
 
     private void FixedUpdate()
@@ -68,6 +69,7 @@ public class Manager : MonoBehaviour
         if (invenCoroutine == null)
         {
             invenCoroutine = StartCoroutine(Inven.MoveItem());
+            Debug.Log(invenCoroutine);
         }
         else
             return;

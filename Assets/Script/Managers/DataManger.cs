@@ -10,12 +10,14 @@ public class DataManager
     //데이터 매니저 - 데이터 관련
     public Dictionary<string, Item> itemData = new Dictionary<string, Item>();
     //아이템 데이터에 들어있는 키 순서대로 이미지 또한 들어가 있어서 itemIamges의 index를 itemImageNum에 넣으면 됨 
-    public List<Sprite> itemSprite = new List<Sprite>();
+    //해당 이미지 대신 프리팹으로 사용
+    //public List<Sprite> itemSprite = new List<Sprite>();
+    public List<GameObject> itemPrefab = new List<GameObject>();
     const string ITEM_PATH = "Items/";
     public void OnAwake()
     {
         GetItemDataJson();
-        ItemImageImport();
+        ItemDataImport();
 
     }
     public string JsonSerialize(object _obj)
@@ -79,15 +81,18 @@ public class DataManager
     {
         return itemData[_itemName];
     }
-    public void ItemImageImport()
+    public void ItemDataImport()
     {
         int index = 0;
         foreach(string itemName in itemData.Keys)
         {
-            itemData[itemName].itemImageNum = index;
+            itemData[itemName].itemIndex = index;
             string targetImagePath = ITEM_PATH + "ItemImages/" + itemName + "Image";
+            string targetPrefabPath = ITEM_PATH + itemName + "Prefab";
             Sprite targetItemImage = Resources.Load<Sprite>(targetImagePath);
-            itemSprite.Add(targetItemImage);
+            GameObject targetItemPrefab = Resources.Load<GameObject>(targetPrefabPath);
+            //itemSprite.Add(targetItemImage);
+            itemPrefab.Add(targetItemPrefab);
             index++;
         }
     }

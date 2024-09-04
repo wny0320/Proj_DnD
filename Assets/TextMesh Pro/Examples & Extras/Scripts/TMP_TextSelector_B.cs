@@ -107,7 +107,7 @@ namespace TMPro.Examples
                     Vector3[] vertices = m_TextMeshPro.textInfo.meshInfo[materialIndex].vertices;
 
                     // Determine the center point of the character.
-                    Vector2 charMidBasline = (vertices[vertexIndex + 0] + vertices[vertexIndex + 2]) / 2;
+                    UnityEngine.Vector2 charMidBasline = (vertices[vertexIndex + 0] + vertices[vertexIndex + 2]) / 2;
 
                     // Need to translate all 4 vertices of the character to aligned with middle of character / baseline.
                     // This is needed so the matrix TRS is applied at the origin for each character.
@@ -491,16 +491,16 @@ namespace TMPro.Examples
 
             // Restore UV0S
             // UVS0
-            Vector2[] src_uv0s = m_cachedMeshInfoVertexData[materialIndex].uvs0;
-            Vector2[] dst_uv0s = m_TextMeshPro.textInfo.meshInfo[materialIndex].uvs0;
+            UnityEngine.Vector2[] src_uv0s = m_cachedMeshInfoVertexData[materialIndex].uvs0;
+            UnityEngine.Vector2[] dst_uv0s = m_TextMeshPro.textInfo.meshInfo[materialIndex].uvs0;
             dst_uv0s[vertexIndex + 0] = src_uv0s[vertexIndex + 0];
             dst_uv0s[vertexIndex + 1] = src_uv0s[vertexIndex + 1];
             dst_uv0s[vertexIndex + 2] = src_uv0s[vertexIndex + 2];
             dst_uv0s[vertexIndex + 3] = src_uv0s[vertexIndex + 3];
 
             // UVS2
-            Vector2[] src_uv2s = m_cachedMeshInfoVertexData[materialIndex].uvs2;
-            Vector2[] dst_uv2s = m_TextMeshPro.textInfo.meshInfo[materialIndex].uvs2;
+            UnityEngine.Vector2[] src_uv2s = m_cachedMeshInfoVertexData[materialIndex].uvs2;
+            UnityEngine.Vector2[] dst_uv2s = m_TextMeshPro.textInfo.meshInfo[materialIndex].uvs2;
             dst_uv2s[vertexIndex + 0] = src_uv2s[vertexIndex + 0];
             dst_uv2s[vertexIndex + 1] = src_uv2s[vertexIndex + 1];
             dst_uv2s[vertexIndex + 2] = src_uv2s[vertexIndex + 2];

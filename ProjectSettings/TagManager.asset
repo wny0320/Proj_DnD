@@ -13,6 +13,8 @@ TagManager:
   - Door
   - Item
   - Chest
+  - Undefined
+  - ItemUI
   layers:
   - Default
   - TransparentFX

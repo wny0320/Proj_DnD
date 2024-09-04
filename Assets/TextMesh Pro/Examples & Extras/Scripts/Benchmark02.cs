@@ -31,7 +31,7 @@ namespace TMPro.Examples
                     TextMeshPro textMeshPro = go.AddComponent<TextMeshPro>();
 
                     textMeshPro.autoSizeTextContainer = true;
-                    textMeshPro.rectTransform.pivot = new Vector2(0.5f, 0);
+                    textMeshPro.rectTransform.pivot = new UnityEngine.Vector2(0.5f, 0);
 
                     textMeshPro.alignment = TextAlignmentOptions.Bottom;
                     textMeshPro.fontSize = 96;

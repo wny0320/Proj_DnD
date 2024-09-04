@@ -19,6 +19,6 @@ MonoBehaviour:
   itemStat: {fileID: 11400000, guid: a29bf73de2aa1994fb92308e0ca4587a, type: 2}
   itemType: 0
   equipPart: 2
-  itemSize: 7
+  itemSize: 35
   itemMaxStack: 1
   itemStack: 0

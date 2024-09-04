@@ -46,9 +46,9 @@ public class Popup : PopupWindowContent
     {
         //´ÝÈú¶§ È£Ãâ
     }
-    public override Vector2 GetWindowSize()
+    public override UnityEngine.Vector2 GetWindowSize()
     {
         //popup size
-        return new Vector2(300, 100);
+        return new UnityEngine.Vector2(300, 100);
     }
 }

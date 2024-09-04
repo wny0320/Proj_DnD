@@ -172,7 +172,7 @@ namespace TMPro.Examples
                 // Get Input from Mobile Device
                 if (touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Moved)
                 {
-                    Vector2 deltaPosition = Input.GetTouch(0).deltaPosition;
+                    UnityEngine.Vector2 deltaPosition = Input.GetTouch(0).deltaPosition;
 
                     // Handle elevation changes
                     if (deltaPosition.y > 0.01f || deltaPosition.y < -0.01f)
@@ -259,8 +259,8 @@ namespace TMPro.Examples
                 Touch touch0 = Input.GetTouch(0);
                 Touch touch1 = Input.GetTouch(1);
 
-                Vector2 touch0PrevPos = touch0.position - touch0.deltaPosition;
-                Vector2 touch1PrevPos = touch1.position - touch1.deltaPosition;
+                UnityEngine.Vector2 touch0PrevPos = touch0.position - touch0.deltaPosition;
+                UnityEngine.Vector2 touch1PrevPos = touch1.position - touch1.deltaPosition;
 
                 float prevTouchDelta = (touch0PrevPos - touch1PrevPos).magnitude;
                 float touchDelta = (touch0.position - touch1.position).magnitude;

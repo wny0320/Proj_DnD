@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: exampleItem2
   m_EditorClassIdentifier: 
   itemName: exampleItem2
-  itemImageNum: 0
+  itemImageNum: 1
   itemText: exampleItem2
   itemRarity: 0
   itemStat: {fileID: 11400000, guid: 94f4ba6d7657a3040b64c0a22221d488, type: 2}
   itemType: 3
   equipPart: 0
-  itemSize: 6
+  itemSize: 33
   itemMaxStack: 3
   itemStack: 0
