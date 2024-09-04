@@ -9630,11 +9630,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1582219031788646883, guid: ff34233eabbf3d249bb4e560b2e3ecaa, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1582219031788646883, guid: ff34233eabbf3d249bb4e560b2e3ecaa, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1582219031788646883, guid: ff34233eabbf3d249bb4e560b2e3ecaa, type: 3}
       propertyPath: m_AnchorMin.y
@@ -9642,7 +9642,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2636329493824656137, guid: ff34233eabbf3d249bb4e560b2e3ecaa, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 2636329493824656137, guid: ff34233eabbf3d249bb4e560b2e3ecaa, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -9735,6 +9735,10 @@ PrefabInstance:
     - target: {fileID: 5083343487505039630, guid: ff34233eabbf3d249bb4e560b2e3ecaa, type: 3}
       propertyPath: m_Name
       value: MerchantCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 5083343487505039630, guid: ff34233eabbf3d249bb4e560b2e3ecaa, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
