@@ -72,7 +72,7 @@ public class CameraController : MonoBehaviour
 
         transform.localRotation = Quaternion.Euler(pitch, yaw, 0);
         eye.root.localRotation = Quaternion.Euler(0, yaw, 0);
-        spine.localRotation = Quaternion.Euler(0, 0, pitch);
+        spine.localRotation = Quaternion.Euler(pitch, 0, 0);
     }
 
     private void Interactive(RaycastHit hitted)
