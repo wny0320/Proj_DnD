@@ -62,16 +62,20 @@ public class WatcherController : BaseController, IReceiveAttack
     {
         float dmg = Mathf.Max(1, damage - stat.Defense);
         stat.Hp -= (int)dmg;
+
         if (stat.Hp <= 0)
         {
             stat.Hp = 0;
-            rigidBody.velocity = Vector3.zero;
 
             Debug.Log($"{name} die");
 
+            GetComponent<NavMeshAgent>().SetDestination(transform.position);
+            GetComponent<NavMeshAgent>().velocity = Vector3.zero;
             animator.SetBool("EnemyMove", false);
 
             ChangeState(EnemyState.Die);
         }
+        else
+            Global.sfx.Play(Global.Sound.hitClip, transform.position);
     }
 }

@@ -67,7 +67,6 @@ public class CrusaderController : BaseController, IReceiveAttack
     {
         float dmg = Mathf.Max(1, damage - stat.Defense);
         stat.Hp -= (int)dmg;
-        Global.sfx.Play(Global.Sound.hitClip, transform.position);
 
         if (stat.Hp <= 0)
         {
@@ -81,5 +80,7 @@ public class CrusaderController : BaseController, IReceiveAttack
 
             ChangeState(EnemyState.Die);
         }
+        else
+            Global.sfx.Play(Global.Sound.hitClip, transform.position);
     }
 }

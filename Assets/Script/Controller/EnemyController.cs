@@ -62,6 +62,7 @@ public class EnemyController : BaseController, IReceiveAttack
     {
         float dmg = Mathf.Max(1, damage - stat.Defense);
         stat.Hp -= (int)dmg;
+
         if (stat.Hp <= 0)
         {
             stat.Hp = 0;
@@ -74,5 +75,7 @@ public class EnemyController : BaseController, IReceiveAttack
 
             ChangeState(EnemyState.Die);
         }
+        else
+            Global.sfx.Play(Global.Sound.hitClip, transform.position);
     }
 }
