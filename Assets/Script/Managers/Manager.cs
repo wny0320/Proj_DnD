@@ -47,6 +47,7 @@ public class Manager : MonoBehaviour
     private void FixedUpdate()
     {
         Input.OnFixedUpdate();
+        Game.OnFixedUpdate();
     }
 
     private static void Init()

@@ -79,6 +79,8 @@ public class CrusaderController : BaseController, IReceiveAttack
             animator.SetBool("EnemyMove", false);
 
             ChangeState(EnemyState.Die);
+            states.Clear();
+            stateMachine = null;
         }
         else
             Global.sfx.Play(Global.Sound.hitClip, transform.position);
