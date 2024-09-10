@@ -39,10 +39,9 @@ public enum EffectType
 
 public enum EquipPart
 {
-    NonEquip,
     Head,
     Chest,
-    Arm,
+    Hand,
     Leg,
     Foot,
     Weapon,

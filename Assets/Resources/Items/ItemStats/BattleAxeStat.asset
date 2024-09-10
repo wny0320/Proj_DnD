@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 0
   _maxHp: 0
-  _attack: 3
+  _attack: 38
   _defense: 0
-  _moveSpeed: -2
-  _jumpForce: -1
-  _attackSpeed: -3
+  _moveSpeed: -0.5
+  _jumpForce: 0
+  _attackSpeed: 0

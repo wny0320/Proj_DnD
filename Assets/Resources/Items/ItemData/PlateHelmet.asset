@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ce6d82775af0ce438e646f65aa1c573, type: 3}
+  m_Name: PlateHelmet
+  m_EditorClassIdentifier: 
+  itemName: PlateHelmet
+  itemIndex: 11
+  itemText: 
+  itemRarity: 0
+  itemStat: {fileID: 11400000, guid: 5757102aa0d16f8448e88ab052582acb, type: 2}
+  itemType: 0
+  equipPart: 0
+  itemSize: 34
+  randomStatFlag: 0
+  randomRange:
+  - 0
+  - 5

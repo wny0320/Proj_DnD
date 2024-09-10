@@ -24,7 +24,6 @@ public class Manager : MonoBehaviour
     public static InvenManager Inven { get { return instance._inven; } }
     #endregion
 
-    public Coroutine invenCoroutine = null;
     private void Awake()
     {
         Init();
@@ -67,13 +66,7 @@ public class Manager : MonoBehaviour
     }
     public void StartInvenCoroutine()
     {
-        if (invenCoroutine == null)
-        {
-            invenCoroutine = StartCoroutine(Inven.MoveItem());
-            Debug.Log(invenCoroutine);
-        }
-        else
-            return;
+        StartCoroutine(Inven.ItemManage());
     }
 
 

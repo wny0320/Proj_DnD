@@ -15,6 +15,8 @@ TagManager:
   - Chest
   - Undefined
   - ItemUI
+  - EquipSlot
+  - InvenSlot
   layers:
   - Default
   - TransparentFX

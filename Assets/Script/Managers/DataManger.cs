@@ -12,7 +12,8 @@ public class DataManager
     //아이템 데이터에 들어있는 키 순서대로 이미지 또한 들어가 있어서 itemIamges의 index를 itemImageNum에 넣으면 됨 
     //해당 이미지 대신 프리팹으로 사용
     //public List<Sprite> itemSprite = new List<Sprite>();
-    public List<GameObject> itemPrefab = new List<GameObject>();
+    public List<GameObject> itemUIPrefab = new List<GameObject>();
+    public List<GameObject> item3DPrefab = new List<GameObject>();
     const string ITEM_PATH = "Items/";
     public void OnAwake()
     {
@@ -87,12 +88,15 @@ public class DataManager
         foreach(string itemName in itemData.Keys)
         {
             itemData[itemName].itemIndex = index;
-            string targetImagePath = ITEM_PATH + "ItemImages/" + itemName + "Image";
-            string targetPrefabPath = ITEM_PATH + itemName + "Prefab";
-            Sprite targetItemImage = Resources.Load<Sprite>(targetImagePath);
-            GameObject targetItemPrefab = Resources.Load<GameObject>(targetPrefabPath);
+            string targetSpritePath = ITEM_PATH + "ItemUISprite/" + itemName + "Sprite";
+            string targetUIPrefabPath = ITEM_PATH + "ItemUIPrefab/" + itemName + "Prefab";
+            string target3DPrefabPath = ITEM_PATH + "Item3DPrefab/" + itemName + "Prefab";
+            Sprite targetItemImage = Resources.Load<Sprite>(targetSpritePath);
+            GameObject targetItemUIPrefab = Resources.Load<GameObject>(targetUIPrefabPath);
+            GameObject targetItem3DPrefab = Resources.Load<GameObject>(target3DPrefabPath);
             //itemSprite.Add(targetItemImage);
-            itemPrefab.Add(targetItemPrefab);
+            itemUIPrefab.Add(targetItemUIPrefab);
+            item3DPrefab.Add(targetItem3DPrefab);
             index++;
         }
     }

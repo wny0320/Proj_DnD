@@ -13,10 +13,9 @@ public class Item : ScriptableObject
     public ItemType itemType;
     public EquipPart equipPart;
     public ItemSize itemSize;
-    public int itemMaxStack;
-    [HideInInspector]
-    public int itemStack;
-
+    public bool randomStatFlag;
+    public float[] randomRange = new float[2];
+    //attack, defense, movespeed
     public Item ItemDeepCopy()
     {
         Item item = (Item)CreateInstance(typeof(Item));
@@ -28,8 +27,14 @@ public class Item : ScriptableObject
         item.itemType = itemType;
         item.equipPart = equipPart;
         item.itemSize = itemSize;
-        item.itemMaxStack = itemMaxStack;
-        item.itemStack = itemStack;
+        item.randomRange = randomRange;
+        item.randomStatFlag = randomStatFlag;
         return item;
+    }
+
+    public void ItemRandomStat()
+    {
+        itemStat.Attack += Random.Range(0, (int)randomRange[0]);
+        itemStat.Defense += Random.Range(0, (int)randomRange[1]);
     }
 }

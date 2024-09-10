@@ -3,18 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using System;
+using Unity.VisualScripting;
 
 public class InvenManager
 {
     List<SlotLine> slotLines = new List<SlotLine>();
+    Dictionary<string, Slot> equipSlots = new Dictionary<string, Slot>();
     public int slotRowSize = 5;
     public int slotColumnSize = 9;
     public int itemMaxSize = 4; // 2^4 X 2^4 짜리가 최대 크기라고 가정
     private const int UNITSIZE = 90;
     Vector2 invenStandardPos = new Vector2(40, -40);
     private const string INVENTORY_PATH = "InvenCanvas/InvenPanel/ItemArea/Content";
+    private const string EQUIP_PATH = "InvenCanvas/InvenPanel/EquipArea/Slots";
+    private const string EQUIP_VISUAL_PATH = "InvenCanvas/InvenPanel/EquipArea/ItemVisual";
     private const string INVENTORY_VISUAL_PATH = "InvenCanvas/InvenPanel/ItemArea/ItemVisual";
     private const string ITEM_UI_TAG = "ItemUI";
+    private const string INVENTORY_SLOT_TAG = "InvenSlot";
+    private const string EQUIP_SLOT_TAG = "EquipSlot";
     Transform inventoryParent;
     Canvas invenCanvas;
     CanvasGroup invenCanvasGroup;
@@ -42,6 +49,18 @@ public class InvenManager
         invenCanvasGroup.alpha = 0f;
         invenCanvasGroup.interactable = false;
         canvasVisualFlag = false;
+
+        foreach(var part in Enum.GetValues(typeof(EquipPart)))
+        {
+            string partsName = part.ToString();
+            if (part.Equals(EquipPart.Weapon))
+            {
+                equipSlots.Add(partsName + 1, GameObject.Find(EQUIP_PATH + "/" + partsName + 1).GetComponent<Slot>());
+                equipSlots.Add(partsName + 2, GameObject.Find(EQUIP_PATH + "/" + partsName + 2).GetComponent<Slot>());
+            }
+            else
+                equipSlots.Add(partsName, GameObject.Find(EQUIP_PATH + "/" + partsName).GetComponent<Slot>());
+        }
     }
     public void OnUpdate()
     {
@@ -53,20 +72,22 @@ public class InvenManager
             {
                 canvasVisualFlag = false;
                 invenCanvasGroup.alpha = 0f;
+                Cursor.lockState = CursorLockMode.Locked;
             }
             else
             {
                 canvasVisualFlag = true;
                 invenCanvasGroup.alpha = 1f;
+                Cursor.lockState = CursorLockMode.None;
             }
         }
     }
     public Vector2 InvenPosCal(Vector2 _originPos, Vector2 _slotIndex)
     {
-        return _originPos + new Vector2 (_slotIndex.y, _slotIndex.x) * UNITSIZE;
+        return _originPos + new Vector2 (_slotIndex.y, -_slotIndex.x) * UNITSIZE;
     }
     // 고쳐야할 점, slot안에 itemImage가 있는 경우 Slot 안에서만 보임 << 다시보니 아닌거 같은데? 걍 크게 하면 문제 없을듯? << 따로 visual을 만들어서 해결
-    public IEnumerator MoveItem()
+    public IEnumerator ItemManage()
     {
         while (true)
         { 
@@ -81,7 +102,16 @@ public class InvenManager
                 Debug.Log("Canvas Is Invisible");
                 continue;
             }
+            int mousebutton = -1;
             if (Input.GetMouseButtonDown(0))
+            {
+                mousebutton = 0;
+            }
+            else if(Input.GetMouseButtonDown(1))
+            {
+                mousebutton = 1;
+            }
+            if (mousebutton > -1)
             {
                 PointerEventData pointer = new PointerEventData(EventSystem.current);
                 pointer.position = Input.mousePosition;
@@ -90,6 +120,9 @@ public class InvenManager
                 EventSystem.current.RaycastAll(pointer, raycastResults);
                 Slot targetSlot = null;
                 GameObject itemVisual = null;
+
+                // 장비창 slot에 상호작용하는 경우 활성화되는 플래그
+                bool interactEquipFlag = false;
                 if (raycastResults.Count > 0)
                 {
                     foreach (var go in raycastResults)
@@ -101,10 +134,19 @@ public class InvenManager
                             continue;
                         }
                         if(go.gameObject.TryGetComponent(out Slot _slot))
+                        {
+                            // 인벤토리 슬롯인 경우
+                            if (go.gameObject.CompareTag(INVENTORY_SLOT_TAG) == true)
+                                interactEquipFlag = false;
+                            // 장비창(장착) 슬롯인 경우
+                            if(go.gameObject.CompareTag(EQUIP_SLOT_TAG) == true)
+                                interactEquipFlag = true;
+
                             targetSlot = _slot;
+                        }
                     }
                 }
-                if(targetSlot != null && itemVisual != null)
+                if(targetSlot != null && itemVisual != null && targetSlot.CompareTag(EQUIP_SLOT_TAG) == false)
                 {
                     // 클릭된 슬롯이 메인 슬롯이 아닐 경우, 메인슬롯의 아이템 데이터로 치환
                     if (targetSlot.mainSlotFlag == false)
@@ -123,7 +165,8 @@ public class InvenManager
                     itemVisualOriginPos = itemVisualTrans.GetComponent<RectTransform>().anchoredPosition;
                     Debug.Log("Mouse Button Down");
                 }
-                while (true)
+                #region MouseButtonLeft
+                while (mousebutton == 0)
                 {
                     if (targetSlot == null)
                         break;
@@ -133,7 +176,8 @@ public class InvenManager
                     itemVisual.GetComponent<Image>().color = new Color32(255, 255, 255, 10);
                     // 이부분이 지금 문제, 위치가 마음대로 이동함 -> anchoredPosition과 ScreenPointToLocalPointInRectangle을 통해 해결함
                     Vector2 convertedMousePos;
-                    RectTransformUtility.ScreenPointToLocalPointInRectangle(invenCanvas.transform as RectTransform, Input.mousePosition, invenCanvas.worldCamera, out convertedMousePos);
+                    RectTransformUtility.ScreenPointToLocalPointInRectangle
+                        (invenCanvas.transform as RectTransform, Input.mousePosition, invenCanvas.worldCamera, out convertedMousePos);
                     itemVisualTrans.position = invenCanvas.transform.TransformPoint(convertedMousePos);
                     #region 과거코드
                     //// 마우스 위치 레이케이스 반복
@@ -193,7 +237,8 @@ public class InvenManager
                         int originXIndex = 
                             Mathf.RoundToInt(((itemVisualOriginPos.x - (itemSize[1] - 1) * (UNITSIZE / 2)) - invenStandardPos.x) / UNITSIZE);
                         int originYIndex = 
-                            Mathf.RoundToInt(((Mathf.Abs(itemVisualOriginPos.y) - (itemSize[0] - 1) * (UNITSIZE / 2)) - Mathf.Abs(invenStandardPos.y)) / -UNITSIZE);
+                            Mathf.RoundToInt(((Mathf.Abs(itemVisualOriginPos.y) - (itemSize[0] - 1) * (UNITSIZE / 2)) 
+                            - Mathf.Abs(invenStandardPos.y)) / UNITSIZE);
                         bool breakFlag = false;
                         // 옮길 수 있는지 판별
                         for (int j = 0; j < itemSize[1]; j++)
@@ -223,7 +268,7 @@ public class InvenManager
                             {
                                 // 아이템 버리기
                                 DumpItem(slotLines[originYIndex].mySlots[originXIndex].slotItem);
-                                DeleteItem(new Vector2Int(originYIndex, originXIndex));
+                                DeleteInvenItem(new Vector2Int(originYIndex, originXIndex));
                             }
                             // 아이템 옮길 수 없음
                             else
@@ -235,14 +280,17 @@ public class InvenManager
                         }
                         // 옮길 수 있는 경우
                         Vector2 itemPos = Vector2.zero;
-                        Debug.Log(yIndex);
+                        Debug.Log(invenStandardPos.y);
                         itemVisual.GetComponent<RectTransform>().anchoredPosition = 
-                            new Vector2(invenStandardPos.x + (xIndex + (itemSize[1] - 1) / 2) * UNITSIZE, invenStandardPos.y - (yIndex + (itemSize[0] - 1) / 2) * UNITSIZE);
+                            new Vector2(invenStandardPos.x + (xIndex + (float)(itemSize[1] - 1) / 2) * UNITSIZE,
+                            invenStandardPos.y - (yIndex + (float)(itemSize[0] - 1) / 2) * UNITSIZE);
+                        Debug.Log("yIndex, xIndex = " + yIndex + ", " + xIndex);
                         for (int j = 0; j < itemSize[0]; j++)
                         {
                             for(int i = 0; i < itemSize[1]; i++)
                             {
-                                //Debug.Log("ji = " + j + ", " + i);
+                                Debug.Log("ji = " + j + ", " + i);
+                                Debug.Log("originYIndex, originXindex = " + originYIndex + ", " + originXIndex);
                                 Slot from = slotLines[originYIndex + j].mySlots[originXIndex + i];
                                 Slot to = slotLines[yIndex + j].mySlots[xIndex + i];
                                 to.SlotCopy(from, new Vector2Int(yIndex, xIndex));
@@ -297,11 +345,113 @@ public class InvenManager
                     }
                     yield return null;
                 }
+                #endregion
+                #region MouseButtonRight
+                while (mousebutton == 1)
+                {
+                    if (targetSlot == null)
+                        break;
+                    if (itemVisual == null)
+                        break;
+                    // 장착된 장비가 드래그 되는 경우는 추후 생각
+
+                    // 장비창에서 해제하는 경우
+                    // targetSlot이 EquipSlot일 경우
+                    if(interactEquipFlag == true)
+                    {
+                        // AddItem이 실패한경우 장착한 아이템을 바닥에 버림
+                        Debug.Log(targetSlot.gameObject.name.ToString());
+                        Debug.Log(targetSlot.slotItem);
+                        if(AddItem(targetSlot.slotItem) == false)
+                            DumpItem(targetSlot.slotItem);
+                        // AddItem이 성공한 경우는 그냥 장비창 리셋만 하면 됨
+                        GameObject.Destroy(itemVisual);
+                        targetSlot.SlotReset();
+                        break;
+                    }
+                    // 인벤토리창에서 장착하는 경우
+                    else
+                    {
+                        EquipPart targetEquipPart = targetSlot.slotItem.equipPart;
+                        ItemType targetItemType = targetSlot.slotItem.itemType;
+                        if (targetItemType != ItemType.Equipment)
+                        {
+                            Debug.LogError("Target Item Is Not Equipment");
+                            break;
+                        }
+                        string equipPartsName = null;
+                        Slot equipSlot = null;
+                        if (targetEquipPart != EquipPart.Weapon)
+                        {
+                            equipPartsName = targetEquipPart.ToString();
+                            equipSlot = equipSlots[equipPartsName];
+                        }
+                        if (targetEquipPart == EquipPart.Weapon)
+                        {
+                            string WeaponPartsName = targetEquipPart.ToString();
+                            Slot WeaponSlot1 = equipSlots[WeaponPartsName + 1];
+                            Slot WeaponSlot2 = equipSlots[WeaponPartsName + 2];
+                            // 무기 1슬롯이 빈 상황
+                            if (WeaponSlot1.emptyFlag == true)
+                            {
+                                equipSlot = WeaponSlot1;
+                                equipPartsName = WeaponPartsName + 1;
+                            }
+                            // 그 외는 2번 슬롯, 2번 슬롯이 어차피 비었는지 안비었는지는 아래에서 또 확인할거라 패스함
+                            else
+                            {
+                                equipSlot = WeaponSlot2;
+                                equipPartsName = WeaponPartsName + 2;
+                            }
+                        }
+                        Vector2 itemVisualPos = itemVisual.GetComponent<RectTransform>().anchoredPosition;
+
+                        // 마우스의 위치가 가운데에 위치한 경우 가까운 위치로 지정하기 위한 코드
+                        float targetXPos = itemVisualPos.x;
+                        // y 좌표는 양수가 아닌 음수로 늘어남
+                        float targetYPos = itemVisualPos.y;
+                        // 아이템이 들어갈 위치
+                        Vector2 targetPos = new Vector2(targetXPos, targetYPos);
+                        int[] itemSize = GetItemSize(targetSlot.slotItem);
+                        int xIndex =
+                            Mathf.RoundToInt(((targetXPos - (itemSize[1] - 1) * (UNITSIZE / 2)) - invenStandardPos.x) / UNITSIZE);
+                        int yIndex =
+                            Mathf.RoundToInt(((targetYPos + (itemSize[0] - 1) * (UNITSIZE / 2)) - invenStandardPos.y) / -UNITSIZE);
+                        int originXIndex =
+                            Mathf.RoundToInt(((itemVisualOriginPos.x - (itemSize[1] - 1) * (UNITSIZE / 2)) - invenStandardPos.x) / UNITSIZE);
+                        int originYIndex =
+                            Mathf.RoundToInt(((Mathf.Abs(itemVisualOriginPos.y) - (itemSize[0] - 1) * (UNITSIZE / 2))
+                            - Mathf.Abs(invenStandardPos.y)) / UNITSIZE);
+                        if (equipSlot.emptyFlag == true)
+                        {
+                            equipSlot.slotItem = targetSlot.slotItem;
+                            equipSlot.emptyFlag = false;
+                            // itemvisual 사이즈와 위치 동일시 시키기
+                            GameObject newVisual = GameObject.Instantiate(itemVisual);
+                            newVisual.transform.SetParent(GameObject.Find(EQUIP_VISUAL_PATH).transform);
+                            equipSlot.itemVisual = newVisual;
+                            RectTransform equipRectTrans = equipSlot.gameObject.GetComponent<RectTransform>();
+                            RectTransform equipVisualRectTrans = newVisual.GetComponent<RectTransform>();
+                            equipVisualRectTrans.anchorMin = new Vector2(0, 0);
+                            equipVisualRectTrans.anchorMax = new Vector2(0, 0);
+                            equipVisualRectTrans.anchoredPosition = equipRectTrans.anchoredPosition;
+                            equipVisualRectTrans.sizeDelta = equipRectTrans.sizeDelta;
+                            DeleteInvenItem(new Vector2Int(originYIndex, originXIndex));
+                            break;
+                        }
+                        else
+                        {
+                            Debug.LogError("Target Equip Slot Is Not Empty.");
+                            break;
+                        }
+                    }
+                }
+                #endregion
             }
         }
         //Manager.Instance.invenCoroutine = null;
     }
-    public void AddItem(Item _item)
+    public bool AddItem(Item _item)
     {
         // 비어있는 슬롯을 다 가져오는 코드
         bool[,] emptyFlag = new bool[slotRowSize,slotColumnSize];
@@ -393,13 +543,18 @@ public class InvenManager
         if(targetSlot == null)
         {
             Debug.LogError("Empty Slot Is Not Exist");
-            return;
+            return false;
         }
         Debug.Log("TargetSlotPos = " + targetSlotIndex);
         targetSlot.emptyFlag = false;
         targetSlot.mainSlotFlag = true;
         targetSlot.itemDataPos = targetSlotIndex;
         targetSlot.slotItem = _item.ItemDeepCopy();
+        if(targetSlot.slotItem.randomStatFlag == false)
+        {
+            targetSlot.slotItem.ItemRandomStat();
+            targetSlot.slotItem.randomStatFlag = true;
+        }
         Debug.Log("ItemSize = " + itemSize[0] + ", " + itemSize[1]);
         int minY = targetSlotIndex.x;
         int maxY = targetSlotIndex.x + itemSize[0];
@@ -430,15 +585,17 @@ public class InvenManager
             }
         }
         // 눈에 보이는 아이템 프리팹 생성
-        GameObject itemVisual = GameObject.Instantiate(Manager.Data.itemPrefab[_item.itemIndex], GameObject.Find(INVENTORY_VISUAL_PATH).transform);
+        GameObject itemVisual = GameObject.Instantiate(Manager.Data.itemUIPrefab[_item.itemIndex], GameObject.Find(INVENTORY_VISUAL_PATH).transform);
         itemVisual.transform.localPosition = InvenPosCal(itemVisual.transform.localPosition, targetSlotIndex);
         // itemVisual 정보 저장
         targetSlot.itemVisual = itemVisual;
+        return true;
     }
-    public void DeleteItem(Vector2Int _targetMainSlotIndex)
+    public void DeleteInvenItem(Vector2Int _targetMainSlotIndex)
     {
         Slot targetSlot = slotLines[_targetMainSlotIndex.x].mySlots[_targetMainSlotIndex.y];
         int[] itemSize = GetItemSize(targetSlot.slotItem);
+        GameObject.Destroy(targetSlot.itemVisual);
         for(int y = 0;  y < itemSize[1]; y++)
         {
             for(int x = 0; x < itemSize[0]; x++)
@@ -452,7 +609,11 @@ public class InvenManager
     public void DumpItem(Item _item)
     {
         Debug.Log("Item Dumped");
-
+        GameObject dumpedItem3D = GameObject.Instantiate(Manager.Data.item3DPrefab[_item.itemIndex]);
+        Item newItem = _item.ItemDeepCopy();
+        dumpedItem3D.GetComponent<Item3D>().myItem = newItem;
+        dumpedItem3D.transform.position = Manager.Game.Player.transform.position;
+        dumpedItem3D.transform.position += new Vector3(0, 0.1f, 0);
     }
     //public void ImageRefreshItem()
     //{

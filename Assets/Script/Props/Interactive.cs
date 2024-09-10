@@ -23,6 +23,16 @@ public class Interactive : MonoBehaviour
     private void ItemFunc()
     {
         Debug.Log("item");
+        Item itemPickedUp = GetComponent<Item3D>().myItem;
+        // 인벤토리에 아이템 넣기 성공
+        if(Manager.Inven.AddItem(itemPickedUp) == true)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            GetComponent<GameObject>().transform.position += new Vector3(0, 1f, 0);
+        }
     }
     private void DoorFunc()
     {
