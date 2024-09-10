@@ -11,8 +11,6 @@ public class PlayerMoveState : BaseState
     Vector3 dir = Vector3.zero;
     Transform transform;
 
-    bool isGrounded = true;
-
     public PlayerMoveState(BaseController controller, Rigidbody rb = null, Animator animator = null) : base(controller, rb, animator)
     {
         Manager.Input.PlayerMove -= PlayerMove;
@@ -61,30 +59,29 @@ public class PlayerMoveState : BaseState
         rb.AddForce(velocityChange, ForceMode.VelocityChange);
         if (Mathf.Abs(velocity.x) > 0.2f || Mathf.Abs(velocity.z) > 0.2f) animator.SetBool(PLAYER_MOVE, true);
         else animator.SetBool(PLAYER_MOVE, false);
-        if (isGrounded && Input.GetKeyDown(KeyCode.Space)) Jump();
+        if (CheckGround() && Input.GetKeyDown(KeyCode.Space)) Jump();
     }
 
     private void Jump()
     {
         animator.SetTrigger(PLAYER_JUMP);
         rb.AddForce(Vector3.up * controller.stat.JumpForce, ForceMode.Impulse);
-        isGrounded = false;
     }
 
-    private void CheckGround()
+    private bool CheckGround()
     {
         Vector3 origin = new Vector3(transform.position.x, transform.position.y + (transform.localScale.y * .5f), transform.position.z);
         Vector3 direction = transform.TransformDirection(Vector3.down);
-        float distance = 1.5f;
+        float distance = 1f;
 
         if (Physics.Raycast(origin, direction, out RaycastHit hit, distance))
         {
             Debug.DrawRay(origin, direction * distance, Color.red);
-            isGrounded = true;
+            return true;
         }
         else
         {
-            isGrounded = false;
+            return false;
         }
 
         //Debug.DrawRay(origin, direction, Color.red);

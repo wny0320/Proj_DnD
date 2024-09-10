@@ -9,35 +9,39 @@ public class PlayerCrouchState : BaseState
 
     public PlayerCrouchState(BaseController controller, Rigidbody rb = null, Animator animator = null) : base(controller, rb, animator)
     {
+
     }
 
     public override void OnFixedUpdate()
     {
+        Crouch();
     }
 
     public override void OnStateEnter()
     {
-        controller.stat.MoveSpeed /= speedReduction;
+        controller.stat.MoveSpeed -= speedReduction;
+        animator.SetBool(PLAYER_CROUCH, true);
 
-        // 애니메이션 bool or trigger
+        controller.GetComponent<CapsuleCollider>().height = 1.3f;
     }
 
     public override void OnStateExit()
     {
-        controller.stat.MoveSpeed *= speedReduction;
+        controller.stat.MoveSpeed += speedReduction;
+        animator.SetBool(PLAYER_CROUCH, false);
+
+        controller.GetComponent<CapsuleCollider>().height = 1.75f;
     }
 
     public override void OnStateUpdate()
     {
-        Crouch();
 
-        if (Input.GetKeyUp(KeyCode.LeftControl))
-            controller.ChangeState(PlayerState.Move);
+
     }
 
     private void Crouch()
     {
-        //웅크리기는 나중에 애니메이션 보고 해야될듯
-        //밑의 transform.localScale 부분 변경하면 될듯함
+        if (Input.GetKeyUp(KeyCode.LeftControl))
+            controller.ChangeState(PlayerState.Move);
     }
 }
