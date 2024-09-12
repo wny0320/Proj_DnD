@@ -12,10 +12,11 @@ public class InputManager
 
     public void OnUpdate()
     {
+        PlayerMove.Invoke();
+        PlayerAttack.Invoke();
     }
     public void OnFixedUpdate()
     {
-        PlayerMove.Invoke();
-        PlayerAttack.Invoke();
+
     }
 }
