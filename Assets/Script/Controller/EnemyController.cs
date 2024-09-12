@@ -15,9 +15,6 @@ public class EnemyController : BaseController, IReceiveAttack
         rigidBody = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
 
-        //юс╫ц
-        InitStat();
-
         InitStateMachine_Monster();
     }
 
@@ -29,11 +26,6 @@ public class EnemyController : BaseController, IReceiveAttack
     private void FixedUpdate()
     {
         stateMachine?.StateFixtedUpdateFunc();
-    }
-
-    private void InitStat()
-    {
-        stat = new Stat(100, 100, 100, 10, 10, 10, 5);
     }
 
     private void InitStateMachine_Monster()

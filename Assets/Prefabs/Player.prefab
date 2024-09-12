@@ -2066,7 +2066,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38a7587f5f19c2b4d993c13f98fe6c89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stat: {fileID: 0}
+  stat: {fileID: 11400000, guid: b23b9310614fce848bd0cfec3a076c65, type: 2}
   isAlive: 1
   animators:
   - {fileID: 9100000, guid: aeb652fcc54e2c54893eb02a533ca72b, type: 2}

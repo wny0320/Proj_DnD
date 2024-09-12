@@ -833,7 +833,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c73dfea01b388246a3e9ce231f15b1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stat: {fileID: 0}
+  stat: {fileID: 11400000, guid: da903b34635a8284c948009f15c86d45, type: 2}
   isAlive: 1
   weapon: {fileID: 7157164645354133614}
 --- !u!1 &839760579785938043

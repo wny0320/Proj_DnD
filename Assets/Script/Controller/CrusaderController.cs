@@ -16,9 +16,6 @@ public class CrusaderController : BaseController, IReceiveAttack
         rigidBody = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
 
-        //юс╫ц
-        InitStat();
-
         InitStateMachine_Monster();
     }
 
@@ -30,11 +27,6 @@ public class CrusaderController : BaseController, IReceiveAttack
     private void FixedUpdate()
     {
         stateMachine?.StateFixtedUpdateFunc();
-    }
-
-    private void InitStat()
-    {
-        stat = new Stat(200, 100, 100, 10, 10, 10, 2);
     }
 
     private void InitStateMachine_Monster()

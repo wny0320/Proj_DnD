@@ -3332,7 +3332,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f47524e41b294e44bef269997db7e7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stat: {fileID: 0}
+  stat: {fileID: 11400000, guid: f52558deac45db240838b77262c0b6d6, type: 2}
   isAlive: 1
   weapon: {fileID: 1288484106080471473}
 --- !u!1 &6217236713289212372

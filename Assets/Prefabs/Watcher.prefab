@@ -139,7 +139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce669a0ad3f5aea48bc8b33636845a85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stat: {fileID: 0}
+  stat: {fileID: 11400000, guid: eb8ae3401836b5848b9819e291b30774, type: 2}
   isAlive: 1
   weapon: {fileID: 6788823419146250664}
 --- !u!1001 &7167664510083853376

@@ -574,7 +574,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86ffa5891fc06484185ecae674c5ab87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stat: {fileID: 0}
+  stat: {fileID: 11400000, guid: d4ec91eed916ce14ba10cecefc9b8936, type: 2}
   isAlive: 1
   weapon: {fileID: 3586537711273034853}
 --- !u!1 &4411232776295148156 stripped

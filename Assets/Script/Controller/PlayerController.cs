@@ -23,9 +23,6 @@ public class PlayerController : BaseController, IReceiveAttack
 
         Manager.Game.Player = gameObject;
 
-        //initStat юс╫ц
-        InitStat();
-
         InitStateMachine();
         StartCoroutine(SetPlayer());
     }
@@ -38,11 +35,6 @@ public class PlayerController : BaseController, IReceiveAttack
     private void FixedUpdate()
     {
         stateMachine?.StateFixtedUpdateFunc();
-    }
-
-    private void InitStat()
-    {
-        stat = new Stat(100, 100, 100, 2, 10, 10, 0);
     }
 
     private void InitStateMachine()
