@@ -21,6 +21,7 @@ public class GameManager
     public void OnAwake()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        Application.targetFrameRate = 60;
         GameUI = GameObject.Find("GameUI");
         TimeUI = GameUI.transform.GetChild(0).GetComponent<Slider>();
         HpUI = GameUI.transform.GetChild(1).GetComponent<Slider>();

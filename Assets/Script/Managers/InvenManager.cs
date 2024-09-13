@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System;
-using Unity.VisualScripting;
 
 public class InvenManager
 {
@@ -19,6 +18,7 @@ public class InvenManager
     private const string EQUIP_PATH = "InvenCanvas/InvenPanel/EquipArea/Slots";
     private const string EQUIP_VISUAL_PATH = "InvenCanvas/InvenPanel/EquipArea/ItemVisual";
     private const string INVENTORY_VISUAL_PATH = "InvenCanvas/InvenPanel/ItemArea/ItemVisual";
+    private const string EQUIP_UI_PATH = "GameUI/EquipUI/Slot";
     private const string ITEM_UI_TAG = "ItemUI";
     private const string INVENTORY_SLOT_TAG = "InvenSlot";
     private const string EQUIP_SLOT_TAG = "EquipSlot";
@@ -359,6 +359,21 @@ public class InvenManager
                     // targetSlot이 EquipSlot일 경우
                     if(interactEquipFlag == true)
                     {
+                        foreach(var part in Enum.GetValues(typeof(EquipPart)))
+                        {
+                            // 1번칸 무기인경우
+                            string targetImagePath;
+                            if (part.ToString() + 1 == targetSlot.gameObject.name.ToString())
+                                targetImagePath = EQUIP_UI_PATH + 1 + "/ItemImage";
+                            // 2번칸 무기인경우
+                            else if (part.ToString() + 2 == targetSlot.gameObject.name.ToString())
+                                targetImagePath = EQUIP_UI_PATH + 2 + "/ItemImage";
+                            else
+                                targetImagePath = null;
+                            if(targetImagePath != null)
+                                GameObject.Find(targetImagePath).GetComponent<Image>().sprite = null;
+                            Debug.Log(targetImagePath);
+                        }
                         // AddItem이 실패한경우 장착한 아이템을 바닥에 버림
                         Debug.Log(targetSlot.gameObject.name.ToString());
                         Debug.Log(targetSlot.slotItem);
@@ -436,7 +451,19 @@ public class InvenManager
                             equipVisualRectTrans.anchorMax = new Vector2(0, 0);
                             equipVisualRectTrans.anchoredPosition = equipRectTrans.anchoredPosition;
                             equipVisualRectTrans.sizeDelta = equipRectTrans.sizeDelta;
+                            // 무기인경우 UI 동기화
+                                string targetImagePath = null;
+                            if(targetEquipPart == EquipPart.Weapon)
+                            {
+                                if (equipPartsName == targetEquipPart.ToString() + 1)
+                                    targetImagePath = EQUIP_UI_PATH + 1 + "/ItemImage";
+                                else
+                                    targetImagePath = EQUIP_UI_PATH + 2 + "/ItemImage";
+                                GameObject.Find(targetImagePath).GetComponent<Image>().sprite = 
+                                    itemVisual.transform.GetChild(0).GetComponent<Image>().sprite;
+                            }
                             DeleteInvenItem(new Vector2Int(originYIndex, originXIndex));
+                            Debug.Log(GameObject.Find(targetImagePath).GetComponent<Image>().sprite);
                             break;
                         }
                         else
