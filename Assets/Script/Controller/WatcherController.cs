@@ -55,7 +55,7 @@ public class WatcherController : BaseController, IReceiveAttack
         float dmg = Mathf.Max(1, damage - stat.Defense);
         stat.Hp -= (int)dmg;
 
-        if (stat.Hp <= 0)
+        if (!isAlive || stat.Hp <= 0)
         {
             stat.Hp = 0;
 

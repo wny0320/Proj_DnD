@@ -15,6 +15,7 @@ public class EnemyDieState : BaseState
     public override void OnStateEnter()
     {
         animator.Play("Die");
+        controller.isAlive = false;
     }
 
     public override void OnStateExit()
