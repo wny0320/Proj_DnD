@@ -50,17 +50,33 @@ public class InvenManager
         invenCanvasGroup.interactable = false;
         canvasVisualFlag = false;
 
-        foreach(var part in Enum.GetValues(typeof(EquipPart)))
+        string typeName = null;
+        foreach (var type in Enum.GetValues(typeof(ItemType)))
         {
-            string partsName = part.ToString();
-            if (part.Equals(EquipPart.Weapon))
+            typeName = type.ToString();
+            if (typeName == ItemType.Consumable.ToString())
             {
-                equipSlots.Add(partsName + 1, GameObject.Find(EQUIP_PATH + "/" + partsName + 1).GetComponent<Slot>());
-                equipSlots.Add(partsName + 2, GameObject.Find(EQUIP_PATH + "/" + partsName + 2).GetComponent<Slot>());
+                equipSlots.Add(typeName + 1, GameObject.Find(EQUIP_PATH + "/" + typeName + 1).GetComponent<Slot>());
+                equipSlots.Add(typeName + 2, GameObject.Find(EQUIP_PATH + "/" + typeName + 2).GetComponent<Slot>());
+            }
+            if (typeName == ItemType.Equipment.ToString())
+            {
+                foreach (var part in Enum.GetValues(typeof(EquipPart)))
+                {
+                    string partsName = part.ToString();
+                    if (part.Equals(EquipPart.Weapon))
+                    {
+                        equipSlots.Add(partsName + 1, GameObject.Find(EQUIP_PATH + "/" + partsName + 1).GetComponent<Slot>());
+                        equipSlots.Add(partsName + 2, GameObject.Find(EQUIP_PATH + "/" + partsName + 2).GetComponent<Slot>());
+                    }
+                    else
+                        equipSlots.Add(partsName, GameObject.Find(EQUIP_PATH + "/" + partsName).GetComponent<Slot>());
+                }
             }
             else
-                equipSlots.Add(partsName, GameObject.Find(EQUIP_PATH + "/" + partsName).GetComponent<Slot>());
+                continue;
         }
+        
     }
     public void OnUpdate()
     {
@@ -353,11 +369,23 @@ public class InvenManager
                         break;
                     if (itemVisual == null)
                         break;
-                    // 장착된 장비가 드래그 되는 경우는 추후 생각
-
+                    string typeName = null;
+                    foreach (var type in Enum.GetValues(typeof(ItemType)))
+                    {
+                        string targetItemTypeName = targetSlot.slotItem.itemType.ToString();
+                        if (targetItemTypeName == ItemType.Consumable.ToString())
+                            typeName = ItemType.Consumable.ToString();
+                        if (targetItemTypeName == ItemType.Equipment.ToString())
+                            typeName = ItemType.Equipment.ToString();
+                        if (targetItemTypeName == ItemType.Coin.ToString())
+                            typeName = ItemType.Coin.ToString();
+                        if (targetItemTypeName == ItemType.Antique.ToString())
+                            typeName = ItemType.Antique.ToString();
+                    }
                     // 장비창에서 해제하는 경우
                     // targetSlot이 EquipSlot일 경우
-                    if(interactEquipFlag == true)
+                    // 장착 해제할 것이 장비일 경우
+                    if (interactEquipFlag == true && typeName == ItemType.Equipment.ToString())
                     {
                         foreach(var part in Enum.GetValues(typeof(EquipPart)))
                         {
@@ -384,40 +412,87 @@ public class InvenManager
                         targetSlot.SlotReset();
                         break;
                     }
+                    // 장비창에서 해제하는 경우
+                    // 장착 해제할 것이 퀵슬롯템(소모품)일 경우
+                    else if(interactEquipFlag == true && typeName == ItemType.Consumable.ToString())
+                    {
+                        // 1번칸 소모품인 경우
+                        string targetImagePath;
+                        if (typeName + 1 == targetSlot.gameObject.name.ToString())
+                            targetImagePath = EQUIP_UI_PATH + 3 + "/ItemImage";
+                        // 2번칸 소모품인 경우
+                        else if (typeName + 2 == targetSlot.gameObject.name.ToString())
+                            targetImagePath = EQUIP_UI_PATH + 4 + "/ItemImage";
+                        else
+                            targetImagePath = null;
+                        if (targetImagePath != null)
+                            GameObject.Find(targetImagePath).GetComponent<Image>().sprite = null;
+                        Debug.Log(targetImagePath);
+                        // AddItem이 실패한경우 장착한 아이템을 바닥에 버림
+                        Debug.Log(targetSlot.gameObject.name.ToString());
+                        Debug.Log(targetSlot.slotItem);
+                        if (AddItem(targetSlot.slotItem) == false)
+                            DumpItem(targetSlot.slotItem);
+                        // AddItem이 성공한 경우는 그냥 장비창 리셋만 하면 됨
+                        GameObject.Destroy(itemVisual);
+                        targetSlot.SlotReset();
+                        break;
+                    }
                     // 인벤토리창에서 장착하는 경우
                     else
                     {
                         EquipPart targetEquipPart = targetSlot.slotItem.equipPart;
                         ItemType targetItemType = targetSlot.slotItem.itemType;
-                        if (targetItemType != ItemType.Equipment)
-                        {
-                            Debug.LogError("Target Item Is Not Equipment");
-                            break;
-                        }
-                        string equipPartsName = null;
                         Slot equipSlot = null;
-                        if (targetEquipPart != EquipPart.Weapon)
+                        string equipPartsName = null;
+                        if(targetItemType == ItemType.Equipment)
                         {
-                            equipPartsName = targetEquipPart.ToString();
-                            equipSlot = equipSlots[equipPartsName];
-                        }
-                        if (targetEquipPart == EquipPart.Weapon)
-                        {
-                            string WeaponPartsName = targetEquipPart.ToString();
-                            Slot WeaponSlot1 = equipSlots[WeaponPartsName + 1];
-                            Slot WeaponSlot2 = equipSlots[WeaponPartsName + 2];
-                            // 무기 1슬롯이 빈 상황
-                            if (WeaponSlot1.emptyFlag == true)
+                            if (targetEquipPart != EquipPart.Weapon)
                             {
-                                equipSlot = WeaponSlot1;
-                                equipPartsName = WeaponPartsName + 1;
+                                equipPartsName = targetEquipPart.ToString();
+                                equipSlot = equipSlots[equipPartsName];
+                            }
+                            if (targetEquipPart == EquipPart.Weapon)
+                            {
+                                string weaponPartsName = targetEquipPart.ToString();
+                                Slot weaponSlot1 = equipSlots[weaponPartsName + 1];
+                                Slot weaponSlot2 = equipSlots[weaponPartsName + 2];
+                                // 무기 1슬롯이 빈 상황
+                                if (weaponSlot1.emptyFlag == true)
+                                {
+                                    equipSlot = weaponSlot1;
+                                    equipPartsName = weaponPartsName + 1;
+                                }
+                                // 그 외는 2번 슬롯, 2번 슬롯이 어차피 비었는지 안비었는지는 아래에서 또 확인할거라 패스함
+                                else
+                                {
+                                    equipSlot = weaponSlot2;
+                                    equipPartsName = weaponPartsName + 2;
+                                }
+                            }
+                        }
+                        else if(targetItemType == ItemType.Consumable)
+                        {
+                            string consumableName = targetItemType.ToString();
+                            Slot consumableSlot1 = equipSlots[targetItemType.ToString() + 1];
+                            Slot consumableSlot2 = equipSlots[targetItemType.ToString() + 2];
+                            // 소비 1슬롯이 빈 상황
+                            if (consumableSlot1.emptyFlag == true)
+                            {
+                                equipSlot = consumableSlot1;
+                                equipPartsName = consumableName + 1;
                             }
                             // 그 외는 2번 슬롯, 2번 슬롯이 어차피 비었는지 안비었는지는 아래에서 또 확인할거라 패스함
                             else
                             {
-                                equipSlot = WeaponSlot2;
-                                equipPartsName = WeaponPartsName + 2;
+                                equipSlot = consumableSlot2;
+                                equipPartsName = consumableName + 2;
                             }
+                        }
+                        else
+                        {
+                            Debug.LogError("Target Item Can't Equip");
+                            break;
                         }
                         Vector2 itemVisualPos = itemVisual.GetComponent<RectTransform>().anchoredPosition;
 
@@ -451,16 +526,28 @@ public class InvenManager
                             equipVisualRectTrans.anchorMax = new Vector2(0, 0);
                             equipVisualRectTrans.anchoredPosition = equipRectTrans.anchoredPosition;
                             equipVisualRectTrans.sizeDelta = equipRectTrans.sizeDelta;
-                            // 무기인경우 UI 동기화
-                                string targetImagePath = null;
-                            if(targetEquipPart == EquipPart.Weapon)
+                            // 무기나 소모품인경우 UI 동기화
+                            string targetImagePath = null;
+                            if(targetItemType == ItemType.Equipment)
                             {
-                                if (equipPartsName == targetEquipPart.ToString() + 1)
-                                    targetImagePath = EQUIP_UI_PATH + 1 + "/ItemImage";
+                                if (targetEquipPart == EquipPart.Weapon)
+                                {
+                                    if (equipPartsName == targetEquipPart.ToString() + 1)
+                                        targetImagePath = EQUIP_UI_PATH + 1 + "/ItemImage";
+                                    else
+                                        targetImagePath = EQUIP_UI_PATH + 2 + "/ItemImage";
+                                    GameObject.Find(targetImagePath).GetComponent<Image>().sprite =
+                                        itemVisual.transform.GetChild(0).GetComponent<Image>().sprite;
+                                }
+                            }
+                            else if(targetItemType == ItemType.Consumable)
+                            {
+                                if (equipPartsName == targetItemType.ToString() + 1)
+                                    targetImagePath = EQUIP_UI_PATH + 3 + "/ItemImage";
                                 else
-                                    targetImagePath = EQUIP_UI_PATH + 2 + "/ItemImage";
-                                GameObject.Find(targetImagePath).GetComponent<Image>().sprite = 
-                                    itemVisual.transform.GetChild(0).GetComponent<Image>().sprite;
+                                    targetImagePath = EQUIP_UI_PATH + 4 + "/ItemImage";
+                                GameObject.Find(targetImagePath).GetComponent<Image>().sprite =
+                                        itemVisual.transform.GetChild(0).GetComponent<Image>().sprite;
                             }
                             DeleteInvenItem(new Vector2Int(originYIndex, originXIndex));
                             Debug.Log(GameObject.Find(targetImagePath).GetComponent<Image>().sprite);

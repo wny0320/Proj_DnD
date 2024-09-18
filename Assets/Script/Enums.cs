@@ -89,3 +89,8 @@ public enum ItemRarity
     Legendary,
     Unique,
 }
+
+public enum ButtonFunc
+{
+    MerchantButton,
+}
