@@ -32,9 +32,12 @@ public class GameManager
     public void OnFixedUpdate()
     {
         //player hp ui
-        HpUI.value = Player.GetComponent<BaseController>().stat.Hp/100;
 
-        if (!isPlayerAlive || Player == null) return;
+        if (Player == null) return;
+
+        HpUI.value = (float)Player.GetComponent<BaseController>().stat.Hp / (float)Player.GetComponent<BaseController>().stat.MaxHp;
+        if (!isPlayerAlive)
+            return;
 
         //½Ã°£ui
         passedTimer += Time.fixedDeltaTime;
