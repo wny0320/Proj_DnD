@@ -35,10 +35,6 @@ public class WatcherMoveState : BaseState
         moveSpeed = controller.stat.MoveSpeed;
         //공격 주기
         attackSpeed = controller.stat.AttackSpeed;
-
-
-        Global.PlayerSetted -= GetPlayer;
-        Global.PlayerSetted += GetPlayer;
     }
 
     public override void OnFixedUpdate()
@@ -78,20 +74,24 @@ public class WatcherMoveState : BaseState
 
     private bool DetectPlayer(float DetectDistance)
     {
-        //if (target == null) target = GameObject.FindGameObjectWithTag("Player").transform;
-        if (target == null) return false;
-
+        float distance = 999f;
+        Transform t = null;
         //주변 탐지
-        Collider[] cols = Physics.OverlapSphere(transform.position, DetectDistance, 1 << 10);
+        Collider[] cols = Physics.OverlapSphere(transform.position, DetectDistance, 1 << LayerMask.NameToLayer("Player") | 1 << LayerMask.NameToLayer("Monster"));
         foreach (Collider col in cols)
         {
-            if (col.gameObject == target.gameObject)
+            if (Vector3.Magnitude(col.transform.position - transform.position) < distance)
             {
+                distance = Vector3.Magnitude(col.transform.position - transform.position);
+                t = col.transform;
                 isFind = true;
-                return true;
             }
         }
-
+        if (t != null)
+        {
+            target = t;
+            return true;
+        }
         return false;
     }
 
@@ -155,6 +155,4 @@ public class WatcherMoveState : BaseState
             return;
         }
     }
-
-    private void GetPlayer(Transform player) => target = player;
 }

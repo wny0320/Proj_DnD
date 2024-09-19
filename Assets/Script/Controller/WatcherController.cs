@@ -64,9 +64,10 @@ public class WatcherController : BaseController, IReceiveAttack
             stat.Hp = 0;
             transform.rotation = Quaternion.Euler(Vector3.zero);
 
-            Debug.Log($"{name} die");
-
             animator.SetBool("EnemyMove", false);
+
+            rigidBody.isKinematic = true;
+            GetComponentInChildren<Collider>().isTrigger = true;
 
             ChangeState(EnemyState.Die);
             states.Clear();

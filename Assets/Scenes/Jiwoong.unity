@@ -2071,17 +2071,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4356816187080693479, guid: ed61e4fe2b1c64e418448ef517d5b714, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6276974347060881502, guid: ed61e4fe2b1c64e418448ef517d5b714, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6276974347060881502, guid: ed61e4fe2b1c64e418448ef517d5b714, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5
+      value: 4.08
       objectReference: {fileID: 0}
     - target: {fileID: 6276974347060881502, guid: ed61e4fe2b1c64e418448ef517d5b714, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2118,10 +2114,6 @@ PrefabInstance:
     - target: {fileID: 8448146306361444428, guid: ed61e4fe2b1c64e418448ef517d5b714, type: 3}
       propertyPath: m_Name
       value: Watcher
-      objectReference: {fileID: 0}
-    - target: {fileID: 8448146306361444428, guid: ed61e4fe2b1c64e418448ef517d5b714, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

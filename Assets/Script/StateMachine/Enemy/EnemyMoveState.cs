@@ -48,9 +48,6 @@ public class EnemyMoveState : BaseState
         Transform wp = transform.Find("Waypoints");
         foreach (Transform t in wp)
             wayPoints.Add(t.position);
-
-        Global.PlayerSetted -= GetPlayer;
-        Global.PlayerSetted += GetPlayer;
     }
 
     public override void OnFixedUpdate()
@@ -240,6 +237,4 @@ public class EnemyMoveState : BaseState
 
         return distance;
     }
-
-    private void GetPlayer(Transform player) => target = player;
 }

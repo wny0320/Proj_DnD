@@ -46,9 +46,6 @@ public class BanditMoveState : BaseState
 
         //공격 주기
         attackSpeed = controller.stat.AttackSpeed;
-
-        Global.PlayerSetted -= GetPlayer;
-        Global.PlayerSetted += GetPlayer;
     }
 
     public override void OnFixedUpdate()
@@ -162,45 +159,62 @@ public class BanditMoveState : BaseState
 
     private bool DetectPlayer(float DetectDistance)
     {
-        //if (target == null) target = GameObject.FindGameObjectWithTag("Player").transform;
-        if (target == null) return false;
-
+        float distance = 999f;
+        Transform t = null;
         //주변 탐지
-        Collider[] cols = Physics.OverlapSphere(transform.position, DetectDistance, 1 << 10);
+        Collider[] cols = Physics.OverlapSphere(transform.position, DetectDistance, 1 << LayerMask.NameToLayer("Player") | 1 << LayerMask.NameToLayer("Monster"));
         foreach (Collider col in cols)
         {
-            if (col.gameObject == target.gameObject)
+            if (Vector3.Magnitude(col.transform.position - transform.position) < distance)
             {
+                distance = Vector3.Magnitude(col.transform.position - transform.position);
                 originPos = transform.position;
+
+                t = col.transform;
                 isFind = true;
-                return true;
             }
+        }
+        if (t != null)
+        {
+            target = t;
+            return true;
         }
 
         // 전방 부채꼴 탐지
-        Vector3 dist = target.position - transform.position;
-        if (dist.magnitude <= forwardDetectRange)
+        Collider[] cols2 = Physics.OverlapSphere(transform.position, forwardDetectRange, 1 << LayerMask.NameToLayer("Player") | 1 << LayerMask.NameToLayer("Monster"));
+        foreach (Collider col in cols2)
         {
-            float dot = Vector3.Dot(dist.normalized, transform.forward);
-            float theta = Mathf.Acos(dot);
-            float degree = Mathf.Rad2Deg * theta;
-
-            if (degree <= 40f)
+            Vector3 dist = col.transform.position - transform.position;
+            if (dist.magnitude <= forwardDetectRange)
             {
-                RaycastHit hit;
-                Physics.Raycast(transform.position, dist.normalized, out hit, forwardDetectRange + 3);
+                float dot = Vector3.Dot(dist.normalized, transform.forward);
+                float theta = Mathf.Acos(dot);
+                float degree = Mathf.Rad2Deg * theta;
 
-                if (hit.collider.gameObject == target.gameObject)
+                if (degree <= 40f)
                 {
-                    originPos = transform.position;
-                    isFind = true;
-                    return true;
-                }
-                else
-                {
-                    Debug.Log(hit.collider.gameObject);
+                    RaycastHit hit;
+                    Physics.Raycast(transform.position, dist.normalized, out hit, forwardDetectRange + 3);
+
+                    if (hit.collider == col)
+                    {
+                        if (Vector3.Magnitude(col.transform.position - transform.position) < distance)
+                        {
+                            distance = Vector3.Magnitude(col.transform.position - transform.position);
+                            originPos = transform.position;
+
+                            t = col.transform;
+                            isFind = true;
+                        }
+                    }
                 }
             }
+        }
+
+        if (t != null)
+        {
+            target = t;
+            return true;
         }
 
         return false;
@@ -277,6 +291,4 @@ public class BanditMoveState : BaseState
 
         return distance;
     }
-
-    private void GetPlayer(Transform player) => target = player;
 }

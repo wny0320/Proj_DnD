@@ -25,7 +25,6 @@ public class PlayerController : BaseController, IReceiveAttack
         stat = stat.StatDeepCopy();
 
         InitStateMachine();
-        StartCoroutine(SetPlayer());
     }
 
     void Update()
@@ -80,14 +79,5 @@ public class PlayerController : BaseController, IReceiveAttack
 
             ChangeState(PlayerState.Die);
         }
-    }
-
-    IEnumerator SetPlayer()
-    {
-        while(Global.PlayerSetted == null)
-        {
-            yield return null;
-        }
-        Global.PlayerSetted.Invoke(transform);
     }
 }

@@ -70,6 +70,9 @@ public class EnemyController : BaseController, IReceiveAttack
             GetComponent<NavMeshAgent>().velocity = Vector3.zero;
             animator.SetBool("EnemyMove", false);
 
+            rigidBody.isKinematic = true;
+            GetComponent<Collider>().isTrigger = true;
+
             ChangeState(EnemyState.Die);
             states.Clear();
             stateMachine = null;
