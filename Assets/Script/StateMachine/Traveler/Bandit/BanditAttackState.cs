@@ -16,11 +16,15 @@ public class BanditAttackState : BaseState
 
     public override void OnFixedUpdate()
     {
-        if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.84)
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Attack1")|| animator.GetCurrentAnimatorStateInfo(0).IsName("Attack2")||
+            animator.GetCurrentAnimatorStateInfo(0).IsName("Attack3"))
         {
-            weapon.AttackEnd();
-            controller.ChangeState(EnemyState.Move);
-            return;
+            if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.84)
+            {
+                weapon.AttackEnd();
+                controller.ChangeState(EnemyState.Move);
+                return;
+            }
         }
     }
 

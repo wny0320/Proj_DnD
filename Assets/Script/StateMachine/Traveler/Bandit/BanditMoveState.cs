@@ -16,7 +16,7 @@ public class BanditMoveState : BaseState
     private float chaseDistance = 20f; //플레이어 추격 거리
     private float forwardDetectRange = 15f; //전방 감지 거리
     private float senseDetectRange = 5f; //주변 감지 거리
-    private float attackDistance = 1f;
+    private float attackDistance = 0.75f;
 
     private float attackSpeed;
     private float attackCooldown = 0f;
@@ -29,11 +29,12 @@ public class BanditMoveState : BaseState
 
     private Vector3 originPos;
     private Vector3 randomPos = Vector3.zero;
-    private float lookAroundTime = 0f;
 
     private Vector3 fleePos = Vector3.zero;
     private float fleeDistance = 10f;
     private bool isFleeing = false;
+
+    public bool doFlee = false;
 
     public BanditMoveState(BaseController controller, Rigidbody rb = null, Animator animator = null) : base(controller, rb, animator)
     {
@@ -63,7 +64,7 @@ public class BanditMoveState : BaseState
 
         if (!DetectPlayer(10f)) isFind = false;
 
-        attackCooldown = 0f;
+        attackCooldown = Random.Range(0f, 1.5f);
     }
 
     public override void OnStateExit()
@@ -81,7 +82,7 @@ public class BanditMoveState : BaseState
         else
         {
             //조건
-            if (true)
+            if (doFlee)
                 Flee();
             else
                 Chase();
@@ -89,8 +90,19 @@ public class BanditMoveState : BaseState
 
         if (Mathf.Abs(agent.velocity.x) > 0.2f || Mathf.Abs(agent.velocity.z) > 0.2f)
         {
-            if (isFleeing) { animator.SetBool(ENEMY_RUN, true); animator.SetBool(ENEMY_MOVE, false); }
-            else { animator.SetBool(ENEMY_MOVE, true); animator.SetBool(ENEMY_RUN, false); }
+            if (isFleeing) 
+            {
+                animator.SetBool(ENEMY_RUN, true); 
+                animator.SetBool(ENEMY_MOVE, false);
+                agent.speed = controller.stat.MoveSpeed + 3;
+            }
+            else 
+            {
+                animator.SetBool(ENEMY_MOVE, true); 
+                animator.SetBool(ENEMY_RUN, false);
+                agent.speed = controller.stat.MoveSpeed;
+
+            }
         }
         else
         {
@@ -112,6 +124,11 @@ public class BanditMoveState : BaseState
             }
             else
                 randomPos = Vector3.zero;
+        }
+
+        if ((transform.position - randomPos).magnitude <= 0.5f)
+        {
+            randomPos = Vector3.zero;
         }
     }
 
@@ -138,7 +155,7 @@ public class BanditMoveState : BaseState
         {
             fleePos = Vector3.zero;
             isFleeing = false;
-            isFind = false;
+            doFlee = (Random.Range(0, 10) > 6 ? true : false);
             randomPos = Vector3.zero;
         }
     }
@@ -236,6 +253,7 @@ public class BanditMoveState : BaseState
             canAttack = false;
             isAttacking = true;
             controller.ChangeState(EnemyState.Attack);
+            doFlee = (Random.Range(0, 10) > 1 ? true : false);
             return;
         }
     }

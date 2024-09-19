@@ -22,6 +22,7 @@ public class PlayerController : BaseController, IReceiveAttack
         animator = GetComponent<Animator>();
 
         Manager.Game.Player = gameObject;
+        stat = stat.StatDeepCopy();
 
         InitStateMachine();
         StartCoroutine(SetPlayer());
@@ -66,7 +67,8 @@ public class PlayerController : BaseController, IReceiveAttack
 
     public void OnHit(float damage)
     {
-        float dmg = Mathf.Max(1, damage - stat.Defense);
+        Debug.Log("player hitted");
+        float dmg = Mathf.Max(1, damage - damage*(stat.Defense/100));
         stat.Hp -= (int)dmg;
         if (stat.Hp <= 0)
         {

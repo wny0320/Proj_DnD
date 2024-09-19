@@ -15,6 +15,7 @@ public class WatcherController : BaseController, IReceiveAttack
         rigidBody = GetComponent<Rigidbody>();
         animator = GetComponentInChildren<Animator>();
 
+        stat = stat.StatDeepCopy();
         InitStateMachine_Monster();
     }
 

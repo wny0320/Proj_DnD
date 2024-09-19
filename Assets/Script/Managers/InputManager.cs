@@ -12,8 +12,8 @@ public class InputManager
 
     public void OnUpdate()
     {
-        PlayerMove.Invoke();
-        PlayerAttack.Invoke();
+        PlayerMove?.Invoke();
+        PlayerAttack?.Invoke();
     }
     public void OnFixedUpdate()
     {

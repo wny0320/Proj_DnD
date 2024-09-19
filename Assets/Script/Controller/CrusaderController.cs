@@ -16,6 +16,8 @@ public class CrusaderController : BaseController, IReceiveAttack
         rigidBody = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
 
+        stat = stat.StatDeepCopy();
+
         InitStateMachine_Monster();
     }
 
