@@ -67,9 +67,13 @@ public class PlayerController : BaseController, IReceiveAttack
 
     public void OnHit(float damage)
     {
+        if (!isAlive) return;
+
         Debug.Log("player hitted");
         float dmg = Mathf.Max(1, damage - damage*(stat.Defense/100));
         stat.Hp -= (int)dmg;
+        Global.sfx.Play(Global.Sound.hitClip, transform.position);
+
         if (stat.Hp <= 0)
         {
             stat.Hp = 0;

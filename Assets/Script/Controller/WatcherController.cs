@@ -53,24 +53,24 @@ public class WatcherController : BaseController, IReceiveAttack
 
     public void OnHit(float damage)
     {
+        if (!isAlive) return;
+
         float dmg = Mathf.Max(1, damage - stat.Defense);
         stat.Hp -= (int)dmg;
+        Global.sfx.Play(Global.Sound.hitClip, transform.position);
 
-        if (!isAlive || stat.Hp <= 0)
+        if (stat.Hp <= 0)
         {
             stat.Hp = 0;
+            transform.rotation = Quaternion.Euler(Vector3.zero);
 
             Debug.Log($"{name} die");
 
-            GetComponent<NavMeshAgent>().SetDestination(transform.position);
-            GetComponent<NavMeshAgent>().velocity = Vector3.zero;
             animator.SetBool("EnemyMove", false);
 
             ChangeState(EnemyState.Die);
             states.Clear();
             stateMachine = null;
         }
-        else
-            Global.sfx.Play(Global.Sound.hitClip, transform.position);
     }
 }

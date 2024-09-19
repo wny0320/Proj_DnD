@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using Unity.VisualScripting;
+using UnityEditor.UI;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -88,6 +89,9 @@ public class MinotaurMoveState : BaseState
         {
             Chase();
         }
+
+        if (animator.GetBool(ENEMY_RUN)) agent.speed = controller.stat.MoveSpeed + 2;
+        else agent.speed = controller.stat.MoveSpeed;
 
         if (Mathf.Abs(agent.velocity.x) > 0.2f || Mathf.Abs(agent.velocity.z) > 0.2f) animator.SetBool(ENEMY_MOVE, true);
         else animator.SetBool(ENEMY_MOVE, false);

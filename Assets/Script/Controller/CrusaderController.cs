@@ -59,8 +59,11 @@ public class CrusaderController : BaseController, IReceiveAttack
 
     public void OnHit(float damage)
     {
+        if (!isAlive) return;
+
         float dmg = Mathf.Max(1, damage - stat.Defense);
         stat.Hp -= (int)dmg;
+        Global.sfx.Play(Global.Sound.hitClip, transform.position);
 
         if (stat.Hp <= 0)
         {
