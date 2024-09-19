@@ -252,6 +252,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bandit
       objectReference: {fileID: 0}
+    - target: {fileID: 1000014232435074, guid: 0a36d45e1b007e14b884de828f3b6938, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4000012322933416, guid: 0a36d45e1b007e14b884de828f3b6938, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.42
@@ -458,6 +462,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3752500406901935516, guid: 94a3ae432d288864eaacf853916023e6, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3752500406901935516, guid: 94a3ae432d288864eaacf853916023e6, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
@@ -468,6 +476,14 @@ PrefabInstance:
     - target: {fileID: 4305927902095723562, guid: 94a3ae432d288864eaacf853916023e6, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8594976279509491187, guid: 94a3ae432d288864eaacf853916023e6, type: 3}
+      propertyPath: m_Value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8594976279509491187, guid: 94a3ae432d288864eaacf853916023e6, type: 3}
+      propertyPath: m_MaxValue
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1949,6 +1965,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DungeonSkeleton_demo
       objectReference: {fileID: 0}
+    - target: {fileID: 4411232776295148138, guid: a8c61ec7bab72e9449548a3e8b654f49, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4411232776295446026, guid: a8c61ec7bab72e9449548a3e8b654f49, type: 3}
       propertyPath: m_LocalPosition.x
       value: 19.6
@@ -2106,6 +2126,10 @@ PrefabInstance:
     - target: {fileID: 8448146306361444428, guid: ed61e4fe2b1c64e418448ef517d5b714, type: 3}
       propertyPath: m_Name
       value: Watcher
+      objectReference: {fileID: 0}
+    - target: {fileID: 8448146306361444428, guid: ed61e4fe2b1c64e418448ef517d5b714, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -116,14 +116,14 @@ public class WatcherMoveState : BaseState
             if (distance < senseDetectRange)
             {
                 transform.LookAt(target);
-                rb.velocity = (target.position - transform.position) * moveSpeed;
+                rb.velocity = (target.position - transform.position) * moveSpeed * 10 * Time.deltaTime;
             }
             else
             {
                 animator.SetBool(ENEMY_ATTACK, false);
 
                 transform.LookAt(originPos);
-                rb.velocity = (originPos - transform.position) * moveSpeed;
+                rb.velocity = (originPos - transform.position) * moveSpeed *10 * Time.deltaTime;
                 isFind = false;
                 return;
             }
@@ -131,7 +131,7 @@ public class WatcherMoveState : BaseState
         else if (distance <= chaseDistance)
         {
             transform.LookAt(target);
-            rb.velocity = (target.position - transform.position) * moveSpeed;
+            rb.velocity = (target.position - transform.position) * moveSpeed * 10 * Time.deltaTime;
         }
         else
             isFind = false;

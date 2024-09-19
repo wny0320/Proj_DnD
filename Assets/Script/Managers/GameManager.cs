@@ -31,6 +31,9 @@ public class GameManager
 
     public void OnFixedUpdate()
     {
+        //player hp ui
+        HpUI.value = Player.GetComponent<BaseController>().stat.Hp/100;
+
         if (!isPlayerAlive || Player == null) return;
 
         //½Ã°£ui
@@ -44,9 +47,6 @@ public class GameManager
             OnGameEnd();
             return;
         }
-
-        //player hp ui
-        HpUI.value = Player.GetComponent<BaseController>().stat.Hp;
     }
 
     public void OnGameEnd()
