@@ -80,7 +80,5 @@ public class MinotaurController : BaseController, IReceiveAttack
             states.Clear();
             stateMachine = null;
         }
-        else
-            Global.sfx.Play(Global.Sound.hitClip, transform.position);
     }
 }

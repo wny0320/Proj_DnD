@@ -17,7 +17,7 @@ public class CrusaderMoveState : BaseState
     private float chaseDistance = 20f; //플레이어 추격 거리
     private float forwardDetectRange = 15f; //전방 감지 거리
     private float senseDetectRange = 5f; //주변 감지 거리
-    private float attackDistance = 1f;
+    private float attackDistance = 1.5f;
 
     private float attackSpeed;
     private float attackCooldown = 0f;
@@ -173,6 +173,8 @@ public class CrusaderMoveState : BaseState
         Collider[] cols = Physics.OverlapSphere(transform.position, DetectDistance, 1 << LayerMask.NameToLayer("Player") | 1 << LayerMask.NameToLayer("Monster"));
         foreach (Collider col in cols)
         {
+            if (!col.GetComponent<BaseController>().isAlive) continue;
+
             if (Vector3.Magnitude(col.transform.position - transform.position) < distance)
             {
                 distance = Vector3.Magnitude(col.transform.position - transform.position);
@@ -192,6 +194,8 @@ public class CrusaderMoveState : BaseState
         Collider[] cols2 = Physics.OverlapSphere(transform.position, forwardDetectRange, 1 << LayerMask.NameToLayer("Player") | 1 << LayerMask.NameToLayer("Monster"));
         foreach (Collider col in cols2)
         {
+            if (!col.GetComponent<BaseController>().isAlive) continue;
+
             Vector3 dist = col.transform.position - transform.position;
             if (dist.magnitude <= forwardDetectRange)
             {

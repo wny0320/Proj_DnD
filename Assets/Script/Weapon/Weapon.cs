@@ -11,7 +11,7 @@ public class Weapon : MonoBehaviour
     protected float speedDebuff;
 
     protected Collider col;
-    protected List<Collider> hittedObject = new();
+    protected List<IReceiveAttack> hittedObject = new();
 
     
     public void SetGlobalWeapon()
@@ -43,9 +43,8 @@ public class Weapon : MonoBehaviour
     {
         IReceiveAttack attacked = other.transform.root.GetComponent<IReceiveAttack>();
         if (attacked == null) return;
-        if (hittedObject.Contains(other)) return;
-
-        hittedObject.Add(other);
+        if (hittedObject.Contains(attacked)) return;
+        hittedObject.Add(attacked);
 
         attacked.OnHit(totalDamage);
     }
