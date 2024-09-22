@@ -8,7 +8,7 @@ using System;
 public class InvenManager
 {
     List<SlotLine> slotLines = new List<SlotLine>();
-    Dictionary<string, Slot> equipSlots = new Dictionary<string, Slot>();
+    public Dictionary<string, Slot> equipSlots = new Dictionary<string, Slot>();
     public int slotRowSize = 5;
     public int slotColumnSize = 9;
     public int itemMaxSize = 4; // 2^4 X 2^4 짜리가 최대 크기라고 가정
@@ -523,7 +523,7 @@ public class InvenManager
                             RectTransform equipRectTrans = equipSlot.gameObject.GetComponent<RectTransform>();
                             RectTransform equipVisualRectTrans = newVisual.GetComponent<RectTransform>();
                             equipVisualRectTrans.anchorMin = new Vector2(0, 0);
-                            equipVisualRectTrans.anchorMax = new Vector2(0, 0);
+                            equipVisualRectTrans.anchorMax = new Vector2(1, 1);
                             equipVisualRectTrans.anchoredPosition = equipRectTrans.anchoredPosition;
                             equipVisualRectTrans.sizeDelta = equipRectTrans.sizeDelta;
                             // 무기나 소모품인경우 UI 동기화
