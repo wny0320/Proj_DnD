@@ -13,6 +13,7 @@ public class Item : ScriptableObject
     public ItemType itemType;
     public EquipPart equipPart;
     public ItemSize itemSize;
+    public WeaponType weaponType;
     public bool randomStatFlag;
     public float[] randomRange = new float[2];
     //attack, defense, movespeed

@@ -2,24 +2,40 @@ using DG.Tweening.Core.Easing;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
     protected int damage;
     protected float totalDamage;
-    protected float speedDebuff;
 
-    protected Collider col;
+    protected Collider[] cols;
     protected List<IReceiveAttack> hittedObject = new();
 
-    
+
+    private void Start()
+    {
+        cols = GetComponents<Collider>();
+        SetGlobalWeapon();
+        cols.Where(x => x.enabled = false);
+
+        SetWeaponInfo();
+    }
+
+
     public void SetGlobalWeapon()
     {
         Global.PlayerWeapon = this;
     }
 
-    public virtual void SetWeaponInfo() { }
+    public void SetWeaponInfo()
+    {
+        Item itemInfo = GetComponent<Item3D>().myItem;
+        damage = itemInfo.itemStat.Attack;
+
+        SetGlobalWeapon();
+    }
 
     public virtual void AttackStart(int level)
     {
@@ -29,14 +45,14 @@ public class Weapon : MonoBehaviour
 
         hittedObject.Clear();
 
-        col.enabled = true;
+        cols.Where(x => x.enabled = true);
     }
 
     public void AttackEnd()
     {
         //Debug.Log("Attack End");
 
-        col.enabled = false;
+        cols.Where(x => x.enabled = false);
     }
 
     private void OnTriggerEnter(Collider other)

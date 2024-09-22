@@ -19,6 +19,6 @@ public static class Global
 
     //¹«±â
     public static Weapon PlayerWeapon;
-
-    public static Action<WeaponType> ChangePlayerWeaponAnim;
+    public static Action<Item> PlayerWeaponEquip;
+    public static Action<Item> PlayerWeaponUnEquip;
 }

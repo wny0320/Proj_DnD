@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 5599707757780340654}
   - component: {fileID: 7756216679403882913}
   - component: {fileID: 3808499724812876056}
-  - component: {fileID: 4548611025694254819}
   - component: {fileID: 4019082641621251463}
   - component: {fileID: 1789976165493694801}
   m_Layer: 11
@@ -103,7 +102,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -122,7 +121,7 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -130,27 +129,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.56, y: 0.06, z: 0.14}
   m_Center: {x: 0.96, y: 0, z: 0.01}
---- !u!65 &4548611025694254819
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3993436270319112024}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.16, y: 0.07, z: 0.58}
-  m_Center: {x: 0.67, y: 0, z: 0}
 --- !u!114 &4019082641621251463
 MonoBehaviour:
   m_ObjectHideFlags: 0

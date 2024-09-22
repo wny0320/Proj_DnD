@@ -16,6 +16,8 @@ public enum PlayerState
 
 public enum WeaponType
 {
+    NotWeapon = -1,
+
     Onehanded = 0,
     Twohanded = 1,
 }
