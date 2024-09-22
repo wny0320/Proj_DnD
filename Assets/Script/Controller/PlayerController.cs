@@ -60,7 +60,17 @@ public class PlayerController : BaseController, IReceiveAttack
 
     public void ChangeWeaponAnimator(WeaponType type)
     {
-        animator.runtimeAnimatorController = animators[(int)type];
+        switch(type)
+        {
+            case WeaponType.Onehanded:
+                animator.runtimeAnimatorController = animators[0];
+                Debug.Log("onehanded");
+                break;
+            case WeaponType.Twohanded:
+                animator.runtimeAnimatorController = animators[1];
+                Debug.Log("twohanded");
+                break;
+        }
     }
 
     public override void ChangeState(Enum state)
@@ -93,17 +103,18 @@ public class PlayerController : BaseController, IReceiveAttack
             WeaponUnequip(Global.PlayerWeapon.GetComponent<Item3D>().myItem);
 
         //스탯변경
-        stat.MoveSpeed = stat.MoveSpeed += equipWeapon.itemStat.MoveSpeed;
+        stat.MoveSpeed += equipWeapon.itemStat.MoveSpeed;
         //애니 변경
         ChangeWeaponAnimator(equipWeapon.weaponType);
         //무기 적용
-        Instantiate(Manager.Data.item3DPrefab[equipWeapon.itemIndex], weaponTrans);
+        GameObject go = Instantiate(Manager.Data.item3DPrefab[equipWeapon.itemIndex], weaponTrans);
+        go.AddComponent<Sword>();
     }
 
     private void WeaponUnequip(Item equipWeapon)
     {
-        stat.MoveSpeed = stat.MoveSpeed -= equipWeapon.itemStat.MoveSpeed;
-        
+        stat.MoveSpeed -= equipWeapon.itemStat.MoveSpeed;
+        Destroy(Global.PlayerWeapon.gameObject);
         //맨주먹으로 변경하는 애니 넣어야됨
 
         Global.PlayerWeapon = null;

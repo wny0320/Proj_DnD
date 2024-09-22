@@ -30,6 +30,7 @@ public class Item : ScriptableObject
         item.itemSize = itemSize;
         item.randomRange = randomRange;
         item.randomStatFlag = randomStatFlag;
+        item.weaponType = weaponType;
         return item;
     }
 
