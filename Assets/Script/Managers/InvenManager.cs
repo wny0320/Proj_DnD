@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System;
+using TMPro;
+using Unity.VisualScripting;
 
 public class InvenManager
 {
@@ -22,9 +24,13 @@ public class InvenManager
     private const string ITEM_UI_TAG = "ItemUI";
     private const string INVENTORY_SLOT_TAG = "InvenSlot";
     private const string EQUIP_SLOT_TAG = "EquipSlot";
+    private const string ITEMINFO_PATH = "InvenCanvas/ItemInfoPanel";
+    private string[] itemInfoNames = { "ItemName", "ItemType", "ItemRarity", "ItemPart", "ItemStats/ItemStat1", "ItemStats/ItemStat2", "ItemText" };
+    private List<TMP_Text> itemInfoTexts;
     Transform inventoryParent;
     Canvas invenCanvas;
     CanvasGroup invenCanvasGroup;
+    GameObject itemInfo;
     bool canvasVisualFlag;
 
     public void OnStart()
@@ -77,6 +83,12 @@ public class InvenManager
                 continue;
         }
         
+        itemInfo = GameObject.Find(ITEMINFO_PATH);
+        itemInfoTexts = new List<TMP_Text>();
+        foreach (var txt in itemInfoNames)
+        {
+            itemInfoTexts.Add(GameObject.Find(ITEMINFO_PATH + "/" + txt).GetComponent<TMP_Text>());
+        }
     }
     public void OnUpdate()
     {
@@ -115,7 +127,7 @@ public class InvenManager
             }
             if(canvasVisualFlag == false)
             {
-                Debug.Log("Canvas Is Invisible");
+                //Debug.Log("Canvas Is Invisible");
                 continue;
             }
             int mousebutton = -1;
@@ -143,7 +155,7 @@ public class InvenManager
                 {
                     foreach (var go in raycastResults)
                     {
-                        Debug.Log(go);
+                        //Debug.Log(go);
                         if(go.gameObject.CompareTag(ITEM_UI_TAG) == true)
                         {
                             itemVisual = go.gameObject;
@@ -168,7 +180,7 @@ public class InvenManager
                     if (targetSlot.mainSlotFlag == false)
                     {
                         Vector2Int index = targetSlot.itemDataPos;
-                        Debug.Log("index = " + index.y + ", " + index.x);
+                        //Debug.Log("index = " + index.y + ", " + index.x);
                         targetSlot = slotLines[index.x].mySlots[index.y];
                     }
                     //Debug.Log(targetSlot.slotItem.itemName);
@@ -179,7 +191,7 @@ public class InvenManager
                 {
                     itemVisualTrans = itemVisual.transform;
                     itemVisualOriginPos = itemVisualTrans.GetComponent<RectTransform>().anchoredPosition;
-                    Debug.Log("Mouse Button Down");
+                    //Debug.Log("Mouse Button Down");
                 }
                 #region MouseButtonLeft
                 while (mousebutton == 0)
@@ -296,25 +308,25 @@ public class InvenManager
                         }
                         // 옮길 수 있는 경우
                         Vector2 itemPos = Vector2.zero;
-                        Debug.Log(invenStandardPos.y);
+                        //Debug.Log(invenStandardPos.y);
                         itemVisual.GetComponent<RectTransform>().anchoredPosition = 
                             new Vector2(invenStandardPos.x + (xIndex + (float)(itemSize[1] - 1) / 2) * UNITSIZE,
                             invenStandardPos.y - (yIndex + (float)(itemSize[0] - 1) / 2) * UNITSIZE);
-                        Debug.Log("yIndex, xIndex = " + yIndex + ", " + xIndex);
+                        //Debug.Log("yIndex, xIndex = " + yIndex + ", " + xIndex);
                         for (int j = 0; j < itemSize[0]; j++)
                         {
                             for(int i = 0; i < itemSize[1]; i++)
                             {
-                                Debug.Log("ji = " + j + ", " + i);
-                                Debug.Log("originYIndex, originXindex = " + originYIndex + ", " + originXIndex);
+                                //Debug.Log("ji = " + j + ", " + i);
+                                //Debug.Log("originYIndex, originXindex = " + originYIndex + ", " + originXIndex);
                                 Slot from = slotLines[originYIndex + j].mySlots[originXIndex + i];
                                 Slot to = slotLines[yIndex + j].mySlots[xIndex + i];
                                 to.SlotCopy(from, new Vector2Int(yIndex, xIndex));
                                 from.SlotReset();
                             }
                         }
-                        Debug.Log("Item Moved");
-                        Debug.Log("Mouse Button Up");
+                        //Debug.Log("Item Moved");
+                        //Debug.Log("Mouse Button Up");
                         break;
                         #region 과거코드
                         //xIndex = Mathf.RoundToInt(xIndex);
@@ -400,11 +412,11 @@ public class InvenManager
                                 targetImagePath = null;
                             if(targetImagePath != null)
                                 GameObject.Find(targetImagePath).GetComponent<Image>().sprite = null;
-                            Debug.Log(targetImagePath);
+                            //Debug.Log(targetImagePath);
                         }
                         // AddItem이 실패한경우 장착한 아이템을 바닥에 버림
-                        Debug.Log(targetSlot.gameObject.name.ToString());
-                        Debug.Log(targetSlot.slotItem);
+                        //Debug.Log(targetSlot.gameObject.name.ToString());
+                        //Debug.Log(targetSlot.slotItem);
                         if(AddItem(targetSlot.slotItem) == false)
                             DumpItem(targetSlot.slotItem);
                         // AddItem이 성공한 경우는 그냥 장비창 리셋만 하면 됨
@@ -427,10 +439,10 @@ public class InvenManager
                             targetImagePath = null;
                         if (targetImagePath != null)
                             GameObject.Find(targetImagePath).GetComponent<Image>().sprite = null;
-                        Debug.Log(targetImagePath);
+                        //Debug.Log(targetImagePath);
                         // AddItem이 실패한경우 장착한 아이템을 바닥에 버림
-                        Debug.Log(targetSlot.gameObject.name.ToString());
-                        Debug.Log(targetSlot.slotItem);
+                        //Debug.Log(targetSlot.gameObject.name.ToString());
+                        //Debug.Log(targetSlot.slotItem);
                         if (AddItem(targetSlot.slotItem) == false)
                             DumpItem(targetSlot.slotItem);
                         // AddItem이 성공한 경우는 그냥 장비창 리셋만 하면 됨
@@ -588,7 +600,7 @@ public class InvenManager
                 if (nowSlot.emptyFlag == false) // 해당 슬롯이 꽉차있다면 패스
                     continue;
                 emptyFlag[y, x] = true;
-                Debug.Log("AllEmptySlot = (" + y + ", " + x + ")");
+                //Debug.Log("AllEmptySlot = (" + y + ", " + x + ")");
             }
         }
         // 타겟 슬롯을 찾을때까지 반복
@@ -659,7 +671,7 @@ public class InvenManager
             Debug.LogError("Empty Slot Is Not Exist");
             return false;
         }
-        Debug.Log("TargetSlotPos = " + targetSlotIndex);
+        //Debug.Log("TargetSlotPos = " + targetSlotIndex);
         targetSlot.emptyFlag = false;
         targetSlot.mainSlotFlag = true;
         targetSlot.itemDataPos = targetSlotIndex;
@@ -669,18 +681,18 @@ public class InvenManager
             targetSlot.slotItem.ItemRandomStat();
             targetSlot.slotItem.randomStatFlag = true;
         }
-        Debug.Log("ItemSize = " + itemSize[0] + ", " + itemSize[1]);
+        //Debug.Log("ItemSize = " + itemSize[0] + ", " + itemSize[1]);
         int minY = targetSlotIndex.x;
         int maxY = targetSlotIndex.x + itemSize[0];
         int minX = targetSlotIndex.y;
         int maxX = targetSlotIndex.y + itemSize[1];
-        Debug.Log("min/max = " + maxY + ", " + minY + ", " + maxX + ", " + minX);
+        //Debug.Log("min/max = " + maxY + ", " + minY + ", " + maxX + ", " + minX);
         // 아이템 정보 넣기
         for (int y = minY; y < maxY; y++)
         {
             for (int x = minX; x < maxX; x++)
             {
-                Debug.Log("Filled Slot Pos = (" + y + ", " + x + ")");
+                //Debug.Log("Filled Slot Pos = (" + y + ", " + x + ")");
                 Slot nowSlot = slotLines[y].mySlots[x];
                 if (targetSlot.Equals(nowSlot))
                     nowSlot.mainSlotFlag = true;
@@ -716,13 +728,13 @@ public class InvenManager
             {
                 Slot nowSlot = slotLines[_targetMainSlotIndex.x + x].mySlots[_targetMainSlotIndex.y + y];
                 nowSlot.SlotReset();
-                Debug.Log((_targetMainSlotIndex.x + x) + ", " + (_targetMainSlotIndex.y + y) + " Slot Delete Data");
+                //Debug.Log((_targetMainSlotIndex.x + x) + ", " + (_targetMainSlotIndex.y + y) + " Slot Delete Data");
             }
         }
     }
     public void DumpItem(Item _item)
     {
-        Debug.Log("Item Dumped");
+        //Debug.Log("Item Dumped");
         GameObject dumpedItem3D = GameObject.Instantiate(Manager.Data.item3DPrefab[_item.itemIndex]);
         Item newItem = _item.ItemDeepCopy();
         dumpedItem3D.GetComponent<Item3D>().myItem = newItem;
@@ -755,5 +767,22 @@ public class InvenManager
         byte xSize = (byte)(targetSize - (ySize << itemMaxSize)); // 뒤 4비트 확인
         int[] convertedSize = {ySize,xSize};
         return convertedSize;
+    }
+    public void ItemInfo(Item _item)
+    {
+        Stat itemStat = _item.itemStat;
+        switch(_item.itemType)
+        {
+            case ItemType.Consumable:
+                break;
+            case ItemType.Antique:
+                break;
+            case ItemType.Equipment:
+                break;
+            case ItemType.Coin:
+                break;
+            default:
+                break;
+        }
     }
 }
