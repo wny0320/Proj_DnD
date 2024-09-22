@@ -12,7 +12,7 @@ public class InvenManager
     public int slotRowSize = 5;
     public int slotColumnSize = 9;
     public int itemMaxSize = 4; // 2^4 X 2^4 짜리가 최대 크기라고 가정
-    private const int UNITSIZE = 90;
+    private const int UNITSIZE = 80;
     Vector2 invenStandardPos = new Vector2(40, -40);
     private const string INVENTORY_PATH = "InvenCanvas/InvenPanel/ItemArea/Content";
     private const string EQUIP_PATH = "InvenCanvas/InvenPanel/EquipArea/Slots";
@@ -550,7 +550,7 @@ public class InvenManager
                                         itemVisual.transform.GetChild(0).GetComponent<Image>().sprite;
                             }
                             DeleteInvenItem(new Vector2Int(originYIndex, originXIndex));
-                            Debug.Log(GameObject.Find(targetImagePath).GetComponent<Image>().sprite);
+                            //Debug.Log(GameObject.Find(targetImagePath).GetComponent<Image>().sprite);
                             break;
                         }
                         else

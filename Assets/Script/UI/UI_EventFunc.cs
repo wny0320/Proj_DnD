@@ -7,17 +7,21 @@ using System;
 
 public class UI_EventFunc : MonoBehaviour
 {
-    Dictionary<ButtonFunc, MethodInfo> buttonMethods = new Dictionary<ButtonFunc, MethodInfo>();
+    Dictionary<string, MethodInfo> buttonMethods = new Dictionary<string, MethodInfo>();
     //버튼에 들어갈 함수들
     private Button button;
     [SerializeField]
     private ButtonFunc buttonFunc;
+    private void Awake()
+    {
+        GetButtonFunc();
+    }
     private void Start()
     {
         button = GetComponent<Button>();
         button.onClick.AddListener(() =>
         {
-            buttonMethods[buttonFunc]?.Invoke(null,null);
+            buttonMethods[buttonFunc.ToString()]?.Invoke(this, null);
         });
     }
     private void GetButtonFunc()
@@ -26,7 +30,9 @@ public class UI_EventFunc : MonoBehaviour
         {
             if (method.IsPublic == true)
             {
-                buttonMethods.Add((ButtonFunc)Enum.Parse(typeof(ButtonFunc), method.Name.ToString()), method);
+                if (buttonMethods.ContainsKey(method.Name))
+                    continue;
+                buttonMethods.Add(method.Name, method);
             }
         }
         //해당 타입에서 모든 메소드를 가져오는 코드
@@ -41,6 +47,22 @@ public class UI_EventFunc : MonoBehaviour
     }
     public void MerchantButton()
     {
-
+        const string MERCHANT_PATH = "MerchantCanvas";
+        const string STASH_PATH = "StashCanvas";
+        GameObject merchantObject = GameObject.Find(MERCHANT_PATH);
+        string activeButtonName = GetComponent<Button>().name;
+        switch(activeButtonName)
+        {
+            case "Adventure":
+                break;
+            case "Merchant":
+                break;
+            case "Stash":
+                break;
+            default:
+                Debug.LogError("Assgined Button Name");
+                return;
+        }
+        merchantObject.SetActive(true);
     }
 }
