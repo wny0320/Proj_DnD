@@ -10,6 +10,7 @@ public class GameManager
 
     public bool isPlayerAlive = true;
     public bool isCursorLock = true;
+    public bool isPlayerAttacking = false;
 
     private GameObject GameUI;
     private Slider TimeUI;

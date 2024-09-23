@@ -15,6 +15,7 @@ public class AttackAnimation : StateMachineBehaviour
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        Manager.Game.isPlayerAttacking = true;
         Global.PlayerWeapon.AttackStart(level);
     }
 }

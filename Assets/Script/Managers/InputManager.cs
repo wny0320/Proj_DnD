@@ -19,6 +19,7 @@ public class InputManager
         PlayerMove?.Invoke();
         PlayerAttack?.Invoke();
 
+        if (Manager.Game.isPlayerAttacking) return;
         SelectWeapon();
     }
     public void OnFixedUpdate()
