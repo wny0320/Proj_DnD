@@ -18,8 +18,9 @@ public enum WeaponType
 {
     NotWeapon = -1,
 
-    Onehanded = 0,
-    Twohanded = 1,
+    BareHand = 0,
+    Onehanded = 1,
+    Twohanded = 2,
 }
 
 

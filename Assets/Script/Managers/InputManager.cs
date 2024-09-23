@@ -31,26 +31,21 @@ public class InputManager
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             Item weapon = CheckSlot(1, EquipPart.Weapon);
-            if (weapon == null) return;
 
             Global.PlayerWeaponEquip(weapon);
         }
-
-        if (Input.GetKeyDown(KeyCode.Alpha2))
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             Item weapon = CheckSlot(2, EquipPart.Weapon);
-            if (weapon == null) return;
 
             Global.PlayerWeaponEquip(weapon);
         }
-
-        //if (Input.GetKeyDown(KeyCode.Alpha3))
+        //else if (Input.GetKeyDown(KeyCode.Alpha3))
         //{
         //    Item item = CheckSlot(1, ItemType.Consumable);
         //    if (item == null) return;
         //}
-
-        //if (Input.GetKeyDown(KeyCode.Alpha4))
+        //else if (Input.GetKeyDown(KeyCode.Alpha4))
         //{
         //    Item item = CheckSlot(1, ItemType.Consumable);
         //    if (item == null) return;

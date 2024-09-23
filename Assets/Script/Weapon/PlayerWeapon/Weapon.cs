@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    protected int damage;
+    protected int damage = 0;
     protected float totalDamage;
 
     protected Collider[] cols;
@@ -17,8 +17,8 @@ public class Weapon : MonoBehaviour
     private void Start()
     {
         cols = GetComponents<Collider>();
-        SetGlobalWeapon();
-        cols.Where(x => x.enabled = false);
+        foreach(Collider collider in cols)
+            collider.enabled = false;
 
         SetWeaponInfo();
     }
@@ -29,7 +29,7 @@ public class Weapon : MonoBehaviour
         Global.PlayerWeapon = this;
     }
 
-    public void SetWeaponInfo()
+    public virtual void SetWeaponInfo()
     {
         Item itemInfo = GetComponent<Item3D>().myItem;
         damage = itemInfo.itemStat.Attack;
@@ -46,14 +46,16 @@ public class Weapon : MonoBehaviour
 
         hittedObject.Clear();
 
-        cols.Where(x => x.enabled = true);
+        foreach (Collider collider in cols)
+            collider.enabled = true;
     }
 
-    public void AttackEnd()
+    public virtual void AttackEnd()
     {
         //Debug.Log("Attack End");
 
-        cols.Where(x => x.enabled = false);
+        foreach (Collider collider in cols)
+            collider.enabled = false;
     }
 
     private void OnTriggerEnter(Collider other)

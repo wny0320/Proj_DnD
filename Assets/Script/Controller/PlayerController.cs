@@ -3,14 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEditor.Animations;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class PlayerController : BaseController, IReceiveAttack
 {
-    //enum 값 따라가게
-    //0-한손검, 1-양손검
     [SerializeField] List<AnimatorController> animators = new List<AnimatorController>();
     [SerializeField] Transform weaponTrans;
+    [SerializeField] Transform leftweaponTrans;
 
     private void Awake()
     {
@@ -30,6 +30,7 @@ public class PlayerController : BaseController, IReceiveAttack
         stat = stat.StatDeepCopy();
 
         InitStateMachine();
+        StartCoroutine(CheckWeaponOnStart());
     }
 
     void Update()
@@ -60,17 +61,7 @@ public class PlayerController : BaseController, IReceiveAttack
 
     public void ChangeWeaponAnimator(WeaponType type)
     {
-        switch(type)
-        {
-            case WeaponType.Onehanded:
-                animator.runtimeAnimatorController = animators[0];
-                Debug.Log("onehanded");
-                break;
-            case WeaponType.Twohanded:
-                animator.runtimeAnimatorController = animators[1];
-                Debug.Log("twohanded");
-                break;
-        }
+        animator.runtimeAnimatorController = animators[(int)type];
     }
 
     public override void ChangeState(Enum state)
@@ -96,23 +87,53 @@ public class PlayerController : BaseController, IReceiveAttack
         }
     }
 
+    IEnumerator CheckWeaponOnStart()
+    {
+        while(!Manager.Inven.equipSlots.ContainsKey(EquipPart.Weapon.ToString() + 1))
+        {
+            yield return null;
+        }
+        Item weapon = Manager.Inven.equipSlots[EquipPart.Weapon.ToString() + 1].slotItem;
+        
+        WeaponEquip(weapon);
+    }
+
     private void WeaponEquip(Item equipWeapon)
     {
         //장착 전 장착 해제
         if(Global.PlayerWeapon != null)
-            WeaponUnequip(Global.PlayerWeapon.GetComponent<Item3D>().myItem);
+        {
+            if (Global.PlayerWeapon.GetComponent<Item3D>() == null) WeaponUnequip(null);
+            else WeaponUnequip(Global.PlayerWeapon.GetComponent<Item3D>().myItem);
+        }
 
-        //스탯변경
-        stat.MoveSpeed += equipWeapon.itemStat.MoveSpeed;
-        //애니 변경
-        ChangeWeaponAnimator(equipWeapon.weaponType);
-        //무기 적용
-        GameObject go = Instantiate(Manager.Data.item3DPrefab[equipWeapon.itemIndex], weaponTrans);
-        go.AddComponent<Sword>();
+        //맨손
+        if (equipWeapon == null)
+        {
+            weaponTrans.GetChild(0).gameObject.SetActive(true);
+            ChangeWeaponAnimator(WeaponType.BareHand);
+        }
+        else
+        {
+            weaponTrans.GetChild(0).gameObject.SetActive(false);
+
+            //스탯변경
+            stat.MoveSpeed += equipWeapon.itemStat.MoveSpeed;
+            //애니 변경
+            ChangeWeaponAnimator(equipWeapon.weaponType);
+            //무기 적용
+            GameObject go = Instantiate(Manager.Data.item3DPrefab[equipWeapon.itemIndex], weaponTrans);
+            go.AddComponent<Sword>();
+        }
     }
 
     private void WeaponUnequip(Item equipWeapon)
     {
+        if (equipWeapon == null)
+        {
+            return;
+        }
+
         stat.MoveSpeed -= equipWeapon.itemStat.MoveSpeed;
         Destroy(Global.PlayerWeapon.gameObject);
         //맨주먹으로 변경하는 애니 넣어야됨

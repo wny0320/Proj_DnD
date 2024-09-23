@@ -13,13 +13,14 @@ MonoBehaviour:
   m_Name: ShortSword
   m_EditorClassIdentifier: 
   itemName: ShortSword
-  itemIndex: 13
+  itemIndex: 14
   itemText: 
   itemRarity: 0
   itemStat: {fileID: 11400000, guid: 7dda8554e0dd6524d8296a3acefc056b, type: 2}
   itemType: 0
   equipPart: 5
   itemSize: 49
+  weaponType: 1
   randomStatFlag: 0
   randomRange:
   - 5
