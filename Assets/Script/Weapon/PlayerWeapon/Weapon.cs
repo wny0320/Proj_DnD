@@ -52,6 +52,7 @@ public class Weapon : MonoBehaviour
 
     public virtual void AttackEnd()
     {
+        //애니메이션 진입 시 무조건 한 번 먼저 실행됨
         //Debug.Log("Attack End");
 
         foreach (Collider collider in cols)

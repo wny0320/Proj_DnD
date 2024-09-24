@@ -36,7 +36,6 @@ public class PlayerController : BaseController, IReceiveAttack
     void Update()
     {
         stateMachine?.StateUpdateFunc();
-        Debug.Log(stat.MoveSpeed);
     }
 
     private void FixedUpdate()
@@ -125,7 +124,21 @@ public class PlayerController : BaseController, IReceiveAttack
             ChangeWeaponAnimator(equipWeapon.weaponType);
             //무기 적용
             GameObject go = Instantiate(Manager.Data.item3DPrefab[equipWeapon.itemIndex], weaponTrans);
-            go.AddComponent<Sword>();
+            
+            switch(equipWeapon.weaponType)
+            {
+                case WeaponType.Onehanded:
+                    go.AddComponent<Sword>();
+                    break;
+                case WeaponType.Twohanded:
+                    go.AddComponent<Sword>();
+                    break;
+                case WeaponType.Consumable:
+                    go.transform.localPosition = new Vector3(0.13f, 0.05f, 1);
+                    go.transform.localRotation = Quaternion.Euler(180f, 0, 0);
+                    go.AddComponent<Potion>();
+                    break;
+            }
         }
     }
 

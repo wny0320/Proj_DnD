@@ -2154,6 +2154,7 @@ MonoBehaviour:
   - {fileID: 9100000, guid: d0a9463b3f026d64088c4d2cdda25405, type: 2}
   - {fileID: 9100000, guid: aeb652fcc54e2c54893eb02a533ca72b, type: 2}
   - {fileID: 9100000, guid: 1a145bd0696640748af3f4a396bb5d0b, type: 2}
+  - {fileID: 9100000, guid: 0db0e5f4bf66300479908d6abcacad2f, type: 2}
   weaponTrans: {fileID: 1849708676088206134}
   leftweaponTrans: {fileID: 3370988957687392699}
 --- !u!4 &3708276336226131850 stripped
