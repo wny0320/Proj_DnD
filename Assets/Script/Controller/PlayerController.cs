@@ -36,6 +36,7 @@ public class PlayerController : BaseController, IReceiveAttack
     void Update()
     {
         stateMachine?.StateUpdateFunc();
+        Debug.Log(stat.MoveSpeed);
     }
 
     private void FixedUpdate()
@@ -87,6 +88,7 @@ public class PlayerController : BaseController, IReceiveAttack
         }
     }
 
+    #region 무기 장착 및 해제
     IEnumerator CheckWeaponOnStart()
     {
         while(!Manager.Inven.equipSlots.ContainsKey(EquipPart.Weapon.ToString() + 1))
@@ -140,4 +142,7 @@ public class PlayerController : BaseController, IReceiveAttack
 
         Global.PlayerWeapon = null;
     }
+    #endregion
+
+
 }

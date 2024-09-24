@@ -29,7 +29,12 @@ public class InputManager
 
     private void SelectWeapon()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if(Input.GetKeyDown(KeyCode.X))
+        {
+            //¸Ç¼Õ
+            Global.PlayerWeaponEquip(null);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             Item weapon = CheckSlot(1, EquipPart.Weapon);
 
@@ -45,6 +50,7 @@ public class InputManager
         //{
         //    Item item = CheckSlot(1, ItemType.Consumable);
         //    if (item == null) return;
+        //    Global.PlayerWeaponEquip(item);
         //}
         //else if (Input.GetKeyDown(KeyCode.Alpha4))
         //{
