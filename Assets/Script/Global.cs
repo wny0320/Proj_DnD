@@ -17,8 +17,10 @@ public static class Global
     public static SoundManager sfx;
     public static EffectManager fx;
 
-    //公扁
+    //公扁 棺 规绢备
     public static Weapon PlayerWeapon;
     public static Action<Item> PlayerWeaponEquip;
     public static Action<Item> PlayerWeaponUnEquip;
+    public static Action<Item> PlayerArmorEquip;
+    public static Action<Slot> PlayerArmorUnEquip;
 }

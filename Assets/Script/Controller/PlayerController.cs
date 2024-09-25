@@ -16,9 +16,13 @@ public class PlayerController : BaseController, IReceiveAttack
     {
         Global.PlayerWeaponEquip -= WeaponEquip;
         Global.PlayerWeaponUnEquip -= WeaponUnequip;
+        Global.PlayerArmorEquip -= EquipArmor;
+        Global.PlayerArmorUnEquip -= UnEquipArmor;
 
         Global.PlayerWeaponEquip += WeaponEquip;
         Global.PlayerWeaponUnEquip += WeaponUnequip;
+        Global.PlayerArmorEquip += EquipArmor;
+        Global.PlayerArmorUnEquip += UnEquipArmor;
     }
 
     void Start()
@@ -36,6 +40,9 @@ public class PlayerController : BaseController, IReceiveAttack
     void Update()
     {
         stateMachine?.StateUpdateFunc();
+
+        Debug.Log("speed = " + stat.MoveSpeed);
+        Debug.Log("defense = " + stat.Defense);
     }
 
     private void FixedUpdate()
@@ -157,5 +164,17 @@ public class PlayerController : BaseController, IReceiveAttack
     }
     #endregion
 
+    #region 장비 장착 및 해제
+    private void EquipArmor(Item armor)
+    {
+        stat.MoveSpeed += armor.itemStat.MoveSpeed;
+        stat.Defense += armor.itemStat.Defense;
+    }
 
+    private void UnEquipArmor(Slot slot)
+    {
+        stat.MoveSpeed -= slot.slotItem.itemStat.MoveSpeed;
+        stat.Defense -= slot.slotItem.itemStat.Defense;
+    }
+    #endregion
 }
