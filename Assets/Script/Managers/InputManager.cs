@@ -46,17 +46,18 @@ public class InputManager
 
             Global.PlayerWeaponEquip(weapon);
         }
-        //else if (Input.GetKeyDown(KeyCode.Alpha3))
-        //{
-        //    Item item = CheckSlot(1, ItemType.Consumable);
-        //    if (item == null) return;
-        //    Global.PlayerWeaponEquip(item);
-        //}
-        //else if (Input.GetKeyDown(KeyCode.Alpha4))
-        //{
-        //    Item item = CheckSlot(1, ItemType.Consumable);
-        //    if (item == null) return;
-        //}
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            Item item = CheckSlot(1, ItemType.Consumable);
+            if (item == null) return;
+            Global.PlayerWeaponEquip(item);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            Item item = CheckSlot(2, ItemType.Consumable);
+            if (item == null) return;
+            Global.PlayerWeaponEquip(item);
+        }
     }
 
     private Item CheckSlot(int n, EquipPart part)

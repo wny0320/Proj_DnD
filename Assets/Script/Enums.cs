@@ -21,6 +21,7 @@ public enum WeaponType
     BareHand = 0,
     Onehanded = 1,
     Twohanded = 2,
+    Consumable = 3,
 }
 
 
