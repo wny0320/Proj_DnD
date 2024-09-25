@@ -16,6 +16,8 @@ public class InvenManager
     private int invenSlotColumnSize = 9;
     private int stashSlotRowSize = 11;
     private int stashSlotColumnSize = 9;
+    private int storeSlotRowSize = 7;
+    private int storeSlotColumnSize = 6;
     private int itemMaxSize = 4; // 2^4 X 2^4 짜리가 최대 크기라고 가정
     private const int UNITSIZE = 80;
     private Vector2 standardPos = new Vector2(40, -40);
@@ -202,7 +204,7 @@ public class InvenManager
             }
             // 접근한 Slot의 부모 Canvas를 받아오는 코드
             fromSlot.transform.root.TryGetComponent<Canvas>(out Canvas fromCanvas);
-            if (stashCanvas == null && fromCanvas.Equals(invenCanvas) == false)
+            if (stashCanvas == null && fromCanvas.gameObject.name == "StashCanvas")
             {
                 stashCanvas = fromCanvas;
                 StatshDataAsggin();
@@ -328,7 +330,7 @@ public class InvenManager
                         }
                         toSlot.transform.root.TryGetComponent<Canvas>(out Canvas toCanvas);
                         // 위에서도 캔버스 업데이트가 안되었을 경우를 대비한 코드
-                        if(stashCanvas == null && toCanvas.Equals(invenCanvas) == false)
+                        if(stashCanvas == null && toCanvas.gameObject.name == "StashCanvas")
                         {
                             stashCanvas = toCanvas;
                             StatshDataAsggin();
@@ -474,6 +476,7 @@ public class InvenManager
                                 GameObject.Find(targetImagePath).GetComponent<Image>().sprite = null;
                             //Debug.Log(targetImagePath);
                         }
+                        Global.PlayerArmorUnEquip(fromSlot);
                         // AddItem이 실패한경우 장착한 아이템을 바닥에 버림
                         bool addFlag = AddItem(fromSlot.slotItem);
                         if (addFlag == false && Manager.Instance.GetNowScene().name.ToString() != "LobbyMerchantWork")
@@ -621,6 +624,7 @@ public class InvenManager
                                 GameObject.Find(targetImagePath).GetComponent<Image>().sprite =
                                         itemVisual.transform.GetChild(0).GetComponent<Image>().sprite;
                             }
+                            Global.PlayerArmorEquip(fromSlot.slotItem);
                             Slot deleteSlot = fromSlotLine[originYIndex].mySlots[originXIndex];
                             DeleteInvenItem(deleteSlot, fromSlotLine);
                             //Debug.Log(GameObject.Find(targetImagePath).GetComponent<Image>().sprite);
@@ -764,11 +768,16 @@ public class InvenManager
         targetSlot.itemVisual = itemVisual;
         return true;
     }
-    private void DeleteInvenItem(Slot _slot, List<SlotLine> _targetSlotLine)
+    public void DeleteInvenItem(Slot _slot, List<SlotLine> _targetSlotLine = null)
     {
         int[] itemSize = GetItemSize(_slot.slotItem);
         Vector2Int slotPos = _slot.itemDataPos;
         GameObject.Destroy(_slot.itemVisual);
+        if(_targetSlotLine == null)
+        {
+            _slot.SlotReset();
+            return;
+        }
         for(int y = 0;  y < itemSize[1]; y++)
         {
             for(int x = 0; x < itemSize[0]; x++)

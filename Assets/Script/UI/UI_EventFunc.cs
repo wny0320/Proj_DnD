@@ -19,6 +19,12 @@ public class UI_EventFunc : MonoBehaviour
     GameObject merchantObject;
     [SerializeField]
     GameObject stashObject;
+    [SerializeField]
+    GameObject potionObject;
+    [SerializeField]
+    GameObject armorObject;
+    [SerializeField]
+    GameObject sellObject;
     private void Awake()
     {
         GetButtonFunc();
@@ -107,7 +113,15 @@ public class UI_EventFunc : MonoBehaviour
         stashObject.SetActive(true);
     }
 
-    public void MerchantTradeButton()
+    public void MerchantPotionButton()
+    {
+
+    }
+    public void MerchantArmorButton()
+    {
+
+    }
+    public void MerchantSellButton()
     {
 
     }

@@ -97,4 +97,7 @@ public enum ItemRarity
 public enum ButtonFunc
 {
     MerchantButton,
+    AdventureButton,
+    StashButton,
+
 }

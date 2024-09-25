@@ -8,6 +8,7 @@ public class Item : ScriptableObject
     public string itemName;
     public int itemIndex;
     public string itemText;
+    public int itemPrice;
     public ItemRarity itemRarity;
     public Stat itemStat;
     public ItemType itemType;
@@ -23,6 +24,7 @@ public class Item : ScriptableObject
         item.itemName = itemName;
         item.itemIndex = itemIndex;
         item.itemText = itemText;
+        item.itemPrice = itemPrice;
         item.itemRarity = itemRarity;
         item.itemStat = itemStat.StatDeepCopy();
         item.itemType = itemType;
