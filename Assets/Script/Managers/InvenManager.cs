@@ -5,49 +5,83 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System;
 using TMPro;
-using Unity.VisualScripting;
+using System.Linq;
 
 public class InvenManager
 {
-    List<SlotLine> slotLines = new List<SlotLine>();
     public Dictionary<string, Slot> equipSlots = new Dictionary<string, Slot>();
-    public int slotRowSize = 5;
-    public int slotColumnSize = 9;
-    public int itemMaxSize = 4; // 2^4 X 2^4 짜리가 최대 크기라고 가정
+    private List<SlotLine> invenSlotLines = new List<SlotLine>();
+    private List<SlotLine> stashSlotLines = new List<SlotLine>();
+    private int invenSlotRowSize = 5;
+    private int invenSlotColumnSize = 9;
+    private int stashSlotRowSize = 11;
+    private int stashSlotColumnSize = 9;
+    private int itemMaxSize = 4; // 2^4 X 2^4 짜리가 최대 크기라고 가정
     private const int UNITSIZE = 80;
-    Vector2 invenStandardPos = new Vector2(40, -40);
-    private const string INVENTORY_PATH = "InvenCanvas/InvenPanel/ItemArea/Content";
-    private const string EQUIP_PATH = "InvenCanvas/InvenPanel/EquipArea/Slots";
-    private const string EQUIP_VISUAL_PATH = "InvenCanvas/InvenPanel/EquipArea/ItemVisual";
-    private const string INVENTORY_VISUAL_PATH = "InvenCanvas/InvenPanel/ItemArea/ItemVisual";
+    private Vector2 standardPos = new Vector2(40, -40);
+    #region stringPath
+    private const string INVENTORY_PATH = "InvenCanvas/Panel/ItemArea/Content";
+    private const string EQUIP_PATH = "InvenCanvas/Panel/EquipArea/Slots";
+    private const string EQUIP_VISUAL_PATH = "InvenCanvas/Panel/EquipArea/ItemVisual";
+    private const string INVENTORY_VISUAL_PATH = "InvenCanvas/Panel/ItemArea/ItemVisual";
     private const string EQUIP_UI_PATH = "GameUI/EquipUI/Slot";
     private const string ITEM_UI_TAG = "ItemUI";
     private const string INVENTORY_SLOT_TAG = "InvenSlot";
     private const string EQUIP_SLOT_TAG = "EquipSlot";
     private const string ITEMINFO_PATH = "InvenCanvas/ItemInfoPanel";
     private string[] itemInfoNames = { "ItemName", "ItemType", "ItemRarity", "ItemPart", "ItemStats/ItemStat1", "ItemStats/ItemStat2", "ItemText" };
+    #endregion
     private List<TMP_Text> itemInfoTexts;
-    Transform inventoryParent;
-    Canvas invenCanvas;
-    CanvasGroup invenCanvasGroup;
-    GameObject itemInfo;
-    bool canvasVisualFlag;
+    private Canvas invenCanvas;
+    private Canvas stashCanvas;
+    private CanvasGroup invenCanvasGroup;
+    private GameObject itemInfo;
+    private bool canvasVisualFlag;
 
     public void OnStart()
     {
-        inventoryParent = GameObject.Find(INVENTORY_PATH).transform;
-        for(int y = 0; y < slotRowSize; y++)
+        DataAssign();
+    }
+    public void OnUpdate()
+    {
+        InvenActive();
+    }
+    private void InvenActive()
+    {
+        if (invenCanvas == null)
+            return;
+        // 게임 씬일 경우에만 작동하게 바꿔야함
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
-            if (inventoryParent.Find("SlotLine" + y).TryGetComponent(out SlotLine _line))
-                slotLines.Add(_line);
+            if (canvasVisualFlag == true)
+            {
+                canvasVisualFlag = false;
+                invenCanvasGroup.alpha = 0f;
+                Cursor.lockState = CursorLockMode.Locked;
+            }
+            else
+            {
+                canvasVisualFlag = true;
+                invenCanvasGroup.alpha = 1f;
+                Cursor.lockState = CursorLockMode.None;
+            }
+        }
+    }
+    private void DataAssign()
+    {
+        Transform invenTrans = GameObject.Find(INVENTORY_PATH).transform;
+        for (int y = 0; y < invenSlotRowSize; y++)
+        {
+            if (invenTrans.Find("SlotLine" + y).TryGetComponent(out SlotLine _line))
+                invenSlotLines.Add(_line);
             else
                 Debug.LogError("SlotLine Is Not Assigned");
-            for(int x = 0; x < slotColumnSize; x++)
+            for (int x = 0; x < invenSlotColumnSize; x++)
             {
-                if (slotLines[y] == null)
+                if (invenSlotLines[y] == null)
                     Debug.LogError("Line Is Not Assigned");
-                if (inventoryParent.Find("SlotLine" + y + "/Slot" + x).TryGetComponent(out Slot _slot))
-                    slotLines[y].mySlots.Add(_slot);
+                if (invenTrans.Find("SlotLine" + y + "/Slot" + x).TryGetComponent(out Slot _slot))
+                    invenSlotLines[y].mySlots.Add(_slot);
             }
         }
         invenCanvas = GameObject.Find("InvenCanvas").GetComponent<Canvas>();
@@ -82,33 +116,28 @@ public class InvenManager
             else
                 continue;
         }
-        
+
         itemInfo = GameObject.Find(ITEMINFO_PATH);
         itemInfoTexts = new List<TMP_Text>();
         foreach (var txt in itemInfoNames)
         {
             itemInfoTexts.Add(GameObject.Find(ITEMINFO_PATH + "/" + txt).GetComponent<TMP_Text>());
         }
+        itemInfo.SetActive(false);
+        MonoBehaviour.DontDestroyOnLoad(invenCanvas);
     }
-    public void OnUpdate()
+    private void StatshDataAsggin()
     {
-        if (invenCanvas == null)
-            return;
-        if(Input.GetKeyDown(KeyCode.Tab))
+        SlotLine[] lines = stashCanvas.GetComponentsInChildren<SlotLine>();
+        for(int y = 0; y < stashSlotRowSize; y++)
         {
-            if (canvasVisualFlag == true)
+            stashSlotLines.Add(lines[y]);
+            for(int x = 0; x < stashSlotColumnSize; x++)
             {
-                canvasVisualFlag = false;
-                invenCanvasGroup.alpha = 0f;
-                Cursor.lockState = CursorLockMode.Locked;
-            }
-            else
-            {
-                canvasVisualFlag = true;
-                invenCanvasGroup.alpha = 1f;
-                Cursor.lockState = CursorLockMode.None;
+                stashSlotLines[y].mySlots.Add(lines[y].mySlots[x]);
             }
         }
+        MonoBehaviour.DontDestroyOnLoad(stashCanvas);
     }
     public Vector2 InvenPosCal(Vector2 _originPos, Vector2 _slotIndex)
     {
@@ -117,274 +146,305 @@ public class InvenManager
     // 고쳐야할 점, slot안에 itemImage가 있는 경우 Slot 안에서만 보임 << 다시보니 아닌거 같은데? 걍 크게 하면 문제 없을듯? << 따로 visual을 만들어서 해결
     public IEnumerator ItemManage()
     {
+        float timer = 0f;
         while (true)
-        { 
+        {
             yield return null;
-            if(inventoryParent == null)
+            if(invenCanvas == null)
             {
                 Debug.LogError("Inventory Is Not Assigned");
                 continue;
             }
             if(canvasVisualFlag == false)
             {
-                //Debug.Log("Canvas Is Invisible");
+                Debug.Log("Canvas Is Invisible");
                 continue;
             }
+            // 일단 마우스의 위치를 계속 탐색해서 정보 띄우는게 우선
+            PointerEventData pointer = new PointerEventData(EventSystem.current);
+            pointer.position = Input.mousePosition;
+
+            List<RaycastResult> raycastResults = new List<RaycastResult>();
+            EventSystem.current.RaycastAll(pointer, raycastResults);
+            Slot fromSlot = null;
+            GameObject itemVisual = null;
+            // 장비창 slot에 상호작용하는 경우 활성화되는 플래그
+            bool interactEquipFlag = false;
+            if (raycastResults.Count > 0)
+            {
+                foreach (var go in raycastResults)
+                {
+                    if (go.gameObject.CompareTag(ITEM_UI_TAG) == true)
+                    {
+                        itemVisual = go.gameObject;
+                        continue;
+                    }
+                    if (go.gameObject.TryGetComponent(out Slot _slot))
+                    {
+                        // 인벤토리 슬롯인 경우
+                        if (go.gameObject.CompareTag(INVENTORY_SLOT_TAG) == true)
+                            interactEquipFlag = false;
+                        // 장비창(장착) 슬롯인 경우
+                        if (go.gameObject.CompareTag(EQUIP_SLOT_TAG) == true)
+                            interactEquipFlag = true;
+
+                        fromSlot = _slot;
+                    }
+                }
+            }
+            // fromSlot 존재하지 않는다면 반복
+            // 아이템 데이터가 존재하지 않는다면 반복
+            if (fromSlot == null || fromSlot.emptyFlag == true || itemVisual == null)
+            {
+                timer = 0f;
+                ConcealItemInfo();
+                continue;
+            }
+            // 접근한 Slot의 부모 Canvas를 받아오는 코드
+            fromSlot.transform.root.TryGetComponent<Canvas>(out Canvas fromCanvas);
+            if (stashCanvas == null && fromCanvas.Equals(invenCanvas) == false)
+            {
+                stashCanvas = fromCanvas;
+                StatshDataAsggin();
+            }
+            // SlotLine 찾기
+            List<SlotLine> fromSlotLine = new List<SlotLine>();
+            Vector2Int fromPos = -Vector2Int.one;
+            for (int y = 0; y < invenSlotRowSize; y++)
+            {
+                if (invenSlotLines[y].mySlots.Contains(fromSlot))
+                {
+                    fromSlotLine = invenSlotLines;
+                }
+            }
+            for (int y = 0; y < stashSlotRowSize; y++)
+            {
+                if (stashSlotLines.Count < 1)
+                    break;
+                if (stashSlotLines[y].mySlots.Contains(fromSlot))
+                {
+                    fromSlotLine = stashSlotLines;
+                }
+            }
+            // 접근하려는 슬롯이 메인 슬롯이 아닐 경우, 메인슬롯의 아이템 데이터로 치환
+            if (fromSlot.mainSlotFlag == false)
+            {
+                Vector2Int index = fromSlot.itemDataPos;
+                fromSlot = fromSlotLine[index.x].mySlots[index.y];
+            }
+            for (int y = 0; y < invenSlotRowSize; y++)
+            {
+                if (invenSlotLines[y].mySlots.Contains(fromSlot))
+                {
+                    fromPos = new Vector2Int(y, invenSlotLines[y].mySlots.IndexOf(fromSlot));
+                }
+            }
+            for (int y = 0; y < stashSlotRowSize; y++)
+            {
+                if (stashSlotLines.Count < 1)
+                    break;
+                if (stashSlotLines[y].mySlots.Contains(fromSlot))
+                {
+                    fromPos = new Vector2Int(y, stashSlotLines[y].mySlots.IndexOf(fromSlot));
+                }
+            }
+            //Debug.Log(targetSlot.slotItem.itemName);
+            timer += Time.deltaTime;
+            if (timer > 0.5f)
+            {
+                RevealItemInfo(fromSlot.slotItem);
+            }
+
+            // 눌린 마우스 버튼키 받기
             int mousebutton = -1;
+            // 좌클릭
             if (Input.GetMouseButtonDown(0))
-            {
                 mousebutton = 0;
-            }
-            else if(Input.GetMouseButtonDown(1))
-            {
+            // 우클릭
+            else if (Input.GetMouseButtonDown(1))
                 mousebutton = 1;
-            }
+
+            // 클릭을 받은 경우
             if (mousebutton > -1)
             {
-                PointerEventData pointer = new PointerEventData(EventSystem.current);
-                pointer.position = Input.mousePosition;
+                // 정보 obj 숨기기
+                timer = 0f;
+                ConcealItemInfo();
 
-                List<RaycastResult> raycastResults = new List<RaycastResult>();
-                EventSystem.current.RaycastAll(pointer, raycastResults);
-                Slot targetSlot = null;
-                GameObject itemVisual = null;
-
-                // 장비창 slot에 상호작용하는 경우 활성화되는 플래그
-                bool interactEquipFlag = false;
-                if (raycastResults.Count > 0)
-                {
-                    foreach (var go in raycastResults)
-                    {
-                        //Debug.Log(go);
-                        if(go.gameObject.CompareTag(ITEM_UI_TAG) == true)
-                        {
-                            itemVisual = go.gameObject;
-                            continue;
-                        }
-                        if(go.gameObject.TryGetComponent(out Slot _slot))
-                        {
-                            // 인벤토리 슬롯인 경우
-                            if (go.gameObject.CompareTag(INVENTORY_SLOT_TAG) == true)
-                                interactEquipFlag = false;
-                            // 장비창(장착) 슬롯인 경우
-                            if(go.gameObject.CompareTag(EQUIP_SLOT_TAG) == true)
-                                interactEquipFlag = true;
-
-                            targetSlot = _slot;
-                        }
-                    }
-                }
-                if(targetSlot != null && itemVisual != null && targetSlot.CompareTag(EQUIP_SLOT_TAG) == false)
-                {
-                    // 클릭된 슬롯이 메인 슬롯이 아닐 경우, 메인슬롯의 아이템 데이터로 치환
-                    if (targetSlot.mainSlotFlag == false)
-                    {
-                        Vector2Int index = targetSlot.itemDataPos;
-                        //Debug.Log("index = " + index.y + ", " + index.x);
-                        targetSlot = slotLines[index.x].mySlots[index.y];
-                    }
-                    //Debug.Log(targetSlot.slotItem.itemName);
-                }
                 Transform itemVisualTrans = null;
                 Vector2 itemVisualOriginPos = Vector2.zero;
-                if (itemVisual != null)
-                {
-                    itemVisualTrans = itemVisual.transform;
-                    itemVisualOriginPos = itemVisualTrans.GetComponent<RectTransform>().anchoredPosition;
-                    //Debug.Log("Mouse Button Down");
-                }
+                itemVisualTrans = itemVisual.transform;
+                itemVisualOriginPos = itemVisualTrans.GetComponent<RectTransform>().anchoredPosition;
+                int[] itemSize = GetItemSize(fromSlot.slotItem);
+                if (itemSize == null)
+                    continue;
                 #region MouseButtonLeft
                 while (mousebutton == 0)
                 {
-                    if (targetSlot == null)
-                        break;
-                    if (itemVisual == null)
+                    // 장비창에 있는 아이템은 드래그 불가능하게 우선 설정
+                    if (interactEquipFlag == true)
                         break;
                     // 아이템 크기 때문에 배경이 보이게 설정
                     itemVisual.GetComponent<Image>().color = new Color32(255, 255, 255, 10);
-                    // 이부분이 지금 문제, 위치가 마음대로 이동함 -> anchoredPosition과 ScreenPointToLocalPointInRectangle을 통해 해결함
+                    // 마우스 위치에 따라 아이템의 위치가 이동하는 코드
+                    // 문제점 : 위치가 마음대로 이동함 -> anchoredPosition과 ScreenPointToLocalPointInRectangle을 통해 해결함
                     Vector2 convertedMousePos;
                     RectTransformUtility.ScreenPointToLocalPointInRectangle
                         (invenCanvas.transform as RectTransform, Input.mousePosition, invenCanvas.worldCamera, out convertedMousePos);
-                    itemVisualTrans.position = invenCanvas.transform.TransformPoint(convertedMousePos);
-                    #region 과거코드
-                    //// 마우스 위치 레이케이스 반복
-                    //pointer.position = Input.mousePosition;
-                    //raycastResults.Clear();
-                    //EventSystem.current.RaycastAll(pointer, raycastResults);
-                    //Slot overlayedSlot = null;
-                    //GameObject overlayedItemVisual = null;
-                    //if (raycastResults.Count > 0)
-                    //{
-                    //    foreach (var go in raycastResults)
-                    //    {
-                    //        if(go.gameObject.CompareTag(ITEM_UI_TAG) == true)
-                    //        {
-                    //            overlayedItemVisual = go.gameObject;
-                    //            continue;
-                    //        }
-                    //        if (go.gameObject.TryGetComponent(out Slot _slot))
-                    //        {
-                    //            if(_slot.Equals(targetSlot) == false)
-                    //            {
-                    //                overlayedSlot = _slot;
-                    //            }
-                    //        }
-                    //    }
-                    //}
-                    //Debug.Log("overlayedSlot = " + overlayedSlot);
-                    //if(overlayedSlot != null)
-                    //{
-                    //    if(overlayedSlot.mainSlotFlag == false)
-                    //    {
-                    //        // 메인 슬롯이 아니면 메인슬롯 탐색
-                    //    }
-                    //}
-                    //overlayedItemVisualBefore = overlayedItemVisual;
-                    //overlayedSlotBefore = overlayedSlot;
+                    Vector2 offset = new Vector2((itemSize[1] - 1) * UNITSIZE / 2, -(itemSize[0] - 1) * UNITSIZE / 2);
+                    itemVisualTrans.position = invenCanvas.transform.TransformPoint(convertedMousePos + offset);
 
-                    //itemVisualRectTrans.position = Input.mousePosition;
-                    //yield return null;
-                    #endregion
+                    // 마우스를 뗐을 때
                     if (Input.GetMouseButtonUp(0))
                     {
-                        itemVisual.GetComponent<Image>().color = new Color32(255, 255, 255, 0);
-                        Vector2 itemVisualPos = itemVisual.GetComponent<RectTransform>().anchoredPosition;
+                        pointer = new PointerEventData(EventSystem.current);
+                        pointer.position = Input.mousePosition;
 
-                        // 마우스의 위치가 가운데에 위치한 경우 가까운 위치로 지정하기 위한 코드
-                        float targetXPos = itemVisualPos.x;
-                        // y 좌표는 양수가 아닌 음수로 늘어남
-                        float targetYPos = itemVisualPos.y;
-                        // 아이템이 들어갈 위치
-                        Vector2 targetPos = new Vector2(targetXPos, targetYPos);
-                        int[] itemSize = GetItemSize(targetSlot.slotItem);
-                        int xIndex = 
-                            Mathf.RoundToInt(((targetXPos - (itemSize[1] - 1) * (UNITSIZE / 2)) - invenStandardPos.x) / UNITSIZE);
-                        int yIndex = 
-                            Mathf.RoundToInt(((targetYPos + (itemSize[0] - 1) * (UNITSIZE / 2)) - invenStandardPos.y) / -UNITSIZE);
-                        int originXIndex = 
-                            Mathf.RoundToInt(((itemVisualOriginPos.x - (itemSize[1] - 1) * (UNITSIZE / 2)) - invenStandardPos.x) / UNITSIZE);
-                        int originYIndex = 
-                            Mathf.RoundToInt(((Mathf.Abs(itemVisualOriginPos.y) - (itemSize[0] - 1) * (UNITSIZE / 2)) 
-                            - Mathf.Abs(invenStandardPos.y)) / UNITSIZE);
-                        bool breakFlag = false;
-                        // 옮길 수 있는지 판별
-                        for (int j = 0; j < itemSize[1]; j++)
+                        raycastResults = new List<RaycastResult>();
+                        EventSystem.current.RaycastAll(pointer, raycastResults);
+                        Slot toSlot = null;
+                        if (raycastResults.Count > 0)
+                            foreach (var go in raycastResults)
+                                if (go.gameObject.TryGetComponent(out Slot _slot))
+                                    toSlot = _slot;
+                        // 목표 지점에 toSlot이 존재하지 않는 경우
+                        if (toSlot == null)
                         {
-                            if (xIndex + itemSize[1] > slotColumnSize || yIndex + itemSize[0] > slotRowSize || xIndex < 0 || yIndex < 0)
+                            // 마우스가 인벤 밖인데 메인화면이면 아무것도 안함
+                            if(pointer.position.x > 1050 || Manager.Instance.GetNowScene().name.ToString() == "LobbyMerchantWork")
                             {
-                                breakFlag = true;
+                                itemVisual.GetComponent<RectTransform>().anchoredPosition = itemVisualOriginPos;
+                                itemVisual.GetComponent<Image>().color = new Color32(255, 255, 255, 0);
+                                Debug.LogError("ToSlot Is Not Detected");
                                 break;
                             }
-                            for (int i = 0; i < itemSize[0]; i++)
+                            // 마우스가 인벤 밖인데 게임화면이면 아이템을 버림
+                            else
                             {
-                                Slot to = slotLines[yIndex + i].mySlots[xIndex + j];
-                                if (to.emptyFlag == true)
-                                    continue;
-                                else
+                                DumpItem(fromSlot.slotItem);
+                                DeleteInvenItem(fromSlot, fromSlotLine);
+                                break;
+                            }
+                        }
+                        toSlot.transform.root.TryGetComponent<Canvas>(out Canvas toCanvas);
+                        // 위에서도 캔버스 업데이트가 안되었을 경우를 대비한 코드
+                        if(stashCanvas == null && toCanvas.Equals(invenCanvas) == false)
+                        {
+                            stashCanvas = toCanvas;
+                            StatshDataAsggin();
+                        }
+                        List<SlotLine> toSlotLine = new List<SlotLine>();
+                        Vector2Int toPos = -Vector2Int.one;
+                        Vector2Int toStorageSize = -Vector2Int.one;
+                        bool canMoveFlag = true;
+                        // from, to slot 탐색
+                        string toKey = null;
+                        for (int y = 0; y < invenSlotRowSize; y++)
+                        {
+                            if (toPos != -Vector2Int.one)
+                                break;
+                            if (invenSlotLines[y].mySlots.Contains(toSlot))
+                            {
+                                toSlotLine = invenSlotLines;
+                                toPos = new Vector2Int(y, invenSlotLines[y].mySlots.IndexOf(toSlot));
+                                toStorageSize = new Vector2Int(invenSlotRowSize, invenSlotColumnSize);
+                            }
+                            if (equipSlots.Values.Contains(toSlot))
+                                toKey = toSlot.gameObject.name;
+                        }
+                        for (int y = 0; y < stashSlotRowSize; y++)
+                        {
+                            if (toPos != -Vector2Int.one)
+                                break;
+                            if (stashSlotLines[y].mySlots.Contains(toSlot))
+                            {
+                                toSlotLine = stashSlotLines;
+                                toPos = new Vector2Int(y, stashSlotLines[y].mySlots.IndexOf(toSlot));
+                                toStorageSize = new Vector2Int(stashSlotRowSize, stashSlotColumnSize);
+                            }
+                        }
+                        if (toPos.x + itemSize[0] > toStorageSize.x || toPos.y + itemSize[1] > toStorageSize.y)
+                            canMoveFlag = false;
+                        if (canMoveFlag == true)
+                        {
+                            for (int y = toPos.x; y < toPos.x + itemSize[0] - 1; y++)
+                            {
+                                for (int x = toPos.y; x < toPos.y + itemSize[1] - 1; x++)
                                 {
-                                    Debug.LogError("Already Item Is Been There. Can't Move Here.");
-                                    breakFlag = true;
+                                    if (toSlotLine[y].mySlots[x].emptyFlag == false)
+                                    {
+                                        canMoveFlag = false;
+                                    }
                                 }
                             }
                         }
-                        //옮길 수 없는 경우들
-                        if (breakFlag == true)
+                        // 드래그로 장착하려는 경우
+                        if(toKey != null)
                         {
-                            // 아이템 버리기
-                            if(xIndex < -1) // 인게임이라는 조건을 추가해야함. 나중에 씬 정해지면 하면 될 듯?
-                            {
-                                // 아이템 버리기
-                                DumpItem(slotLines[originYIndex].mySlots[originXIndex].slotItem);
-                                DeleteInvenItem(new Vector2Int(originYIndex, originXIndex));
-                            }
-                            // 아이템 옮길 수 없음
-                            else
-                            {
-                                Debug.LogError("Item Moved Unproper Position");
-                                itemVisual.GetComponent<RectTransform>().anchoredPosition = itemVisualOriginPos;
-                            }
+                            itemVisual.GetComponent<RectTransform>().anchoredPosition = itemVisualOriginPos;
+                            itemVisual.GetComponent<Image>().color = new Color32(255, 255, 255, 0);
+                            Debug.LogError("ToSlot Is EquipSlot. Can't Move");
                             break;
                         }
-                        // 옮길 수 있는 경우
-                        Vector2 itemPos = Vector2.zero;
-                        //Debug.Log(invenStandardPos.y);
-                        itemVisual.GetComponent<RectTransform>().anchoredPosition = 
-                            new Vector2(invenStandardPos.x + (xIndex + (float)(itemSize[1] - 1) / 2) * UNITSIZE,
-                            invenStandardPos.y - (yIndex + (float)(itemSize[0] - 1) / 2) * UNITSIZE);
-                        //Debug.Log("yIndex, xIndex = " + yIndex + ", " + xIndex);
-                        for (int j = 0; j < itemSize[0]; j++)
+                        // 배경 투명화
+                        itemVisual.GetComponent<Image>().color = new Color32(255, 255, 255, 0);
+                        // 아이템이 들어갈 수 있는지 탐색
+                        // 성공시 true 실패시 false를 반환
+                        // toSlot은 마우스가 있는 위치의 칸을 주기 때문에 메인칸을 함수 안에서 찾아야함
+                        // toKey는 장비창의 아이템일 경우에만 작동하기 때문에 null이 아닐 경우에는 장비 관련
+                        // 드래그로 장착하는건 추후에 시간 남으면 할듯
+                        
+                        // 움직일 수 있다면 데이터를 이동
+                        if (canMoveFlag == true)
                         {
-                            for(int i = 0; i < itemSize[1]; i++)
+                            for (int y = 0; y < itemSize[0]; y++)
                             {
-                                //Debug.Log("ji = " + j + ", " + i);
-                                //Debug.Log("originYIndex, originXindex = " + originYIndex + ", " + originXIndex);
-                                Slot from = slotLines[originYIndex + j].mySlots[originXIndex + i];
-                                Slot to = slotLines[yIndex + j].mySlots[xIndex + i];
-                                to.SlotCopy(from, new Vector2Int(yIndex, xIndex));
-                                from.SlotReset();
+                                for (int x = 0; x < itemSize[1]; x++)
+                                {
+                                    Slot nowFrom = fromSlotLine[fromPos.x + y].mySlots[fromPos.y + x];
+                                    Slot nowTo = toSlotLine[toPos.x + y].mySlots[toPos.y + x];
+                                    nowTo.SlotCopy(nowFrom, toPos);
+                                    nowFrom.SlotReset();
+                                }
                             }
                         }
-                        //Debug.Log("Item Moved");
-                        //Debug.Log("Mouse Button Up");
-                        break;
-                        #region 과거코드
-                        //xIndex = Mathf.RoundToInt(xIndex);
-                        //yIndex = Mathf.RoundToInt(yIndex);
-                        //Debug.Log(xIndex + ", " + yIndex);
-
-                        //pointer.position = Input.mousePosition;
-                        //raycastResults = new List<RaycastResult>(); // 리스트 초기화
-                        //EventSystem.current.RaycastAll(pointer, raycastResults);
-                        //Slot destSlot = null;
-                        //if (raycastResults.Count > 0)
-                        //{
-                        //    foreach (var go in raycastResults)
-                        //    {
-                        //        if (go.gameObject.TryGetComponent(out Slot _slot))
-                        //        {
-                        //            if (_slot.emptyFlag == true)
-                        //                destSlot = _slot;
-                        //        }
-                        //    }
-                        //}
-                        //if (destSlot == null)
-                        //{
-                        //    // 이동 실패시 움직이는 것처럼만 보이게 하는 것이 목표이기 때문에 실제 이동된건 제자리
-                        //    itemVisualTrans.GetComponent<RectTransform>().anchoredPosition = itemVisualOriginPos;
-                        //    Debug.LogError("Can't Move Item Here");
-                        //}
-                        //else
-                        //{
-                        //    //데이터와 itemVisual 옮기기
-                        //    for (int y = targetSlot.itemDataPos.y; y < targetSlot.itemDataPos.y + itemSize[0]; y++)
-                        //    {
-                        //        for (int x = targetSlot.itemDataPos.x; x < targetSlot.itemDataPos.x + itemSize[1]; x++)
-                        //        {
-                        //            slotLines[y].mySlots[x].SlotReset();
-                        //        }
-                        //    }
-                        //    itemVisualTrans.GetComponent<RectTransform>().anchoredPosition = targetPos;
-                        //    Debug.Log("ItemMove");
-                        //}
-                        //Debug.Log("Mouse Button Up");
-                        //break;
-                        #endregion
+                        // 움직일 수 없다면 에러
+                        else
+                        {
+                            Debug.LogError("Can't Move Here");
+                        }
+                        if (canMoveFlag == false)
+                        {
+                            // 실패시 원래 위치로 itemVisual을 옮김
+                            itemVisual.GetComponent<RectTransform>().anchoredPosition = itemVisualOriginPos;
+                            break;
+                        }
+                        else
+                        {
+                            // 성공시, 장비창이 연관된 것이 아니라면 성공한 위치로 itemVisual을 옮김
+                            itemVisual.transform.SetParent(GameObject.Find(toSlot.transform.root.name.ToString() + "Panel/ItemArea/ItemVisual").transform);
+                            RectTransform visualRect = itemVisual.GetComponent<RectTransform>();
+                            RectTransform toSlotRect = toSlot.GetComponent<RectTransform>();
+                            visualRect.anchoredPosition = toSlotRect.anchoredPosition + new Vector2(0, -toPos.x * UNITSIZE)
+                                + new Vector2((itemSize[1] - 1) * (UNITSIZE / 2), -(itemSize[0] - 1) * (UNITSIZE / 2));
+                            break;
+                        }
                     }
                     yield return null;
                 }
                 #endregion
                 #region MouseButtonRight
-                while (mousebutton == 1)
+                // 우클릭 장착 해제 관련
+                if (mousebutton == 1)
                 {
-                    if (targetSlot == null)
-                        break;
+                    if (fromSlot == null)
+                        continue;
                     if (itemVisual == null)
-                        break;
+                        continue;
                     string typeName = null;
                     foreach (var type in Enum.GetValues(typeof(ItemType)))
                     {
-                        string targetItemTypeName = targetSlot.slotItem.itemType.ToString();
+                        string targetItemTypeName = fromSlot.slotItem.itemType.ToString();
                         if (targetItemTypeName == ItemType.Consumable.ToString())
                             typeName = ItemType.Consumable.ToString();
                         if (targetItemTypeName == ItemType.Equipment.ToString())
@@ -403,10 +463,10 @@ public class InvenManager
                         {
                             // 1번칸 무기인경우
                             string targetImagePath;
-                            if (part.ToString() + 1 == targetSlot.gameObject.name.ToString())
+                            if (part.ToString() + 1 == fromSlot.gameObject.name.ToString())
                                 targetImagePath = EQUIP_UI_PATH + 1 + "/ItemImage";
                             // 2번칸 무기인경우
-                            else if (part.ToString() + 2 == targetSlot.gameObject.name.ToString())
+                            else if (part.ToString() + 2 == fromSlot.gameObject.name.ToString())
                                 targetImagePath = EQUIP_UI_PATH + 2 + "/ItemImage";
                             else
                                 targetImagePath = null;
@@ -415,14 +475,15 @@ public class InvenManager
                             //Debug.Log(targetImagePath);
                         }
                         // AddItem이 실패한경우 장착한 아이템을 바닥에 버림
-                        //Debug.Log(targetSlot.gameObject.name.ToString());
-                        //Debug.Log(targetSlot.slotItem);
-                        if(AddItem(targetSlot.slotItem) == false)
-                            DumpItem(targetSlot.slotItem);
+                        bool addFlag = AddItem(fromSlot.slotItem);
+                        if (addFlag == false && Manager.Instance.GetNowScene().name.ToString() != "LobbyMerchantWork")
+                            DumpItem(fromSlot.slotItem);
+                        else if (addFlag == false)
+                            Debug.Log("Can't Unequip. Inven Is Full");
                         // AddItem이 성공한 경우는 그냥 장비창 리셋만 하면 됨
                         GameObject.Destroy(itemVisual);
-                        targetSlot.SlotReset();
-                        break;
+                        fromSlot.SlotReset();
+                        continue;
                     }
                     // 장비창에서 해제하는 경우
                     // 장착 해제할 것이 퀵슬롯템(소모품)일 경우
@@ -430,31 +491,30 @@ public class InvenManager
                     {
                         // 1번칸 소모품인 경우
                         string targetImagePath;
-                        if (typeName + 1 == targetSlot.gameObject.name.ToString())
+                        if (typeName + 1 == fromSlot.gameObject.name.ToString())
                             targetImagePath = EQUIP_UI_PATH + 3 + "/ItemImage";
                         // 2번칸 소모품인 경우
-                        else if (typeName + 2 == targetSlot.gameObject.name.ToString())
+                        else if (typeName + 2 == fromSlot.gameObject.name.ToString())
                             targetImagePath = EQUIP_UI_PATH + 4 + "/ItemImage";
                         else
                             targetImagePath = null;
                         if (targetImagePath != null)
                             GameObject.Find(targetImagePath).GetComponent<Image>().sprite = null;
-                        //Debug.Log(targetImagePath);
-                        // AddItem이 실패한경우 장착한 아이템을 바닥에 버림
-                        //Debug.Log(targetSlot.gameObject.name.ToString());
-                        //Debug.Log(targetSlot.slotItem);
-                        if (AddItem(targetSlot.slotItem) == false)
-                            DumpItem(targetSlot.slotItem);
+                        bool addFlag = AddItem(fromSlot.slotItem);
+                        if (addFlag == false && Manager.Instance.GetNowScene().name.ToString() != "LobbyMerchantWork")
+                            DumpItem(fromSlot.slotItem);
+                        else if (addFlag == false)
+                            Debug.Log("Can't Unequip. Inven Is Full");
                         // AddItem이 성공한 경우는 그냥 장비창 리셋만 하면 됨
                         GameObject.Destroy(itemVisual);
-                        targetSlot.SlotReset();
-                        break;
+                        fromSlot.SlotReset();
+                        continue;
                     }
                     // 인벤토리창에서 장착하는 경우
                     else
                     {
-                        EquipPart targetEquipPart = targetSlot.slotItem.equipPart;
-                        ItemType targetItemType = targetSlot.slotItem.itemType;
+                        EquipPart targetEquipPart = fromSlot.slotItem.equipPart;
+                        ItemType targetItemType = fromSlot.slotItem.itemType;
                         Slot equipSlot = null;
                         string equipPartsName = null;
                         if(targetItemType == ItemType.Equipment)
@@ -504,7 +564,7 @@ public class InvenManager
                         else
                         {
                             Debug.LogError("Target Item Can't Equip");
-                            break;
+                            continue;
                         }
                         Vector2 itemVisualPos = itemVisual.GetComponent<RectTransform>().anchoredPosition;
 
@@ -514,20 +574,20 @@ public class InvenManager
                         float targetYPos = itemVisualPos.y;
                         // 아이템이 들어갈 위치
                         Vector2 targetPos = new Vector2(targetXPos, targetYPos);
-                        int[] itemSize = GetItemSize(targetSlot.slotItem);
                         int xIndex =
-                            Mathf.RoundToInt(((targetXPos - (itemSize[1] - 1) * (UNITSIZE / 2)) - invenStandardPos.x) / UNITSIZE);
+                            Mathf.RoundToInt(((targetXPos - (itemSize[1] - 1) * (UNITSIZE / 2)) - standardPos.x) / UNITSIZE);
                         int yIndex =
-                            Mathf.RoundToInt(((targetYPos + (itemSize[0] - 1) * (UNITSIZE / 2)) - invenStandardPos.y) / -UNITSIZE);
+                            Mathf.RoundToInt(((targetYPos + (itemSize[0] - 1) * (UNITSIZE / 2)) - standardPos.y) / -UNITSIZE);
                         int originXIndex =
-                            Mathf.RoundToInt(((itemVisualOriginPos.x - (itemSize[1] - 1) * (UNITSIZE / 2)) - invenStandardPos.x) / UNITSIZE);
+                            Mathf.RoundToInt(((itemVisualOriginPos.x - (itemSize[1] - 1) * (UNITSIZE / 2)) - standardPos.x) / UNITSIZE);
                         int originYIndex =
                             Mathf.RoundToInt(((Mathf.Abs(itemVisualOriginPos.y) - (itemSize[0] - 1) * (UNITSIZE / 2))
-                            - Mathf.Abs(invenStandardPos.y)) / UNITSIZE);
+                            - Mathf.Abs(standardPos.y)) / UNITSIZE);
                         if (equipSlot.emptyFlag == true)
                         {
-                            equipSlot.slotItem = targetSlot.slotItem;
+                            equipSlot.slotItem = fromSlot.slotItem;
                             equipSlot.emptyFlag = false;
+                            equipSlot.mainSlotFlag = true;
                             // itemvisual 사이즈와 위치 동일시 시키기
                             GameObject newVisual = GameObject.Instantiate(itemVisual);
                             newVisual.transform.SetParent(GameObject.Find(EQUIP_VISUAL_PATH).transform);
@@ -561,26 +621,27 @@ public class InvenManager
                                 GameObject.Find(targetImagePath).GetComponent<Image>().sprite =
                                         itemVisual.transform.GetChild(0).GetComponent<Image>().sprite;
                             }
-                            DeleteInvenItem(new Vector2Int(originYIndex, originXIndex));
+                            Slot deleteSlot = fromSlotLine[originYIndex].mySlots[originXIndex];
+                            DeleteInvenItem(deleteSlot, fromSlotLine);
                             //Debug.Log(GameObject.Find(targetImagePath).GetComponent<Image>().sprite);
-                            break;
+                            continue;
                         }
                         else
                         {
                             Debug.LogError("Target Equip Slot Is Not Empty.");
-                            break;
+                            continue;
                         }
                     }
                 }
+
                 #endregion
             }
         }
-        //Manager.Instance.invenCoroutine = null;
     }
     public bool AddItem(Item _item)
     {
         // 비어있는 슬롯을 다 가져오는 코드
-        bool[,] emptyFlag = new bool[slotRowSize,slotColumnSize];
+        bool[,] emptyFlag = new bool[invenSlotRowSize,invenSlotColumnSize];
         int[] itemSize = GetItemSize(_item);
         List<Slot> targetedSlotList = new List<Slot>(); // 탐색을 이미 진행한 슬롯의 리스트
         Slot targetSlot = null; // 타겟이 된 슬롯
@@ -590,13 +651,11 @@ public class InvenManager
         bool searchSuccessFlag = false; // 빈 공간을 찾기 위한 탐색 플래그
         bool findTargetFlag; // 타겟 슬롯을 찾으면 true가 되는 플래그
 
-        for(int y = 0; y < slotRowSize; y++)
+        for(int y = 0; y < invenSlotRowSize; y++)
         {
-            if (slotLines[y].lineEmptyFlag == false) // 해당하는 라인이 꽉차있다면 패스
-                continue;
-            for (int x = 0; x < slotColumnSize; x++)
+            for (int x = 0; x < invenSlotColumnSize; x++)
             {
-                Slot nowSlot = slotLines[y].mySlots[x];
+                Slot nowSlot = invenSlotLines[y].mySlots[x];
                 if (nowSlot.emptyFlag == false) // 해당 슬롯이 꽉차있다면 패스
                     continue;
                 emptyFlag[y, x] = true;
@@ -609,15 +668,15 @@ public class InvenManager
             // 탐색 관련 변수들 초기화
             findTargetFlag = false;
             // 비어있는 슬롯 하나를 찾는 코드
-            for (int y = 0;y < slotRowSize;y++)
+            for (int y = 0;y < invenSlotRowSize;y++)
             {
                 if (findTargetFlag == true)
                     break;
-                for(int x = 0;x < slotColumnSize;x++)
+                for(int x = 0;x < invenSlotColumnSize;x++)
                 {
                     if (emptyFlag[y, x] == true)
                     {
-                        targetSlot = slotLines[y].mySlots[x];
+                        targetSlot = invenSlotLines[y].mySlots[x];
                         targetSlotIndex.x = y;
                         targetSlotIndex.y = x;
                         targetSlotPos = targetSlot.GetComponent<RectTransform>().position;
@@ -640,7 +699,7 @@ public class InvenManager
                 break;
             bool re_searchFlag = false; // 빈 슬롯을 다시 탐색하는 것을 나타내는 플래그
             // 탐색해야하는 슬롯이(아이템의 크기가) 최대 크기(가방크기)보다 큰 경우 다음 탐색으로
-            if (itemSize[0] + targetSlotIndex.x > slotRowSize || itemSize[1] + targetSlotIndex.y > slotColumnSize)
+            if (itemSize[0] + targetSlotIndex.x > invenSlotRowSize || itemSize[1] + targetSlotIndex.y > invenSlotColumnSize)
                 continue;
 
             // 비어 있는 슬롯 주변을 다시 탐색하는 코드
@@ -681,33 +740,21 @@ public class InvenManager
             targetSlot.slotItem.ItemRandomStat();
             targetSlot.slotItem.randomStatFlag = true;
         }
-        //Debug.Log("ItemSize = " + itemSize[0] + ", " + itemSize[1]);
         int minY = targetSlotIndex.x;
         int maxY = targetSlotIndex.x + itemSize[0];
         int minX = targetSlotIndex.y;
         int maxX = targetSlotIndex.y + itemSize[1];
-        //Debug.Log("min/max = " + maxY + ", " + minY + ", " + maxX + ", " + minX);
-        // 아이템 정보 넣기
         for (int y = minY; y < maxY; y++)
         {
             for (int x = minX; x < maxX; x++)
             {
-                //Debug.Log("Filled Slot Pos = (" + y + ", " + x + ")");
-                Slot nowSlot = slotLines[y].mySlots[x];
+                Slot nowSlot = invenSlotLines[y].mySlots[x];
                 if (targetSlot.Equals(nowSlot))
                     nowSlot.mainSlotFlag = true;
                 else
                     nowSlot.mainSlotFlag = false;
                 nowSlot.emptyFlag = false;
                 nowSlot.itemDataPos = targetSlotIndex;
-                // 우선 헷갈리지 않게 그냥 칸에 같은 이미지 박는걸로 해놨음
-                //if (nowSlot.transform.Find("Item/ItemImage").TryGetComponent<Image>(out Image _itemImage))
-                //{
-                //    _itemImage.color = new Color32(255, 255, 255, 255);
-                //    _itemImage.sprite = Manager.Data.itemSprite[_item.itemImageNum];
-                //}
-                //else
-                //    Debug.LogError("Can't Get Inventory Item Image Component");
             }
         }
         // 눈에 보이는 아이템 프리팹 생성
@@ -717,22 +764,22 @@ public class InvenManager
         targetSlot.itemVisual = itemVisual;
         return true;
     }
-    public void DeleteInvenItem(Vector2Int _targetMainSlotIndex)
+    private void DeleteInvenItem(Slot _slot, List<SlotLine> _targetSlotLine)
     {
-        Slot targetSlot = slotLines[_targetMainSlotIndex.x].mySlots[_targetMainSlotIndex.y];
-        int[] itemSize = GetItemSize(targetSlot.slotItem);
-        GameObject.Destroy(targetSlot.itemVisual);
+        int[] itemSize = GetItemSize(_slot.slotItem);
+        Vector2Int slotPos = _slot.itemDataPos;
+        GameObject.Destroy(_slot.itemVisual);
         for(int y = 0;  y < itemSize[1]; y++)
         {
             for(int x = 0; x < itemSize[0]; x++)
             {
-                Slot nowSlot = slotLines[_targetMainSlotIndex.x + x].mySlots[_targetMainSlotIndex.y + y];
+                Slot nowSlot = _targetSlotLine[slotPos.x + x].mySlots[slotPos.y + y];
                 nowSlot.SlotReset();
                 //Debug.Log((_targetMainSlotIndex.x + x) + ", " + (_targetMainSlotIndex.y + y) + " Slot Delete Data");
             }
         }
     }
-    public void DumpItem(Item _item)
+    private void DumpItem(Item _item)
     {
         //Debug.Log("Item Dumped");
         GameObject dumpedItem3D = GameObject.Instantiate(Manager.Data.item3DPrefab[_item.itemIndex]);
@@ -741,48 +788,74 @@ public class InvenManager
         dumpedItem3D.transform.position = Manager.Game.Player.transform.position;
         dumpedItem3D.transform.position += new Vector3(0, 0.1f, 0);
     }
-    //public void ImageRefreshItem()
-    //{
-    //    for(int y = 0; y < slotRowSize; y++)
-    //    {
-    //        for(int x = 0; x < slotColumnSize; x++)
-    //        {
-    //            Slot targetSlot = slotLines[y].mySlots[x];
-    //            Image targetImage = targetSlot.transform.Find("Item").GetComponent<Image>();
-    //            if(targetSlot.mainSlotFlag == false)
-    //            {
-    //                targetImage.color = new Color32(255, 255, 255, 0);
-    //            }
-    //            else
-    //            {
-    //                targetImage.color = new Color32(255, 255, 255, 255);
-    //            }
-    //        }
-    //    }
-    //}
     public int[] GetItemSize(Item _item) // Enum에 있는 값을 실제 아이템 사이즈 값으로 반환하는 코드, 데이터 매니저로 나중에 옮기든 할듯
     {
+        if(_item == null)
+            return null;
         byte targetSize = (byte)_item.itemSize;
         byte ySize = (byte)(targetSize >> itemMaxSize); // 앞 4비트 확인
         byte xSize = (byte)(targetSize - (ySize << itemMaxSize)); // 뒤 4비트 확인
         int[] convertedSize = {ySize,xSize};
         return convertedSize;
     }
-    public void ItemInfo(Item _item)
+    public void RevealItemInfo(Item _item)
     {
+        if (_item == null)
+            return;
+        itemInfo.SetActive(true);
+        Vector3 offset = new Vector3(-200, 200);
+        RectTransform infoRect = itemInfo.GetComponent<RectTransform>();
+        infoRect.position = Input.mousePosition + offset;
+        Vector3 zeroPoint = Camera.main.ViewportToScreenPoint(Vector3.zero);
+        Vector3 onePoint = Camera.main.ViewportToScreenPoint(Vector3.one);
+        infoRect.position = new Vector3(Mathf.Clamp(infoRect.position.x, zeroPoint.x - offset.x, onePoint.x + offset.x),
+            Mathf.Clamp(infoRect.position.y, zeroPoint.y + offset.y, onePoint.y - offset.y));
         Stat itemStat = _item.itemStat;
-        switch(_item.itemType)
+        float stat1 = float.NaN;
+        string stat1Name = null;
+        float stat2 = itemStat.MoveSpeed;
+        bool equipFlag = false;
+        if(_item.itemType == ItemType.Equipment)
         {
-            case ItemType.Consumable:
-                break;
-            case ItemType.Antique:
-                break;
-            case ItemType.Equipment:
-                break;
-            case ItemType.Coin:
-                break;
-            default:
-                break;
+            switch(_item.equipPart)
+            {
+                case EquipPart.Weapon:
+                    stat1Name = "Attack";
+                    stat1 = itemStat.Attack;
+                    break;
+                default:
+                    stat1Name = "Defense";
+                    stat1 = itemStat.Defense;
+                    break;
+            }
+            equipFlag = true;
         }
+        itemInfoTexts[0].text = $"{_item.itemName}";
+        itemInfoTexts[1].text = $"{_item.itemType}";
+        itemInfoTexts[2].text = $"{_item.itemRarity}";
+        if (equipFlag == true)
+            itemInfoTexts[3].text = $"{_item.equipPart}";
+        else
+            itemInfoTexts[3].text = "";
+        if(stat1 != float.NaN)
+        {
+            itemInfoTexts[4].text = $"{stat1Name} : {stat1}";
+            itemInfoTexts[5].text = $"MoveSpeed : {stat2}";
+        }
+        itemInfoTexts[6].text = $"{_item.itemText}";
+    }
+    public void ConcealItemInfo()
+    {
+        itemInfo.SetActive(false);
+    }
+    public void RevealInvenCanvasByBt()
+    {
+        canvasVisualFlag = true;
+        invenCanvasGroup.alpha = 1f;
+    }
+    public void ConcealInvenCanvasByBt()
+    {
+        canvasVisualFlag = false;
+        invenCanvasGroup.alpha = 0f;
     }
 }

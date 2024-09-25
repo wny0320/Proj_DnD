@@ -88,6 +88,10 @@ public class Manager : MonoBehaviour
         loadSceneName = sceneName;
         StartCoroutine(Load(sceneName));
     }
+    public Scene GetNowScene()
+    {
+        return SceneManager.GetActiveScene();
+    }
 
     private IEnumerator Load(string sceneName)
     {

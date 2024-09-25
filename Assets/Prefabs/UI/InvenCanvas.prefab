@@ -40,8 +40,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 75}
-  m_SizeDelta: {x: -1520, y: -690}
+  m_AnchoredPosition: {x: 0, y: 60}
+  m_SizeDelta: {x: -1520, y: -680}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8731759475635250273
 CanvasRenderer:
@@ -547,7 +547,7 @@ GameObject:
   - component: {fileID: 797545557962836837}
   - component: {fileID: 279292757458982798}
   m_Layer: 5
-  m_Name: InvenPanel
+  m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

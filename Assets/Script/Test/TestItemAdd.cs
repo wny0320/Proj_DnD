@@ -16,4 +16,9 @@ public class TestItemAdd : MonoBehaviour
         Item targetItem = Manager.Data.itemData[targetItemName];
         Manager.Inven.AddItem(targetItem);
     }
+    public void SceneMove()
+    {
+        Manager.Instance.LoadScene($"LobbyMerchantWork");
+        Manager.Inven.ConcealInvenCanvasByBt();
+    }
 }

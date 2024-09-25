@@ -27,7 +27,10 @@ public class Slot : MonoBehaviour
         emptyFlag = _slot.emptyFlag;
         mainSlotFlag = _slot.mainSlotFlag;
         itemDataPos = _itemDataPos;
-        slotItem = _slot.slotItem;
+        if(_slot.slotItem != null)
+            slotItem = _slot.slotItem.ItemDeepCopy();
+        else
+            slotItem = _slot.slotItem;
         itemVisual = _slot.itemVisual;
     }
 }

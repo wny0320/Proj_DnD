@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using UnityEngine;
 using System.Reflection;
 using System;
+using UnityEngine.EventSystems;
 
 public class UI_EventFunc : MonoBehaviour
 {
@@ -12,12 +13,19 @@ public class UI_EventFunc : MonoBehaviour
     private Button button;
     [SerializeField]
     private ButtonFunc buttonFunc;
+    [Header("Plz Assgin Only Need Data")]
+    [Header("Lobby Button Resource")]
+    [SerializeField]
+    GameObject merchantObject;
+    [SerializeField]
+    GameObject stashObject;
     private void Awake()
     {
         GetButtonFunc();
     }
     private void Start()
     {
+        DataSet();
         button = GetComponent<Button>();
         button.onClick.AddListener(() =>
         {
@@ -45,24 +53,62 @@ public class UI_EventFunc : MonoBehaviour
         //코루틴을 가져와서 실행하는 자료
         //https://discussions.unity.com/t/get-ienumerator-from-name-or-convert-methodinfo-to-ienumerator/155580/2
     }
+    private void DataSet()
+    {
+        if(merchantObject != null) merchantObject.SetActive(false);
+        if(stashObject != null) stashObject.SetActive(false);
+    }
     public void MerchantButton()
     {
-        const string MERCHANT_PATH = "MerchantCanvas";
-        const string STASH_PATH = "StashCanvas";
-        GameObject merchantObject = GameObject.Find(MERCHANT_PATH);
-        string activeButtonName = GetComponent<Button>().name;
-        switch(activeButtonName)
+        if(merchantObject == null)
         {
-            case "Adventure":
-                break;
-            case "Merchant":
-                break;
-            case "Stash":
-                break;
-            default:
-                Debug.LogError("Assgined Button Name");
-                return;
+            Debug.LogError("MerchantCanvas Is Not Assigned");
+            return;
         }
+        if(stashObject == null)
+        {
+            Debug.LogError("StashCanvas Is Not Assigned");
+            return;
+        }
+        Manager.Inven.RevealInvenCanvasByBt();
         merchantObject.SetActive(true);
+        stashObject.SetActive(false);
+    }
+    public void AdventureButton()
+    {
+        if (merchantObject == null)
+        {
+            Debug.LogError("MerchantCanvas Is Not Assigned");
+            return;
+        }
+        if (stashObject == null)
+        {
+            Debug.LogError("StashCanvas Is Not Assigned");
+            return;
+        }
+        Manager.Inven.ConcealInvenCanvasByBt();
+        merchantObject.SetActive(false);
+        stashObject.SetActive(false);
+    }
+    public void StashButton()
+    {
+        if (merchantObject == null)
+        {
+            Debug.LogError("MerchantCanvas Is Not Assigned");
+            return;
+        }
+        if (stashObject == null)
+        {
+            Debug.LogError("StashCanvas Is Not Assigned");
+            return;
+        }
+        Manager.Inven.RevealInvenCanvasByBt();
+        merchantObject.SetActive(false);
+        stashObject.SetActive(true);
+    }
+
+    public void MerchantTradeButton()
+    {
+
     }
 }

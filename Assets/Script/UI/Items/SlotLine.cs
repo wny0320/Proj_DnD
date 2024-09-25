@@ -6,5 +6,4 @@ using UnityEngine.EventSystems;
 public class SlotLine : MonoBehaviour
 {
     public List<Slot> mySlots = new List<Slot>();
-    public bool lineEmptyFlag = true; // 해당 줄이 비었는지 나타내는 bool
 }
