@@ -40,9 +40,6 @@ public class PlayerController : BaseController, IReceiveAttack
     void Update()
     {
         stateMachine?.StateUpdateFunc();
-
-        Debug.Log("speed = " + stat.MoveSpeed);
-        Debug.Log("defense = " + stat.Defense);
     }
 
     private void FixedUpdate()
@@ -143,7 +140,7 @@ public class PlayerController : BaseController, IReceiveAttack
                 case WeaponType.Consumable:
                     go.transform.localPosition = new Vector3(0.13f, 0.05f, 1);
                     go.transform.localRotation = Quaternion.Euler(180f, 0, 0);
-                    go.AddComponent<Potion>();
+                    go.AddComponent<Potion>().stat = stat;
                     break;
             }
         }

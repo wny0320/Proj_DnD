@@ -8,6 +8,7 @@ using UnityEngine;
 public class InputManager
 {
     public float mouseSpeed = 2f;
+    public int currentUtilitySlot = 0;
 
     public Action PlayerMove;
     public Action PlayerAttack;
@@ -67,7 +68,7 @@ public class InputManager
 
     private Item CheckSlot(int n, ItemType part)
     {
+        currentUtilitySlot = n;
         return Manager.Inven.equipSlots[part.ToString() + n].slotItem;
-
     }
 }

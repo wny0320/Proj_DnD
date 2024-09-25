@@ -775,6 +775,12 @@ public class InvenManager
         GameObject.Destroy(_slot.itemVisual);
         if(_targetSlotLine == null)
         {
+            //임시 코드일 수도?
+            int _path;
+            if (_slot.name[_slot.name.Length - 1] == '1') _path = 3;
+            else _path = 4;
+            GameObject.Find(EQUIP_UI_PATH + _path + "/ItemImage").GetComponent<Image>().sprite = null;
+            //여기까지
             _slot.SlotReset();
             return;
         }

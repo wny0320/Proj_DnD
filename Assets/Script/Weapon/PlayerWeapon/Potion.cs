@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Potion : Weapon
 {
+    public Stat stat = null;
     bool isDrink = false;
+    int heal = 25;
 
     public override void AttackStart(int level)
     {
@@ -13,13 +15,23 @@ public class Potion : Weapon
 
     public override void AttackEnd()
     {
-        if(isDrink)
+        if (isDrink)
         {
             Global.PlayerWeaponEquip(null);
-            Destroy(gameObject);
+            PotionFunc();
         }
     }
 
-    //해야될 것 - 실제 플레이어 체력 채우기
-    //인벤의 포션 삭제
+    private void PotionFunc()
+    {
+        if (Manager.Game.isPlayerAlive)
+        {
+            stat.Hp = Mathf.Min(stat.Hp + heal, stat.MaxHp);
+            Manager.Inven.DeleteInvenItem
+                (Manager.Inven.equipSlots[ItemType.Consumable.ToString() + Manager.Input.currentUtilitySlot]);
+            Manager.Input.currentUtilitySlot = 0;
+
+            Destroy(gameObject);
+        }
+    }
 }
