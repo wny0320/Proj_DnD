@@ -19,6 +19,10 @@ public class GameManager
     private float gameTimer = 300f;
     private float passedTimer = 0f;
 
+    //Å»Ãâ±¸ °ü·Ã
+    private List<EscapeController> escapeList = new();
+    private int escapeCount = 0;
+
     public void OnAwake()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -28,6 +32,8 @@ public class GameManager
         HpUI = GameUI.transform.GetChild(1).GetComponent<Slider>();
 
         passedTimer = 0f;
+
+        GetEscape();
     }
 
     public void OnFixedUpdate()
@@ -51,6 +57,8 @@ public class GameManager
             OnGameEnd();
             return;
         }
+
+        CheckTimeToEscape();
     }
 
     public void OnGameEnd()
@@ -66,5 +74,24 @@ public class GameManager
             Cursor.lockState = CursorLockMode.Locked;
         else
             Cursor.lockState = CursorLockMode.None;
+    }
+
+    private void GetEscape()
+    {
+        Transform EscapeWay = GameObject.Find("EscapeWay").transform;
+        foreach(Transform child in EscapeWay)
+            escapeList.Add(child.GetComponent<EscapeController>());
+        escapeCount = escapeList.Count;
+    }
+
+    private void CheckTimeToEscape()
+    {
+        if(TimeUI.value > (10f - escapeCount)/10)
+        {
+            int n = Random.Range(0, escapeCount + 1);
+            escapeList[n].EscapeDoorOpen();
+            escapeList.RemoveAt(n);
+            escapeCount--;
+        }
     }
 }
