@@ -14,7 +14,7 @@ public class UI_EventFunc : MonoBehaviour
     [SerializeField]
     private ButtonFunc buttonFunc;
     [Header("Plz Assgin Only Need Data")]
-    [Header("Lobby Button Resource")]
+    [Header("Lobby Button Resources")]
     [SerializeField]
     GameObject merchantObject;
     [SerializeField]
@@ -25,6 +25,9 @@ public class UI_EventFunc : MonoBehaviour
     GameObject armorObject;
     [SerializeField]
     GameObject sellObject;
+    [Header("ShopUI Button Resources")]
+    [SerializeField]
+    ShopUI shopUI;
     private void Awake()
     {
         GetButtonFunc();
@@ -66,16 +69,10 @@ public class UI_EventFunc : MonoBehaviour
     }
     public void MerchantButton()
     {
-        if(merchantObject == null)
-        {
-            Debug.LogError("MerchantCanvas Is Not Assigned");
+        if (merchantObject == null)
             return;
-        }
-        if(stashObject == null)
-        {
-            Debug.LogError("StashCanvas Is Not Assigned");
+        if (stashObject == null)
             return;
-        }
         Manager.Inven.RevealInvenCanvasByBt();
         merchantObject.SetActive(true);
         stashObject.SetActive(false);
@@ -83,15 +80,9 @@ public class UI_EventFunc : MonoBehaviour
     public void AdventureButton()
     {
         if (merchantObject == null)
-        {
-            Debug.LogError("MerchantCanvas Is Not Assigned");
             return;
-        }
         if (stashObject == null)
-        {
-            Debug.LogError("StashCanvas Is Not Assigned");
             return;
-        }
         Manager.Inven.ConcealInvenCanvasByBt();
         merchantObject.SetActive(false);
         stashObject.SetActive(false);
@@ -99,30 +90,27 @@ public class UI_EventFunc : MonoBehaviour
     public void StashButton()
     {
         if (merchantObject == null)
-        {
-            Debug.LogError("MerchantCanvas Is Not Assigned");
             return;
-        }
         if (stashObject == null)
-        {
-            Debug.LogError("StashCanvas Is Not Assigned");
             return;
-        }
         Manager.Inven.RevealInvenCanvasByBt();
         merchantObject.SetActive(false);
         stashObject.SetActive(true);
     }
 
-    public void MerchantPotionButton()
+    public void MerchantConsumButton()
     {
-
+        if (shopUI == null) return;
+        shopUI.ActiveConsumUI();
     }
-    public void MerchantArmorButton()
+    public void MerchantEquipButton()
     {
-
+        if (shopUI == null) return;
+        shopUI.ActiveEquipUI();
     }
     public void MerchantSellButton()
     {
-
+        if (shopUI == null) return;
+        shopUI.ActiveSellUI();
     }
 }

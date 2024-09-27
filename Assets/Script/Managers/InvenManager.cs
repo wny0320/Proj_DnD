@@ -10,7 +10,7 @@ using System.Linq;
 public class InvenManager
 {
     public Dictionary<string, Slot> equipSlots = new Dictionary<string, Slot>();
-    private List<SlotLine> invenSlotLines = new List<SlotLine>();
+    public List<SlotLine> invenSlotLines = new List<SlotLine>();
     private List<SlotLine> stashSlotLines = new List<SlotLine>();
     private int invenSlotRowSize = 5;
     private int invenSlotColumnSize = 9;
@@ -31,6 +31,7 @@ public class InvenManager
     private const string INVENTORY_SLOT_TAG = "InvenSlot";
     private const string EQUIP_SLOT_TAG = "EquipSlot";
     private const string ITEMINFO_PATH = "InvenCanvas/ItemInfoPanel";
+    private const string LOBBY_SCENE_NAME = "LobbyMerchantWork";
     private string[] itemInfoNames = { "ItemName", "ItemType", "ItemRarity", "ItemPart", "ItemStats/ItemStat1", "ItemStats/ItemStat2", "ItemText" };
     #endregion
     private List<TMP_Text> itemInfoTexts;
@@ -145,6 +146,12 @@ public class InvenManager
     {
         return _originPos + new Vector2 (_slotIndex.y, -_slotIndex.x) * UNITSIZE;
     }
+    public List<Item> GetRandomItem(int _itemNum)
+    {
+        List<Item> randomItemList = new List<Item>();
+        UnityEngine.Random.Range(0, _itemNum);
+        return randomItemList;
+    }
     // 고쳐야할 점, slot안에 itemImage가 있는 경우 Slot 안에서만 보임 << 다시보니 아닌거 같은데? 걍 크게 하면 문제 없을듯? << 따로 visual을 만들어서 해결
     public IEnumerator ItemManage()
     {
@@ -154,12 +161,12 @@ public class InvenManager
             yield return null;
             if(invenCanvas == null)
             {
-                Debug.LogError("Inventory Is Not Assigned");
+                //Debug.LogError("Inventory Is Not Assigned");
                 continue;
             }
             if(canvasVisualFlag == false)
             {
-                Debug.Log("Canvas Is Invisible");
+                //Debug.Log("Canvas Is Invisible");
                 continue;
             }
             // 일단 마우스의 위치를 계속 탐색해서 정보 띄우는게 우선
@@ -313,7 +320,7 @@ public class InvenManager
                         if (toSlot == null)
                         {
                             // 마우스가 인벤 밖인데 메인화면이면 아무것도 안함
-                            if(pointer.position.x > 1050 || Manager.Instance.GetNowScene().name.ToString() == "LobbyMerchantWork")
+                            if(pointer.position.x > 1050 || Manager.Instance.GetNowScene().name.ToString() == LOBBY_SCENE_NAME)
                             {
                                 itemVisual.GetComponent<RectTransform>().anchoredPosition = itemVisualOriginPos;
                                 itemVisual.GetComponent<Image>().color = new Color32(255, 255, 255, 0);
@@ -479,7 +486,7 @@ public class InvenManager
                         Global.PlayerArmorUnEquip(fromSlot);
                         // AddItem이 실패한경우 장착한 아이템을 바닥에 버림
                         bool addFlag = AddItem(fromSlot.slotItem);
-                        if (addFlag == false && Manager.Instance.GetNowScene().name.ToString() != "LobbyMerchantWork")
+                        if (addFlag == false && Manager.Instance.GetNowScene().name.ToString() != LOBBY_SCENE_NAME)
                             DumpItem(fromSlot.slotItem);
                         else if (addFlag == false)
                             Debug.Log("Can't Unequip. Inven Is Full");
@@ -501,10 +508,10 @@ public class InvenManager
                             targetImagePath = EQUIP_UI_PATH + 4 + "/ItemImage";
                         else
                             targetImagePath = null;
-                        if (targetImagePath != null)
+                        if (targetImagePath != null && Manager.Instance.GetNowScene().name != LOBBY_SCENE_NAME)
                             GameObject.Find(targetImagePath).GetComponent<Image>().sprite = null;
                         bool addFlag = AddItem(fromSlot.slotItem);
-                        if (addFlag == false && Manager.Instance.GetNowScene().name.ToString() != "LobbyMerchantWork")
+                        if (addFlag == false && Manager.Instance.GetNowScene().name.ToString() != LOBBY_SCENE_NAME)
                             DumpItem(fromSlot.slotItem);
                         else if (addFlag == false)
                             Debug.Log("Can't Unequip. Inven Is Full");
@@ -602,27 +609,30 @@ public class InvenManager
                             equipVisualRectTrans.anchoredPosition = equipRectTrans.anchoredPosition;
                             equipVisualRectTrans.sizeDelta = equipRectTrans.sizeDelta;
                             // 무기나 소모품인경우 UI 동기화
-                            string targetImagePath = null;
-                            if(targetItemType == ItemType.Equipment)
+                            if(Manager.Instance.GetNowScene().name != LOBBY_SCENE_NAME)
                             {
-                                if (targetEquipPart == EquipPart.Weapon)
+                                string targetImagePath = null;
+                                if (targetItemType == ItemType.Equipment)
                                 {
-                                    if (equipPartsName == targetEquipPart.ToString() + 1)
-                                        targetImagePath = EQUIP_UI_PATH + 1 + "/ItemImage";
-                                    else
-                                        targetImagePath = EQUIP_UI_PATH + 2 + "/ItemImage";
-                                    GameObject.Find(targetImagePath).GetComponent<Image>().sprite =
-                                        itemVisual.transform.GetChild(0).GetComponent<Image>().sprite;
+                                    if (targetEquipPart == EquipPart.Weapon)
+                                    {
+                                        if (equipPartsName == targetEquipPart.ToString() + 1)
+                                            targetImagePath = EQUIP_UI_PATH + 1 + "/ItemImage";
+                                        else
+                                            targetImagePath = EQUIP_UI_PATH + 2 + "/ItemImage";
+                                        GameObject.Find(targetImagePath).GetComponent<Image>().sprite =
+                                            itemVisual.transform.GetChild(0).GetComponent<Image>().sprite;
+                                    }
                                 }
-                            }
-                            else if(targetItemType == ItemType.Consumable)
-                            {
-                                if (equipPartsName == targetItemType.ToString() + 1)
-                                    targetImagePath = EQUIP_UI_PATH + 3 + "/ItemImage";
-                                else
-                                    targetImagePath = EQUIP_UI_PATH + 4 + "/ItemImage";
-                                GameObject.Find(targetImagePath).GetComponent<Image>().sprite =
-                                        itemVisual.transform.GetChild(0).GetComponent<Image>().sprite;
+                                else if (targetItemType == ItemType.Consumable)
+                                {
+                                    if (equipPartsName == targetItemType.ToString() + 1)
+                                        targetImagePath = EQUIP_UI_PATH + 3 + "/ItemImage";
+                                    else
+                                        targetImagePath = EQUIP_UI_PATH + 4 + "/ItemImage";
+                                    GameObject.Find(targetImagePath).GetComponent<Image>().sprite =
+                                            itemVisual.transform.GetChild(0).GetComponent<Image>().sprite;
+                                }
                             }
                             Global.PlayerArmorEquip(fromSlot.slotItem);
                             Slot deleteSlot = fromSlotLine[originYIndex].mySlots[originXIndex];
@@ -794,6 +804,7 @@ public class InvenManager
             }
         }
     }
+    
     private void DumpItem(Item _item)
     {
         //Debug.Log("Item Dumped");
@@ -802,6 +813,21 @@ public class InvenManager
         dumpedItem3D.GetComponent<Item3D>().myItem = newItem;
         dumpedItem3D.transform.position = Manager.Game.Player.transform.position;
         dumpedItem3D.transform.position += new Vector3(0, 0.1f, 0);
+    }
+    public List<Item> GetInvenItems()
+    {
+        List<Item> items = new List<Item>();
+        for (int y = 0; y < invenSlotRowSize; y++)
+        {
+            for(int x = 0; x < invenSlotColumnSize; x++)
+            {
+                if(invenSlotLines[y].mySlots[x].mainSlotFlag == true)
+                {
+                    items.Add(invenSlotLines[y].mySlots[x].slotItem);
+                }
+            }
+        }
+        return items;
     }
     public int[] GetItemSize(Item _item) // Enum에 있는 값을 실제 아이템 사이즈 값으로 반환하는 코드, 데이터 매니저로 나중에 옮기든 할듯
     {

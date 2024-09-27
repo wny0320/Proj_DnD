@@ -322,7 +322,7 @@ GameObject:
   - component: {fileID: 4451466391574878189}
   - component: {fileID: 6236692352976827175}
   m_Layer: 5
-  m_Name: ShopItem
+  m_Name: SellItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -435,7 +435,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 6236692352976827175}
         m_TargetAssemblyTypeName: ShopItemUI, Assembly-CSharp
-        m_MethodName: ItemPurchase
+        m_MethodName: ItemSell
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

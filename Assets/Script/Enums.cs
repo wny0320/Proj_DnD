@@ -99,5 +99,7 @@ public enum ButtonFunc
     MerchantButton,
     AdventureButton,
     StashButton,
-
+    MerchantConsumButton,
+    MerchantEquipButton,
+    MerchantSellButton,
 }

@@ -7,14 +7,17 @@ using UnityEngine;
 
 public class DataManager
 {
+    #region ItemData
     //데이터 매니저 - 데이터 관련
     public Dictionary<string, Item> itemData = new Dictionary<string, Item>();
     //아이템 데이터에 들어있는 키 순서대로 이미지 또한 들어가 있어서 itemIamges의 index를 itemImageNum에 넣으면 됨 
     //해당 이미지 대신 프리팹으로 사용
-    //public List<Sprite> itemSprite = new List<Sprite>();
+    public List<Sprite> itemSprite = new List<Sprite>();
     public List<GameObject> itemUIPrefab = new List<GameObject>();
     public List<GameObject> item3DPrefab = new List<GameObject>();
     const string ITEM_PATH = "Items/";
+    #endregion
+    public int gold = 0;
     public void OnAwake()
     {
         GetItemDataJson();
@@ -94,7 +97,7 @@ public class DataManager
             Sprite targetItemImage = Resources.Load<Sprite>(targetSpritePath);
             GameObject targetItemUIPrefab = Resources.Load<GameObject>(targetUIPrefabPath);
             GameObject targetItem3DPrefab = Resources.Load<GameObject>(target3DPrefabPath);
-            //itemSprite.Add(targetItemImage);
+            itemSprite.Add(targetItemImage);
             itemUIPrefab.Add(targetItemUIPrefab);
             item3DPrefab.Add(targetItem3DPrefab);
             index++;
