@@ -8,13 +8,13 @@ public class TestItemAdd : MonoBehaviour
     {
         string targetItemName = "exampleItem";
         Item targetItem = Manager.Data.itemData[targetItemName];
-        Manager.Inven.AddItem(targetItem);
+        //Manager.Inven.AddItem(targetItem);
     }
     public void AddButton2()
     {
         string targetItemName = "BattleAxe";
         Item targetItem = Manager.Data.itemData[targetItemName];
-        Manager.Inven.AddItem(targetItem);
+        //Manager.Inven.AddItem(targetItem);
     }
     public void SceneMove()
     {

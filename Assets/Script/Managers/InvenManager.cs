@@ -12,23 +12,32 @@ public class InvenManager
 {
     public Dictionary<string, Slot> equipSlots = new Dictionary<string, Slot>();
     public List<SlotLine> invenSlotLines = new List<SlotLine>();
+    public Interactive nowInteractive;
+
+    private List<SlotLine> dropSlotLines = new List<SlotLine>();
     private List<SlotLine> stashSlotLines = new List<SlotLine>();
 
+    #region itemBoxSize
     private int invenSlotRowSize = 5;
     private int invenSlotColumnSize = 9;
 
     private int stashSlotRowSize = 11;
     private int stashSlotColumnSize = 9;
 
-    private int storeSlotRowSize = 7;
-    private int storeSlotColumnSize = 6;
+    private int dropSlotRowSize = 5;
+    private int dropSlotColumnSize = 9;
+    #endregion
 
-    private int itemMaxSize = 4; // 2^4 X 2^4 짜리가 최대 크기라고 가정
+    #region itemSettingValue
+    private int itemBitSize = 4; // 2^4 X 2^4 짜리가 최대 크기라고 가정
     private const int UNITSIZE = 80;
     private Vector2 standardPos = new Vector2(40, -40);
+    #endregion
+
     #region stringPath
     private const string INVEN_CANVAS_PATH = "InvenCanvas";
     private const string STASH_CANVAS_PATH = "StashCanvas";
+    private const string DROP_CANVAS_PATH = "DropCanvas";
     private const string INVENTORY_VISUAL_PATH = "InvenCanvas/Panel/ItemArea/ItemVisual";
     private const string EQUIP_UI_PATH = "GameUI/EquipUI";
     private const string ITEM_UI_TAG = "ItemUI";
@@ -36,13 +45,17 @@ public class InvenManager
     private const string EQUIP_SLOT_TAG = "EquipSlot";
     private const string LOBBY_SCENE_NAME = "LobbyMerchantWork";
     #endregion
+
+    #region variable
     private Canvas invenCanvas;
     private Canvas stashCanvas;
+    private Canvas dropCanvas;
     private CanvasGroup invenCanvasGroup;
     private ItemInfo itemInfo;
     private bool canvasVisualFlag;
     private EquipArea equipArea;
     private EquipUI equipUI;
+    #endregion
 
     public void OnStart()
     {
@@ -77,11 +90,16 @@ public class InvenManager
     }
     private void DataAssign()
     {
+        // Canvas 할당
         invenCanvas = GameObject.Find(INVEN_CANVAS_PATH).GetComponent<Canvas>();
         invenCanvasGroup = invenCanvas.GetComponent<CanvasGroup>();
-        stashCanvas = GameObject.Find(STASH_CANVAS_PATH).GetComponent<Canvas>();
         equipArea = invenCanvas.GetComponentInChildren<EquipArea>();
 
+        stashCanvas = GameObject.Find(STASH_CANVAS_PATH).GetComponent<Canvas>();
+
+        dropCanvas = GameObject.Find(DROP_CANVAS_PATH).GetComponent<Canvas>();
+
+        // Canavs에 해당하는 Slot들 할당
         SlotLine[] invenLines = invenCanvas.GetComponentsInChildren<SlotLine>();
         foreach(SlotLine slotLine in invenLines)
             invenSlotLines.Add(slotLine);
@@ -89,6 +107,10 @@ public class InvenManager
         SlotLine[] stashLines = stashCanvas.GetComponentsInChildren<SlotLine>();
         foreach (SlotLine slotLine in stashLines)
             stashSlotLines.Add(slotLine);
+
+        SlotLine[] dropLines = dropCanvas.GetComponentsInChildren<SlotLine>();
+        foreach(SlotLine slotLine in dropLines)
+            dropSlotLines.Add(slotLine);
 
         invenCanvasGroup.alpha = 0f;
         invenCanvasGroup.interactable = false;
@@ -132,7 +154,9 @@ public class InvenManager
         itemInfo.gameObject.SetActive(false);
         MonoBehaviour.DontDestroyOnLoad(invenCanvas);
         MonoBehaviour.DontDestroyOnLoad(stashCanvas);
+        MonoBehaviour.DontDestroyOnLoad(dropCanvas);
         stashCanvas.gameObject.SetActive(false);
+        dropCanvas.gameObject.SetActive(false);
     }
     public Vector2 InvenPosCal(Vector2 _originPos, Vector2 _slotIndex)
     {
@@ -141,14 +165,14 @@ public class InvenManager
     /// <summary>
     /// 랜덤한 아이템을 가진 리스트를 반환해주는 함수
     /// </summary>
-    /// <param name="_minItemNum">아이템 갯수의 최소 갯수</param>
-    /// <param name="_maxItemNum">아이템 갯수의 최대 갯수</param>
+    /// <param name="_minInclusiveItemNum">아이템 갯수의 최소 갯수</param>
+    /// <param name="_maxExclusiveItemNum">아이템 갯수의 최대 갯수</param>
     /// <returns></returns>
-    public List<Item> GetRandomItem(int _minItemNum, int _maxItemNum)
+    public List<Item> GetRandomItem(int _minInclusiveItemNum, int _maxExclusiveItemNum)
     {
         List<Item> randomItemList = new List<Item>();
         // 현재 생성될 갯수를 랜덤하게 정함
-        int itemNum = UnityEngine.Random.Range(_minItemNum, _maxItemNum);
+        int itemNum = UnityEngine.Random.Range(_minInclusiveItemNum, _maxExclusiveItemNum);
         // 아이템의 최대 갯수(최대 인덱스)
         int maxItemIndex = Manager.Data.itemData.Values.Count;
         List<Item> itemList = Manager.Data.itemData.Values.ToList();
@@ -159,6 +183,39 @@ public class InvenManager
             randomItemList.Add(itemList[targetIndex]);
         }
         return randomItemList;
+    }
+    public void ItemBoxReset(ItemBoxType _itemBoxType)
+    {
+        GameObject targetGameObject = null;
+        int targetRowSize = 0;
+        int targetColumnSize = 0;
+        List<SlotLine> targetSlotLines = new List<SlotLine>();
+        if (_itemBoxType == ItemBoxType.Inventory)
+        {
+            targetRowSize = invenSlotRowSize;
+            targetColumnSize = invenSlotColumnSize;
+            targetSlotLines = invenSlotLines;
+        }
+        if (_itemBoxType == ItemBoxType.Stash)
+        {
+            targetRowSize = stashSlotRowSize;
+            targetColumnSize = stashSlotColumnSize;
+            targetSlotLines = stashSlotLines;
+        }
+        if (_itemBoxType == ItemBoxType.Drop)
+        {
+            targetRowSize = dropSlotRowSize;
+            targetColumnSize = dropSlotColumnSize;
+            targetSlotLines = dropSlotLines;
+        }
+        for (int y = 0; y < targetRowSize; y++)
+        {
+            for (int x = 0; x < targetColumnSize; x++)
+            {
+                GameObject.Destroy(targetSlotLines[y].mySlots[x].itemVisual);
+                targetSlotLines[y].mySlots[x].SlotReset();
+            }
+        }
     }
     // 고쳐야할 점, slot안에 itemImage가 있는 경우 Slot 안에서만 보임 << 다시보니 아닌거 같은데? 걍 크게 하면 문제 없을듯? << 따로 visual을 만들어서 해결
     public IEnumerator ItemManage()
@@ -469,7 +526,7 @@ public class InvenManager
                     {
                         // Global.PlayerArmorUnEquip(fromSlot);
                         // AddItem이 실패한경우 장착한 아이템을 바닥에 버림
-                        bool addFlag = AddItem(fromSlot.slotItem);
+                        bool addFlag = AddItem(fromSlot.slotItem, ItemBoxType.Inventory);
                         if (addFlag == false && Manager.Instance.GetNowScene().name.ToString() != LOBBY_SCENE_NAME)
                             DumpItem(fromSlot.slotItem);
                         else if (addFlag == false)
@@ -591,24 +648,45 @@ public class InvenManager
             }
         }
     }
-    public bool AddItem(Item _item)
+    public bool AddItem(Item _item, ItemBoxType _itemBoxType)
     {
         // 비어있는 슬롯을 다 가져오는 코드
-        bool[,] emptyFlag = new bool[invenSlotRowSize,invenSlotColumnSize];
+        bool[,] emptyFlag = null;
+        int targetRowSize = 0;
+        int targetColumnSize = 0;
+        List<SlotLine> targetSlotLines = new List<SlotLine>();
         int[] itemSize = GetItemSize(_item);
+        if (_itemBoxType == ItemBoxType.Inventory)
+        {
+            targetRowSize = invenSlotRowSize;
+            targetColumnSize = invenSlotColumnSize;
+            targetSlotLines = invenSlotLines;
+        }
+        if (_itemBoxType == ItemBoxType.Stash)
+        {
+            targetRowSize = stashSlotRowSize;
+            targetColumnSize = stashSlotColumnSize;
+            targetSlotLines = stashSlotLines;
+        }
+        if (_itemBoxType == ItemBoxType.Drop)
+        {
+            targetRowSize = dropSlotRowSize;
+            targetColumnSize = dropSlotColumnSize;
+            targetSlotLines = dropSlotLines;
+        }
+        emptyFlag = new bool[targetRowSize, targetColumnSize];
         List<Slot> targetedSlotList = new List<Slot>(); // 탐색을 이미 진행한 슬롯의 리스트
         Slot targetSlot = null; // 타겟이 된 슬롯
         Vector2Int targetSlotIndex = new Vector2Int(0,0); // 타켓 슬롯의 인덱스 위치, y x
-        Vector2 targetSlotPos = Vector2.zero;
 
         bool searchSuccessFlag = false; // 빈 공간을 찾기 위한 탐색 플래그
         bool findTargetFlag; // 타겟 슬롯을 찾으면 true가 되는 플래그
 
-        for(int y = 0; y < invenSlotRowSize; y++)
+        for(int y = 0; y < targetRowSize; y++)
         {
-            for (int x = 0; x < invenSlotColumnSize; x++)
+            for (int x = 0; x < targetColumnSize; x++)
             {
-                Slot nowSlot = invenSlotLines[y].mySlots[x];
+                Slot nowSlot = targetSlotLines[y].mySlots[x];
                 if (nowSlot.emptyFlag == false) // 해당 슬롯이 꽉차있다면 패스
                     continue;
                 emptyFlag[y, x] = true;
@@ -621,18 +699,17 @@ public class InvenManager
             // 탐색 관련 변수들 초기화
             findTargetFlag = false;
             // 비어있는 슬롯 하나를 찾는 코드
-            for (int y = 0;y < invenSlotRowSize;y++)
+            for (int y = 0;y < targetRowSize; y++)
             {
                 if (findTargetFlag == true)
                     break;
-                for(int x = 0;x < invenSlotColumnSize;x++)
+                for(int x = 0;x < targetColumnSize; x++)
                 {
                     if (emptyFlag[y, x] == true)
                     {
-                        targetSlot = invenSlotLines[y].mySlots[x];
+                        targetSlot = targetSlotLines[y].mySlots[x];
                         targetSlotIndex.x = y;
                         targetSlotIndex.y = x;
-                        targetSlotPos = targetSlot.GetComponent<RectTransform>().position;
                         if (targetedSlotList.Contains(targetSlot))
                         {
                             targetSlot = null;
@@ -652,7 +729,7 @@ public class InvenManager
                 break;
             bool re_searchFlag = false; // 빈 슬롯을 다시 탐색하는 것을 나타내는 플래그
             // 탐색해야하는 슬롯이(아이템의 크기가) 최대 크기(가방크기)보다 큰 경우 다음 탐색으로
-            if (itemSize[0] + targetSlotIndex.x > invenSlotRowSize || itemSize[1] + targetSlotIndex.y > invenSlotColumnSize)
+            if (itemSize[0] + targetSlotIndex.x > targetRowSize || itemSize[1] + targetSlotIndex.y > targetColumnSize)
                 continue;
 
             // 비어 있는 슬롯 주변을 다시 탐색하는 코드
@@ -683,7 +760,6 @@ public class InvenManager
             Debug.LogError("Empty Slot Is Not Exist");
             return false;
         }
-        //Debug.Log("TargetSlotPos = " + targetSlotIndex);
         targetSlot.emptyFlag = false;
         targetSlot.mainSlotFlag = true;
         targetSlot.itemDataPos = targetSlotIndex;
@@ -693,6 +769,17 @@ public class InvenManager
             targetSlot.slotItem.ItemRandomStat();
             targetSlot.slotItem.randomStatFlag = true;
         }
+        // 눈에 보이는 아이템 프리팹 생성
+        GameObject itemVisual = GameObject.Instantiate(Manager.Data.itemUIPrefab[_item.itemIndex]);
+        itemVisual.transform.SetParent(GameObject.Find(targetSlot.transform.root.name.ToString() + "Panel/ItemArea/ItemVisual").transform);
+        RectTransform visualRect = itemVisual.GetComponent<RectTransform>();
+        RectTransform targetSlotRect = targetSlot.GetComponent<RectTransform>();
+        visualRect.anchoredPosition = targetSlotRect.anchoredPosition + new Vector2(0, -targetSlotIndex.x * UNITSIZE)
+            + new Vector2((itemSize[1] - 1) * (UNITSIZE / 2), -(itemSize[0] - 1) * (UNITSIZE / 2));
+        // itemVisual 정보 저장
+        targetSlot.itemVisual = itemVisual;
+
+        // 나머지 Slot 데이터도 세팅
         int minY = targetSlotIndex.x;
         int maxY = targetSlotIndex.x + itemSize[0];
         int minX = targetSlotIndex.y;
@@ -710,11 +797,6 @@ public class InvenManager
                 nowSlot.itemDataPos = targetSlotIndex;
             }
         }
-        // 눈에 보이는 아이템 프리팹 생성
-        GameObject itemVisual = GameObject.Instantiate(Manager.Data.itemUIPrefab[_item.itemIndex], GameObject.Find(INVENTORY_VISUAL_PATH).transform);
-        itemVisual.transform.localPosition = InvenPosCal(itemVisual.transform.localPosition, targetSlotIndex);
-        // itemVisual 정보 저장
-        targetSlot.itemVisual = itemVisual;
         return true;
     }
     public void DeleteInvenItem(Slot _slot, List<SlotLine> _targetSlotLine = null)
@@ -744,7 +826,7 @@ public class InvenManager
         }
     }
     
-    private void DumpItem(Item _item)
+    public void DumpItem(Item _item)
     {
         //Debug.Log("Item Dumped");
         GameObject dumpedItem3D = GameObject.Instantiate(Manager.Data.item3DPrefab[_item.itemIndex]);
@@ -773,8 +855,8 @@ public class InvenManager
         if(_item == null)
             return null;
         byte targetSize = (byte)_item.itemSize;
-        byte ySize = (byte)(targetSize >> itemMaxSize); // 앞 4비트 확인
-        byte xSize = (byte)(targetSize - (ySize << itemMaxSize)); // 뒤 4비트 확인
+        byte ySize = (byte)(targetSize >> itemBitSize); // 앞 4비트 확인
+        byte xSize = (byte)(targetSize - (ySize << itemBitSize)); // 뒤 4비트 확인
         int[] convertedSize = {ySize,xSize};
         return convertedSize;
     }
@@ -837,5 +919,13 @@ public class InvenManager
     {
         canvasVisualFlag = false;
         invenCanvasGroup.alpha = 0f;
+    }
+    public void RevealDropCanvas()
+    {
+        dropCanvas.gameObject.SetActive(true);
+    }
+    public void ConcealDropCanvas()
+    {
+        dropCanvas.gameObject.SetActive(false);
     }
 }

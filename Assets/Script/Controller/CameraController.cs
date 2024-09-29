@@ -90,9 +90,8 @@ public class CameraController : MonoBehaviour
                 //아이템은 바로 실행
                 hitted.transform.GetComponent<Interactive>()?.InteractiveFunc();
             }
-            else if (hit.transform.tag.Equals("Door") || hit.transform.tag.Equals("Chest"))
+            else
             {
-                //문 여는 코루틴
                 if(interactingCo == null) interactingCo = StartCoroutine(InteractionLoading(hitted));
             }
         }
@@ -145,6 +144,8 @@ public class CameraController : MonoBehaviour
         processText.enabled = false;
         circleProcess.enabled = false;
         interactingCo = null;
+        if (hit.transform.tag.Equals("Door") == false)
+            Manager.Inven.nowInteractive = hitted.transform.GetComponent<Interactive>();
         hitted.transform.GetComponent<Interactive>()?.InteractiveFunc();
     }
 }

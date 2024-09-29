@@ -4,6 +4,19 @@ using UnityEngine;
 
 public class Interactive : MonoBehaviour
 {
+    public List<Item> dropItemList;
+    private void Start()
+    {
+        switch (transform.tag)
+        {
+            case "Chest":
+                dropItemList = Manager.Inven.GetRandomItem(2, 5);
+                break;
+            case "Monster":
+                dropItemList = Manager.Inven.GetRandomItem(1, 4);
+                break;
+        }
+    }
     public void InteractiveFunc()
     {
         switch(transform.tag)
@@ -28,13 +41,9 @@ public class Interactive : MonoBehaviour
         Debug.Log("item");
         Item itemPickedUp = GetComponent<Item3D>().myItem;
         // 인벤토리에 아이템 넣기 성공
-        if(Manager.Inven.AddItem(itemPickedUp) == true)
+        if(Manager.Inven.AddItem(itemPickedUp, ItemBoxType.Inventory) == true)
         {
             Destroy(gameObject);
-        }
-        else
-        {
-            GetComponent<GameObject>().transform.position += new Vector3(0, 1f, 0);
         }
     }
     private void DoorFunc()
@@ -44,10 +53,17 @@ public class Interactive : MonoBehaviour
     private void ChestFunc()
     {
         Debug.Log("chest");
-        List<Item> dropItemList = Manager.Inven.GetRandomItem(2, 5);
+        Manager.Inven.ItemBoxReset(ItemBoxType.Drop);
+        foreach (Item item in dropItemList)
+            Manager.Inven.AddItem(item, ItemBoxType.Drop);
+        Manager.Inven.RevealDropCanvas();
     }
     private void MonsterFunc()
     {
         Debug.Log("monster");
+        Manager.Inven.ItemBoxReset(ItemBoxType.Drop);
+        foreach (Item item in dropItemList)
+            Manager.Inven.AddItem(item, ItemBoxType.Drop);
+        Manager.Inven.RevealDropCanvas();
     }
 }

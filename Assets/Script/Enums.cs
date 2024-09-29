@@ -103,3 +103,10 @@ public enum ButtonFunc
     MerchantEquipButton,
     MerchantSellButton,
 }
+
+public enum ItemBoxType
+{
+    Inventory,
+    Stash,
+    Drop,
+}
