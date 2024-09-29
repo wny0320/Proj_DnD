@@ -252,6 +252,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bandit
       objectReference: {fileID: 0}
+    - target: {fileID: 1000014232435074, guid: 0a36d45e1b007e14b884de828f3b6938, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4000012322933416, guid: 0a36d45e1b007e14b884de828f3b6938, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.9
@@ -711,6 +715,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae3b41df4ff6385439d1bd7403de2a30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dropItemList: []
 --- !u!1 &510195017
 GameObject:
   m_ObjectHideFlags: 0
@@ -1139,63 +1144,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1001 &712291617
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1000014232435074, guid: 0a36d45e1b007e14b884de828f3b6938, type: 3}
-      propertyPath: m_Name
-      value: Bandit (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000012322933416, guid: 0a36d45e1b007e14b884de828f3b6938, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.12
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000012322933416, guid: 0a36d45e1b007e14b884de828f3b6938, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000012322933416, guid: 0a36d45e1b007e14b884de828f3b6938, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -14.89
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000012322933416, guid: 0a36d45e1b007e14b884de828f3b6938, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000012322933416, guid: 0a36d45e1b007e14b884de828f3b6938, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000012322933416, guid: 0a36d45e1b007e14b884de828f3b6938, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000012322933416, guid: 0a36d45e1b007e14b884de828f3b6938, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000012322933416, guid: 0a36d45e1b007e14b884de828f3b6938, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000012322933416, guid: 0a36d45e1b007e14b884de828f3b6938, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000012322933416, guid: 0a36d45e1b007e14b884de828f3b6938, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 0a36d45e1b007e14b884de828f3b6938, type: 3}
 --- !u!114 &728503116 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6857466225919675107, guid: 1d09cda526b0b364a949953a54a92dfb, type: 3}
@@ -1404,6 +1352,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae3b41df4ff6385439d1bd7403de2a30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dropItemList: []
 --- !u!65 &1027308314
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1650,6 +1599,10 @@ PrefabInstance:
     - target: {fileID: 756825989557459475, guid: 170cbfc97c4833243851baf113ba3037, type: 3}
       propertyPath: m_Name
       value: Crusader tank
+      objectReference: {fileID: 0}
+    - target: {fileID: 756825989557459475, guid: 170cbfc97c4833243851baf113ba3037, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8545092920387436094, guid: 170cbfc97c4833243851baf113ba3037, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1991,6 +1944,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: minotaur1
       objectReference: {fileID: 0}
+    - target: {fileID: 6207259324899238175, guid: b99f54537f6a6ba47b175b85a86632c2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2201,6 +2158,5 @@ SceneRoots:
   - {fileID: 589680280}
   - {fileID: 3679860120760153029}
   - {fileID: 155940327}
-  - {fileID: 712291617}
   - {fileID: 528931616921449805}
   - {fileID: 266159629}

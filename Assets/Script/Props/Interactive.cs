@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class Interactive : MonoBehaviour
 {
+    private bool isInteractiving = false;
+    private float distance = 3f;
+
     public List<Item> dropItemList;
+
     private void Start()
     {
         switch (transform.tag)
@@ -17,8 +21,24 @@ public class Interactive : MonoBehaviour
                 break;
         }
     }
+
+    private void FixedUpdate()
+    {
+        if (!isInteractiving) return;
+
+        if (Manager.Game.Player == null) return;
+        if ((Manager.Game.Player.transform.position - transform.position).magnitude > distance || 
+            Input.GetKeyDown(KeyCode.Tab))
+        {
+            isInteractiving = false;
+            Manager.Inven.ConcealDropCanvas();
+        }
+    }
+
     public void InteractiveFunc()
     {
+        isInteractiving = true;
+
         switch(transform.tag)
         {
             case "Item":
@@ -54,6 +74,7 @@ public class Interactive : MonoBehaviour
     {
         Debug.Log("chest");
         Manager.Inven.RevealDropCanvas();
+        Manager.Inven.RevealInvenCanvasByBt();
         Manager.Inven.ItemBoxReset(ItemBoxType.Drop);
         foreach (Item item in dropItemList)
             Manager.Inven.AddItem(item, ItemBoxType.Drop);
@@ -62,6 +83,7 @@ public class Interactive : MonoBehaviour
     {
         Debug.Log("monster");
         Manager.Inven.RevealDropCanvas();
+        Manager.Inven.RevealInvenCanvasByBt();
         Manager.Inven.ItemBoxReset(ItemBoxType.Drop);
         foreach (Item item in dropItemList)
             Manager.Inven.AddItem(item, ItemBoxType.Drop);

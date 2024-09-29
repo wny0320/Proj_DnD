@@ -16,6 +16,8 @@ public class Weapon : MonoBehaviour
 
     private void Start()
     {
+        gameObject.layer = 0;
+
         cols = GetComponents<Collider>();
         foreach(Collider collider in cols)
             collider.enabled = false;
