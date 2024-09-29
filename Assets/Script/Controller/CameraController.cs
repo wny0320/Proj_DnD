@@ -85,10 +85,10 @@ public class CameraController : MonoBehaviour
 
         if (isPickupActivate && Input.GetKeyDown(KeyCode.F))
         {
-            if (hit.transform.tag.Equals("Item"))
+            if (hit.transform.root.tag.Equals("Item"))
             {
                 //아이템은 바로 실행
-                hitted.transform.GetComponent<Interactive>()?.InteractiveFunc();
+                hitted.transform.root.GetComponent<Interactive>()?.InteractiveFunc();
             }
             else
             {
@@ -107,8 +107,8 @@ public class CameraController : MonoBehaviour
             InteractiveUI.SetActive(true);
             intText.enabled = true;
             fImg.enabled = true;
-            if (hit.transform.tag.Equals("Item")) intText.text = $"{hit.transform.name} 줍기";
-            else intText.text = $"{hit.transform.name} 열기";
+            if (hit.transform.root.tag.Equals("Item")) intText.text = $"{hit.transform.root.name} 줍기";
+            else intText.text = $"{hit.transform.root.name} 열기";
         }
         else
         {
@@ -144,8 +144,8 @@ public class CameraController : MonoBehaviour
         processText.enabled = false;
         circleProcess.enabled = false;
         interactingCo = null;
-        if (hit.transform.tag.Equals("Door") == false)
-            Manager.Inven.nowInteractive = hitted.transform.GetComponent<Interactive>();
-        hitted.transform.GetComponent<Interactive>()?.InteractiveFunc();
+        if (hit.transform.root.tag.Equals("Door") == false)
+            Manager.Inven.nowInteractive = hitted.transform.root.GetComponent<Interactive>();
+        hitted.transform.root.GetComponent<Interactive>()?.InteractiveFunc();
     }
 }

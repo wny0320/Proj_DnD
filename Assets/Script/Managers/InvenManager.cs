@@ -381,7 +381,7 @@ public class InvenManager
                                 if (go.gameObject.TryGetComponent(out Slot _slot))
                                     toSlot = _slot;
                         // 목표 지점에 toSlot이 존재하지 않는 경우
-                        if (toSlot == null)
+                        if (toSlot == null && fromCanvas.Equals(invenCanvas))
                         {
                             // 마우스가 인벤 밖인데 메인화면이면 아무것도 안함
                             if(pointer.position.x > 1050 || Manager.Instance.GetNowScene().name.ToString() == LOBBY_SCENE_NAME)

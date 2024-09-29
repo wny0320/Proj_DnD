@@ -53,17 +53,17 @@ public class Interactive : MonoBehaviour
     private void ChestFunc()
     {
         Debug.Log("chest");
+        Manager.Inven.RevealDropCanvas();
         Manager.Inven.ItemBoxReset(ItemBoxType.Drop);
         foreach (Item item in dropItemList)
             Manager.Inven.AddItem(item, ItemBoxType.Drop);
-        Manager.Inven.RevealDropCanvas();
     }
     private void MonsterFunc()
     {
         Debug.Log("monster");
+        Manager.Inven.RevealDropCanvas();
         Manager.Inven.ItemBoxReset(ItemBoxType.Drop);
         foreach (Item item in dropItemList)
             Manager.Inven.AddItem(item, ItemBoxType.Drop);
-        Manager.Inven.RevealDropCanvas();
     }
 }
