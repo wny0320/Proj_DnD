@@ -223,6 +223,7 @@ public class InvenManager
         float timer = 0f;
         while (true)
         {
+            #region 마우스 커서
             yield return null;
             if(invenCanvas == null)
             {
@@ -279,10 +280,22 @@ public class InvenManager
             // SlotLine 찾기
             Canvas fromCanvas = fromSlot.transform.root.GetComponent<Canvas>();
             List<SlotLine> fromSlotLine = new List<SlotLine>();
+            ItemBoxType fromItemBoxType = ItemBoxType.Null;
             if (fromCanvas.Equals(invenCanvas))
+            {
                 fromSlotLine = invenSlotLines;
+                fromItemBoxType = ItemBoxType.Inventory;
+            }
             else if(fromCanvas.Equals(stashCanvas))
+            {
                 fromSlotLine = stashSlotLines;
+                fromItemBoxType = ItemBoxType.Stash;
+            }
+            else if(fromCanvas.Equals(stashCanvas))
+            {
+                fromSlotLine = dropSlotLines;
+                fromItemBoxType = ItemBoxType.Drop;
+            }
             Vector2Int fromPos = -Vector2Int.one;
 
             // 접근하려는 슬롯이 메인 슬롯이 아닐 경우, 메인슬롯의 아이템 데이터로 치환
@@ -314,7 +327,7 @@ public class InvenManager
             {
                 RevealItemInfo(fromSlot.slotItem);
             }
-
+            #endregion
             // 눌린 마우스 버튼키 받기
             int mousebutton = -1;
             // 좌클릭
@@ -382,7 +395,7 @@ public class InvenManager
                             else
                             {
                                 DumpItem(fromSlot.slotItem);
-                                DeleteInvenItem(fromSlot, fromSlotLine);
+                                DeleteInvenItem(fromSlot, fromItemBoxType);
                                 break;
                             }
                         }
@@ -518,7 +531,7 @@ public class InvenManager
                             for (int i = 0; i < equipArea.consumList.Count; i++)
                             {
                                 if (fromSlot.Equals(equipArea.consumList[i]))
-                                    equipUI.uiSlots[i + (equipArea.weaponList.Count - 1)].itemImage.sprite = null;
+                                    equipUI.uiSlots[i + equipArea.weaponList.Count].itemImage.sprite = null;
                             }
                         }
                     }
@@ -626,13 +639,13 @@ public class InvenManager
                                 else if (targetItemType == ItemType.Consumable)
                                 {
                                     int index = equipArea.consumList.IndexOf(equipSlot);
-                                    equipUI.uiSlots[index + (equipArea.weaponList.Count - 1)].itemImage.sprite =
+                                    equipUI.uiSlots[index + equipArea.weaponList.Count].itemImage.sprite =
                                         itemVisual.transform.GetChild(0).GetComponent<Image>().sprite;
                                 }
                             }
                             //Global.PlayerArmorEquip(fromSlot.slotItem);
                             Slot deleteSlot = fromSlotLine[originYIndex].mySlots[originXIndex];
-                            DeleteInvenItem(deleteSlot, fromSlotLine);
+                            DeleteInvenItem(deleteSlot, fromItemBoxType);
                             //Debug.Log(GameObject.Find(targetImagePath).GetComponent<Image>().sprite);
                             continue;
                         }
@@ -799,19 +812,31 @@ public class InvenManager
         }
         return true;
     }
-    public void DeleteInvenItem(Slot _slot, List<SlotLine> _targetSlotLine = null)
+    public void DeleteInvenItem(Slot _slot, ItemBoxType _itemBoxType)
     {
+        List<SlotLine> targetSlotLines = new List<SlotLine>();
+        if(_itemBoxType == ItemBoxType.Inventory)
+        {
+            targetSlotLines = invenSlotLines;
+        }
+        if(_itemBoxType == ItemBoxType.Stash)
+        {
+            targetSlotLines = stashSlotLines;
+        }
+        if(_itemBoxType == ItemBoxType.Drop)
+        {
+            targetSlotLines = dropSlotLines;
+        }
         int[] itemSize = GetItemSize(_slot.slotItem);
         Vector2Int slotPos = _slot.itemDataPos;
         GameObject.Destroy(_slot.itemVisual);
-        if(_targetSlotLine == null)
+        if(_itemBoxType == ItemBoxType.Equip)
         {
-            //임시 코드일 수도?
-            int _path;
-            if (_slot.name[_slot.name.Length - 1] == '1') _path = 3;
-            else _path = 4;
-            GameObject.Find(EQUIP_UI_PATH + _path + "/ItemImage").GetComponent<Image>().sprite = null;
-            //여기까지
+            if(equipArea.consumList.Contains(_slot))
+            {
+                int index = equipArea.consumList.IndexOf(_slot);
+                equipUI.uiSlots[equipArea.weaponList.Count + index].itemImage.sprite = null;
+            }
             _slot.SlotReset();
             return;
         }
@@ -819,7 +844,7 @@ public class InvenManager
         {
             for(int x = 0; x < itemSize[0]; x++)
             {
-                Slot nowSlot = _targetSlotLine[slotPos.x + x].mySlots[slotPos.y + y];
+                Slot nowSlot = targetSlotLines[slotPos.x + x].mySlots[slotPos.y + y];
                 nowSlot.SlotReset();
                 //Debug.Log((_targetMainSlotIndex.x + x) + ", " + (_targetMainSlotIndex.y + y) + " Slot Delete Data");
             }
@@ -899,10 +924,15 @@ public class InvenManager
             itemInfo.itemPart.text = $"{_item.equipPart}";
         else
             itemInfo.itemPart.text = "";
-        if(stat1 != float.NaN)
+        if(_item.itemType == ItemType.Equipment)
         {
             itemInfo.itemStat1.text = $"{stat1Name} : {stat1}";
             itemInfo.itemStat2.text = $"MoveSpeed : {stat2}";
+        }
+        else
+        {
+            itemInfo.itemStat1.text = "";
+            itemInfo.itemStat2.text = "";
         }
         itemInfo.itemText.text = $"{_item.itemText}";
     }

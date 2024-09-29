@@ -109,4 +109,6 @@ public enum ItemBoxType
     Inventory,
     Stash,
     Drop,
+    Equip,
+    Null,
 }

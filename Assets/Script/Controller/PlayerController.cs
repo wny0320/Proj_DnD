@@ -94,11 +94,11 @@ public class PlayerController : BaseController, IReceiveAttack
     #region 무기 장착 및 해제
     IEnumerator CheckWeaponOnStart()
     {
-        while(!Manager.Inven.equipSlots.ContainsKey(EquipPart.Weapon.ToString() + 1))
+        while(!Manager.Inven.equipSlots.ContainsKey(EquipPart.Weapon.ToString() + 0))
         {
             yield return null;
         }
-        Item weapon = Manager.Inven.equipSlots[EquipPart.Weapon.ToString() + 1].slotItem;
+        Item weapon = Manager.Inven.equipSlots[EquipPart.Weapon.ToString() + 0].slotItem;
         
         WeaponEquip(weapon);
     }

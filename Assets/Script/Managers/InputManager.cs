@@ -37,25 +37,25 @@ public class InputManager
         }
         else if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            Item weapon = CheckSlot(1, EquipPart.Weapon);
+            Item weapon = CheckSlot(0, EquipPart.Weapon);
 
             Global.PlayerWeaponEquip(weapon);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            Item weapon = CheckSlot(2, EquipPart.Weapon);
+            Item weapon = CheckSlot(1, EquipPart.Weapon);
 
             Global.PlayerWeaponEquip(weapon);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            Item item = CheckSlot(1, ItemType.Consumable);
+            Item item = CheckSlot(0, ItemType.Consumable);
             if (item == null) return;
             Global.PlayerWeaponEquip(item);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            Item item = CheckSlot(2, ItemType.Consumable);
+            Item item = CheckSlot(1, ItemType.Consumable);
             if (item == null) return;
             Global.PlayerWeaponEquip(item);
         }
