@@ -62,16 +62,24 @@ public class WatcherController : BaseController, IReceiveAttack
         if (stat.Hp <= 0)
         {
             stat.Hp = 0;
-            transform.rotation = Quaternion.Euler(Vector3.zero);
-
-            animator.SetBool("EnemyMove", false);
-
-            rigidBody.isKinematic = true;
-            GetComponentInChildren<Collider>().isTrigger = true;
-
-            ChangeState(EnemyState.Die);
-            states.Clear();
-            stateMachine = null;
+            OnDead();
         }
+    }
+
+    private void OnDead()
+    {
+        transform.rotation = Quaternion.Euler(Vector3.zero);
+
+        animator.SetBool("EnemyMove", false);
+
+        rigidBody.isKinematic = true;
+        GetComponentInChildren<Collider>().isTrigger = true;
+
+        ChangeState(EnemyState.Die);
+        states.Clear();
+        stateMachine = null;
+
+        gameObject.AddComponent<Interactive>();
+        Destroy(gameObject.GetComponent<BaseController>());
     }
 }

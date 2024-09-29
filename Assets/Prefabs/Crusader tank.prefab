@@ -1,36 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &110524206891389484
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3526905503098667937}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_RightHandRing4
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3526905503098667937
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 110524206891389484}
-  serializedVersion: 2
-  m_LocalRotation: {x: -1.3877788e-17, y: 3.8163916e-17, z: -3.469447e-17, w: 1}
-  m_LocalPosition: {x: 0.007037048, y: -0.024989853, z: 0.0037577343}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2636249857853822790}
-  m_LocalEulerAnglesHint: {x: -5.217034e-15, y: 9.129809e-15, z: 0.0000014200283}
 --- !u!1 &141288903094869393
 GameObject:
   m_ObjectHideFlags: 0
@@ -40,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7630583834023763051}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Crusader_tank_LeftHandIndex1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +41,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4049519708596357460}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: chain12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,37 +64,6 @@ Transform:
   - {fileID: 5922741668195382225}
   m_Father: {fileID: 3796883150731939103}
   m_LocalEulerAnglesHint: {x: -0.86538666, y: -0.14689629, z: -0.60321456}
---- !u!1 &191896468857871628
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5704635477495989943}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_LeftHandIndexEffector
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5704635477495989943
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 191896468857871628}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.38570917, y: -0.6469632, z: -0.15840046, w: 0.6384171}
-  m_LocalPosition: {x: 0.2499197, y: 1.2484449, z: 0.07891254}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 640632968594878404}
-  m_LocalEulerAnglesHint: {x: -73.82717, y: 36.59912, z: -175.00261}
 --- !u!1 &239607935328460578
 GameObject:
   m_ObjectHideFlags: 0
@@ -135,7 +73,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 93162406614589144}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Crusader_tank_LeftHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -163,38 +101,6 @@ Transform:
   - {fileID: 2442876196508560341}
   m_Father: {fileID: 6693034184571957519}
   m_LocalEulerAnglesHint: {x: 0.00009357914, y: 0.00022676792, z: 0.00011075795}
---- !u!1 &267895975636987836
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2636249857853822790}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_RightHandRing3
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2636249857853822790
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 267895975636987836}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.006070545, y: -0.04982255, z: -0.37382782, w: 0.9261391}
-  m_LocalPosition: {x: 0.009441605, y: -0.026494216, z: 0.003212943}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 3526905503098667937}
-  m_Father: {fileID: 3903598909526011079}
-  m_LocalEulerAnglesHint: {x: -1.4900409, y: -5.558197, z: -43.889442}
 --- !u!1 &301641308528157813
 GameObject:
   m_ObjectHideFlags: 0
@@ -205,7 +111,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1411720152836761688}
   - component: {fileID: 2443115601835261175}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: body14
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -405,66 +311,6 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.06980381, y: 0.336455, z: 0.12257225}
     m_Extent: {x: 0.039138697, y: 0.03880024, z: 0.017908283}
   m_DirtyAABB: 0
---- !u!1 &355950532898696613
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 640632968594878404}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_Reference
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &640632968594878404
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 355950532898696613}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0.023140034, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1862262302150600450}
-  - {fileID: 8850559659662723313}
-  - {fileID: 1597219069960878780}
-  - {fileID: 7509592060639003409}
-  - {fileID: 4201399602504543790}
-  - {fileID: 1581196378941645940}
-  - {fileID: 1481741207892469221}
-  - {fileID: 7930640637351496077}
-  - {fileID: 5704635477495989943}
-  - {fileID: 6964903296507294969}
-  - {fileID: 5871927781298263454}
-  - {fileID: 5416015673190193745}
-  - {fileID: 5748606918419815859}
-  - {fileID: 8365677544241654226}
-  - {fileID: 6687243212884909303}
-  - {fileID: 119931821390717885}
-  - {fileID: 1754365053567436421}
-  - {fileID: 120667717576398648}
-  - {fileID: 4519491228015485931}
-  - {fileID: 5039311911912164369}
-  - {fileID: 1129292651036169102}
-  - {fileID: 229673296996147565}
-  - {fileID: 6990526743740792845}
-  - {fileID: 7062339178301507061}
-  - {fileID: 7326768484162591667}
-  - {fileID: 3729545607946866800}
-  - {fileID: 1528158768532543371}
-  - {fileID: 3159155812517835271}
-  - {fileID: 5112479280815129154}
-  m_Father: {fileID: 8545092920387436094}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &478808767797197512
 GameObject:
   m_ObjectHideFlags: 0
@@ -474,7 +320,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4454167261159205676}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: chain8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -506,7 +352,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4322829141753678541}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: chain4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -538,7 +384,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2354028780729572658}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Crusader_tank_RightHandPinky3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -561,69 +407,6 @@ Transform:
   - {fileID: 2055786855806666479}
   m_Father: {fileID: 1623267409158997629}
   m_LocalEulerAnglesHint: {x: 1.747843, y: 1.3922365, z: -24.08774}
---- !u!1 &653104988222230258
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5748606918419815859}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_LeftHandThumbEffector
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5748606918419815859
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 653104988222230258}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.078121446, y: 0.82644844, z: 0.24972957, w: 0.49851295}
-  m_LocalPosition: {x: 0.27987307, y: 1.2752455, z: 0.07396167}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 640632968594878404}
-  m_LocalEulerAnglesHint: {x: 24.946884, y: 49.95194, z: 37.26148}
---- !u!1 &690812491080012954
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 666763573514464104}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_LeftArm
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &666763573514464104
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 690812491080012954}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.27670902, y: 0.23574293, z: 0.317319, w: 0.8758802}
-  m_LocalPosition: {x: -0.1176274, y: -0.030249938, z: -0.07440383}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 7583897560492337218}
-  m_Father: {fileID: 868774213568434638}
-  m_LocalEulerAnglesHint: {x: -3.16254, y: 9.676079, z: 37.615906}
 --- !u!1 &701114613139508082
 GameObject:
   m_ObjectHideFlags: 0
@@ -633,7 +416,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3796883150731939103}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: chain11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -665,7 +448,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4357577160694514631}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: toga_right_front2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -699,12 +482,11 @@ GameObject:
   - component: {fileID: 8545092920387436094}
   - component: {fileID: 3467835010696558084}
   - component: {fileID: 7263238691131995058}
-  - component: {fileID: 5050470783380649403}
-  - component: {fileID: 4181024569135044960}
   - component: {fileID: 7033820784028602009}
+  - component: {fileID: 6808074778367618777}
   m_Layer: 9
   m_Name: Crusader tank
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -723,7 +505,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4344606930410183146}
-  - {fileID: 640632968594878404}
   - {fileID: 1145920386594141929}
   - {fileID: 2456086870760785629}
   m_Father: {fileID: 0}
@@ -771,56 +552,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!54 &5050470783380649403
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 756825989557459475}
-  serializedVersion: 4
-  m_Mass: 9999999
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 80
-  m_CollisionDetection: 0
---- !u!136 &4181024569135044960
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 756825989557459475}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 1.8
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!114 &7033820784028602009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -836,6 +567,27 @@ MonoBehaviour:
   stat: {fileID: 11400000, guid: da903b34635a8284c948009f15c86d45, type: 2}
   isAlive: 1
   weapon: {fileID: 7157164645354133614}
+--- !u!135 &6808074778367618777
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 756825989557459475}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.2
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &839760579785938043
 GameObject:
   m_ObjectHideFlags: 0
@@ -845,7 +597,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2926797580306403767}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Crusader_tank_LeftArm_shoulder1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -877,7 +629,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5889191764084823746}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: heel_flap_left2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -899,38 +651,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8166995263423509853}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &905642578481945373
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 957413486429750658}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_RightHandPinky3
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &957413486429750658
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 905642578481945373}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.012360914, y: 0.01495323, z: -0.20880376, w: 0.97776514}
-  m_LocalPosition: {x: 0.003236389, y: -0.02151779, z: -0.0027093922}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 7758167259601512614}
-  m_Father: {fileID: 8890147660129162038}
-  m_LocalEulerAnglesHint: {x: 1.7431169, y: 1.3804436, z: -24.088062}
 --- !u!1 &943434114569981344
 GameObject:
   m_ObjectHideFlags: 0
@@ -940,7 +660,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6693034184571957519}
-  m_Layer: 9
+  - component: {fileID: 2915112498545250153}
+  - component: {fileID: 3894878748445068883}
+  - component: {fileID: 8668068027679464853}
+  m_Layer: 0
   m_Name: Crusader_tank_LeftForeArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -963,6 +686,102 @@ Transform:
   - {fileID: 93162406614589144}
   m_Father: {fileID: 6406321525477903845}
   m_LocalEulerAnglesHint: {x: -0.0020309393, y: 0.001996015, z: -0.0010679321}
+--- !u!136 &2915112498545250153
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 943434114569981344}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.07337195
+  m_Height: 0.36685973
+  m_Direction: 1
+  m_Center: {x: 0, y: -0.18342987, z: 0}
+--- !u!54 &3894878748445068883
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 943434114569981344}
+  serializedVersion: 4
+  m_Mass: 12.5
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!144 &8668068027679464853
+CharacterJoint:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 943434114569981344}
+  m_ConnectedBody: {fileID: 3033160209196683898}
+  m_ConnectedArticulationBody: {fileID: 0}
+  m_Anchor: {x: 0, y: 0, z: 0}
+  m_Axis: {x: -1, y: 0, z: 0}
+  m_AutoConfigureConnectedAnchor: 1
+  m_ConnectedAnchor: {x: -0.18693459, y: -0.17074686, z: -0.007815585}
+  serializedVersion: 2
+  m_SwingAxis: {x: 0, y: 0, z: 1}
+  m_TwistLimitSpring:
+    spring: 0
+    damper: 0
+  m_LowTwistLimit:
+    limit: -90
+    bounciness: 0
+    contactDistance: 0
+  m_HighTwistLimit:
+    limit: 0
+    bounciness: 0
+    contactDistance: 0
+  m_SwingLimitSpring:
+    spring: 0
+    damper: 0
+  m_Swing1Limit:
+    limit: 0
+    bounciness: 0
+    contactDistance: 0
+  m_Swing2Limit:
+    limit: 0
+    bounciness: 0
+    contactDistance: 0
+  m_EnableProjection: 0
+  m_ProjectionDistance: 0.1
+  m_ProjectionAngle: 180
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_EnableCollision: 0
+  m_EnablePreprocessing: 0
+  m_MassScale: 1
+  m_ConnectedMassScale: 1
 --- !u!1 &957741860476369451
 GameObject:
   m_ObjectHideFlags: 0
@@ -973,7 +792,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4431942035622657308}
   - component: {fileID: 1392380609390263530}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: body9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1173,69 +992,6 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.54058045, y: 0.270906, z: -0.09748174}
     m_Extent: {x: 0.06579828, y: 0.079398274, z: 0.08588828}
   m_DirtyAABB: 0
---- !u!1 &965207539922945676
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 418717253393771084}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_LeftHandRing3
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &418717253393771084
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 965207539922945676}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.01727638, y: 0.061351202, z: 0.4403431, w: 0.8955644}
-  m_LocalPosition: {x: -0.009441605, y: -0.026494216, z: 0.003212943}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1196935611834452045}
-  m_Father: {fileID: 2111058493156557854}
-  m_LocalEulerAnglesHint: {x: -1.3228707, y: 7.1884303, z: 52.2828}
---- !u!1 &974089016559596669
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1129292651036169102}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_RightHandIndexEffector
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1129292651036169102
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 974089016559596669}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.34506214, y: 0.4871477, z: 0.7536421, w: -0.27503255}
-  m_LocalPosition: {x: 0.37751037, y: 0.98246014, z: -0.6259829}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 640632968594878404}
-  m_LocalEulerAnglesHint: {x: -76.45373, y: 30.189445, z: 143.46709}
 --- !u!1 &999249138591128933
 GameObject:
   m_ObjectHideFlags: 0
@@ -1245,7 +1001,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5641159502493366649}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Crusader_tank_RightHandMiddle3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1277,7 +1033,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2650064974280969575}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: chain10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1300,38 +1056,6 @@ Transform:
   - {fileID: 3796883150731939103}
   m_Father: {fileID: 8929191894818537506}
   m_LocalEulerAnglesHint: {x: -0.8653715, y: -0.14709517, z: -0.6031919}
---- !u!1 &1020162810219336156
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2247997163534384374}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_RightShoulder
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2247997163534384374
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1020162810219336156}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.000000026777668, y: -0.000000104125434, z: 0.000000050939743, w: 1}
-  m_LocalPosition: {x: 0.1277456, y: 0.0739682, z: -0.031493258}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 8717977800247202747}
-  m_Father: {fileID: 6231714059059016390}
-  m_LocalEulerAnglesHint: {x: 9.129809e-15, y: -1.7738217e-30, z: -9.129809e-15}
 --- !u!1 &1063166855647885249
 GameObject:
   m_ObjectHideFlags: 0
@@ -1342,7 +1066,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8852460840989815045}
   - component: {fileID: 36869554790265092}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: body13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1552,7 +1276,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4486784536172105111}
   - component: {fileID: 3996010132673740828}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: body7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1762,7 +1486,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3468439601998752396}
   - component: {fileID: 7983614463292615614}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: body12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1971,7 +1695,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4567688091279712078}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: toga_right_front3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1993,37 +1717,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4357577160694514631}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1206978994761151414
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4201399602504543790}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_HipsEffector
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4201399602504543790
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1206978994761151414}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.018389722, y: 0.40181652, z: -0.02669633, w: 0.91514623}
-  m_LocalPosition: {x: 0.023573894, y: 0.857178, z: -0.1956275}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 640632968594878404}
-  m_LocalEulerAnglesHint: {x: -0.040154636, y: 18.803673, z: -0.27281356}
 --- !u!1 &1298282546649730035
 GameObject:
   m_ObjectHideFlags: 0
@@ -2033,7 +1726,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4926345951060232577}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: flap_under_the_knee_left2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2064,7 +1757,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4162803267923035050}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: bag_back2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2095,7 +1788,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3948217005624678684}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: bag_right2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2126,7 +1819,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 100096737761316697}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Crusader_tank_LeftHandMiddle2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2158,7 +1851,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1402117021929351438}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Crusader_tank_LeftHandRing1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2190,7 +1883,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2094337935698569160}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: flap_under_the_knee_right1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2213,38 +1906,6 @@ Transform:
   - {fileID: 1939728026883122863}
   m_Father: {fileID: 5607159167589188288}
   m_LocalEulerAnglesHint: {x: 8.402205, y: -86.339905, z: 103.30423}
---- !u!1 &1461766834887387807
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3899427928601807735}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_RightHandRing1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3899427928601807735
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1461766834887387807}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.01449658, y: -0.10423417, z: -0.641883, w: 0.75954676}
-  m_LocalPosition: {x: 0.069974706, y: -0.092201844, z: 0.02491062}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 3903598909526011079}
-  m_Father: {fileID: 8797183846530114192}
-  m_LocalEulerAnglesHint: {x: -6.4184213, y: -10.257351, z: -79.82474}
 --- !u!1 &1483180684857286718
 GameObject:
   m_ObjectHideFlags: 0
@@ -2254,7 +1915,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8473746516331958761}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Crusader_tank_rightArm_shoulder2_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2277,37 +1938,6 @@ Transform:
   - {fileID: 2075487524846531137}
   m_Father: {fileID: 7093916883672286425}
   m_LocalEulerAnglesHint: {x: 39.83253, y: -152.29459, z: -131.45383}
---- !u!1 &1487593737685442630
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5416015673190193745}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_LeftHandRingEffector
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5416015673190193745
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1487593737685442630}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.607982, y: 0.4000831, z: 0.47053713, w: -0.498885}
-  m_LocalPosition: {x: 0.25603953, y: 1.1857609, z: 0.089132406}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 640632968594878404}
-  m_LocalEulerAnglesHint: {x: -19.073315, y: 25.243834, z: -163.44295}
 --- !u!1 &1512326018332993535
 GameObject:
   m_ObjectHideFlags: 0
@@ -2317,7 +1947,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7497204385886997035}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: knee_pad_left1_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2349,7 +1979,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661379544242832359}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Crusader_tank_LeftHandThumb4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2380,7 +2010,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4479879006851262709}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Crusader_tank_RightHandMiddle4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2412,7 +2042,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5119127432204802898}
   - component: {fileID: 3792568629736132246}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: body3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2621,7 +2251,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3740411419456404337}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Crusader_tank_LeftHandRing4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2652,7 +2282,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7787964298851098720}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Crusader_tank_LeftHandPinky3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2684,7 +2314,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6277932779349651931}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: toga_mid_back3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2706,38 +2336,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 9181479636248076110}
   m_LocalEulerAnglesHint: {x: 6.0963826, y: 0.24823165, z: -89.207886}
---- !u!1 &1769033833540990870
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2670230084956813286}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_LeftHandMiddle3
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2670230084956813286
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1769033833540990870}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.062490817, y: 0.17840835, z: 0.402484, w: 0.89569634}
-  m_LocalPosition: {x: -0.009498214, y: -0.023859633, z: 0.010650835}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 797806202488479808}
-  m_Father: {fileID: 853071210525235977}
-  m_LocalEulerAnglesHint: {x: -1.8145173, y: 21.720913, z: 48.04561}
 --- !u!1 &1802873141984377793
 GameObject:
   m_ObjectHideFlags: 0
@@ -2747,7 +2345,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6632438511582641902}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Crusader_tank_LeftHandPinky4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2778,7 +2376,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6234311217891603642}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: toga_right_back1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2810,7 +2408,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5607159167589188288}
-  m_Layer: 9
+  - component: {fileID: 8684682619948556264}
+  - component: {fileID: 6798189872306299422}
+  - component: {fileID: 8011946162456514820}
+  m_Layer: 0
   m_Name: Crusader_tank_RightLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2835,6 +2436,102 @@ Transform:
   - {fileID: 4515088745858679214}
   m_Father: {fileID: 8513471317603463798}
   m_LocalEulerAnglesHint: {x: 26.714756, y: 0.8578586, z: -0.3205927}
+--- !u!136 &8684682619948556264
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1926143376332452741}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.12713909
+  m_Height: 0.50855637
+  m_Direction: 1
+  m_Center: {x: 0, y: -0.25427818, z: 0}
+--- !u!54 &6798189872306299422
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1926143376332452741}
+  serializedVersion: 4
+  m_Mass: 18.75
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!144 &8011946162456514820
+CharacterJoint:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1926143376332452741}
+  m_ConnectedBody: {fileID: 671051482038675821}
+  m_ConnectedArticulationBody: {fileID: 0}
+  m_Anchor: {x: 0, y: 0, z: 0}
+  m_Axis: {x: 1, y: 0, z: 0}
+  m_AutoConfigureConnectedAnchor: 1
+  m_ConnectedAnchor: {x: 0.04770577, y: -0.45355523, z: -0.01704076}
+  serializedVersion: 2
+  m_SwingAxis: {x: 0, y: 0, z: 1}
+  m_TwistLimitSpring:
+    spring: 0
+    damper: 0
+  m_LowTwistLimit:
+    limit: -80
+    bounciness: 0
+    contactDistance: 0
+  m_HighTwistLimit:
+    limit: 0
+    bounciness: 0
+    contactDistance: 0
+  m_SwingLimitSpring:
+    spring: 0
+    damper: 0
+  m_Swing1Limit:
+    limit: 0
+    bounciness: 0
+    contactDistance: 0
+  m_Swing2Limit:
+    limit: 0
+    bounciness: 0
+    contactDistance: 0
+  m_EnableProjection: 0
+  m_ProjectionDistance: 0.1
+  m_ProjectionAngle: 180
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_EnableCollision: 0
+  m_EnablePreprocessing: 0
+  m_MassScale: 1
+  m_ConnectedMassScale: 1
 --- !u!1 &1930839431444171397
 GameObject:
   m_ObjectHideFlags: 0
@@ -2844,7 +2541,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1083271771462647218}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: toga_right_front1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2876,7 +2573,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5702453583138179372}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: toga_left_front1_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2908,7 +2605,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2506882328564597428}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: bag_back1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2931,68 +2628,6 @@ Transform:
   - {fileID: 4162803267923035050}
   m_Father: {fileID: 1273533936704807246}
   m_LocalEulerAnglesHint: {x: -16.313524, y: 66.647514, z: 78.70951}
---- !u!1 &1993482826386686309
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7326768484162591667}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_RightHandThumbEffector
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7326768484162591667
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1993482826386686309}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.32838196, y: 0.6223017, z: -0.11010881, w: 0.7019843}
-  m_LocalPosition: {x: 0.41864383, y: 0.94407225, z: -0.62078965}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 640632968594878404}
-  m_LocalEulerAnglesHint: {x: 33.71565, y: 20.135288, z: -1.6545093}
---- !u!1 &2084303112927813039
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 797806202488479808}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_LeftHandMiddle4
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &797806202488479808
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2084303112927813039}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.000000486917, y: -0.0000004657375, z: -0.00000034067756, w: 1}
-  m_LocalPosition: {x: -0.009069443, y: -0.025892181, z: 0.012885265}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2670230084956813286}
-  m_LocalEulerAnglesHint: {x: 0.00000341563, y: 0.0000025673417, z: 2.1846325e-14}
 --- !u!1 &2102041122730708890
 GameObject:
   m_ObjectHideFlags: 0
@@ -3003,7 +2638,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1220826049256201411}
   - component: {fileID: 1479112128996134384}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: body17
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3212,7 +2847,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5497691244159029176}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: bag_right1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3244,7 +2879,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1598595364197684009}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: chain5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3277,7 +2912,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5115925618081667292}
   - component: {fileID: 3044910019568713111}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: body18
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3477,38 +3112,6 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.07856076, y: 0.17821652, z: 0.13037959}
     m_Extent: {x: 0.035671465, y: 0.032158196, z: 0.009124652}
   m_DirtyAABB: 0
---- !u!1 &2230683114785839680
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6430131411431489069}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_RightFoot
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6430131411431489069
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2230683114785839680}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.11601527, y: -0.02823484, z: 0.023677306, w: 0.99256366}
-  m_LocalPosition: {x: 0.059096143, y: -0.44901854, z: -0.087701894}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 388430968530696319}
-  m_Father: {fileID: 9158135678079435690}
-  m_LocalEulerAnglesHint: {x: -14.80318, y: -2.4642818, z: 2.8296893}
 --- !u!1 &2241481465748579180
 GameObject:
   m_ObjectHideFlags: 0
@@ -3518,7 +3121,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9175734553106343177}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: shield2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3549,7 +3152,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4271534943427547770}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Crusader_tank_Spine2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3574,38 +3177,6 @@ Transform:
   - {fileID: 7990286038219474121}
   m_Father: {fileID: 4755544690248062249}
   m_LocalEulerAnglesHint: {x: -0.0004605586, y: -0.084447995, z: 0.01748226}
---- !u!1 &2253258574603272234
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8374600899991035956}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_LeftHandPinky2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8374600899991035956
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2253258574603272234}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.0065756114, y: -0.043731134, z: 0.35517693, w: 0.9337525}
-  m_LocalPosition: {x: -0.009369812, y: -0.021442719, z: -0.0037828314}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 9050882933616266708}
-  m_Father: {fileID: 8581527913901700969}
-  m_LocalEulerAnglesHint: {x: 1.076177, y: -4.9541173, z: 41.6046}
 --- !u!1 &2312595864726101486
 GameObject:
   m_ObjectHideFlags: 0
@@ -3615,7 +3186,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6454244841499608897}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: stick_of_a_club1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3638,38 +3209,6 @@ Transform:
   - {fileID: 1184508263724858365}
   m_Father: {fileID: 880062446190053857}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2347527436957579080
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 336163557257960902}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_RightHandThumb1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &336163557257960902
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2347527436957579080}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.34152004, y: -0.11398602, z: -0.026083985, w: 0.9325722}
-  m_LocalPosition: {x: 0.010280724, y: -0.01632225, z: 0.064716004}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 3293534059961923418}
-  m_Father: {fileID: 8797183846530114192}
-  m_LocalEulerAnglesHint: {x: 39.126926, y: -17.27899, z: -9.385515}
 --- !u!1 &2355188100389720878
 GameObject:
   m_ObjectHideFlags: 0
@@ -3680,7 +3219,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4927548281203290685}
   - component: {fileID: 2898133384664835967}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: body8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3889,7 +3428,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1184508263724858365}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: chain1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3912,38 +3451,6 @@ Transform:
   - {fileID: 7738469081744397411}
   m_Father: {fileID: 6454244841499608897}
   m_LocalEulerAnglesHint: {x: 62.58119, y: 179.18695, z: -149.09866}
---- !u!1 &2481853940510227393
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3903598909526011079}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_RightHandRing2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3903598909526011079
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2481853940510227393}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.014517237, y: -0.04074131, z: -0.37860906, w: 0.9245456}
-  m_LocalPosition: {x: 0.014566802, y: -0.025146026, z: 0.0047493814}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2636249857853822790}
-  m_Father: {fileID: 3899427928601807735}
-  m_LocalEulerAnglesHint: {x: -0.22937141, y: -4.9522824, z: -44.529022}
 --- !u!1 &2496450441669596449
 GameObject:
   m_ObjectHideFlags: 0
@@ -3953,7 +3460,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3561281931285775327}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Crusader_tank_LeftHandIndex3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3985,7 +3492,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3867623104812556307}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: toga_right_back2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4017,7 +3524,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 878930308363850131}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Crusader_tank_RightHandRing3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4040,37 +3547,6 @@ Transform:
   - {fileID: 1020977466564502343}
   m_Father: {fileID: 8792660435489783534}
   m_LocalEulerAnglesHint: {x: -1.482024, y: -5.5486326, z: -43.889664}
---- !u!1 &2519937146836623249
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1581196378941645940}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_LeftAnkleEffector
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1581196378941645940
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2519937146836623249}
-  serializedVersion: 2
-  m_LocalRotation: {x: 2.6007457e-10, y: 0.0000000015929552, z: -0.0000000019505575, w: 1}
-  m_LocalPosition: {x: -0.21686664, y: 0.062278282, z: -0.1047453}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 640632968594878404}
-  m_LocalEulerAnglesHint: {x: 0.00007746915, y: 0.0013371968, z: 0.00015062811}
 --- !u!1 &2552645867309190178
 GameObject:
   m_ObjectHideFlags: 0
@@ -4080,7 +3556,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2776249698824575118}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Crusader_tank_LeftHandPinky2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4103,38 +3579,6 @@ Transform:
   - {fileID: 7787964298851098720}
   m_Father: {fileID: 5243350823521099268}
   m_LocalEulerAnglesHint: {x: 1.0761764, y: -4.9541173, z: 41.6046}
---- !u!1 &2557296558781462781
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 651880120216972908}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_Spine1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &651880120216972908
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2557296558781462781}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.020881755, y: 0.01709773, z: -0.0024346085, w: 0.9996328}
-  m_LocalPosition: {x: -0, y: 0.18208106, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 6231714059059016390}
-  m_Father: {fileID: 6540104857114664464}
-  m_LocalEulerAnglesHint: {x: 0.00032016248, y: -0.08449052, z: 0.017484846}
 --- !u!1 &2561398413113289550
 GameObject:
   m_ObjectHideFlags: 0
@@ -4144,7 +3588,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5094631312398901234}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: heel_flap_right1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4176,7 +3620,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4992733179557253209}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: chain3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4199,38 +3643,6 @@ Transform:
   - {fileID: 4322829141753678541}
   m_Father: {fileID: 7738469081744397411}
   m_LocalEulerAnglesHint: {x: -0.8652408, y: -0.1477558, z: -0.6031712}
---- !u!1 &2634723892089853534
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7851727992395414072}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_LeftFoot
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7851727992395414072
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634723892089853534}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.14078821, y: -0.055072676, z: 0.07841413, w: 0.9853918}
-  m_LocalPosition: {x: -0.059096143, y: -0.44901854, z: -0.087701894}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1920316740006167920}
-  m_Father: {fileID: 3106441925060312835}
-  m_LocalEulerAnglesHint: {x: -6.2245054, y: -7.3430734, z: 1.6529526}
 --- !u!1 &2658910883731378116
 GameObject:
   m_ObjectHideFlags: 0
@@ -4240,7 +3652,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7738469081744397411}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: chain2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4272,7 +3684,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1715212970545406557}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Crusader_tank_LeftHandMiddle4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4294,100 +3706,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2377598867900691539}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2837227027916813701
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6383634374125383766}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_RightHandIndex3
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6383634374125383766
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2837227027916813701}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.09200926, y: -0.2062452, z: -0.31973025, w: 0.92020094}
-  m_LocalPosition: {x: 0.011349105, y: -0.020429993, z: 0.018900756}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 8972874837817422873}
-  m_Father: {fileID: 2840844365439086583}
-  m_LocalEulerAnglesHint: {x: 2.1461031, y: -26.021915, z: -38.816048}
---- !u!1 &2839590288681426544
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2897253153073248555}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_RightHandThumb4
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2897253153073248555
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2839590288681426544}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.00000001970249, y: 0.00000010666921, z: -0.0000005173614, w: 1}
-  m_LocalPosition: {x: -0.0032511519, y: -0.012985992, z: 0.025715522}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8137752113890064334}
-  m_LocalEulerAnglesHint: {x: 0.000019337216, y: -0.000013387305, z: -0.000016972848}
---- !u!1 &2889858735425442341
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1597219069960878780}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_HeadEffector
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1597219069960878780
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2889858735425442341}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.42698792, y: -0.33970252, z: 0.26816484, w: 0.79395914}
-  m_LocalPosition: {x: 0.021341078, y: 1.7605656, z: -0.12334972}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 640632968594878404}
-  m_LocalEulerAnglesHint: {x: -0.035681166, y: 19.10609, z: -0.016339108}
 --- !u!1 &2964689027241861206
 GameObject:
   m_ObjectHideFlags: 0
@@ -4397,7 +3715,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3541509703102798404}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Crusader_tank_LeftHandIndex2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4430,7 +3748,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7330770888097562941}
   - component: {fileID: 5322294796972754844}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: body1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4639,7 +3957,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4475549361310357124}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Crusader_tank_LeftHandThumb3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4671,7 +3989,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 880062446190053857}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Crusader_tank_RightHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4708,7 +4026,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3811717461481196399}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Crusader_tank_LeftToeBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4730,69 +4048,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6489296136791497308}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &3168355162721020983
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1222999249008483436}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_RightHandMiddle1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1222999249008483436
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3168355162721020983}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.060272332, y: -0.2529123, z: -0.5862535, w: 0.767274}
-  m_LocalPosition: {x: 0.0678442, y: -0.07972809, z: 0.056513365}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2361379844967185725}
-  m_Father: {fileID: 8797183846530114192}
-  m_LocalEulerAnglesHint: {x: -11.773806, y: -27.94585, z: -71.82578}
---- !u!1 &3176262123382820670
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7062339178301507061}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_RightHandRingEffector
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7062339178301507061
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3176262123382820670}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.54819673, y: 0.16054584, z: 0.82017606, w: -0.031885765}
-  m_LocalPosition: {x: 0.3376371, y: 0.9498445, z: -0.65490425}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 640632968594878404}
-  m_LocalEulerAnglesHint: {x: -23.70029, y: 17.025684, z: 156.0442}
 --- !u!1 &3238868315102306400
 GameObject:
   m_ObjectHideFlags: 0
@@ -4802,7 +4057,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6947207442838385252}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Crusader_tank_RightHandPinky1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4834,7 +4089,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2622324727484845471}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: hip_flap_right2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4866,7 +4121,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7470904333419827301}
   - component: {fileID: 2674305556428536786}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: body11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5066,105 +4321,6 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.00006213784, y: -0.50760573, z: -0.083010875}
     m_Extent: {x: 0.27143493, y: 0.12457669, z: 0.08816562}
   m_DirtyAABB: 0
---- !u!1 &3361248069303490228
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7647373197910627633}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_LeftHandIndex3
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7647373197910627633
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3361248069303490228}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.11816283, y: 0.23401442, z: 0.359181, w: 0.8956919}
-  m_LocalPosition: {x: -0.011349105, y: -0.020429993, z: 0.018900756}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2252751434610661498}
-  m_Father: {fileID: 2542183637673322461}
-  m_LocalEulerAnglesHint: {x: 2.4972627, y: 30.302778, z: 44.37883}
---- !u!1 &3386152234716246470
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5112479280815129154}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_RightWristEffector
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5112479280815129154
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3386152234716246470}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.09550035, y: 0.5664038, z: -0.1196806, w: 0.8097796}
-  m_LocalPosition: {x: 0.32224822, y: 1.0276567, z: -0.6771753}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 640632968594878404}
-  m_LocalEulerAnglesHint: {x: -7.6645756, y: 13.834108, z: -32.983154}
---- !u!1 &3425457638122006564
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2562846110769391677}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_LeftHand
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2562846110769391677
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3425457638122006564}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.13927287, y: -0.08782774, z: 0.079916514, w: 0.9831087}
-  m_LocalPosition: {x: -0.2067926, y: -0.13042702, z: 0.11862262}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 4597093564316403897}
-  - {fileID: 3289441397846579139}
-  - {fileID: 8581527913901700969}
-  - {fileID: 3096456763043366498}
-  - {fileID: 8098850873987752340}
-  m_Father: {fileID: 7583897560492337218}
-  m_LocalEulerAnglesHint: {x: 0.000090711044, y: 0.0002277664, z: 0.00010628575}
 --- !u!1 &3460746236145630771
 GameObject:
   m_ObjectHideFlags: 0
@@ -5174,7 +4330,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2075487524846531137}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Crusader_tank_rightArm_shoulder2_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5206,7 +4362,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3991653299527290073}
   - component: {fileID: 2048484376616229529}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: body15
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5406,40 +4562,6 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.00000008940697, y: 0.47388074, z: -0.09844066}
     m_Extent: {x: 0.40894115, y: 0.1163784, z: 0.11874844}
   m_DirtyAABB: 0
---- !u!1 &3504432716398071940
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6231714059059016390}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_Spine2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6231714059059016390
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3504432716398071940}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.020882225, y: 0.01698217, z: -0.003147487, w: 0.9996328}
-  m_LocalPosition: {x: -0, y: 0.18208115, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 868774213568434638}
-  - {fileID: 2634469193663531803}
-  - {fileID: 2247997163534384374}
-  m_Father: {fileID: 651880120216972908}
-  m_LocalEulerAnglesHint: {x: -0.00049113395, y: -0.084475696, z: 0.017485686}
 --- !u!1 &3514763659781598710
 GameObject:
   m_ObjectHideFlags: 0
@@ -5449,7 +4571,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5243350823521099268}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Crusader_tank_LeftHandPinky1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5472,68 +4594,6 @@ Transform:
   - {fileID: 2776249698824575118}
   m_Father: {fileID: 93162406614589144}
   m_LocalEulerAnglesHint: {x: 0.2240423, y: -3.6505404, z: 41.80821}
---- !u!1 &3720347889889473216
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 681532843894347300}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_Head
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &681532843894347300
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3720347889889473216}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.33087084, y: -0.367254, z: 0.27966088, w: 0.8230668}
-  m_LocalPosition: {x: -0, y: 0.22869675, z: 0.011915945}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2634469193663531803}
-  m_LocalEulerAnglesHint: {x: 3.5313898e-14, y: 6.361108e-15, z: -6.361109e-15}
---- !u!1 &3741667393001419399
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5871927781298263454}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_LeftHandPinkyEffector
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5871927781298263454
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3741667393001419399}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.58555657, y: 0.44949505, z: 0.64895356, w: -0.18422009}
-  m_LocalPosition: {x: 0.2532298, y: 1.1456871, z: 0.087787725}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 640632968594878404}
-  m_LocalEulerAnglesHint: {x: 7.335748, y: 28.822762, z: 163.21677}
 --- !u!1 &3747975984265632095
 GameObject:
   m_ObjectHideFlags: 0
@@ -5543,7 +4603,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8071824490585120778}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Crusader_tank_RightHandRing1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5575,7 +4635,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8792660435489783534}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Crusader_tank_RightHandRing2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5607,7 +4667,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4066285148985295894}
-  m_Layer: 9
+  - component: {fileID: 7674598683476877641}
+  - component: {fileID: 1829182041632513326}
+  m_Layer: 0
   m_Name: Crusader_tank_Hips
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5632,6 +4694,54 @@ Transform:
   - {fileID: 1273533936704807246}
   m_Father: {fileID: 1145920386594141929}
   m_LocalEulerAnglesHint: {x: -0.040154636, y: 18.803673, z: -0.2728136}
+--- !u!65 &7674598683476877641
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3923186811756323462}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.48981404, y: 0.31450355, z: 0.28010303}
+  m_Center: {x: -0.025776178, y: 0.09455177, z: -0.05119051}
+--- !u!54 &1829182041632513326
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3923186811756323462}
+  serializedVersion: 4
+  m_Mass: 31.25
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &3972551859838742938
 GameObject:
   m_ObjectHideFlags: 0
@@ -5641,7 +4751,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5396459401167491742}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: knee_pad_left1_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5673,7 +4783,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5564186571435852794}
   - component: {fileID: 5845292033692036539}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: body4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5882,7 +4992,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2055786855806666479}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Crusader_tank_RightHandPinky4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5904,37 +5014,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2354028780729572658}
   m_LocalEulerAnglesHint: {x: 0, y: -0.06092597, z: 0}
---- !u!1 &4090815375351106010
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1196935611834452045}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_LeftHandRing4
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1196935611834452045
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4090815375351106010}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.00000019190358, y: -0.00000019518491, z: 0.0000001547151, w: 1}
-  m_LocalPosition: {x: -0.007037048, y: -0.024989853, z: 0.0037577343}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 418717253393771084}
-  m_LocalEulerAnglesHint: {x: 2.4568223e-30, y: 5.5430984e-15, z: -2.0827378e-14}
 --- !u!1 &4120909972089830767
 GameObject:
   m_ObjectHideFlags: 0
@@ -5944,7 +5023,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1623267409158997629}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Crusader_tank_RightHandPinky2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5976,7 +5055,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1206440739808760946}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: toga_mid_back1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6008,7 +5087,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2033533011956512547}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: shield3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6030,68 +5109,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2442876196508560341}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &4201224293350491435
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4519491228015485931}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_RightElbowEffector
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4519491228015485931
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4201224293350491435}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.06933685, y: 0.46621186, z: -0.12361761, w: 0.8732454}
-  m_LocalPosition: {x: 0.15370783, y: 1.2121576, z: -0.5704077}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 640632968594878404}
-  m_LocalEulerAnglesHint: {x: -7.6644607, y: 13.834356, z: -32.983105}
---- !u!1 &4218370963927455900
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 119931821390717885}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_LeftShoulderEffector
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &119931821390717885
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4218370963927455900}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.053010628, y: 0.56523937, z: 0.39894557, w: 0.720095}
-  m_LocalPosition: {x: -0.18591288, y: 1.407041, z: -0.04571401}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 640632968594878404}
-  m_LocalEulerAnglesHint: {x: -3.2013848, y: 28.480682, z: 37.61294}
 --- !u!1 &4247573369633988036
 GameObject:
   m_ObjectHideFlags: 0
@@ -6102,7 +5119,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6065448223260015550}
   - component: {fileID: 8610874498422670573}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: weapon5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6311,7 +5328,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7323825139744657302}
-  m_Layer: 9
+  - component: {fileID: 8145064225483077078}
+  - component: {fileID: 4692350473401306190}
+  - component: {fileID: 4732782514783433465}
+  m_Layer: 0
   m_Name: Crusader_tank_LeftLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6336,38 +5356,102 @@ Transform:
   - {fileID: 7497204385886997035}
   m_Father: {fileID: 2652034779035655343}
   m_LocalEulerAnglesHint: {x: 5.689907, y: -11.276757, z: -3.4445176}
---- !u!1 &4321065826806719380
-GameObject:
+--- !u!136 &8145064225483077078
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2474541887796198726}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_RightForeArm
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2474541887796198726
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4321065826806719380}
+  m_GameObject: {fileID: 4284867921709738793}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
   serializedVersion: 2
-  m_LocalRotation: {x: -0.030669408, y: -0.000018910956, z: 0.053439926, w: 0.9981}
-  m_LocalPosition: {x: 0.18693447, y: -0.17074707, z: -0.00781579}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 8797183846530114192}
-  m_Father: {fileID: 8717977800247202747}
-  m_LocalEulerAnglesHint: {x: -0.00206427, y: -0.002153076, z: 0.0013101962}
+  m_Radius: 0.12739019
+  m_Height: 0.50956076
+  m_Direction: 1
+  m_Center: {x: 0, y: -0.25478038, z: 0}
+--- !u!54 &4692350473401306190
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4284867921709738793}
+  serializedVersion: 4
+  m_Mass: 18.75
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!144 &4732782514783433465
+CharacterJoint:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4284867921709738793}
+  m_ConnectedBody: {fileID: 4239377062296178275}
+  m_ConnectedArticulationBody: {fileID: 0}
+  m_Anchor: {x: 0, y: 0, z: 0}
+  m_Axis: {x: 1, y: 0, z: 0}
+  m_AutoConfigureConnectedAnchor: 1
+  m_ConnectedAnchor: {x: -0.047706112, y: -0.4535546, z: -0.017041057}
+  serializedVersion: 2
+  m_SwingAxis: {x: 0, y: 0, z: 1}
+  m_TwistLimitSpring:
+    spring: 0
+    damper: 0
+  m_LowTwistLimit:
+    limit: -80
+    bounciness: 0
+    contactDistance: 0
+  m_HighTwistLimit:
+    limit: 0
+    bounciness: 0
+    contactDistance: 0
+  m_SwingLimitSpring:
+    spring: 0
+    damper: 0
+  m_Swing1Limit:
+    limit: 0
+    bounciness: 0
+    contactDistance: 0
+  m_Swing2Limit:
+    limit: 0
+    bounciness: 0
+    contactDistance: 0
+  m_EnableProjection: 0
+  m_ProjectionDistance: 0.1
+  m_ProjectionAngle: 180
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_EnableCollision: 0
+  m_EnablePreprocessing: 0
+  m_MassScale: 1
+  m_ConnectedMassScale: 1
 --- !u!1 &4338356724229939312
 GameObject:
   m_ObjectHideFlags: 0
@@ -6377,7 +5461,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3584881116237465896}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: hip_flap_right1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6400,38 +5484,6 @@ Transform:
   - {fileID: 2622324727484845471}
   m_Father: {fileID: 1273533936704807246}
   m_LocalEulerAnglesHint: {x: -0.042990673, y: 0, z: 102.25883}
---- !u!1 &4339259451045336478
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2361379844967185725}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_RightHandMiddle2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2361379844967185725
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4339259451045336478}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.055974137, y: -0.14060856, z: -0.36490113, w: 0.91866386}
-  m_LocalPosition: {x: 0.01671295, y: -0.024921494, z: 0.013618817}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 3878261572976273672}
-  m_Father: {fileID: 1222999249008483436}
-  m_LocalEulerAnglesHint: {x: 0.013019274, y: -17.409092, z: -43.328716}
 --- !u!1 &4387274685900499678
 GameObject:
   m_ObjectHideFlags: 0
@@ -6441,7 +5493,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1273533936704807246}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Crusader_tank_Spine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6484,7 +5536,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2652034779035655343}
-  m_Layer: 9
+  - component: {fileID: 8851604373776747261}
+  - component: {fileID: 4239377062296178275}
+  - component: {fileID: 6391785759058886785}
+  m_Layer: 0
   m_Name: Crusader_tank_LeftUpLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6507,6 +5562,102 @@ Transform:
   - {fileID: 7323825139744657302}
   m_Father: {fileID: 4066285148985295894}
   m_LocalEulerAnglesHint: {x: 0.27436024, y: -0.49390444, z: 2.9678354}
+--- !u!136 &8851604373776747261
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4419100079712855717}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.13606639
+  m_Height: 0.4535546
+  m_Direction: 1
+  m_Center: {x: 0, y: -0.2267773, z: 0}
+--- !u!54 &4239377062296178275
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4419100079712855717}
+  serializedVersion: 4
+  m_Mass: 18.75
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!144 &6391785759058886785
+CharacterJoint:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4419100079712855717}
+  m_ConnectedBody: {fileID: 1829182041632513326}
+  m_ConnectedArticulationBody: {fileID: 0}
+  m_Anchor: {x: 0, y: 0, z: 0}
+  m_Axis: {x: 1, y: 0, z: 0}
+  m_AutoConfigureConnectedAnchor: 1
+  m_ConnectedAnchor: {x: -0.11006252, y: -0.062699944, z: 0.000000018626451}
+  serializedVersion: 2
+  m_SwingAxis: {x: 0, y: 0, z: 1}
+  m_TwistLimitSpring:
+    spring: 0
+    damper: 0
+  m_LowTwistLimit:
+    limit: -20
+    bounciness: 0
+    contactDistance: 0
+  m_HighTwistLimit:
+    limit: 70
+    bounciness: 0
+    contactDistance: 0
+  m_SwingLimitSpring:
+    spring: 0
+    damper: 0
+  m_Swing1Limit:
+    limit: 30
+    bounciness: 0
+    contactDistance: 0
+  m_Swing2Limit:
+    limit: 0
+    bounciness: 0
+    contactDistance: 0
+  m_EnableProjection: 0
+  m_ProjectionDistance: 0.1
+  m_ProjectionAngle: 180
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_EnableCollision: 0
+  m_EnablePreprocessing: 0
+  m_MassScale: 1
+  m_ConnectedMassScale: 1
 --- !u!1 &4421445668519592342
 GameObject:
   m_ObjectHideFlags: 0
@@ -6516,7 +5667,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3477986561675532026}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: toga_right_back3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6547,7 +5698,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4515088745858679214}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: knee_pad_right1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6570,37 +5721,6 @@ Transform:
   - {fileID: 6875289751664037352}
   m_Father: {fileID: 5607159167589188288}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &4590619888627582216
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6330374253446575629}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_RightHandMiddle4
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6330374253446575629
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4590619888627582216}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.00000020471751, y: 0.00000033807672, z: 0.00000011590686, w: 1}
-  m_LocalPosition: {x: 0.009069443, y: -0.025892181, z: 0.012885265}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 3878261572976273672}
-  m_LocalEulerAnglesHint: {x: -0.000027153817, y: 0.000016698325, z: 0.000011447203}
 --- !u!1 &4612592502501458189
 GameObject:
   m_ObjectHideFlags: 0
@@ -6610,7 +5730,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1530743325191549746}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Crusader_tank_LeftHandIndex4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6642,7 +5762,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8030065506769563989}
   - component: {fileID: 7254809526758696992}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: weapon1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6842,37 +5962,6 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.9769346, y: -0.32163393, z: 0.13283253}
     m_Extent: {x: 0.15971977, y: 0.17218018, z: 0.13024741}
   m_DirtyAABB: 0
---- !u!1 &4613417287762167698
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1481741207892469221}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_LeftElbowEffector
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1481741207892469221
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4613417287762167698}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.22977008, y: 0.79706776, z: 0.34518856, w: 0.43901435}
-  m_LocalPosition: {x: -0.091588944, y: 1.1912811, z: 0.047617946}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 640632968594878404}
-  m_LocalEulerAnglesHint: {x: -3.2042525, y: 28.481045, z: 37.611824}
 --- !u!1 &4655372026229103589
 GameObject:
   m_ObjectHideFlags: 0
@@ -6882,7 +5971,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1145920386594141929}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Crusader_tank_Reference
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6914,7 +6003,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3692238033128688682}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Crusader_tank_RightHandIndex4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6945,7 +6034,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8166995263423509853}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: heel_flap_left1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6977,7 +6066,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8951365563742732982}
-  m_Layer: 9
+  - component: {fileID: 4831663194483749367}
+  - component: {fileID: 6642179489400094952}
+  - component: {fileID: 7464198397930498601}
+  m_Layer: 0
   m_Name: Crusader_tank_Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6999,6 +6091,100 @@ Transform:
   m_Children: []
   m_Father: {fileID: 538262279590182610}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &4831663194483749367
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4763946179150040020}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.18402979
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &6642179489400094952
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4763946179150040020}
+  serializedVersion: 4
+  m_Mass: 12.5
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!144 &7464198397930498601
+CharacterJoint:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4763946179150040020}
+  m_ConnectedBody: {fileID: 8594513360699386304}
+  m_ConnectedArticulationBody: {fileID: 0}
+  m_Anchor: {x: 0, y: 0, z: 0}
+  m_Axis: {x: 0, y: -1, z: 0}
+  m_AutoConfigureConnectedAnchor: 1
+  m_ConnectedAnchor: {x: -0.045455094, y: 0.5900299, z: -0.030491851}
+  serializedVersion: 2
+  m_SwingAxis: {x: 1, y: 0, z: 0}
+  m_TwistLimitSpring:
+    spring: 0
+    damper: 0
+  m_LowTwistLimit:
+    limit: -40
+    bounciness: 0
+    contactDistance: 0
+  m_HighTwistLimit:
+    limit: 25
+    bounciness: 0
+    contactDistance: 0
+  m_SwingLimitSpring:
+    spring: 0
+    damper: 0
+  m_Swing1Limit:
+    limit: 25
+    bounciness: 0
+    contactDistance: 0
+  m_Swing2Limit:
+    limit: 0
+    bounciness: 0
+    contactDistance: 0
+  m_EnableProjection: 0
+  m_ProjectionDistance: 0.1
+  m_ProjectionAngle: 180
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_EnableCollision: 0
+  m_EnablePreprocessing: 0
+  m_MassScale: 1
+  m_ConnectedMassScale: 1
 --- !u!1 &4764606070398630315
 GameObject:
   m_ObjectHideFlags: 0
@@ -7008,7 +6194,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4755544690248062249}
-  m_Layer: 9
+  - component: {fileID: 8227342501127606627}
+  - component: {fileID: 8594513360699386304}
+  - component: {fileID: 3513589070519680406}
+  m_Layer: 0
   m_Name: Crusader_tank_Spine1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7031,6 +6220,100 @@ Transform:
   - {fileID: 4271534943427547770}
   m_Father: {fileID: 1273533936704807246}
   m_LocalEulerAnglesHint: {x: 0.00032078332, y: -0.08447793, z: 0.01748121}
+--- !u!65 &8227342501127606627
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4764606070398630315}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.49045336, y: 0.231563, z: 0.27572244}
+  m_Center: {x: -0.0032752454, y: 0.1157815, z: -0.048886687}
+--- !u!54 &8594513360699386304
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4764606070398630315}
+  serializedVersion: 4
+  m_Mass: 31.25
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!144 &3513589070519680406
+CharacterJoint:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4764606070398630315}
+  m_ConnectedBody: {fileID: 1829182041632513326}
+  m_ConnectedArticulationBody: {fileID: 0}
+  m_Anchor: {x: 0, y: 0, z: 0}
+  m_Axis: {x: 1, y: 0, z: 0}
+  m_AutoConfigureConnectedAnchor: 1
+  m_ConnectedAnchor: {x: -0.0100236, y: 0.25180355, z: 0.000706872}
+  serializedVersion: 2
+  m_SwingAxis: {x: 0, y: 0, z: 1}
+  m_TwistLimitSpring:
+    spring: 0
+    damper: 0
+  m_LowTwistLimit:
+    limit: -20
+    bounciness: 0
+    contactDistance: 0
+  m_HighTwistLimit:
+    limit: 20
+    bounciness: 0
+    contactDistance: 0
+  m_SwingLimitSpring:
+    spring: 0
+    damper: 0
+  m_Swing1Limit:
+    limit: 10
+    bounciness: 0
+    contactDistance: 0
+  m_Swing2Limit:
+    limit: 0
+    bounciness: 0
+    contactDistance: 0
+  m_EnableProjection: 0
+  m_ProjectionDistance: 0.1
+  m_ProjectionAngle: 180
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_EnableCollision: 0
+  m_EnablePreprocessing: 0
+  m_MassScale: 1
+  m_ConnectedMassScale: 1
 --- !u!1 &4788566711988469949
 GameObject:
   m_ObjectHideFlags: 0
@@ -7040,7 +6323,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3702873300422114042}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: chain7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7072,7 +6355,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6406321525477903845}
-  m_Layer: 9
+  - component: {fileID: 782377958026703849}
+  - component: {fileID: 3033160209196683898}
+  - component: {fileID: 436180288153840954}
+  m_Layer: 0
   m_Name: Crusader_tank_LeftArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7096,6 +6382,102 @@ Transform:
   - {fileID: 6693034184571957519}
   m_Father: {fileID: 7010180515057769816}
   m_LocalEulerAnglesHint: {x: -3.1626136, y: 9.6760645, z: 37.61583}
+--- !u!136 &782377958026703849
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4827397780644734477}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.046733648
+  m_Height: 0.18693459
+  m_Direction: 0
+  m_Center: {x: -0.093467295, y: 0, z: 0}
+--- !u!54 &3033160209196683898
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4827397780644734477}
+  serializedVersion: 4
+  m_Mass: 12.5
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!144 &436180288153840954
+CharacterJoint:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4827397780644734477}
+  m_ConnectedBody: {fileID: 8594513360699386304}
+  m_ConnectedArticulationBody: {fileID: 0}
+  m_Anchor: {x: 0, y: 0, z: 0}
+  m_Axis: {x: 0, y: 1, z: 0}
+  m_AutoConfigureConnectedAnchor: 1
+  m_ConnectedAnchor: {x: -0.24850193, y: 0.231563, z: -0.09556002}
+  serializedVersion: 2
+  m_SwingAxis: {x: 0, y: 0, z: 1}
+  m_TwistLimitSpring:
+    spring: 0
+    damper: 0
+  m_LowTwistLimit:
+    limit: -70
+    bounciness: 0
+    contactDistance: 0
+  m_HighTwistLimit:
+    limit: 10
+    bounciness: 0
+    contactDistance: 0
+  m_SwingLimitSpring:
+    spring: 0
+    damper: 0
+  m_Swing1Limit:
+    limit: 50
+    bounciness: 0
+    contactDistance: 0
+  m_Swing2Limit:
+    limit: 0
+    bounciness: 0
+    contactDistance: 0
+  m_EnableProjection: 0
+  m_ProjectionDistance: 0.1
+  m_ProjectionAngle: 180
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_EnableCollision: 0
+  m_EnablePreprocessing: 0
+  m_MassScale: 1
+  m_ConnectedMassScale: 1
 --- !u!1 &4940484228515364828
 GameObject:
   m_ObjectHideFlags: 0
@@ -7105,7 +6487,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1901549485086347300}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: ball_on_a_club3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7136,7 +6518,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1111502741805537047}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Crusader_tank_RightHandIndex1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7169,7 +6551,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5742383576290281637}
   - component: {fileID: 121023098551673769}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: body 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7369,68 +6751,6 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.00005477667, y: 0.09384704, z: -0.03495744}
     m_Extent: {x: 0.7512619, y: 0.6863196, z: 0.19800535}
   m_DirtyAABB: 0
---- !u!1 &4969517839788082463
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1754365053567436421}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_LeftWristEffector
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1754365053567436421
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4969517839788082463}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.19301568, y: 0.71533364, z: 0.50563246, w: 0.4420165}
-  m_LocalPosition: {x: 0.16516185, y: 1.2079837, z: 0.13505788}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 640632968594878404}
-  m_LocalEulerAnglesHint: {x: -3.2042985, y: 28.481249, z: 37.61191}
---- !u!1 &4998635028044257544
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6964903296507294969}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_LeftHandMiddleEffector
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6964903296507294969
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4998635028044257544}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.4619113, y: -0.5489363, z: -0.31239918, w: 0.62266654}
-  m_LocalPosition: {x: 0.25903723, y: 1.2155071, z: 0.087071285}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 640632968594878404}
-  m_LocalEulerAnglesHint: {x: -52.12657, y: 20.462074, z: -161.95007}
 --- !u!1 &5061749537804818446
 GameObject:
   m_ObjectHideFlags: 0
@@ -7440,7 +6760,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7010180515057769816}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Crusader_tank_LeftShoulder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7463,37 +6783,6 @@ Transform:
   - {fileID: 6406321525477903845}
   m_Father: {fileID: 4271534943427547770}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &5061858636540473606
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6687243212884909303}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_LeftKneeEffector
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6687243212884909303
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5061858636540473606}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.14078821, y: 0.055072743, z: -0.07841425, w: 0.98539174}
-  m_LocalPosition: {x: -0.0749199, y: 0.45466724, z: 0.091937035}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 640632968594878404}
-  m_LocalEulerAnglesHint: {x: 6.348352, y: 7.1967363, z: -0.805153}
 --- !u!1 &5072966576518818208
 GameObject:
   m_ObjectHideFlags: 0
@@ -7503,7 +6792,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5624881921914000052}
-  m_Layer: 9
+  - component: {fileID: 3680113604037619974}
+  - component: {fileID: 8110960071835412330}
+  - component: {fileID: 976320035874812880}
+  m_Layer: 0
   m_Name: Crusader_tank_RightForeArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7526,6 +6818,102 @@ Transform:
   - {fileID: 880062446190053857}
   m_Father: {fileID: 7093916883672286425}
   m_LocalEulerAnglesHint: {x: -0.0019898647, y: -0.0021221805, z: 0.0010553502}
+--- !u!136 &3680113604037619974
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5072966576518818208}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.140258
+  m_Height: 0.70128995
+  m_Direction: 1
+  m_Center: {x: 0, y: -0.35064498, z: 0}
+--- !u!54 &8110960071835412330
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5072966576518818208}
+  serializedVersion: 4
+  m_Mass: 12.5
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!144 &976320035874812880
+CharacterJoint:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5072966576518818208}
+  m_ConnectedBody: {fileID: 6148804341148722905}
+  m_ConnectedArticulationBody: {fileID: 0}
+  m_Anchor: {x: 0, y: 0, z: 0}
+  m_Axis: {x: 0, y: 0, z: 1}
+  m_AutoConfigureConnectedAnchor: 1
+  m_ConnectedAnchor: {x: 0.18693441, y: -0.17074707, z: -0.007815871}
+  serializedVersion: 2
+  m_SwingAxis: {x: 0, y: 1, z: 0}
+  m_TwistLimitSpring:
+    spring: 0
+    damper: 0
+  m_LowTwistLimit:
+    limit: -90
+    bounciness: 0
+    contactDistance: 0
+  m_HighTwistLimit:
+    limit: 0
+    bounciness: 0
+    contactDistance: 0
+  m_SwingLimitSpring:
+    spring: 0
+    damper: 0
+  m_Swing1Limit:
+    limit: 0
+    bounciness: 0
+    contactDistance: 0
+  m_Swing2Limit:
+    limit: 0
+    bounciness: 0
+    contactDistance: 0
+  m_EnableProjection: 0
+  m_ProjectionDistance: 0.1
+  m_ProjectionAngle: 180
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_EnableCollision: 0
+  m_EnablePreprocessing: 0
+  m_MassScale: 1
+  m_ConnectedMassScale: 1
 --- !u!1 &5166189264298489599
 GameObject:
   m_ObjectHideFlags: 0
@@ -7535,7 +6923,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6489296136791497308}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Crusader_tank_LeftFoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7559,38 +6947,6 @@ Transform:
   - {fileID: 8166995263423509853}
   m_Father: {fileID: 7323825139744657302}
   m_LocalEulerAnglesHint: {x: -6.2514377, y: -7.5354233, z: 1.6542282}
---- !u!1 &5170223124452413487
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7583897560492337218}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_LeftForeArm
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7583897560492337218
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5170223124452413487}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.01931139, y: 0.39918342, z: -0.014196244, w: 0.9165578}
-  m_LocalPosition: {x: -0.18693447, y: -0.17074707, z: -0.00781579}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2562846110769391677}
-  m_Father: {fileID: 666763573514464104}
-  m_LocalEulerAnglesHint: {x: -0.0020268648, y: 0.0019964874, z: -0.0010888381}
 --- !u!1 &5177762444630599822
 GameObject:
   m_ObjectHideFlags: 0
@@ -7600,7 +6956,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8305066703097679516}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Crusader_tank_LeftArm_shoulder2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7631,7 +6987,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3715028670555144065}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: hip_flap_left1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7663,7 +7019,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3137155274639906285}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: toga_left_front1_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7685,38 +7041,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5702453583138179372}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &5236703181847578612
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8717977800247202747}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_RightArm
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8717977800247202747
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5236703181847578612}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.07261525, y: 0.048910167, z: -0.14868423, w: 0.98500144}
-  m_LocalPosition: {x: 0.1176274, y: -0.030249938, z: -0.07440383}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2474541887796198726}
-  m_Father: {fileID: 2247997163534384374}
-  m_LocalEulerAnglesHint: {x: -7.6428814, y: -4.974456, z: -33.04194}
 --- !u!1 &5237941411549897697
 GameObject:
   m_ObjectHideFlags: 0
@@ -7727,7 +7051,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4881652877031266204}
   - component: {fileID: 4320783535183646543}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: body10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7936,7 +7260,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5922741668195382225}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: ball_on_a_club1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7968,7 +7292,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9101462159130940998}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Crusader_tank_RightHandIndex3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7991,38 +7315,6 @@ Transform:
   - {fileID: 3692238033128688682}
   m_Father: {fileID: 1292029000614609154}
   m_LocalEulerAnglesHint: {x: 2.1533682, y: -26.011677, z: -38.81572}
---- !u!1 &5397526030198906164
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3878261572976273672}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_RightHandMiddle3
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3878261572976273672
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5397526030198906164}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.04784662, y: -0.15736246, z: -0.3592405, w: 0.9186371}
-  m_LocalPosition: {x: 0.009498214, y: -0.023859633, z: 0.010650835}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 6330374253446575629}
-  m_Father: {fileID: 2361379844967185725}
-  m_LocalEulerAnglesHint: {x: -1.4412249, y: -18.880507, z: -42.476974}
 --- !u!1 &5446741524323160524
 GameObject:
   m_ObjectHideFlags: 0
@@ -8032,7 +7324,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8975650708307941611}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: bag_front1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8055,69 +7347,6 @@ Transform:
   - {fileID: 529667342586575716}
   m_Father: {fileID: 1273533936704807246}
   m_LocalEulerAnglesHint: {x: -12.772818, y: -38.90584, z: 86.1376}
---- !u!1 &5499928637646111224
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6540104857114664464}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_Spine
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6540104857114664464
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5499928637646111224}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.0023341607, y: -0.014253779, z: 0.027505338, w: 0.9995173}
-  m_LocalPosition: {x: -0, y: 0.07, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 651880120216972908}
-  m_Father: {fileID: 7509592060639003409}
-  m_LocalEulerAnglesHint: {x: -0.0025829633, y: 0.3302543, z: 0.20255409}
---- !u!1 &5528339944944227266
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5039311911912164369}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_RightFootEffector
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5039311911912164369
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5528339944944227266}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.06690921, y: 0.51069254, z: 0.09562754, w: 0.851805}
-  m_LocalPosition: {x: 0.3802423, y: 0.006177907, z: -0.49481654}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 640632968594878404}
-  m_LocalEulerAnglesHint: {x: -0.97661287, y: 15.643803, z: 7.0890007}
 --- !u!1 &5587533977761473251
 GameObject:
   m_ObjectHideFlags: 0
@@ -8127,7 +7356,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3670962425722984700}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Crusader_tank_RightFoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8151,37 +7380,6 @@ Transform:
   - {fileID: 5094631312398901234}
   m_Father: {fileID: 5607159167589188288}
   m_LocalEulerAnglesHint: {x: -14.6298, y: -2.378311, z: 2.8775904}
---- !u!1 &5633802909670316366
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7758167259601512614}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_RightHandPinky4
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7758167259601512614
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5633802909670316366}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.00000017880957, y: 0.00000004929197, z: -0.0000003241632, w: 1}
-  m_LocalPosition: {x: 0.0028743744, y: -0.019102173, z: -0.0020044683}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 957413486429750658}
-  m_LocalEulerAnglesHint: {x: 0.0000016677131, y: 0.00000025094687, z: -0.0000026533712}
 --- !u!1 &5679511940722933235
 GameObject:
   m_ObjectHideFlags: 0
@@ -8191,7 +7389,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2013423606000979320}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Crusader_tank_RightHandThumb1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8224,7 +7422,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2030938093701592849}
   - component: {fileID: 1080274840516653002}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: body2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8433,7 +7631,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 538262279590182610}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Crusader_tank_Neck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8456,70 +7654,6 @@ Transform:
   - {fileID: 8951365563742732982}
   m_Father: {fileID: 4271534943427547770}
   m_LocalEulerAnglesHint: {x: 0.00033255536, y: 0, z: 0}
---- !u!1 &5813556324348268506
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2634469193663531803}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_Neck
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2634469193663531803
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5813556324348268506}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.008996484, y: -0.37310064, z: 0.09469838, w: 0.9229015}
-  m_LocalPosition: {x: -0, y: 0.18208098, z: -0.03769832}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 681532843894347300}
-  m_Father: {fileID: 6231714059059016390}
-  m_LocalEulerAnglesHint: {x: 0.0003284365, y: -0.000008085787, z: 0.0000055980076}
---- !u!1 &5868682814094781303
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 868774213568434638}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_LeftShoulder
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &868774213568434638
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5868682814094781303}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.000000028128786, y: -0.00000010831857, z: 0.000000020302647, w: 1}
-  m_LocalPosition: {x: -0.1277456, y: 0.0739682, z: -0.031493258}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 666763573514464104}
-  m_Father: {fileID: 6231714059059016390}
-  m_LocalEulerAnglesHint: {x: 9.129809e-15, y: 1.7738217e-30, z: 9.129809e-15}
 --- !u!1 &5873460769497127670
 GameObject:
   m_ObjectHideFlags: 0
@@ -8530,7 +7664,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8692807576652594938}
   - component: {fileID: 9205025371144332005}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: weapon6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8739,7 +7873,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1020977466564502343}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Crusader_tank_RightHandRing4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8770,7 +7904,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1292029000614609154}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Crusader_tank_RightHandIndex2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8802,7 +7936,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6901530997597290410}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: toga_mid_front3_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8825,37 +7959,6 @@ Transform:
   - {fileID: 5592657815883589073}
   m_Father: {fileID: 1273533936704807246}
   m_LocalEulerAnglesHint: {x: -17.202454, y: -68.9949, z: 100.42818}
---- !u!1 &6097293818464224534
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 795088870240183585}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_LeftHandThumb4
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &795088870240183585
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6097293818464224534}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.00000036511523, y: 0.00000039588716, z: 0.000000111512136, w: 1}
-  m_LocalPosition: {x: 0.0032511519, y: -0.012985992, z: 0.025715522}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7590188906684820976}
-  m_LocalEulerAnglesHint: {x: 0.000014115232, y: 0.0000018018728, z: -4.956182e-14}
 --- !u!1 &6112681416341788206
 GameObject:
   m_ObjectHideFlags: 0
@@ -8865,7 +7968,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9181479636248076110}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: toga_mid_back2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8888,38 +7991,6 @@ Transform:
   - {fileID: 6277932779349651931}
   m_Father: {fileID: 1206440739808760946}
   m_LocalEulerAnglesHint: {x: -0.33493006, y: -0.95830226, z: 1.0453141}
---- !u!1 &6135875434541927724
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 9050882933616266708}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_LeftHandPinky3
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &9050882933616266708
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6135875434541927724}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.0054958044, y: -0.036529325, z: 0.35600883, w: 0.9337522}
-  m_LocalPosition: {x: -0.003236389, y: -0.02151779, z: -0.0027093922}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 4880766292575730651}
-  m_Father: {fileID: 8374600899991035956}
-  m_LocalEulerAnglesHint: {x: 0.9021355, y: -4.1370883, z: 41.707638}
 --- !u!1 &6142890553599604970
 GameObject:
   m_ObjectHideFlags: 0
@@ -8929,7 +8000,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4454483262224603233}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: hip_flap_left2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8951,38 +8022,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3715028670555144065}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &6157097700066148383
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3106441925060312835}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_LeftLeg
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3106441925060312835
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6157097700066148383}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.3796442, y: -0.08164614, z: -0.032109518, w: 0.9209632}
-  m_LocalPosition: {x: -0.047706097, y: -0.4535546, z: -0.017041137}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 7851727992395414072}
-  m_Father: {fileID: 5813611025481181858}
-  m_LocalEulerAnglesHint: {x: 5.719061, y: -11.273491, z: -3.4509966}
 --- !u!1 &6215668065043547791
 GameObject:
   m_ObjectHideFlags: 0
@@ -8993,7 +8032,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7416478607486273788}
   - component: {fileID: 1652368876411389329}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: body6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9202,7 +8241,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6875289751664037352}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: knee_pad_right2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9233,7 +8272,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8944900079797946580}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: toga_left_back1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9256,68 +8295,6 @@ Transform:
   - {fileID: 8953635050096867863}
   m_Father: {fileID: 1273533936704807246}
   m_LocalEulerAnglesHint: {x: 2.640637, y: 4.395697, z: 88.73934}
---- !u!1 &6358683381400879386
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7930640637351496077}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_LeftFootEffector
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7930640637351496077
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6358683381400879386}
-  serializedVersion: 2
-  m_LocalRotation: {x: 2.7930783e-18, y: -0.0000000014319382, z: -0.0000000019505575, w: 1}
-  m_LocalPosition: {x: -0.24840689, y: -0.0087689115, z: 0.050677214}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 640632968594878404}
-  m_LocalEulerAnglesHint: {x: 0.000000038070585, y: 0.0013455206, z: -0.00000033872652}
---- !u!1 &6378835995688658246
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8850559659662723313}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_ChestOriginEffector
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8850559659662723313
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6378835995688658246}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.031188518, y: 0.38801017, z: -0.002712065, w: 0.92112327}
-  m_LocalPosition: {x: 0.032019038, y: 0.98959905, z: -0.19400796}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 640632968594878404}
-  m_LocalEulerAnglesHint: {x: -0.039869104, y: 18.786715, z: 0.0040568714}
 --- !u!1 &6393414497901948295
 GameObject:
   m_ObjectHideFlags: 0
@@ -9328,7 +8305,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2875928408818906643}
   - component: {fileID: 1184591236654411752}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: weapon2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9537,7 +8514,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4878553659228695807}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: heel_flap_right2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9559,101 +8536,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5094631312398901234}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &6453547526449124659
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8581527913901700969}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_LeftHandPinky1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8581527913901700969
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6453547526449124659}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.0095383115, y: -0.030451017, z: 0.35668063, w: 0.9336813}
-  m_LocalPosition: {x: -0.064628944, y: -0.0967543, z: -0.009653831}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 8374600899991035956}
-  m_Father: {fileID: 2562846110769391677}
-  m_LocalEulerAnglesHint: {x: 0.22404255, y: -3.6505399, z: 41.808212}
---- !u!1 &6524484529540219794
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3307823185431857440}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_RightUpLeg
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3307823185431857440
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6524484529540219794}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.2515239, y: 0.12955303, z: 0.15994014, w: 0.94571185}
-  m_LocalPosition: {x: 0.110062495, y: -0.062699966, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 9158135678079435690}
-  m_Father: {fileID: 7509592060639003409}
-  m_LocalEulerAnglesHint: {x: -12.757765, y: -2.885775, z: 5.6823072}
---- !u!1 &6618757827746724570
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3729545607946866800}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_RightHipEffector
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3729545607946866800
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6618757827746724570}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.14506462, y: 0.5023361, z: 0.2245705, w: 0.82230335}
-  m_LocalPosition: {x: 0.09793888, y: 0.85342664, z: -0.27668014}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 640632968594878404}
-  m_LocalEulerAnglesHint: {x: -12.785105, y: 16.241339, z: 5.3253403}
 --- !u!1 &6684402109465498075
 GameObject:
   m_ObjectHideFlags: 0
@@ -9663,7 +8545,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1155358343691067346}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Crusader_tank_RightHandMiddle2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9686,101 +8568,6 @@ Transform:
   - {fileID: 5641159502493366649}
   m_Father: {fileID: 3077512666396557270}
   m_LocalEulerAnglesHint: {x: 0.0121880155, y: -17.409986, z: -43.328716}
---- !u!1 &6700029216321358668
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 9158135678079435690}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_RightLeg
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &9158135678079435690
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6700029216321358668}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.35681447, y: -0.0039886343, z: -0.01666277, w: 0.9340182}
-  m_LocalPosition: {x: 0.047706097, y: -0.4535546, z: -0.017041137}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 6430131411431489069}
-  m_Father: {fileID: 3307823185431857440}
-  m_LocalEulerAnglesHint: {x: 26.624748, y: 0.8454911, z: -0.35091978}
---- !u!1 &6775589538458234347
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 120667717576398648}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_RightAnkleEffector
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &120667717576398648
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6775589538458234347}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.06690915, y: 0.5106926, z: 0.09562744, w: 0.8518049}
-  m_LocalPosition: {x: 0.22180182, y: 0.07053153, z: -0.52570194}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 640632968594878404}
-  m_LocalEulerAnglesHint: {x: -0.9766009, y: 15.643805, z: 7.0890007}
---- !u!1 &6796619772736339069
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7590188906684820976}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_LeftHandThumb3
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7590188906684820976
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6796619772736339069}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.00009079651, y: 0.0014398661, z: 0.0007157304, w: 0.99999875}
-  m_LocalPosition: {x: 0.004436493, y: -0.011664886, z: 0.026884202}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 795088870240183585}
-  m_Father: {fileID: 5683432787736669708}
-  m_LocalEulerAnglesHint: {x: 0.010254815, y: 0.16507436, z: 0.082058124}
 --- !u!1 &6841364439913196053
 GameObject:
   m_ObjectHideFlags: 0
@@ -9790,7 +8577,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 529667342586575716}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: bag_front2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9812,69 +8599,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8975650708307941611}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &6950966626713536175
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1528158768532543371}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_RightKneeEffector
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1528158768532543371
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6950966626713536175}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.15044214, y: 0.543624, z: 0.017388903, w: 0.825553}
-  m_LocalPosition: {x: 0.33740228, y: 0.4674639, z: -0.32104865}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 640632968594878404}
-  m_LocalEulerAnglesHint: {x: 13.613998, y: 19.611889, z: 4.8731203}
---- !u!1 &6982511556400817241
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3068225141821689506}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_RightHandIndex1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3068225141821689506
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6982511556400817241}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.15340795, y: -0.29861036, z: -0.53784066, w: 0.7733209}
-  m_LocalPosition: {x: 0.057165794, y: -0.058773194, z: 0.08358884}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2840844365439086583}
-  m_Father: {fileID: 8797183846530114192}
-  m_LocalEulerAnglesHint: {x: -4.815068, y: -38.982544, z: -67.93177}
 --- !u!1 &7057464631186031064
 GameObject:
   m_ObjectHideFlags: 0
@@ -9884,7 +8608,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4010695827653294555}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Crusader_tank_RightHandThumb2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9907,38 +8631,6 @@ Transform:
   - {fileID: 6920659853697422851}
   m_Father: {fileID: 2013423606000979320}
   m_LocalEulerAnglesHint: {x: -1.8536336, y: 14.905169, z: 6.1251235}
---- !u!1 &7087862057555784899
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2542183637673322461}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_LeftHandIndex2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2542183637673322461
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7087862057555784899}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.13578984, y: 0.2444425, z: 0.34575337, w: 0.8956917}
-  m_LocalPosition: {x: -0.013035049, y: -0.021419296, z: 0.02214755}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 7647373197910627633}
-  m_Father: {fileID: 4597093564316403897}
-  m_LocalEulerAnglesHint: {x: 4.256373, y: 32.22576, z: 43.445023}
 --- !u!1 &7118461609099807552
 GameObject:
   m_ObjectHideFlags: 0
@@ -9948,7 +8640,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2442876196508560341}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: shield1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9972,40 +8664,6 @@ Transform:
   - {fileID: 2033533011956512547}
   m_Father: {fileID: 93162406614589144}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &7143453761395672546
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7509592060639003409}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_Hips
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7509592060639003409
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7143453761395672546}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.018389722, y: 0.40181655, z: -0.02669633, w: 0.91514623}
-  m_LocalPosition: {x: 0.02756418, y: 0.91974616, z: -0.19486229}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 5813611025481181858}
-  - {fileID: 3307823185431857440}
-  - {fileID: 6540104857114664464}
-  m_Father: {fileID: 640632968594878404}
-  m_LocalEulerAnglesHint: {x: -0.037888926, y: 18.976456, z: -0.2791799}
 --- !u!1 &7148484248684864126
 GameObject:
   m_ObjectHideFlags: 0
@@ -10016,7 +8674,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5507809692952177625}
   - component: {fileID: 2957108392431735015}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: weapon7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10225,7 +8883,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9019685975738053353}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Crusader_tank_LeftHandRing2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10248,37 +8906,6 @@ Transform:
   - {fileID: 3620604643099489065}
   m_Father: {fileID: 1402117021929351438}
   m_LocalEulerAnglesHint: {x: -0.66995496, y: 5.750256, z: 52.508694}
---- !u!1 &7229625505207800357
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1920316740006167920}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_LeftToeBase
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1920316740006167920
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7229625505207800357}
-  serializedVersion: 2
-  m_LocalRotation: {x: 1.2969185e-24, y: -0.000000010590142, z: -1.2246467e-16, w: 1}
-  m_LocalPosition: {x: -0.03154026, y: -0.0710472, z: 0.15542251}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7851727992395414072}
-  m_LocalEulerAnglesHint: {x: 2.1019453e-30, y: 0, z: -1.1509441e-14}
 --- !u!1 &7297549248261157841
 GameObject:
   m_ObjectHideFlags: 0
@@ -10288,7 +8915,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6920659853697422851}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Crusader_tank_RightHandThumb3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10311,37 +8938,6 @@ Transform:
   - {fileID: 8197473252771366728}
   m_Father: {fileID: 4010695827653294555}
   m_LocalEulerAnglesHint: {x: -0.3852208, y: 24.640564, z: 12.845835}
---- !u!1 &7350780548691089370
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8365677544241654226}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_LeftHipEffector
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8365677544241654226
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7350780548691089370}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.2362669, y: 0.15642227, z: -0.008173313, w: 0.9589803}
-  m_LocalPosition: {x: -0.05079113, y: 0.86092925, z: -0.11457484}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 640632968594878404}
-  m_LocalEulerAnglesHint: {x: 0.23626271, y: 18.379547, z: 2.702082}
 --- !u!1 &7407146041596999354
 GameObject:
   m_ObjectHideFlags: 0
@@ -10351,7 +8947,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2456086870760785629}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10380,38 +8976,6 @@ Transform:
   - {fileID: 5507809692952177625}
   m_Father: {fileID: 8545092920387436094}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &7435778644744793920
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8890147660129162038}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_RightHandPinky2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8890147660129162038
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7435778644744793920}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.0028277186, y: 0.018799447, z: -0.15268624, w: 0.9880919}
-  m_LocalPosition: {x: 0.009369812, y: -0.021442719, z: -0.0037828314}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 957413486429750658}
-  m_Father: {fileID: 8218120639991822140}
-  m_LocalEulerAnglesHint: {x: 0.00876478, y: 2.1786773, z: -17.56831}
 --- !u!1 &7521935026195507216
 GameObject:
   m_ObjectHideFlags: 0
@@ -10421,7 +8985,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5592657815883589073}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: toga_mid_front3_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10453,7 +9017,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4344606930410183146}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10494,102 +9058,6 @@ Transform:
   - {fileID: 5115925618081667292}
   m_Father: {fileID: 8545092920387436094}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &7557265767811488719
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3293534059961923418}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_RightHandThumb2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3293534059961923418
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7557265767811488719}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.009086951, y: 0.13036014, z: 0.05506306, w: 0.9898948}
-  m_LocalPosition: {x: -0.007640228, y: -0.0041732024, z: 0.030905843}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 8137752113890064334}
-  m_Father: {fileID: 336163557257960902}
-  m_LocalEulerAnglesHint: {x: -1.8536375, y: 14.905181, z: 6.1251245}
---- !u!1 &7572326772765606651
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8218120639991822140}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_RightHandPinky1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8218120639991822140
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7572326772765606651}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.0023753669, y: 0.053236656, z: -0.683723, w: 0.7277934}
-  m_LocalPosition: {x: 0.064628944, y: -0.0967543, z: -0.009653831}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 8890147660129162038}
-  m_Father: {fileID: 8797183846530114192}
-  m_LocalEulerAnglesHint: {x: 3.9762447, y: 4.642071, z: -86.26215}
---- !u!1 &7610765261714675407
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 853071210525235977}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_LeftHandMiddle2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &853071210525235977
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7610765261714675407}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.063006535, y: 0.15827242, z: 0.41074076, w: 0.8956964}
-  m_LocalPosition: {x: -0.01671295, y: -0.024921494, z: 0.013618817}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2670230084956813286}
-  m_Father: {fileID: 3289441397846579139}
-  m_LocalEulerAnglesHint: {x: -0.982584, y: 19.592777, z: 49.099922}
 --- !u!1 &7664954310209099926
 GameObject:
   m_ObjectHideFlags: 0
@@ -10599,7 +9067,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8327004134425292007}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: chain6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10631,7 +9099,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8197473252771366728}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Crusader_tank_RightHandThumb4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10653,132 +9121,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6920659853697422851}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &7769435823447181698
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5683432787736669708}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_LeftHandThumb2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5683432787736669708
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7769435823447181698}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.00010297554, y: 0.0014818717, z: 0.00062663335, w: 0.99999875}
-  m_LocalPosition: {x: 0.007640228, y: -0.0041732024, z: 0.030905843}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 7590188906684820976}
-  m_Father: {fileID: 8098850873987752340}
-  m_LocalEulerAnglesHint: {x: 0.011735162, y: 0.16974849, z: 0.07172}
---- !u!1 &7805115667170032382
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4597093564316403897}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_LeftHandIndex1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4597093564316403897
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7805115667170032382}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.120115235, y: 0.21400431, z: 0.37320897, w: 0.8947008}
-  m_LocalPosition: {x: -0.057165794, y: -0.058773194, z: 0.08358884}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2542183637673322461}
-  m_Father: {fileID: 2562846110769391677}
-  m_LocalEulerAnglesHint: {x: 3.1640718, y: 28.249605, z: 46.081825}
---- !u!1 &7819219009913872784
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2252751434610661498}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_LeftHandIndex4
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2252751434610661498
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7819219009913872784}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.0000002727507, y: 0.00000043732783, z: -0.00000046778928, w: 1}
-  m_LocalPosition: {x: -0.01133461, y: -0.022447128, z: 0.01835353}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7647373197910627633}
-  m_LocalEulerAnglesHint: {x: 0.000009583786, y: -0.0000011277408, z: 0.000011614579}
---- !u!1 &7838591174747007389
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1862262302150600450}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_ChestEndEffector
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1862262302150600450
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7838591174747007389}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.06751325, y: 0.41889527, z: -0.022981303, w: 0.90522957}
-  m_LocalPosition: {x: 0.032254234, y: 1.430126, z: -0.18183567}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 640632968594878404}
-  m_LocalEulerAnglesHint: {x: -0.038757205, y: 18.804335, z: 0.003562768}
 --- !u!1 &7839411113282754425
 GameObject:
   m_ObjectHideFlags: 0
@@ -10788,7 +9130,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7990286038219474121}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Crusader_tank_RightShoulder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10820,7 +9162,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1461056596393125286}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: toga_left_back3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10851,7 +9193,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8513471317603463798}
-  m_Layer: 9
+  - component: {fileID: 426864179745042618}
+  - component: {fileID: 671051482038675821}
+  - component: {fileID: 2149010231608290571}
+  m_Layer: 0
   m_Name: Crusader_tank_RightUpLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10874,6 +9219,102 @@ Transform:
   - {fileID: 5607159167589188288}
   m_Father: {fileID: 4066285148985295894}
   m_LocalEulerAnglesHint: {x: -12.575641, y: -2.793924, z: 5.3042474}
+--- !u!136 &426864179745042618
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7948283288952658040}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.13606657
+  m_Height: 0.45355523
+  m_Direction: 1
+  m_Center: {x: 0, y: -0.22677761, z: 0}
+--- !u!54 &671051482038675821
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7948283288952658040}
+  serializedVersion: 4
+  m_Mass: 18.75
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!144 &2149010231608290571
+CharacterJoint:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7948283288952658040}
+  m_ConnectedBody: {fileID: 1829182041632513326}
+  m_ConnectedArticulationBody: {fileID: 0}
+  m_Anchor: {x: 0, y: 0, z: 0}
+  m_Axis: {x: 1, y: 0, z: 0}
+  m_AutoConfigureConnectedAnchor: 1
+  m_ConnectedAnchor: {x: 0.11006252, y: -0.062699996, z: -0.000000067055225}
+  serializedVersion: 2
+  m_SwingAxis: {x: 0, y: 0, z: 1}
+  m_TwistLimitSpring:
+    spring: 0
+    damper: 0
+  m_LowTwistLimit:
+    limit: -20
+    bounciness: 0
+    contactDistance: 0
+  m_HighTwistLimit:
+    limit: 70
+    bounciness: 0
+    contactDistance: 0
+  m_SwingLimitSpring:
+    spring: 0
+    damper: 0
+  m_Swing1Limit:
+    limit: 30
+    bounciness: 0
+    contactDistance: 0
+  m_Swing2Limit:
+    limit: 0
+    bounciness: 0
+    contactDistance: 0
+  m_EnableProjection: 0
+  m_ProjectionDistance: 0.1
+  m_ProjectionAngle: 180
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_EnableCollision: 0
+  m_EnablePreprocessing: 0
+  m_MassScale: 1
+  m_ConnectedMassScale: 1
 --- !u!1 &7980410748422172943
 GameObject:
   m_ObjectHideFlags: 0
@@ -10883,7 +9324,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3620604643099489065}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Crusader_tank_LeftHandRing3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10915,7 +9356,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1939728026883122863}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: flap_under_the_knee_right2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10946,7 +9387,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7134941880835929418}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: toga_mid_front3_6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10977,7 +9418,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8953635050096867863}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: toga_left_back2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11009,7 +9450,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7857350403314292188}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Crusader_tank_LeftHandThumb2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11041,7 +9482,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 880011912196268521}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: flap_under_the_knee_left1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11074,7 +9515,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4846600942628466178}
   - component: {fileID: 7114769635958954621}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: body16
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11274,70 +9715,6 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.14775494, y: 0.51998764, z: -0.058221534}
     m_Extent: {x: 0.11372292, y: 0.12462479, z: 0.1844964}
   m_DirtyAABB: 0
---- !u!1 &8315046906336610707
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3096456763043366498}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_LeftHandRing1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3096456763043366498
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8315046906336610707}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.006419152, y: 0.07000424, z: 0.43984163, w: 0.8953198}
-  m_LocalPosition: {x: -0.069974706, y: -0.092201844, z: 0.02491062}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2111058493156557854}
-  m_Father: {fileID: 2562846110769391677}
-  m_LocalEulerAnglesHint: {x: -2.8710802, y: 7.536593, z: 52.13763}
---- !u!1 &8317747751194630106
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2840844365439086583}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_RightHandIndex2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2840844365439086583
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8317747751194630106}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.122856826, y: -0.22115892, z: -0.3128231, w: 0.915498}
-  m_LocalPosition: {x: 0.013035049, y: -0.021419296, z: 0.02214755}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 6383634374125383766}
-  m_Father: {fileID: 3068225141821689506}
-  m_LocalEulerAnglesHint: {x: 4.967075, y: -28.922169, z: -39.011913}
 --- !u!1 &8345754878550021563
 GameObject:
   m_ObjectHideFlags: 0
@@ -11347,7 +9724,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1999043484767780166}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Crusader_tank_RightToeBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11369,37 +9746,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3670962425722984700}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &8387601713275428357
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8972874837817422873}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_RightHandIndex4
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8972874837817422873
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8387601713275428357}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.0000006303742, y: -0.00000021352282, z: 0.0000003195299, w: 1}
-  m_LocalPosition: {x: 0.01133461, y: -0.022447128, z: 0.01835353}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6383634374125383766}
-  m_LocalEulerAnglesHint: {x: -0.000032322285, y: -0.000016293894, z: 0.000010235866}
 --- !u!1 &8421071570804435463
 GameObject:
   m_ObjectHideFlags: 0
@@ -11409,7 +9755,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7093916883672286425}
-  m_Layer: 9
+  - component: {fileID: 7721562000170627447}
+  - component: {fileID: 6148804341148722905}
+  - component: {fileID: 6625308239270746173}
+  m_Layer: 0
   m_Name: Crusader_tank_RightArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11433,69 +9782,102 @@ Transform:
   - {fileID: 5624881921914000052}
   m_Father: {fileID: 7990286038219474121}
   m_LocalEulerAnglesHint: {x: -7.6428757, y: -4.974451, z: -33.041897}
---- !u!1 &8421233489259183447
-GameObject:
+--- !u!136 &7721562000170627447
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3289441397846579139}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_LeftHandMiddle1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3289441397846579139
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8421233489259183447}
+  m_GameObject: {fileID: 8421071570804435463}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
   serializedVersion: 2
-  m_LocalRotation: {x: 0.045143344, y: 0.19149691, z: 0.40077096, w: 0.8948037}
-  m_LocalPosition: {x: -0.0678442, y: -0.07972809, z: 0.056513365}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 853071210525235977}
-  m_Father: {fileID: 2562846110769391677}
-  m_LocalEulerAnglesHint: {x: -4.1692185, y: 22.326878, z: 47.43082}
---- !u!1 &8424654667290931599
-GameObject:
+  m_Radius: 0.046733603
+  m_Height: 0.18693441
+  m_Direction: 0
+  m_Center: {x: 0.093467206, y: 0, z: 0}
+--- !u!54 &6148804341148722905
+Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 388430968530696319}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_RightToeBase
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &388430968530696319
-Transform:
+  m_GameObject: {fileID: 8421071570804435463}
+  serializedVersion: 4
+  m_Mass: 12.5
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!144 &6625308239270746173
+CharacterJoint:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8424654667290931599}
+  m_GameObject: {fileID: 8421071570804435463}
+  m_ConnectedBody: {fileID: 8594513360699386304}
+  m_ConnectedArticulationBody: {fileID: 0}
+  m_Anchor: {x: 0, y: 0, z: 0}
+  m_Axis: {x: 0, y: 1, z: 0}
+  m_AutoConfigureConnectedAnchor: 1
+  m_ConnectedAnchor: {x: 0.24195144, y: 0.22882286, z: -0.11228633}
   serializedVersion: 2
-  m_LocalRotation: {x: -1.2869702e-14, y: -0.00000010672124, z: 0.00000012059176, w: 1}
-  m_LocalPosition: {x: 0.03154026, y: -0.0710472, z: 0.15542251}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6430131411431489069}
-  m_LocalEulerAnglesHint: {x: 2.1019453e-30, y: 0, z: -1.1509441e-14}
+  m_SwingAxis: {x: 0, y: 0, z: 1}
+  m_TwistLimitSpring:
+    spring: 0
+    damper: 0
+  m_LowTwistLimit:
+    limit: -70
+    bounciness: 0
+    contactDistance: 0
+  m_HighTwistLimit:
+    limit: 10
+    bounciness: 0
+    contactDistance: 0
+  m_SwingLimitSpring:
+    spring: 0
+    damper: 0
+  m_Swing1Limit:
+    limit: 50
+    bounciness: 0
+    contactDistance: 0
+  m_Swing2Limit:
+    limit: 0
+    bounciness: 0
+    contactDistance: 0
+  m_EnableProjection: 0
+  m_ProjectionDistance: 0.1
+  m_ProjectionAngle: 180
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_EnableCollision: 0
+  m_EnablePreprocessing: 0
+  m_MassScale: 1
+  m_ConnectedMassScale: 1
 --- !u!1 &8433780908112763358
 GameObject:
   m_ObjectHideFlags: 0
@@ -11505,7 +9887,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8929191894818537506}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: chain9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11538,7 +9920,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3575689914097218108}
   - component: {fileID: 1623317449818255502}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: weapon3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11747,7 +10129,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 135658408479951287}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Crusader_tank_LeftHandMiddle1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11779,7 +10161,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2377598867900691539}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Crusader_tank_LeftHandMiddle3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11802,100 +10184,6 @@ Transform:
   - {fileID: 1715212970545406557}
   m_Father: {fileID: 100096737761316697}
   m_LocalEulerAnglesHint: {x: -1.814518, y: 21.720915, z: 48.04561}
---- !u!1 &8684391344639813837
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5813611025481181858}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_LeftUpLeg
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5813611025481181858
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8684391344639813837}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.2347459, y: -0.24864267, z: -0.079691045, w: 0.9363336}
-  m_LocalPosition: {x: -0.110062495, y: -0.062699966, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 3106441925060312835}
-  m_Father: {fileID: 7509592060639003409}
-  m_LocalEulerAnglesHint: {x: 0.27468887, y: -0.49393615, z: 2.9678304}
---- !u!1 &8688080871472842742
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 229673296996147565}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_RightHandMiddleEffector
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &229673296996147565
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8688080871472842742}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.4716385, y: 0.38430595, z: 0.7737957, w: -0.17636958}
-  m_LocalPosition: {x: 0.3600344, y: 0.96086353, z: -0.64511603}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 640632968594878404}
-  m_LocalEulerAnglesHint: {x: -54.547993, y: 29.669592, z: 145.96202}
---- !u!1 &8700300552354734727
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3159155812517835271}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_RightShoulderEffector
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3159155812517835271
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8700300552354734727}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.07107504, y: 0.46525663, z: -0.18434604, w: 0.8628448}
-  m_LocalPosition: {x: 0.13208927, y: 1.4143803, z: -0.41941506}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 640632968594878404}
-  m_LocalEulerAnglesHint: {x: -7.661632, y: 13.83497, z: -32.98433}
 --- !u!1 &8714930245634051090
 GameObject:
   m_ObjectHideFlags: 0
@@ -11906,7 +10194,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5949095644231941223}
   - component: {fileID: 8428429646451912011}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: weapon4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12173,38 +10461,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad340d525a2f2ee4f94298589a3216c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &8739615327588848572
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8098850873987752340}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_LeftHandThumb1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8098850873987752340
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8739615327588848572}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.3006316, y: -0.002373005, z: -0.0402033, w: 0.9528897}
-  m_LocalPosition: {x: -0.010280724, y: -0.01632225, z: 0.064716004}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 5683432787736669708}
-  m_Father: {fileID: 2562846110769391677}
-  m_LocalEulerAnglesHint: {x: 34.941944, y: -2.0060704, z: -5.463306}
 --- !u!1 &8758277546491453401
 GameObject:
   m_ObjectHideFlags: 0
@@ -12214,7 +10470,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3077512666396557270}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Crusader_tank_RightHandMiddle1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12237,168 +10493,6 @@ Transform:
   - {fileID: 1155358343691067346}
   m_Father: {fileID: 880062446190053857}
   m_LocalEulerAnglesHint: {x: -11.773773, y: -27.945843, z: -71.8258}
---- !u!1 &8880490128647454942
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6990526743740792845}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_RightHandPinkyEffector
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6990526743740792845
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8880490128647454942}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.53787607, y: -0.21319346, z: 0.7886963, w: -0.20783667}
-  m_LocalPosition: {x: 0.30335158, y: 0.9351601, z: -0.6584225}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 640632968594878404}
-  m_LocalEulerAnglesHint: {x: -0.24637175, y: 12.273131, z: -161.20694}
---- !u!1 &8892037143196035397
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2111058493156557854}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_LeftHandRing2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2111058493156557854
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8892037143196035397}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.016950319, y: 0.04756921, z: 0.44205686, w: 0.8955644}
-  m_LocalPosition: {x: -0.014566802, y: -0.025146026, z: 0.0047493814}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 418717253393771084}
-  m_Father: {fileID: 3096456763043366498}
-  m_LocalEulerAnglesHint: {x: -0.6699572, y: 5.75025, z: 52.5087}
---- !u!1 &8937705759977744478
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8797183846530114192}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_RightHand
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8797183846530114192
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8937705759977744478}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.15376379, y: 0.09697683, z: -0.088203564, w: 0.97937346}
-  m_LocalPosition: {x: 0.2067926, y: -0.13042702, z: 0.11862262}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 3068225141821689506}
-  - {fileID: 1222999249008483436}
-  - {fileID: 8218120639991822140}
-  - {fileID: 3899427928601807735}
-  - {fileID: 336163557257960902}
-  m_Father: {fileID: 2474541887796198726}
-  m_LocalEulerAnglesHint: {x: 0.00003143564, y: -0.00019909116, z: -0.00013472124}
---- !u!1 &8974666144079432286
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4880766292575730651}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_LeftHandPinky4
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4880766292575730651
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8974666144079432286}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.0000005406138, y: 0.00000043485932, z: -0.00000048405434, w: 1}
-  m_LocalPosition: {x: -0.0028743744, y: -0.019102173, z: -0.0020044683}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 9050882933616266708}
-  m_LocalEulerAnglesHint: {x: -3.2606463e-15, y: -1.0760132e-14, z: 1.0036676e-14}
---- !u!1 &9027766369110703147
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8137752113890064334}
-  m_Layer: 9
-  m_Name: Crusader_tank_Ctrl_RightHandThumb3
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8137752113890064334
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9027766369110703147}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.020606892, y: 0.21240222, z: 0.110002205, w: 0.97075236}
-  m_LocalPosition: {x: -0.004436493, y: -0.011664886, z: 0.026884202}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2897253153073248555}
-  m_Father: {fileID: 3293534059961923418}
-  m_LocalEulerAnglesHint: {x: -0.3852213, y: 24.640566, z: 12.845832}
 --- !u!1 &9081775654986075812
 GameObject:
   m_ObjectHideFlags: 0
@@ -12408,7 +10502,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7269608420427752120}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: toga_left_front1_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12441,7 +10535,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8794478021715961445}
   - component: {fileID: 3324600212240954060}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: body5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12650,7 +10744,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5496243666376140404}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Crusader_tank_LeftHandThumb1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

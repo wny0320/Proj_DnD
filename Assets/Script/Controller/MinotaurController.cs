@@ -68,17 +68,45 @@ public class MinotaurController : BaseController, IReceiveAttack
             stat.Hp = 0;
 
             Debug.Log($"{name} die");
+            OnDead();
+        }
+    }
 
-            GetComponent<NavMeshAgent>().SetDestination(transform.position);
-            GetComponent<NavMeshAgent>().velocity = Vector3.zero;
-            animator.SetBool("EnemyMove", false);
+    private void OnDead()
+    {
+        weapon.GetComponent<Collider>().enabled = false;
+        GetComponent<NavMeshAgent>().SetDestination(transform.position);
+        GetComponent<NavMeshAgent>().velocity = Vector3.zero;
+        animator.SetBool("EnemyMove", false);
 
-            rigidBody.isKinematic = true;
-            GetComponent<Collider>().isTrigger = true;
+        //rigidBody.isKinematic = true;
+        //GetComponent<Collider>().isTrigger = true;
 
-            ChangeState(EnemyState.Die);
-            states.Clear();
-            stateMachine = null;
+        ChangeState(EnemyState.Die);
+        states.Clear();
+        stateMachine = null;
+
+        animator.enabled = false;
+
+        RagdollDead(transform);
+        gameObject.AddComponent<Interactive>();
+        Destroy(gameObject.GetComponent<BaseController>());
+    }
+
+    private void RagdollDead(Transform trans)
+    {
+        trans.gameObject.layer = LayerMask.NameToLayer("Interactive");
+        Rigidbody r = trans.GetComponent<Rigidbody>();
+        Collider c = trans.GetComponent<Collider>();
+        if (r != null)
+            r.isKinematic = false;
+        if (c != null)
+            c.excludeLayers = 1 << LayerMask.NameToLayer("Player") | 
+                1 << LayerMask.NameToLayer("Monster") | 1 << LayerMask.NameToLayer("Traveler");
+
+        foreach(Transform child in trans)
+        {
+            RagdollDead(child);
         }
     }
 }

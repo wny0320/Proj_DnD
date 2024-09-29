@@ -16,6 +16,6 @@ MonoBehaviour:
   _maxHp: 200
   _attack: 37
   _defense: 10
-  _moveSpeed: 4
+  _moveSpeed: 3.5
   _jumpForce: 0
   _attackSpeed: 2.5
