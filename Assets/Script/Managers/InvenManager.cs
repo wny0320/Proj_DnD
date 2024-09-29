@@ -468,26 +468,20 @@ public class InvenManager
                                     nowFrom.SlotReset();
                                 }
                             }
-                        }
-                        // 움직일 수 없다면 에러
-                        else
-                        {
-                            Debug.LogError("Can't Move Here");
-                        }
-                        if (canMoveFlag == false)
-                        {
-                            // 실패시 원래 위치로 itemVisual을 옮김
-                            itemVisual.GetComponent<RectTransform>().anchoredPosition = itemVisualOriginPos;
-                            break;
-                        }
-                        else
-                        {
                             // 성공시, 장비창이 연관된 것이 아니라면 성공한 위치로 itemVisual을 옮김
                             itemVisual.transform.SetParent(GameObject.Find(toSlot.transform.root.name.ToString() + "Panel/ItemArea/ItemVisual").transform);
                             RectTransform visualRect = itemVisual.GetComponent<RectTransform>();
                             RectTransform toSlotRect = toSlot.GetComponent<RectTransform>();
                             visualRect.anchoredPosition = toSlotRect.anchoredPosition + new Vector2(0, -toPos.x * UNITSIZE)
                                 + new Vector2((itemSize[1] - 1) * (UNITSIZE / 2), -(itemSize[0] - 1) * (UNITSIZE / 2));
+                            break;
+                        }
+                        // 움직일 수 없다면 에러
+                        else
+                        {
+                            // 실패시 원래 위치로 itemVisual을 옮김
+                            Debug.LogError("Can't Move Here");
+                            itemVisual.GetComponent<RectTransform>().anchoredPosition = itemVisualOriginPos;
                             break;
                         }
                     }
@@ -529,19 +523,19 @@ public class InvenManager
                     }
                     if (interactEquipFlag == true)
                     {
-                        // Global.PlayerArmorUnEquip(fromSlot);
+                        Global.PlayerArmorUnEquip(fromSlot);
                         // AddItem이 실패한경우 장착한 아이템을 바닥에 버림
-                        bool addFlag = AddItem(fromSlot.slotItem, ItemBoxType.Inventory);
-                        if (addFlag == false && Manager.Instance.GetNowScene().name.ToString() != LOBBY_SCENE_NAME)
+                        Item newItem = AddItem(fromSlot.slotItem, ItemBoxType.Inventory);
+                        if (newItem == null && Manager.Instance.GetNowScene().name.ToString() != LOBBY_SCENE_NAME)
                             DumpItem(fromSlot.slotItem);
-                        else if (addFlag == false)
+                        else if (newItem == null)
                             Debug.Log("Can't Unequip. Inven Is Full");
                         // AddItem이 성공한 경우는 그냥 장비창 리셋만 하면 됨
                         GameObject.Destroy(itemVisual);
                         fromSlot.SlotReset();
                         continue;
                     }
-                    // 인벤토리창에서 장착하는 경우
+                    // 아이템 박스창에서 장착하는 경우
                     else
                     {
                         EquipPart targetEquipPart = fromSlot.slotItem.equipPart;
@@ -635,7 +629,7 @@ public class InvenManager
                                         itemVisual.transform.GetChild(0).GetComponent<Image>().sprite;
                                 }
                             }
-                            //Global.PlayerArmorEquip(fromSlot.slotItem);
+                            Global.PlayerArmorEquip(fromSlot.slotItem);
                             Slot deleteSlot = fromSlotLines[originYIndex].mySlots[originXIndex];
                             DeleteInvenItem(deleteSlot, fromItemBoxType);
                             //Debug.Log(GameObject.Find(targetImagePath).GetComponent<Image>().sprite);
@@ -653,7 +647,7 @@ public class InvenManager
             }
         }
     }
-    public bool AddItem(Item _item, ItemBoxType _itemBoxType)
+    public Item AddItem(Item _item, ItemBoxType _itemBoxType)
     {
         // 비어있는 슬롯을 다 가져오는 코드
         bool[,] emptyFlag = null;
@@ -763,7 +757,7 @@ public class InvenManager
         if(targetSlot == null)
         {
             Debug.LogError("Empty Slot Is Not Exist");
-            return false;
+            return null;
         }
         targetSlot.emptyFlag = false;
         targetSlot.mainSlotFlag = true;
@@ -783,6 +777,7 @@ public class InvenManager
             + new Vector2((itemSize[1] - 1) * (UNITSIZE / 2), -(itemSize[0] - 1) * (UNITSIZE / 2));
         // itemVisual 정보 저장
         targetSlot.itemVisual = itemVisual;
+        Item targetItem = targetSlot.slotItem;
 
         // 나머지 Slot 데이터도 세팅
         int minY = targetSlotIndex.x;
@@ -802,7 +797,7 @@ public class InvenManager
                 nowSlot.itemDataPos = targetSlotIndex;
             }
         }
-        return true;
+        return targetItem;
     }
     public void DeleteInvenItem(Slot _slot, ItemBoxType _itemBoxType)
     {
@@ -852,16 +847,37 @@ public class InvenManager
         dumpedItem3D.transform.position = Manager.Game.Player.transform.position;
         dumpedItem3D.transform.position += new Vector3(0, 0.1f, 0);
     }
-    public List<Item> GetInvenItems()
+    public List<Item> GetBoxItems(ItemBoxType _itemBoxType)
     {
-        List<Item> items = new List<Item>();
-        for (int y = 0; y < invenSlotRowSize; y++)
+        Vector2Int storageSize = -Vector2Int.one;
+        List<SlotLine> targetSlotLines = new List<SlotLine>();
+        switch(_itemBoxType)
         {
-            for(int x = 0; x < invenSlotColumnSize; x++)
+            case ItemBoxType.Inventory:
+                storageSize = new Vector2Int(invenSlotRowSize, invenSlotColumnSize);
+                targetSlotLines = invenSlotLines;
+                break;
+            case ItemBoxType.Stash:
+                storageSize = new Vector2Int(stashSlotRowSize, stashSlotColumnSize);
+                targetSlotLines = stashSlotLines;
+                break;
+            case ItemBoxType.Drop:
+                storageSize = new Vector2Int(dropSlotRowSize, dropSlotColumnSize);
+                targetSlotLines = dropSlotLines;
+                break;
+            case ItemBoxType.Equip:
+                break;
+            case ItemBoxType.Null:
+                break;
+        }
+        List<Item> items = new List<Item>();
+        for (int y = 0; y < storageSize.x; y++)
+        {
+            for(int x = 0; x < storageSize.y; x++)
             {
-                if(invenSlotLines[y].mySlots[x].mainSlotFlag == true)
+                if(targetSlotLines[y].mySlots[x].mainSlotFlag == true)
                 {
-                    items.Add(invenSlotLines[y].mySlots[x].slotItem);
+                    items.Add(targetSlotLines[y].mySlots[x].slotItem);
                 }
             }
         }

@@ -30,6 +30,8 @@ public class Interactive : MonoBehaviour
         if ((Manager.Game.Player.transform.position - transform.position).magnitude > distance || 
             Input.GetKeyDown(KeyCode.Tab))
         {
+            dropItemList.Clear();
+            dropItemList = Manager.Inven.GetBoxItems(ItemBoxType.Drop);
             isInteractiving = false;
             Manager.Inven.ConcealDropCanvas();
         }
@@ -61,7 +63,7 @@ public class Interactive : MonoBehaviour
         Debug.Log("item");
         Item itemPickedUp = GetComponent<Item3D>().myItem;
         // 인벤토리에 아이템 넣기 성공
-        if(Manager.Inven.AddItem(itemPickedUp, ItemBoxType.Inventory) == true)
+        if(Manager.Inven.AddItem(itemPickedUp, ItemBoxType.Inventory) != null)
         {
             Destroy(gameObject);
         }
@@ -73,6 +75,7 @@ public class Interactive : MonoBehaviour
     private void ChestFunc()
     {
         Debug.Log("chest");
+        Cursor.lockState = CursorLockMode.None;
         Manager.Inven.RevealDropCanvas();
         Manager.Inven.RevealInvenCanvasByBt();
         Manager.Inven.ItemBoxReset(ItemBoxType.Drop);
@@ -82,6 +85,7 @@ public class Interactive : MonoBehaviour
     private void MonsterFunc()
     {
         Debug.Log("monster");
+        Cursor.lockState = CursorLockMode.None;
         Manager.Inven.RevealDropCanvas();
         Manager.Inven.RevealInvenCanvasByBt();
         Manager.Inven.ItemBoxReset(ItemBoxType.Drop);

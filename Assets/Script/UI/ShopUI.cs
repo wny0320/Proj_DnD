@@ -27,7 +27,7 @@ public class ShopUI : MonoBehaviour
     {
         if (Manager.Data.dataImportFlag == false)
             return;
-        List<Item> invenItems = Manager.Inven.GetInvenItems();
+        List<Item> invenItems = Manager.Inven.GetBoxItems(ItemBoxType.Inventory);
         ShopItemUI[] sellUIs = sellCatalog.GetComponentsInChildren<ShopItemUI>();
         if(prevInvenItems != null)
         {
