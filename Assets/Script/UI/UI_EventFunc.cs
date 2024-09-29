@@ -65,7 +65,6 @@ public class UI_EventFunc : MonoBehaviour
     private void DataSet()
     {
         if(merchantObject != null) merchantObject.SetActive(false);
-        if(stashObject != null) stashObject.SetActive(false);
     }
     public void MerchantButton()
     {

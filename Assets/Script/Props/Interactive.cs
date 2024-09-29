@@ -17,6 +17,9 @@ public class Interactive : MonoBehaviour
             case "Chest":
                 ChestFunc();
                 break;
+            case "Monster":
+                MonsterFunc();
+                break;
         }
     }
 
@@ -41,5 +44,10 @@ public class Interactive : MonoBehaviour
     private void ChestFunc()
     {
         Debug.Log("chest");
+        List<Item> dropItemList = Manager.Inven.GetRandomItem(2, 5);
+    }
+    private void MonsterFunc()
+    {
+        Debug.Log("monster");
     }
 }

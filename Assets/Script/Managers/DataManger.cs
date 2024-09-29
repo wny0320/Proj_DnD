@@ -15,12 +15,13 @@ public class DataManager
     public List<Sprite> itemSprite = new List<Sprite>();
     public List<GameObject> itemUIPrefab = new List<GameObject>();
     public List<GameObject> item3DPrefab = new List<GameObject>();
+    public bool dataImportFlag = false;
     const string ITEM_PATH = "Items/";
     #endregion
     public int gold = 0;
     public void OnAwake()
     {
-        GetItemDataJson();
+        SaveItemDataToJson();
         ItemDataImport();
 
     }
@@ -32,7 +33,7 @@ public class DataManager
     {
         return JsonConvert.DeserializeObject(_jsonDatam, _type);
     }
-    public void GetItemDataJson()
+    public void SaveItemDataToJson()
     {
         string itemJsonPath = Path.Combine(Application.persistentDataPath, "itemData.Json");
         // 해당 부분은 파일이 있을때 업데이트 안하게 하는걸로 리소스 아끼고 싶을때 추가
@@ -102,5 +103,6 @@ public class DataManager
             item3DPrefab.Add(targetItem3DPrefab);
             index++;
         }
+        dataImportFlag = true;
     }
 }

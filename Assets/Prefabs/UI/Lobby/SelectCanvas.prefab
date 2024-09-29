@@ -192,6 +192,7 @@ GameObject:
   - component: {fileID: 2780101175723242251}
   - component: {fileID: 4833563435851546717}
   - component: {fileID: 7534667895361162229}
+  - component: {fileID: 8641746376597777095}
   m_Layer: 5
   m_Name: Stash
   m_TagString: Untagged
@@ -304,6 +305,25 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &8641746376597777095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5816394538921896426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c87f9a5f9e734f4ba94158377502700, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonFunc: 2
+  merchantObject: {fileID: 0}
+  stashObject: {fileID: 0}
+  potionObject: {fileID: 0}
+  armorObject: {fileID: 0}
+  sellObject: {fileID: 0}
+  shopUI: {fileID: 0}
 --- !u!1 &5975468902837426570
 GameObject:
   m_ObjectHideFlags: 0
@@ -316,6 +336,7 @@ GameObject:
   - component: {fileID: 5749289222128110764}
   - component: {fileID: 1574056859662592779}
   - component: {fileID: 5449073210926141956}
+  - component: {fileID: 958273488756351524}
   m_Layer: 5
   m_Name: Merchant
   m_TagString: Untagged
@@ -428,6 +449,25 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &958273488756351524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5975468902837426570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c87f9a5f9e734f4ba94158377502700, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonFunc: 0
+  merchantObject: {fileID: 0}
+  stashObject: {fileID: 0}
+  potionObject: {fileID: 0}
+  armorObject: {fileID: 0}
+  sellObject: {fileID: 0}
+  shopUI: {fileID: 0}
 --- !u!1 &6338980077913663851
 GameObject:
   m_ObjectHideFlags: 0
@@ -440,6 +480,7 @@ GameObject:
   - component: {fileID: 1543333486893936470}
   - component: {fileID: 6941902139500855640}
   - component: {fileID: 2265944734530199964}
+  - component: {fileID: 944236646039683376}
   m_Layer: 5
   m_Name: Adventure
   m_TagString: Untagged
@@ -552,3 +593,22 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &944236646039683376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6338980077913663851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c87f9a5f9e734f4ba94158377502700, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonFunc: 1
+  merchantObject: {fileID: 0}
+  stashObject: {fileID: 0}
+  potionObject: {fileID: 0}
+  armorObject: {fileID: 0}
+  sellObject: {fileID: 0}
+  shopUI: {fileID: 0}

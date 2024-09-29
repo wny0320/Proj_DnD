@@ -16,17 +16,17 @@ public class ShopUI : MonoBehaviour
     GameObject sellItemPrefab;
 
     List<Item> prevInvenItems;
-    // Start is called before the first frame update
-    private void Start()
-    {
-        ShopItemRefresh();
-    }
+
+    private bool shopRefreshFlag = false;
     private void Update()
     {
+        ShopItemRefresh();
         ShopSellRefresh();
     }
     private void ShopSellRefresh()
     {
+        if (Manager.Data.dataImportFlag == false)
+            return;
         List<Item> invenItems = Manager.Inven.GetInvenItems();
         ShopItemUI[] sellUIs = sellCatalog.GetComponentsInChildren<ShopItemUI>();
         if(prevInvenItems != null)
@@ -66,6 +66,10 @@ public class ShopUI : MonoBehaviour
 
     private void ShopItemRefresh()
     {
+        if (shopRefreshFlag == true)
+            return;
+        if (Manager.Data.dataImportFlag == false)
+            return;
         Dictionary<string, Item> itemdata = Manager.Data.itemData;
 
         List<Item> consumItemList = new List<Item>();
@@ -88,11 +92,17 @@ public class ShopUI : MonoBehaviour
         for(int i = 0; i < 2; i++)
         {
             int targetIndex;
+            int count = 0;
             while (true)
             {
+                count++;
                 targetIndex = Random.Range(0, consumItemList.Count);
                 if (prevIndex.Contains(targetIndex))
+                {
+                    if (count > 10)
+                        break;
                     continue;
+                }
                 else
                 {
                     prevIndex.Add(targetIndex);
@@ -109,11 +119,17 @@ public class ShopUI : MonoBehaviour
         for(int i = 0; i < 4; i++)
         {
             int targetIndex;
+            int count = 0;
             while (true)
             {
+                count++;
                 targetIndex = Random.Range(0, equipItemList.Count);
                 if (prevIndex.Contains(targetIndex))
+                {
+                    if(count > 10)
+                        break;
                     continue;
+                }
                 else
                 {
                     prevIndex.Add(targetIndex);
@@ -124,6 +140,7 @@ public class ShopUI : MonoBehaviour
             newShopItem.transform.SetParent(equipCatalog.transform);
             ShopUISync(newShopItem, equipItemList[targetIndex]);
         }
+        shopRefreshFlag = true;
     }
     /// <summary>
     /// 상점의 아이템 UI를 동기화시켜주는 함수

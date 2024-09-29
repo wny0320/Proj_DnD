@@ -6,40 +6,43 @@ using UnityEngine.EventSystems;
 using System;
 using TMPro;
 using System.Linq;
+using Unity.VisualScripting;
 
 public class InvenManager
 {
     public Dictionary<string, Slot> equipSlots = new Dictionary<string, Slot>();
     public List<SlotLine> invenSlotLines = new List<SlotLine>();
     private List<SlotLine> stashSlotLines = new List<SlotLine>();
+
     private int invenSlotRowSize = 5;
     private int invenSlotColumnSize = 9;
+
     private int stashSlotRowSize = 11;
     private int stashSlotColumnSize = 9;
+
     private int storeSlotRowSize = 7;
     private int storeSlotColumnSize = 6;
+
     private int itemMaxSize = 4; // 2^4 X 2^4 짜리가 최대 크기라고 가정
     private const int UNITSIZE = 80;
     private Vector2 standardPos = new Vector2(40, -40);
     #region stringPath
-    private const string INVENTORY_PATH = "InvenCanvas/Panel/ItemArea/Content";
-    private const string EQUIP_PATH = "InvenCanvas/Panel/EquipArea/Slots";
-    private const string EQUIP_VISUAL_PATH = "InvenCanvas/Panel/EquipArea/ItemVisual";
+    private const string INVEN_CANVAS_PATH = "InvenCanvas";
+    private const string STASH_CANVAS_PATH = "StashCanvas";
     private const string INVENTORY_VISUAL_PATH = "InvenCanvas/Panel/ItemArea/ItemVisual";
-    private const string EQUIP_UI_PATH = "GameUI/EquipUI/Slot";
+    private const string EQUIP_UI_PATH = "GameUI/EquipUI";
     private const string ITEM_UI_TAG = "ItemUI";
     private const string INVENTORY_SLOT_TAG = "InvenSlot";
     private const string EQUIP_SLOT_TAG = "EquipSlot";
-    private const string ITEMINFO_PATH = "InvenCanvas/ItemInfoPanel";
     private const string LOBBY_SCENE_NAME = "LobbyMerchantWork";
-    private string[] itemInfoNames = { "ItemName", "ItemType", "ItemRarity", "ItemPart", "ItemStats/ItemStat1", "ItemStats/ItemStat2", "ItemText" };
     #endregion
-    private List<TMP_Text> itemInfoTexts;
     private Canvas invenCanvas;
     private Canvas stashCanvas;
     private CanvasGroup invenCanvasGroup;
-    private GameObject itemInfo;
+    private ItemInfo itemInfo;
     private bool canvasVisualFlag;
+    private EquipArea equipArea;
+    private EquipUI equipUI;
 
     public void OnStart()
     {
@@ -52,6 +55,8 @@ public class InvenManager
     private void InvenActive()
     {
         if (invenCanvas == null)
+            return;
+        if (Manager.Instance.GetNowScene().name == LOBBY_SCENE_NAME)
             return;
         // 게임 씬일 경우에만 작동하게 바꿔야함
         if (Input.GetKeyDown(KeyCode.Tab))
@@ -72,35 +77,33 @@ public class InvenManager
     }
     private void DataAssign()
     {
-        Transform invenTrans = GameObject.Find(INVENTORY_PATH).transform;
-        for (int y = 0; y < invenSlotRowSize; y++)
-        {
-            if (invenTrans.Find("SlotLine" + y).TryGetComponent(out SlotLine _line))
-                invenSlotLines.Add(_line);
-            else
-                Debug.LogError("SlotLine Is Not Assigned");
-            for (int x = 0; x < invenSlotColumnSize; x++)
-            {
-                if (invenSlotLines[y] == null)
-                    Debug.LogError("Line Is Not Assigned");
-                if (invenTrans.Find("SlotLine" + y + "/Slot" + x).TryGetComponent(out Slot _slot))
-                    invenSlotLines[y].mySlots.Add(_slot);
-            }
-        }
-        invenCanvas = GameObject.Find("InvenCanvas").GetComponent<Canvas>();
+        invenCanvas = GameObject.Find(INVEN_CANVAS_PATH).GetComponent<Canvas>();
         invenCanvasGroup = invenCanvas.GetComponent<CanvasGroup>();
+        stashCanvas = GameObject.Find(STASH_CANVAS_PATH).GetComponent<Canvas>();
+        equipArea = invenCanvas.GetComponentInChildren<EquipArea>();
+
+        SlotLine[] invenLines = invenCanvas.GetComponentsInChildren<SlotLine>();
+        foreach(SlotLine slotLine in invenLines)
+            invenSlotLines.Add(slotLine);
+
+        SlotLine[] stashLines = stashCanvas.GetComponentsInChildren<SlotLine>();
+        foreach (SlotLine slotLine in stashLines)
+            stashSlotLines.Add(slotLine);
+
         invenCanvasGroup.alpha = 0f;
         invenCanvasGroup.interactable = false;
         canvasVisualFlag = false;
-
         string typeName = null;
+        int count = 0;
         foreach (var type in Enum.GetValues(typeof(ItemType)))
         {
             typeName = type.ToString();
             if (typeName == ItemType.Consumable.ToString())
             {
-                equipSlots.Add(typeName + 1, GameObject.Find(EQUIP_PATH + "/" + typeName + 1).GetComponent<Slot>());
-                equipSlots.Add(typeName + 2, GameObject.Find(EQUIP_PATH + "/" + typeName + 2).GetComponent<Slot>());
+                for (int i = 0; i < equipArea.consumList.Count; i++)
+                {
+                    equipSlots.Add(typeName + i, equipArea.consumList[i]);
+                }
             }
             if (typeName == ItemType.Equipment.ToString())
             {
@@ -109,47 +112,52 @@ public class InvenManager
                     string partsName = part.ToString();
                     if (part.Equals(EquipPart.Weapon))
                     {
-                        equipSlots.Add(partsName + 1, GameObject.Find(EQUIP_PATH + "/" + partsName + 1).GetComponent<Slot>());
-                        equipSlots.Add(partsName + 2, GameObject.Find(EQUIP_PATH + "/" + partsName + 2).GetComponent<Slot>());
+                        for (int i = 0; i < equipArea.weaponList.Count; i++)
+                        {
+                            equipSlots.Add(partsName + i, equipArea.weaponList[i]);
+                        }
                     }
                     else
-                        equipSlots.Add(partsName, GameObject.Find(EQUIP_PATH + "/" + partsName).GetComponent<Slot>());
+                    {
+                        equipSlots.Add(partsName, equipArea.armorList[count]);
+                        count++;
+                    }
                 }
             }
             else
                 continue;
         }
 
-        itemInfo = GameObject.Find(ITEMINFO_PATH);
-        itemInfoTexts = new List<TMP_Text>();
-        foreach (var txt in itemInfoNames)
-        {
-            itemInfoTexts.Add(GameObject.Find(ITEMINFO_PATH + "/" + txt).GetComponent<TMP_Text>());
-        }
-        itemInfo.SetActive(false);
+        itemInfo = invenCanvas.GetComponentInChildren<ItemInfo>();
+        itemInfo.gameObject.SetActive(false);
         MonoBehaviour.DontDestroyOnLoad(invenCanvas);
-    }
-    private void StatshDataAsggin()
-    {
-        SlotLine[] lines = stashCanvas.GetComponentsInChildren<SlotLine>();
-        for(int y = 0; y < stashSlotRowSize; y++)
-        {
-            stashSlotLines.Add(lines[y]);
-            for(int x = 0; x < stashSlotColumnSize; x++)
-            {
-                stashSlotLines[y].mySlots.Add(lines[y].mySlots[x]);
-            }
-        }
         MonoBehaviour.DontDestroyOnLoad(stashCanvas);
+        stashCanvas.gameObject.SetActive(false);
     }
     public Vector2 InvenPosCal(Vector2 _originPos, Vector2 _slotIndex)
     {
         return _originPos + new Vector2 (_slotIndex.y, -_slotIndex.x) * UNITSIZE;
     }
-    public List<Item> GetRandomItem(int _itemNum)
+    /// <summary>
+    /// 랜덤한 아이템을 가진 리스트를 반환해주는 함수
+    /// </summary>
+    /// <param name="_minItemNum">아이템 갯수의 최소 갯수</param>
+    /// <param name="_maxItemNum">아이템 갯수의 최대 갯수</param>
+    /// <returns></returns>
+    public List<Item> GetRandomItem(int _minItemNum, int _maxItemNum)
     {
         List<Item> randomItemList = new List<Item>();
-        UnityEngine.Random.Range(0, _itemNum);
+        // 현재 생성될 갯수를 랜덤하게 정함
+        int itemNum = UnityEngine.Random.Range(_minItemNum, _maxItemNum);
+        // 아이템의 최대 갯수(최대 인덱스)
+        int maxItemIndex = Manager.Data.itemData.Values.Count;
+        List<Item> itemList = Manager.Data.itemData.Values.ToList();
+        for (int i = 0; i < itemNum; i++)
+        {
+            // 생성할 아이템의 갯수만큼 생성될 아이템의 Index를 고름
+            int targetIndex = UnityEngine.Random.Range(0, maxItemIndex);
+            randomItemList.Add(itemList[targetIndex]);
+        }
         return randomItemList;
     }
     // 고쳐야할 점, slot안에 itemImage가 있는 경우 Slot 안에서만 보임 << 다시보니 아닌거 같은데? 걍 크게 하면 문제 없을듯? << 따로 visual을 만들어서 해결
@@ -169,6 +177,8 @@ public class InvenManager
                 //Debug.Log("Canvas Is Invisible");
                 continue;
             }
+            if (Manager.Instance.GetNowScene().name != LOBBY_SCENE_NAME)
+                equipUI = GameObject.Find(EQUIP_UI_PATH).GetComponent<EquipUI>();
             // 일단 마우스의 위치를 계속 탐색해서 정보 띄우는게 우선
             PointerEventData pointer = new PointerEventData(EventSystem.current);
             pointer.position = Input.mousePosition;
@@ -209,38 +219,22 @@ public class InvenManager
                 ConcealItemInfo();
                 continue;
             }
-            // 접근한 Slot의 부모 Canvas를 받아오는 코드
-            fromSlot.transform.root.TryGetComponent<Canvas>(out Canvas fromCanvas);
-            if (stashCanvas == null && fromCanvas.gameObject.name == "StashCanvas")
-            {
-                stashCanvas = fromCanvas;
-                StatshDataAsggin();
-            }
             // SlotLine 찾기
+            Canvas fromCanvas = fromSlot.transform.root.GetComponent<Canvas>();
             List<SlotLine> fromSlotLine = new List<SlotLine>();
+            if (fromCanvas.Equals(invenCanvas))
+                fromSlotLine = invenSlotLines;
+            else if(fromCanvas.Equals(stashCanvas))
+                fromSlotLine = stashSlotLines;
             Vector2Int fromPos = -Vector2Int.one;
-            for (int y = 0; y < invenSlotRowSize; y++)
-            {
-                if (invenSlotLines[y].mySlots.Contains(fromSlot))
-                {
-                    fromSlotLine = invenSlotLines;
-                }
-            }
-            for (int y = 0; y < stashSlotRowSize; y++)
-            {
-                if (stashSlotLines.Count < 1)
-                    break;
-                if (stashSlotLines[y].mySlots.Contains(fromSlot))
-                {
-                    fromSlotLine = stashSlotLines;
-                }
-            }
+
             // 접근하려는 슬롯이 메인 슬롯이 아닐 경우, 메인슬롯의 아이템 데이터로 치환
             if (fromSlot.mainSlotFlag == false)
             {
                 Vector2Int index = fromSlot.itemDataPos;
                 fromSlot = fromSlotLine[index.x].mySlots[index.y];
             }
+
             for (int y = 0; y < invenSlotRowSize; y++)
             {
                 if (invenSlotLines[y].mySlots.Contains(fromSlot))
@@ -335,13 +329,6 @@ public class InvenManager
                                 break;
                             }
                         }
-                        toSlot.transform.root.TryGetComponent<Canvas>(out Canvas toCanvas);
-                        // 위에서도 캔버스 업데이트가 안되었을 경우를 대비한 코드
-                        if(stashCanvas == null && toCanvas.gameObject.name == "StashCanvas")
-                        {
-                            stashCanvas = toCanvas;
-                            StatshDataAsggin();
-                        }
                         List<SlotLine> toSlotLine = new List<SlotLine>();
                         Vector2Int toPos = -Vector2Int.one;
                         Vector2Int toStorageSize = -Vector2Int.one;
@@ -376,13 +363,16 @@ public class InvenManager
                             canMoveFlag = false;
                         if (canMoveFlag == true)
                         {
-                            for (int y = toPos.x; y < toPos.x + itemSize[0] - 1; y++)
+                            for (int y = toPos.x; y < toPos.x + itemSize[0]; y++)
                             {
-                                for (int x = toPos.y; x < toPos.y + itemSize[1] - 1; x++)
+                                if (canMoveFlag == false)
+                                    break;
+                                for (int x = toPos.y; x < toPos.y + itemSize[1]; x++)
                                 {
                                     if (toSlotLine[y].mySlots[x].emptyFlag == false)
                                     {
                                         canMoveFlag = false;
+                                        break;
                                     }
                                 }
                             }
@@ -450,66 +440,35 @@ public class InvenManager
                         continue;
                     if (itemVisual == null)
                         continue;
-                    string typeName = null;
-                    foreach (var type in Enum.GetValues(typeof(ItemType)))
-                    {
-                        string targetItemTypeName = fromSlot.slotItem.itemType.ToString();
-                        if (targetItemTypeName == ItemType.Consumable.ToString())
-                            typeName = ItemType.Consumable.ToString();
-                        if (targetItemTypeName == ItemType.Equipment.ToString())
-                            typeName = ItemType.Equipment.ToString();
-                        if (targetItemTypeName == ItemType.Coin.ToString())
-                            typeName = ItemType.Coin.ToString();
-                        if (targetItemTypeName == ItemType.Antique.ToString())
-                            typeName = ItemType.Antique.ToString();
-                    }
                     // 장비창에서 해제하는 경우
                     // targetSlot이 EquipSlot일 경우
-                    // 장착 해제할 것이 장비일 경우
-                    if (interactEquipFlag == true && typeName == ItemType.Equipment.ToString())
+                    // 장착 해제할 것이 무기일 경우
+                    if(equipArea.weaponList.Contains(fromSlot))
                     {
-                        foreach(var part in Enum.GetValues(typeof(EquipPart)))
+                        if (equipUI != null)
                         {
-                            // 1번칸 무기인경우
-                            string targetImagePath;
-                            if (part.ToString() + 1 == fromSlot.gameObject.name.ToString())
-                                targetImagePath = EQUIP_UI_PATH + 1 + "/ItemImage";
-                            // 2번칸 무기인경우
-                            else if (part.ToString() + 2 == fromSlot.gameObject.name.ToString())
-                                targetImagePath = EQUIP_UI_PATH + 2 + "/ItemImage";
-                            else
-                                targetImagePath = null;
-                            if(targetImagePath != null)
-                                GameObject.Find(targetImagePath).GetComponent<Image>().sprite = null;
-                            //Debug.Log(targetImagePath);
+                            for (int i = 0; i < equipArea.weaponList.Count; i++)
+                            {
+                                if (fromSlot.Equals(equipArea.weaponList[i]))
+                                    equipUI.uiSlots[i].itemImage.sprite = null;
+                            }
                         }
-                        Global.PlayerArmorUnEquip(fromSlot);
-                        // AddItem이 실패한경우 장착한 아이템을 바닥에 버림
-                        bool addFlag = AddItem(fromSlot.slotItem);
-                        if (addFlag == false && Manager.Instance.GetNowScene().name.ToString() != LOBBY_SCENE_NAME)
-                            DumpItem(fromSlot.slotItem);
-                        else if (addFlag == false)
-                            Debug.Log("Can't Unequip. Inven Is Full");
-                        // AddItem이 성공한 경우는 그냥 장비창 리셋만 하면 됨
-                        GameObject.Destroy(itemVisual);
-                        fromSlot.SlotReset();
-                        continue;
                     }
-                    // 장비창에서 해제하는 경우
-                    // 장착 해제할 것이 퀵슬롯템(소모품)일 경우
-                    else if(interactEquipFlag == true && typeName == ItemType.Consumable.ToString())
+                    else if(equipArea.consumList.Contains(fromSlot))
                     {
-                        // 1번칸 소모품인 경우
-                        string targetImagePath;
-                        if (typeName + 1 == fromSlot.gameObject.name.ToString())
-                            targetImagePath = EQUIP_UI_PATH + 3 + "/ItemImage";
-                        // 2번칸 소모품인 경우
-                        else if (typeName + 2 == fromSlot.gameObject.name.ToString())
-                            targetImagePath = EQUIP_UI_PATH + 4 + "/ItemImage";
-                        else
-                            targetImagePath = null;
-                        if (targetImagePath != null && Manager.Instance.GetNowScene().name != LOBBY_SCENE_NAME)
-                            GameObject.Find(targetImagePath).GetComponent<Image>().sprite = null;
+                        if (equipUI != null)
+                        {
+                            for (int i = 0; i < equipArea.consumList.Count; i++)
+                            {
+                                if (fromSlot.Equals(equipArea.consumList[i]))
+                                    equipUI.uiSlots[i + (equipArea.weaponList.Count - 1)].itemImage.sprite = null;
+                            }
+                        }
+                    }
+                    if (interactEquipFlag == true)
+                    {
+                        // Global.PlayerArmorUnEquip(fromSlot);
+                        // AddItem이 실패한경우 장착한 아이템을 바닥에 버림
                         bool addFlag = AddItem(fromSlot.slotItem);
                         if (addFlag == false && Manager.Instance.GetNowScene().name.ToString() != LOBBY_SCENE_NAME)
                             DumpItem(fromSlot.slotItem);
@@ -526,49 +485,34 @@ public class InvenManager
                         EquipPart targetEquipPart = fromSlot.slotItem.equipPart;
                         ItemType targetItemType = fromSlot.slotItem.itemType;
                         Slot equipSlot = null;
-                        string equipPartsName = null;
                         if(targetItemType == ItemType.Equipment)
                         {
                             if (targetEquipPart != EquipPart.Weapon)
                             {
-                                equipPartsName = targetEquipPart.ToString();
-                                equipSlot = equipSlots[equipPartsName];
+                                if(equipSlots[targetEquipPart.ToString()].emptyFlag == true)
+                                    equipSlot = equipSlots[targetEquipPart.ToString()];
                             }
                             if (targetEquipPart == EquipPart.Weapon)
                             {
-                                string weaponPartsName = targetEquipPart.ToString();
-                                Slot weaponSlot1 = equipSlots[weaponPartsName + 1];
-                                Slot weaponSlot2 = equipSlots[weaponPartsName + 2];
-                                // 무기 1슬롯이 빈 상황
-                                if (weaponSlot1.emptyFlag == true)
+                                foreach(Slot slot in equipArea.weaponList)
                                 {
-                                    equipSlot = weaponSlot1;
-                                    equipPartsName = weaponPartsName + 1;
-                                }
-                                // 그 외는 2번 슬롯, 2번 슬롯이 어차피 비었는지 안비었는지는 아래에서 또 확인할거라 패스함
-                                else
-                                {
-                                    equipSlot = weaponSlot2;
-                                    equipPartsName = weaponPartsName + 2;
+                                    if(slot.emptyFlag == true)
+                                    {
+                                        equipSlot = slot;
+                                        break;
+                                    }
                                 }
                             }
                         }
                         else if(targetItemType == ItemType.Consumable)
                         {
-                            string consumableName = targetItemType.ToString();
-                            Slot consumableSlot1 = equipSlots[targetItemType.ToString() + 1];
-                            Slot consumableSlot2 = equipSlots[targetItemType.ToString() + 2];
-                            // 소비 1슬롯이 빈 상황
-                            if (consumableSlot1.emptyFlag == true)
+                            foreach(Slot slot in equipArea.consumList)
                             {
-                                equipSlot = consumableSlot1;
-                                equipPartsName = consumableName + 1;
-                            }
-                            // 그 외는 2번 슬롯, 2번 슬롯이 어차피 비었는지 안비었는지는 아래에서 또 확인할거라 패스함
-                            else
-                            {
-                                equipSlot = consumableSlot2;
-                                equipPartsName = consumableName + 2;
+                                if(slot.emptyFlag == true)
+                                {
+                                    equipSlot = slot;
+                                    break;
+                                }
                             }
                         }
                         else
@@ -593,16 +537,18 @@ public class InvenManager
                         int originYIndex =
                             Mathf.RoundToInt(((Mathf.Abs(itemVisualOriginPos.y) - (itemSize[0] - 1) * (UNITSIZE / 2))
                             - Mathf.Abs(standardPos.y)) / UNITSIZE);
-                        if (equipSlot.emptyFlag == true)
+                        if (equipSlot != null)
                         {
                             equipSlot.slotItem = fromSlot.slotItem;
                             equipSlot.emptyFlag = false;
                             equipSlot.mainSlotFlag = true;
+
                             // itemvisual 사이즈와 위치 동일시 시키기
                             GameObject newVisual = GameObject.Instantiate(itemVisual);
-                            newVisual.transform.SetParent(GameObject.Find(EQUIP_VISUAL_PATH).transform);
+                            newVisual.transform.SetParent(equipArea.itemVisualTrans);
                             equipSlot.itemVisual = newVisual;
                             RectTransform equipRectTrans = equipSlot.gameObject.GetComponent<RectTransform>();
+
                             RectTransform equipVisualRectTrans = newVisual.GetComponent<RectTransform>();
                             equipVisualRectTrans.anchorMin = new Vector2(0, 0);
                             equipVisualRectTrans.anchorMax = new Vector2(1, 1);
@@ -611,30 +557,23 @@ public class InvenManager
                             // 무기나 소모품인경우 UI 동기화
                             if(Manager.Instance.GetNowScene().name != LOBBY_SCENE_NAME)
                             {
-                                string targetImagePath = null;
                                 if (targetItemType == ItemType.Equipment)
                                 {
                                     if (targetEquipPart == EquipPart.Weapon)
                                     {
-                                        if (equipPartsName == targetEquipPart.ToString() + 1)
-                                            targetImagePath = EQUIP_UI_PATH + 1 + "/ItemImage";
-                                        else
-                                            targetImagePath = EQUIP_UI_PATH + 2 + "/ItemImage";
-                                        GameObject.Find(targetImagePath).GetComponent<Image>().sprite =
+                                        int index = equipArea.weaponList.IndexOf(equipSlot);
+                                        equipUI.uiSlots[index].itemImage.sprite = 
                                             itemVisual.transform.GetChild(0).GetComponent<Image>().sprite;
                                     }
                                 }
                                 else if (targetItemType == ItemType.Consumable)
                                 {
-                                    if (equipPartsName == targetItemType.ToString() + 1)
-                                        targetImagePath = EQUIP_UI_PATH + 3 + "/ItemImage";
-                                    else
-                                        targetImagePath = EQUIP_UI_PATH + 4 + "/ItemImage";
-                                    GameObject.Find(targetImagePath).GetComponent<Image>().sprite =
-                                            itemVisual.transform.GetChild(0).GetComponent<Image>().sprite;
+                                    int index = equipArea.consumList.IndexOf(equipSlot);
+                                    equipUI.uiSlots[index + (equipArea.weaponList.Count - 1)].itemImage.sprite =
+                                        itemVisual.transform.GetChild(0).GetComponent<Image>().sprite;
                                 }
                             }
-                            Global.PlayerArmorEquip(fromSlot.slotItem);
+                            //Global.PlayerArmorEquip(fromSlot.slotItem);
                             Slot deleteSlot = fromSlotLine[originYIndex].mySlots[originXIndex];
                             DeleteInvenItem(deleteSlot, fromSlotLine);
                             //Debug.Log(GameObject.Find(targetImagePath).GetComponent<Image>().sprite);
@@ -843,9 +782,9 @@ public class InvenManager
     {
         if (_item == null)
             return;
-        itemInfo.SetActive(true);
+        itemInfo.gameObject.SetActive(true);
         Vector3 offset = new Vector3(-200, 200);
-        RectTransform infoRect = itemInfo.GetComponent<RectTransform>();
+        RectTransform infoRect = itemInfo.gameObject.GetComponent<RectTransform>();
         infoRect.position = Input.mousePosition + offset;
         Vector3 zeroPoint = Camera.main.ViewportToScreenPoint(Vector3.zero);
         Vector3 onePoint = Camera.main.ViewportToScreenPoint(Vector3.one);
@@ -871,23 +810,23 @@ public class InvenManager
             }
             equipFlag = true;
         }
-        itemInfoTexts[0].text = $"{_item.itemName}";
-        itemInfoTexts[1].text = $"{_item.itemType}";
-        itemInfoTexts[2].text = $"{_item.itemRarity}";
+        itemInfo.itemName.text = $"{_item.itemName}";
+        itemInfo.itemType.text = $"{_item.itemType}";
+        itemInfo.itemRarity.text = $"{_item.itemRarity}";
         if (equipFlag == true)
-            itemInfoTexts[3].text = $"{_item.equipPart}";
+            itemInfo.itemPart.text = $"{_item.equipPart}";
         else
-            itemInfoTexts[3].text = "";
+            itemInfo.itemPart.text = "";
         if(stat1 != float.NaN)
         {
-            itemInfoTexts[4].text = $"{stat1Name} : {stat1}";
-            itemInfoTexts[5].text = $"MoveSpeed : {stat2}";
+            itemInfo.itemStat1.text = $"{stat1Name} : {stat1}";
+            itemInfo.itemStat2.text = $"MoveSpeed : {stat2}";
         }
-        itemInfoTexts[6].text = $"{_item.itemText}";
+        itemInfo.itemText.text = $"{_item.itemText}";
     }
     public void ConcealItemInfo()
     {
-        itemInfo.SetActive(false);
+        itemInfo.gameObject.SetActive(false);
     }
     public void RevealInvenCanvasByBt()
     {

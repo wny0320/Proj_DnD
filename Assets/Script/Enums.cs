@@ -45,8 +45,8 @@ public enum EquipPart
 {
     Head,
     Chest,
-    Hand,
     Leg,
+    Hand,
     Foot,
     Weapon,
 }
