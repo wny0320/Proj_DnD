@@ -25,8 +25,8 @@ public class Interactive : MonoBehaviour
     private void FixedUpdate()
     {
         if (!isInteractiving) return;
-
         if (Manager.Game.Player == null) return;
+
         if ((Manager.Game.Player.transform.position - transform.position).magnitude > distance || 
             Input.GetKeyDown(KeyCode.Tab))
         {
@@ -39,8 +39,6 @@ public class Interactive : MonoBehaviour
 
     public void InteractiveFunc()
     {
-        isInteractiving = true;
-
         switch(transform.tag)
         {
             case "Item":
@@ -50,9 +48,11 @@ public class Interactive : MonoBehaviour
                 DoorFunc();
                 break;
             case "Chest":
+                isInteractiving = true;
                 ChestFunc();
                 break;
             case "Monster":
+                isInteractiving = true;
                 MonsterFunc();
                 break;
         }
