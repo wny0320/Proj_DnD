@@ -235,7 +235,7 @@ public class InvenManager
                 //Debug.Log("Canvas Is Invisible");
                 continue;
             }
-            if (Manager.Instance.GetNowScene().name != LOBBY_SCENE_NAME)
+            if (equipUI == null && Manager.Instance.GetNowScene().name != LOBBY_SCENE_NAME)
                 equipUI = GameObject.Find(EQUIP_UI_PATH).GetComponent<EquipUI>();
             // 일단 마우스의 위치를 계속 탐색해서 정보 띄우는게 우선
             PointerEventData pointer = new PointerEventData(EventSystem.current);
@@ -279,47 +279,38 @@ public class InvenManager
             }
             // SlotLine 찾기
             Canvas fromCanvas = fromSlot.transform.root.GetComponent<Canvas>();
-            List<SlotLine> fromSlotLine = new List<SlotLine>();
+            List<SlotLine> fromSlotLines = new List<SlotLine>();
             ItemBoxType fromItemBoxType = ItemBoxType.Null;
+            Vector2Int fromStorageSize = -Vector2Int.one;
             if (fromCanvas.Equals(invenCanvas))
             {
-                fromSlotLine = invenSlotLines;
+                fromSlotLines = invenSlotLines;
                 fromItemBoxType = ItemBoxType.Inventory;
+                fromStorageSize = new Vector2Int(invenSlotRowSize, invenSlotColumnSize);
             }
             else if(fromCanvas.Equals(stashCanvas))
             {
-                fromSlotLine = stashSlotLines;
+                fromSlotLines = stashSlotLines;
                 fromItemBoxType = ItemBoxType.Stash;
+                fromStorageSize = new Vector2Int(stashSlotRowSize, stashSlotColumnSize);
             }
-            else if(fromCanvas.Equals(stashCanvas))
+            else if(fromCanvas.Equals(dropCanvas))
             {
-                fromSlotLine = dropSlotLines;
+                fromSlotLines = dropSlotLines;
                 fromItemBoxType = ItemBoxType.Drop;
+                fromStorageSize = new Vector2Int(dropSlotRowSize, dropSlotColumnSize);
             }
             Vector2Int fromPos = -Vector2Int.one;
-
             // 접근하려는 슬롯이 메인 슬롯이 아닐 경우, 메인슬롯의 아이템 데이터로 치환
             if (fromSlot.mainSlotFlag == false)
             {
                 Vector2Int index = fromSlot.itemDataPos;
-                fromSlot = fromSlotLine[index.x].mySlots[index.y];
+                fromSlot = fromSlotLines[index.x].mySlots[index.y];
             }
-
-            for (int y = 0; y < invenSlotRowSize; y++)
+            for(int y = 0; y < fromStorageSize.x; y++)
             {
-                if (invenSlotLines[y].mySlots.Contains(fromSlot))
-                {
-                    fromPos = new Vector2Int(y, invenSlotLines[y].mySlots.IndexOf(fromSlot));
-                }
-            }
-            for (int y = 0; y < stashSlotRowSize; y++)
-            {
-                if (stashSlotLines.Count < 1)
-                    break;
-                if (stashSlotLines[y].mySlots.Contains(fromSlot))
-                {
-                    fromPos = new Vector2Int(y, stashSlotLines[y].mySlots.IndexOf(fromSlot));
-                }
+                if (fromSlotLines[y].mySlots.Contains(fromSlot))
+                    fromPos = new Vector2Int(y, fromSlotLines[y].mySlots.IndexOf(fromSlot));
             }
             //Debug.Log(targetSlot.slotItem.itemName);
             timer += Time.deltaTime;
@@ -345,8 +336,10 @@ public class InvenManager
                 ConcealItemInfo();
 
                 Transform itemVisualTrans = null;
+                Transform itemVisualParent = null;
                 Vector2 itemVisualOriginPos = Vector2.zero;
                 itemVisualTrans = itemVisual.transform;
+                itemVisualParent = itemVisual.transform.parent;
                 itemVisualOriginPos = itemVisualTrans.GetComponent<RectTransform>().anchoredPosition;
                 int[] itemSize = GetItemSize(fromSlot.slotItem);
                 if (itemSize == null)
@@ -399,35 +392,34 @@ public class InvenManager
                                 break;
                             }
                         }
-                        List<SlotLine> toSlotLine = new List<SlotLine>();
+                        List<SlotLine> toSlotLines = new List<SlotLine>();
                         Vector2Int toPos = -Vector2Int.one;
                         Vector2Int toStorageSize = -Vector2Int.one;
                         bool canMoveFlag = true;
                         // from, to slot 탐색
                         string toKey = null;
-                        for (int y = 0; y < invenSlotRowSize; y++)
+                        Canvas toCanvas = toSlot.transform.root.GetComponent<Canvas>();
+                        if (toCanvas.Equals(invenCanvas))
                         {
-                            if (toPos != -Vector2Int.one)
-                                break;
-                            if (invenSlotLines[y].mySlots.Contains(toSlot))
-                            {
-                                toSlotLine = invenSlotLines;
-                                toPos = new Vector2Int(y, invenSlotLines[y].mySlots.IndexOf(toSlot));
-                                toStorageSize = new Vector2Int(invenSlotRowSize, invenSlotColumnSize);
-                            }
+                            toStorageSize = new Vector2Int(invenSlotRowSize, invenSlotColumnSize);
+                            toSlotLines = invenSlotLines;
+                        }
+                        if(toCanvas.Equals(stashCanvas))
+                        {
+                            toStorageSize = new Vector2Int(stashSlotRowSize, stashSlotColumnSize);
+                            toSlotLines = stashSlotLines;
+                        }
+                        if (toCanvas.Equals(dropCanvas))
+                        {
+                            toStorageSize = new Vector2Int(dropSlotRowSize, dropSlotColumnSize);
+                            toSlotLines = dropSlotLines;
+                        }
+                        for (int y = 0; y < toStorageSize.x; y++)
+                        {
+                            if (toSlotLines[y].mySlots.Contains(toSlot))
+                                toPos = new Vector2Int(y, toSlotLines[y].mySlots.IndexOf(toSlot));
                             if (equipSlots.Values.Contains(toSlot))
                                 toKey = toSlot.gameObject.name;
-                        }
-                        for (int y = 0; y < stashSlotRowSize; y++)
-                        {
-                            if (toPos != -Vector2Int.one)
-                                break;
-                            if (stashSlotLines[y].mySlots.Contains(toSlot))
-                            {
-                                toSlotLine = stashSlotLines;
-                                toPos = new Vector2Int(y, stashSlotLines[y].mySlots.IndexOf(toSlot));
-                                toStorageSize = new Vector2Int(stashSlotRowSize, stashSlotColumnSize);
-                            }
                         }
                         if (toPos.x + itemSize[0] > toStorageSize.x || toPos.y + itemSize[1] > toStorageSize.y)
                             canMoveFlag = false;
@@ -439,7 +431,7 @@ public class InvenManager
                                     break;
                                 for (int x = toPos.y; x < toPos.y + itemSize[1]; x++)
                                 {
-                                    if (toSlotLine[y].mySlots[x].emptyFlag == false)
+                                    if (toSlotLines[y].mySlots[x].emptyFlag == false)
                                     {
                                         canMoveFlag = false;
                                         break;
@@ -470,8 +462,8 @@ public class InvenManager
                             {
                                 for (int x = 0; x < itemSize[1]; x++)
                                 {
-                                    Slot nowFrom = fromSlotLine[fromPos.x + y].mySlots[fromPos.y + x];
-                                    Slot nowTo = toSlotLine[toPos.x + y].mySlots[toPos.y + x];
+                                    Slot nowFrom = fromSlotLines[fromPos.x + y].mySlots[fromPos.y + x];
+                                    Slot nowTo = toSlotLines[toPos.x + y].mySlots[toPos.y + x];
                                     nowTo.SlotCopy(nowFrom, toPos);
                                     nowFrom.SlotReset();
                                 }
@@ -644,7 +636,7 @@ public class InvenManager
                                 }
                             }
                             //Global.PlayerArmorEquip(fromSlot.slotItem);
-                            Slot deleteSlot = fromSlotLine[originYIndex].mySlots[originXIndex];
+                            Slot deleteSlot = fromSlotLines[originYIndex].mySlots[originXIndex];
                             DeleteInvenItem(deleteSlot, fromItemBoxType);
                             //Debug.Log(GameObject.Find(targetImagePath).GetComponent<Image>().sprite);
                             continue;
@@ -801,7 +793,7 @@ public class InvenManager
         {
             for (int x = minX; x < maxX; x++)
             {
-                Slot nowSlot = invenSlotLines[y].mySlots[x];
+                Slot nowSlot = targetSlotLines[y].mySlots[x];
                 if (targetSlot.Equals(nowSlot))
                     nowSlot.mainSlotFlag = true;
                 else
