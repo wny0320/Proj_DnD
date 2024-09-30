@@ -66,12 +66,14 @@ public class InputManager
 
     private Item CheckSlot(int n, EquipPart part)
     {
+        currentUtilitySlot = -1;
         currentWeaponSlot = n;
         return Manager.Inven.equipSlots[part.ToString() + n].slotItem;
     }
 
     private Item CheckSlot(int n, ItemType part)
     {
+        currentWeaponSlot = -1;
         currentUtilitySlot = n;
         return Manager.Inven.equipSlots[part.ToString() + n].slotItem;
     }
