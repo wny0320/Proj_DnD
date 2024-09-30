@@ -17,7 +17,6 @@ public class Potion : Weapon
     {
         if (isDrink)
         {
-            Global.PlayerWeaponEquip(null);
             PotionFunc();
         }
     }
@@ -30,6 +29,8 @@ public class Potion : Weapon
             Manager.Inven.DeleteInvenItem
                 (Manager.Inven.equipSlots[ItemType.Consumable.ToString() + Manager.Input.currentUtilitySlot], ItemBoxType.Equip);
             Manager.Input.currentUtilitySlot = -1;
+
+            Global.PlayerWeaponEquip(null);
 
             Destroy(gameObject);
         }
