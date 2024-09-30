@@ -353,9 +353,9 @@ public class InvenManager
                         for(int x = 0; x < itemSize[1]; x++)
                         {
                             Slot nowFromSlot = fromSlotLines[fromPos.x + y].mySlots[fromPos.y + x];
-                            Slot tmpSlot = new Slot();
+                            Slot tmpSlot = new GameObject().AddComponent<Slot>();
                             tmpSlot.SlotCopy(nowFromSlot, nowFromSlot.itemDataPos);
-                            dragItemData.Add(nowFromSlot);
+                            dragItemData.Add(tmpSlot);
                         }
                     }
                     // 아이템 크기 때문에 배경이 보이게 설정
@@ -515,11 +515,13 @@ public class InvenManager
                             {
                                 if (fromSlot.Equals(equipArea.weaponList[i]))
                                 {
-                                    if(i == Manager.Input.currentWeaponSlot && !Manager.Game.isPlayerAttacking)
+                                    if(Manager.Game.isPlayerAttacking == false)
                                     {
                                         equipUI.uiSlots[i].itemImage.sprite = null;
-                                        Global.PlayerWeaponEquip(null);
+                                        if (i == Manager.Input.currentWeaponSlot)
+                                            Global.PlayerWeaponEquip(null);
                                     }
+                                    
                                 }
                             }
                         }
@@ -532,10 +534,11 @@ public class InvenManager
                             {
                                 if (fromSlot.Equals(equipArea.consumList[i]))
                                 {
-                                    if (i == Manager.Input.currentUtilitySlot && !Manager.Game.isPlayerAttacking)
+                                    if (Manager.Game.isPlayerAttacking == false)
                                     {
                                         equipUI.uiSlots[i + equipArea.weaponList.Count].itemImage.sprite = null;
-                                        Global.PlayerWeaponEquip(null);
+                                        if (i == Manager.Input.currentUtilitySlot)
+                                            Global.PlayerWeaponEquip(null);
                                     }
                                 }
                             }
