@@ -347,6 +347,17 @@ public class InvenManager
                     // 장비창에 있는 아이템은 드래그 불가능하게 우선 설정
                     if (interactEquipFlag == true)
                         break;
+                    List<Slot> dragItemData = new List<Slot>();
+                    for(int y = 0; y < itemSize[0]; y++)
+                    {
+                        for(int x = 0; x < itemSize[1]; x++)
+                        {
+                            Slot nowFromSlot = fromSlotLines[fromPos.x + y].mySlots[fromPos.y + x];
+                            Slot tmpSlot = new Slot();
+                            tmpSlot.SlotCopy(nowFromSlot, nowFromSlot.itemDataPos);
+                            dragItemData.Add(nowFromSlot);
+                        }
+                    }
                     // 아이템 크기 때문에 배경이 보이게 설정
                     itemVisual.GetComponent<Image>().color = new Color32(255, 255, 255, 10);
                     // 마우스 위치에 따라 아이템의 위치가 이동하는 코드
@@ -418,6 +429,14 @@ public class InvenManager
                             if (equipSlots.Values.Contains(toSlot))
                                 toKey = toSlot.gameObject.name;
                         }
+                        // 드래그로 장착하려는 경우
+                        if(toKey != null)
+                        {
+                            itemVisual.GetComponent<RectTransform>().anchoredPosition = itemVisualOriginPos;
+                            itemVisual.GetComponent<Image>().color = new Color32(255, 255, 255, 0);
+                            Debug.LogError("ToSlot Is EquipSlot. Can't Move");
+                            break;
+                        }
                         if (toPos.x + itemSize[0] > toStorageSize.x || toPos.y + itemSize[1] > toStorageSize.y)
                             canMoveFlag = false;
                         if (canMoveFlag == true)
@@ -435,14 +454,6 @@ public class InvenManager
                                     }
                                 }
                             }
-                        }
-                        // 드래그로 장착하려는 경우
-                        if(toKey != null)
-                        {
-                            itemVisual.GetComponent<RectTransform>().anchoredPosition = itemVisualOriginPos;
-                            itemVisual.GetComponent<Image>().color = new Color32(255, 255, 255, 0);
-                            Debug.LogError("ToSlot Is EquipSlot. Can't Move");
-                            break;
                         }
                         // 배경 투명화
                         itemVisual.GetComponent<Image>().color = new Color32(255, 255, 255, 0);
@@ -503,7 +514,13 @@ public class InvenManager
                             for (int i = 0; i < equipArea.weaponList.Count; i++)
                             {
                                 if (fromSlot.Equals(equipArea.weaponList[i]))
-                                    equipUI.uiSlots[i].itemImage.sprite = null;
+                                {
+                                    if(i == Manager.Input.currentWeaponSlot && !Manager.Game.isPlayerAttacking)
+                                    {
+                                        equipUI.uiSlots[i].itemImage.sprite = null;
+                                        Global.PlayerWeaponEquip(null);
+                                    }
+                                }
                             }
                         }
                     }
@@ -514,11 +531,17 @@ public class InvenManager
                             for (int i = 0; i < equipArea.consumList.Count; i++)
                             {
                                 if (fromSlot.Equals(equipArea.consumList[i]))
-                                    equipUI.uiSlots[i + equipArea.weaponList.Count].itemImage.sprite = null;
+                                {
+                                    if (i == Manager.Input.currentUtilitySlot && !Manager.Game.isPlayerAttacking)
+                                    {
+                                        equipUI.uiSlots[i + equipArea.weaponList.Count].itemImage.sprite = null;
+                                        Global.PlayerWeaponEquip(null);
+                                    }
+                                }
                             }
                         }
                     }
-                    if (interactEquipFlag == true)
+                    if (interactEquipFlag == true && !Manager.Game.isPlayerAttacking)
                     {
                         Global.PlayerArmorUnEquip(fromSlot);
                         // AddItem이 실패한경우 장착한 아이템을 바닥에 버림
@@ -530,6 +553,10 @@ public class InvenManager
                         // AddItem이 성공한 경우는 그냥 장비창 리셋만 하면 됨
                         GameObject.Destroy(itemVisual);
                         fromSlot.SlotReset();
+                        continue;
+                    }
+                    else if(interactEquipFlag == true && Manager.Game.isPlayerAttacking)
+                    {
                         continue;
                     }
                     // 아이템 박스창에서 장착하는 경우

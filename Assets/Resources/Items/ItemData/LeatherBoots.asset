@@ -15,13 +15,14 @@ MonoBehaviour:
   itemName: LeatherBoots
   itemIndex: 2
   itemText: 
+  itemPrice: 14
   itemRarity: 0
   itemStat: {fileID: 11400000, guid: 3fc003cebede6c143aacaee7f13061b3, type: 2}
   itemType: 0
   equipPart: 4
   itemSize: 34
   weaponType: -1
-  randomStatFlag: 0
+  equipStatSetFlag: 0
   randomRange:
   - 0
   - 1

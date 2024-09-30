@@ -15,13 +15,14 @@ MonoBehaviour:
   itemName: PlateHelmet
   itemIndex: 11
   itemText: 
+  itemPrice: 25
   itemRarity: 0
   itemStat: {fileID: 11400000, guid: 5757102aa0d16f8448e88ab052582acb, type: 2}
   itemType: 0
   equipPart: 0
   itemSize: 34
   weaponType: -1
-  randomStatFlag: 0
+  equipStatSetFlag: 0
   randomRange:
   - 0
   - 5

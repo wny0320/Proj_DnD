@@ -15,13 +15,14 @@ MonoBehaviour:
   itemName: Halberd
   itemIndex: 1
   itemText: 
+  itemPrice: 45
   itemRarity: 0
   itemStat: {fileID: 11400000, guid: bcc174680d6f07b409cdc61266bba95a, type: 2}
   itemType: 0
   equipPart: 5
   itemSize: 65
   weaponType: 2
-  randomStatFlag: 0
+  equipStatSetFlag: 0
   randomRange:
   - 5
   - 0

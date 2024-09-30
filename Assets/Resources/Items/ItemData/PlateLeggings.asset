@@ -15,14 +15,14 @@ MonoBehaviour:
   itemName: PlateLeggings
   itemIndex: 12
   itemText: 
-  itemPrice: 0
+  itemPrice: 28
   itemRarity: 0
   itemStat: {fileID: 11400000, guid: f0b61a4ebd277884ca5b3665b1f02f3a, type: 2}
   itemType: 0
   equipPart: 2
   itemSize: 50
   weaponType: -1
-  randomStatFlag: 0
+  equipStatSetFlag: 0
   randomRange:
   - 0
   - 5
