@@ -117,6 +117,7 @@ public class PlayerController : BaseController, IReceiveAttack
         if (equipWeapon == null)
         {
             Manager.Input.currentWeaponSlot = -1;
+            Manager.Input.currentUtilitySlot = -1;
             weaponTrans.GetChild(0).gameObject.SetActive(true);
             ChangeWeaponAnimator(WeaponType.BareHand);
         }

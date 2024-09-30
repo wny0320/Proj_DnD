@@ -8,7 +8,7 @@ using UnityEngine;
 public class InputManager
 {
     public float mouseSpeed = 2f;
-    public int currentUtilitySlot = 0;
+    public int currentUtilitySlot = -1;
     public int currentWeaponSlot = -1;
 
     public Action PlayerMove;
@@ -34,7 +34,6 @@ public class InputManager
         if(Input.GetKeyDown(KeyCode.X))
         {
             //¸Ç¼Õ
-            currentUtilitySlot = -1;
             Global.PlayerWeaponEquip(null);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha1))

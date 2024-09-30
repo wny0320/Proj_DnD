@@ -29,7 +29,7 @@ public class Potion : Weapon
             stat.Hp = Mathf.Min(stat.Hp + heal, stat.MaxHp);
             Manager.Inven.DeleteInvenItem
                 (Manager.Inven.equipSlots[ItemType.Consumable.ToString() + Manager.Input.currentUtilitySlot], ItemBoxType.Equip);
-            Manager.Input.currentUtilitySlot = 0;
+            Manager.Input.currentUtilitySlot = -1;
 
             Destroy(gameObject);
         }
