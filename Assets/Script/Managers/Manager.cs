@@ -27,7 +27,8 @@ public class Manager : MonoBehaviour
     private void Awake()
     {
         Init();
-        Game.OnAwake();
+        Application.targetFrameRate = 60;
+        //Game.OnAwake();
         Data.OnAwake();
     }
 
@@ -46,7 +47,7 @@ public class Manager : MonoBehaviour
     private void FixedUpdate()
     {
         Input.OnFixedUpdate();
-        Game.OnFixedUpdate();
+        //Game.OnFixedUpdate();
     }
 
     private static void Init()
