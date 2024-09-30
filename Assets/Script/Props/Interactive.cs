@@ -5,6 +5,7 @@ using UnityEngine;
 public class Interactive : MonoBehaviour
 {
     private bool isInteractiving = false;
+    private bool isOpened = false;
     private float distance = 3f;
 
     public List<Item> dropItemList;
@@ -75,6 +76,12 @@ public class Interactive : MonoBehaviour
     private void ChestFunc()
     {
         Debug.Log("chest");
+        if (!isOpened)
+        {
+            GetComponent<Animation>().Play();
+            isOpened = true;
+        }
+
         Cursor.lockState = CursorLockMode.None;
         Manager.Inven.RevealDropCanvas();
         Manager.Inven.RevealInvenCanvasByBt();
