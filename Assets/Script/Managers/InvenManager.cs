@@ -4,9 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System;
-using TMPro;
 using System.Linq;
-using Unity.VisualScripting;
 
 public class InvenManager
 {
@@ -234,7 +232,7 @@ public class InvenManager
                 //Debug.Log("Canvas Is Invisible");
                 continue;
             }
-            if (equipUI == null && Manager.Instance.GetNowScene().name == SceneName.DungeonScene.ToString())
+            if (equipUI == null && Manager.Instance.GetNowScene().name != SceneName.MainLobbyScene.ToString())
                 equipUI = GameObject.Find(EQUIP_UI_PATH).GetComponent<EquipUI>();
             // 일단 마우스의 위치를 계속 탐색해서 정보 띄우는게 우선
             PointerEventData pointer = new PointerEventData(EventSystem.current);
@@ -525,7 +523,7 @@ public class InvenManager
                         Global.PlayerArmorUnEquip(fromSlot);
                         // AddItem이 실패한경우 장착한 아이템을 바닥에 버림
                         Item newItem = AddItem(fromSlot.slotItem, ItemBoxType.Inventory);
-                        if (newItem == null && Manager.Instance.GetNowScene().name.ToString() == SceneName.DungeonScene.ToString())
+                        if (newItem == null && Manager.Instance.GetNowScene().name.ToString() != SceneName.MainLobbyScene.ToString())
                             DumpItem(fromSlot.slotItem);
                         else if (newItem == null)
                             Debug.Log("Can't Unequip. Inven Is Full");
@@ -610,7 +608,7 @@ public class InvenManager
                             equipVisualRectTrans.anchoredPosition = equipRectTrans.anchoredPosition;
                             equipVisualRectTrans.sizeDelta = equipRectTrans.sizeDelta;
                             // 무기나 소모품인경우 UI 동기화
-                            if(Manager.Instance.GetNowScene().name == SceneName.DungeonScene.ToString())
+                            if(Manager.Instance.GetNowScene().name != SceneName.MainLobbyScene.ToString())
                             {
                                 if (targetItemType == ItemType.Equipment)
                                 {
@@ -646,7 +644,14 @@ public class InvenManager
             }
         }
     }
-    public Item AddItem(Item _item, ItemBoxType _itemBoxType)
+    /// <summary>
+    /// 해당하는 Item을 해당하는 ItemBox에 해당하는 ItemRarity로 생성하는 함수
+    /// </summary>
+    /// <param name="_item">들어갈 아이템의 원본 Data</param>
+    /// <param name="_itemBoxType">아이템이 들어갈 ItemBox</param>
+    /// <param name="_itemRarity">들어갈 아이템이 될 등급</param>
+    /// <returns></returns>
+    public Item AddItem(Item _item, ItemBoxType _itemBoxType, ItemRarity _itemRarity = ItemRarity.Non)
     {
         // 비어있는 슬롯을 다 가져오는 코드
         bool[,] emptyFlag = null;
@@ -762,10 +767,10 @@ public class InvenManager
         targetSlot.mainSlotFlag = true;
         targetSlot.itemDataPos = targetSlotIndex;
         targetSlot.slotItem = _item.ItemDeepCopy();
-        if(targetSlot.slotItem.randomStatFlag == false)
+        if (targetSlot.slotItem.equipStatSetFlag == false)
         {
-            targetSlot.slotItem.ItemRandomStat();
-            targetSlot.slotItem.randomStatFlag = true;
+            targetSlot.slotItem.EquipStatSet();
+            targetSlot.slotItem.equipStatSetFlag = true;
         }
         // 눈에 보이는 아이템 프리팹 생성
         GameObject itemVisual = GameObject.Instantiate(Manager.Data.itemUIPrefab[_item.itemIndex]);

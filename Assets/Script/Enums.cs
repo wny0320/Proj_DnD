@@ -84,14 +84,13 @@ public enum ItemType
 
 public enum ItemRarity
 {
+    Non,
     Junk,
     Poor,
     Common,
-    Uncommon,
     Rare,
     Epic,
     Legendary,
-    Unique,
 }
 
 public enum ButtonFunc

@@ -16,7 +16,7 @@ public class ShopItemUI : MonoBehaviour
         if(Manager.Data.gold >= item.itemPrice)
         {
             // 아이템 추가 시도
-            if(Manager.Inven.AddItem(item.ItemDeepCopy(), ItemBoxType.Inventory) == true)
+            if(Manager.Inven.AddItem(item.ItemDeepCopy(), ItemBoxType.Inventory, ItemRarity.Junk) == true)
             {
                 // 성공시 돈을 뺌
                 Manager.Data.gold -= item.itemPrice;
