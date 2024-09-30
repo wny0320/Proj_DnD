@@ -112,3 +112,9 @@ public enum ItemBoxType
     Equip,
     Null,
 }
+
+public enum SceneName
+{
+    DungeonScene,
+    MainLobbyScene,
+}

@@ -343,6 +343,7 @@ GameObject:
   - component: {fileID: 6768878328552792438}
   - component: {fileID: 356944240547641831}
   - component: {fileID: 7254309309243545363}
+  - component: {fileID: 2999514491356346598}
   m_Layer: 5
   m_Name: GameStartBtn
   m_TagString: Untagged
@@ -451,7 +452,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 356944240547641831}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2999514491356346598}
+        m_TargetAssemblyTypeName: GameStartButton, Assembly-CSharp
+        m_MethodName: GameStart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &2999514491356346598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6230317346731994620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 693708c089f3377448b0e9567832527d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6890328960534402034
 GameObject:
   m_ObjectHideFlags: 0

@@ -43,7 +43,6 @@ public class InvenManager
     private const string ITEM_UI_TAG = "ItemUI";
     private const string INVENTORY_SLOT_TAG = "InvenSlot";
     private const string EQUIP_SLOT_TAG = "EquipSlot";
-    private const string LOBBY_SCENE_NAME = "LobbyMerchantWork";
     #endregion
 
     #region variable
@@ -69,7 +68,7 @@ public class InvenManager
     {
         if (invenCanvas == null)
             return;
-        if (Manager.Instance.GetNowScene().name == LOBBY_SCENE_NAME)
+        if (Manager.Instance.GetNowScene().name == SceneName.MainLobbyScene.ToString())
             return;
         // 게임 씬일 경우에만 작동하게 바꿔야함
         if (Input.GetKeyDown(KeyCode.Tab))
@@ -235,7 +234,7 @@ public class InvenManager
                 //Debug.Log("Canvas Is Invisible");
                 continue;
             }
-            if (equipUI == null && Manager.Instance.GetNowScene().name != LOBBY_SCENE_NAME)
+            if (equipUI == null && Manager.Instance.GetNowScene().name == SceneName.DungeonScene.ToString())
                 equipUI = GameObject.Find(EQUIP_UI_PATH).GetComponent<EquipUI>();
             // 일단 마우스의 위치를 계속 탐색해서 정보 띄우는게 우선
             PointerEventData pointer = new PointerEventData(EventSystem.current);
@@ -377,7 +376,7 @@ public class InvenManager
                         if (toSlot == null && fromCanvas.Equals(invenCanvas))
                         {
                             // 마우스가 인벤 밖인데 메인화면이면 아무것도 안함
-                            if(pointer.position.x > 1050 || Manager.Instance.GetNowScene().name.ToString() == LOBBY_SCENE_NAME)
+                            if(pointer.position.x > 1050 || Manager.Instance.GetNowScene().name.ToString() == SceneName.MainLobbyScene.ToString())
                             {
                                 itemVisual.GetComponent<RectTransform>().anchoredPosition = itemVisualOriginPos;
                                 itemVisual.GetComponent<Image>().color = new Color32(255, 255, 255, 0);
@@ -526,7 +525,7 @@ public class InvenManager
                         Global.PlayerArmorUnEquip(fromSlot);
                         // AddItem이 실패한경우 장착한 아이템을 바닥에 버림
                         Item newItem = AddItem(fromSlot.slotItem, ItemBoxType.Inventory);
-                        if (newItem == null && Manager.Instance.GetNowScene().name.ToString() != LOBBY_SCENE_NAME)
+                        if (newItem == null && Manager.Instance.GetNowScene().name.ToString() == SceneName.DungeonScene.ToString())
                             DumpItem(fromSlot.slotItem);
                         else if (newItem == null)
                             Debug.Log("Can't Unequip. Inven Is Full");
@@ -611,7 +610,7 @@ public class InvenManager
                             equipVisualRectTrans.anchoredPosition = equipRectTrans.anchoredPosition;
                             equipVisualRectTrans.sizeDelta = equipRectTrans.sizeDelta;
                             // 무기나 소모품인경우 UI 동기화
-                            if(Manager.Instance.GetNowScene().name != LOBBY_SCENE_NAME)
+                            if(Manager.Instance.GetNowScene().name == SceneName.DungeonScene.ToString())
                             {
                                 if (targetItemType == ItemType.Equipment)
                                 {

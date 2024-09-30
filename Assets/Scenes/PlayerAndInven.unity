@@ -3953,6 +3953,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 961242768957677595, guid: fde1ee3da4fc8d54aa040d127f68627a, type: 3}
+      propertyPath: m_ReferencePixelsPerUnit
+      value: 99
+      objectReference: {fileID: 0}
     - target: {fileID: 6442576928281539384, guid: fde1ee3da4fc8d54aa040d127f68627a, type: 3}
       propertyPath: m_Name
       value: DropCanvas
