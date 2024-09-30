@@ -9,6 +9,7 @@ public class InputManager
 {
     public float mouseSpeed = 2f;
     public int currentUtilitySlot = 0;
+    public int currentWeaponSlot = -1;
 
     public Action PlayerMove;
     public Action PlayerAttack;
@@ -33,16 +34,19 @@ public class InputManager
         if(Input.GetKeyDown(KeyCode.X))
         {
             //¸Ç¼Õ
+            currentUtilitySlot = -1;
             Global.PlayerWeaponEquip(null);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha1))
         {
+            if (currentWeaponSlot == 0) return;
             Item weapon = CheckSlot(0, EquipPart.Weapon);
 
             Global.PlayerWeaponEquip(weapon);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
+            if (currentWeaponSlot == 1) return;
             Item weapon = CheckSlot(1, EquipPart.Weapon);
 
             Global.PlayerWeaponEquip(weapon);
@@ -63,6 +67,7 @@ public class InputManager
 
     private Item CheckSlot(int n, EquipPart part)
     {
+        currentWeaponSlot = n;
         return Manager.Inven.equipSlots[part.ToString() + n].slotItem;
     }
 

@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -124,7 +125,8 @@ public class PlayerController : BaseController, IReceiveAttack
 
             //스탯변경
             stat.MoveSpeed += equipWeapon.itemStat.MoveSpeed;
-            //애니 변경
+            //애니 변경, 같은 타입의 무기 변경 시 맨손 거쳐가야됨
+            ChangeWeaponAnimator(WeaponType.BareHand);
             ChangeWeaponAnimator(equipWeapon.weaponType);
             //무기 적용
             GameObject go = Instantiate(Manager.Data.item3DPrefab[equipWeapon.itemIndex], weaponTrans);
