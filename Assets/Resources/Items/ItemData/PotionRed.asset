@@ -13,15 +13,16 @@ MonoBehaviour:
   m_Name: PotionRed
   m_EditorClassIdentifier: 
   itemName: PotionRed
-  itemIndex: 0
+  itemIndex: 13
   itemText: 
+  itemPrice: 0
   itemRarity: 0
-  itemStat: {fileID: 11400000, guid: 499eb59a1f2a4ce4ab7dbbc2355e7799, type: 2}
+  itemStat: {fileID: 0}
   itemType: 1
   equipPart: 0
   itemSize: 17
   weaponType: 3
-  randomStatFlag: 0
+  equipStatSetFlag: 0
   randomRange:
   - 0
   - 0

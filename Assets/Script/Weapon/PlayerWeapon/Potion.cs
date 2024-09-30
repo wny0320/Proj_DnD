@@ -26,7 +26,7 @@ public class Potion : Weapon
         if (Manager.Game.isPlayerAlive)
         {
             stat.Hp = Mathf.Min(stat.Hp + heal, stat.MaxHp);
-            Manager.Inven.DeleteInvenItem
+            Manager.Inven.DeleteBoxItem
                 (Manager.Inven.equipSlots[ItemType.Consumable.ToString() + Manager.Input.currentUtilitySlot], ItemBoxType.Equip);
             Manager.Input.currentUtilitySlot = -1;
 

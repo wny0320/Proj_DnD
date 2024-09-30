@@ -12,4 +12,5 @@ public class ItemInfo : MonoBehaviour
     public TMP_Text itemStat1;
     public TMP_Text itemStat2;
     public TMP_Text itemText;
+    public TMP_Text itemPrice;
 }

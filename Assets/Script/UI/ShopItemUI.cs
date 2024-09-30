@@ -38,7 +38,7 @@ public class ShopItemUI : MonoBehaviour
             {
                 if(invenSlotLines[y].mySlots[x].slotItem == item)
                 {
-                    Manager.Inven.DeleteInvenItem(invenSlotLines[y].mySlots[x], ItemBoxType.Inventory);
+                    Manager.Inven.DeleteBoxItem(invenSlotLines[y].mySlots[x], ItemBoxType.Inventory);
                     Manager.Data.gold += item.itemPrice;
                     Destroy(gameObject);
                     return;

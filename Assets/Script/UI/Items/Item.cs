@@ -25,11 +25,15 @@ public class Item : ScriptableObject
         item.itemIndex = itemIndex;
         item.itemText = itemText;
         item.itemPrice = itemPrice;
-        if (item.itemRarity != ItemRarity.Non)
+        if (itemRarity != ItemRarity.Non)
             item.itemRarity = itemRarity;
         else
+        {
             item.itemRarity = ItemRarirySet();
-        item.itemStat = itemStat.StatDeepCopy();
+            item.itemPrice = item.ItemPriceSet();
+        }
+        if (itemStat != null)
+            item.itemStat = itemStat.StatDeepCopy();
         item.itemType = itemType;
         item.equipPart = equipPart;
         item.itemSize = itemSize;
@@ -46,23 +50,18 @@ public class Item : ScriptableObject
             switch (itemRarity)
             {
                 case ItemRarity.Poor:
-                    itemPrice = Mathf.RoundToInt(itemPrice * 1.2f);
                     itemStat.Attack += 2;
                     break;
                 case ItemRarity.Common:
-                    itemPrice = Mathf.RoundToInt(itemPrice * 1.5f);
                     itemStat.Attack += 4;
                     break;
                 case ItemRarity.Rare:
-                    itemPrice = Mathf.RoundToInt(itemPrice * 2.0f);
                     itemStat.Attack += 6;
                     break;
                 case ItemRarity.Epic:
-                    itemPrice = Mathf.RoundToInt(itemPrice * 2.5f);
                     itemStat.Attack += 8;
                     break;
                 case ItemRarity.Legendary:
-                    itemPrice = Mathf.RoundToInt(itemPrice * 3f);
                     itemStat.Attack += 10;
                     break;
             }
@@ -72,23 +71,18 @@ public class Item : ScriptableObject
             switch (itemRarity)
             {
                 case ItemRarity.Poor:
-                    itemPrice = Mathf.RoundToInt(itemPrice * 1.2f);
                     itemStat.Defense += 1;
                     break;
                 case ItemRarity.Common:
-                    itemPrice = Mathf.RoundToInt(itemPrice * 1.5f);
                     itemStat.Defense += 2;
                     break;
                 case ItemRarity.Rare:
-                    itemPrice = Mathf.RoundToInt(itemPrice * 2.0f);
                     itemStat.Defense += 3;
                     break;
                 case ItemRarity.Epic:
-                    itemPrice = Mathf.RoundToInt(itemPrice * 2.5f);
                     itemStat.Defense += 4;
                     break;
                 case ItemRarity.Legendary:
-                    itemPrice = Mathf.RoundToInt(itemPrice * 3f);
                     itemStat.Defense += 5;
                     break;
             }
@@ -112,5 +106,28 @@ public class Item : ScriptableObject
         else if (itemChance < 100) // 60%
             rarity = ItemRarity.Poor;
         return rarity;
+    }
+    public int ItemPriceSet()
+    {
+        int price = 0;
+        switch (itemRarity)
+        {
+            case ItemRarity.Poor:
+                price = Mathf.RoundToInt(itemPrice * 1.2f);
+                break;
+            case ItemRarity.Common:
+                price = Mathf.RoundToInt(itemPrice * 1.5f);
+                break;
+            case ItemRarity.Rare:
+                price = Mathf.RoundToInt(itemPrice * 2.0f);
+                break;
+            case ItemRarity.Epic:
+                price = Mathf.RoundToInt(itemPrice * 2.5f);
+                break;
+            case ItemRarity.Legendary:
+                price = Mathf.RoundToInt(itemPrice * 3f);
+                break;
+        }
+        return price;
     }
 }
