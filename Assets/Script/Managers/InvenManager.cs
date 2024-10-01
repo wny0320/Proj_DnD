@@ -608,27 +608,37 @@ public class InvenManager
                         continue;
                     if (itemVisual == null)
                         continue;
-                    // 장착 해제 시도
-                    // AddItem이 실패한경우 장착한 아이템을 바닥에 버림
-                    Item newItem = AddItem(fromSlot.slotItem, ItemBoxType.Inventory);
-                    if (newItem == null && Manager.Instance.GetNowScene().name.ToString() != SceneName.MainLobbyScene.ToString()
-                        && Manager.Instance.GetNowScene().name.ToString() != TEST_LOBBY_NAME) // 테스트용
-                        DumpItem(fromSlot.slotItem);
-                    else if (newItem == null)
+                    // 장비창에서 해제하는 경우
+                    // targetSlot이 EquipSlot일 경우
+                    // 장착 해제할 것이 무기일 경우
+                    if(equipArea.weaponList.Contains(fromSlot))
                     {
-                        Debug.Log("Can't Unequip. Inven Is Full");
-                        continue;
-                    }
-                    // 공격하지 않을때 장착해제하려고 하는 경우
-                    if (interactEquipFlag == true && !Manager.Game.isPlayerAttacking)
-                    {
-                        if(equipArea.consumList.Contains(fromSlot))
+                        if (equipUI != null)
                         {
-                            if(equipUI != null)
+                            for (int i = 0; i < equipArea.weaponList.Count; i++)
                             {
-                                for (int i = 0; i < equipArea.consumList.Count; i++)
+                                if (fromSlot.Equals(equipArea.weaponList[i]))
                                 {
-                                    if (fromSlot.Equals(equipArea.consumList[i]))
+                                    if(Manager.Game.isPlayerAttacking == false)
+                                    {
+                                        equipUI.uiSlots[i].itemImage.sprite = null;
+                                        if (i == Manager.Input.currentWeaponSlot)
+                                            Global.PlayerWeaponEquip(null);
+
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    else if(equipArea.consumList.Contains(fromSlot))
+                    {
+                        if (equipUI != null)
+                        {
+                            for (int i = 0; i < equipArea.consumList.Count; i++)
+                            {
+                                if (fromSlot.Equals(equipArea.consumList[i]))
+                                {
+                                    if (Manager.Game.isPlayerAttacking == false)
                                     {
                                         equipUI.uiSlots[i + equipArea.weaponList.Count].itemImage.sprite = null;
                                         if (i == Manager.Input.currentUtilitySlot)
@@ -637,23 +647,16 @@ public class InvenManager
                                 }
                             }
                         }
-                        if (equipArea.consumList.Contains(fromSlot))
-                        {
-                            if (equipUI != null)
-                            {
-                                for (int i = 0; i < equipArea.weaponList.Count; i++)
-                                {
-                                    if (fromSlot.Equals(equipArea.weaponList[i]))
-                                    {
-                                        equipUI.uiSlots[i + equipArea.weaponList.Count].itemImage.sprite = null;
-                                        if (i == Manager.Input.currentWeaponSlot)
-                                            Global.PlayerWeaponEquip(null);
-                                    }
-                                }
-                            }
-                        }
-                        else
-                            Global.PlayerArmorUnEquip(fromSlot);
+                    }
+                    if (interactEquipFlag == true && !Manager.Game.isPlayerAttacking)
+                    {
+                        Global.PlayerArmorUnEquip(fromSlot);
+                        // AddItem이 실패한경우 장착한 아이템을 바닥에 버림
+                        Item newItem = AddItem(fromSlot.slotItem, ItemBoxType.Inventory);
+                        if (newItem == null && Manager.Instance.GetNowScene().name.ToString() != SceneName.MainLobbyScene.ToString())
+                            DumpItem(fromSlot.slotItem);
+                        else if (newItem == null)
+                            Debug.Log("Can't Unequip. Inven Is Full");
                         // AddItem이 성공한 경우는 그냥 장비창 리셋만 하면 됨
                         GameObject.Destroy(itemVisual);
                         fromSlot.SlotReset();
@@ -755,10 +758,7 @@ public class InvenManager
                                         itemVisual.transform.GetChild(0).GetComponent<Image>().sprite;
                                 }
                             }
-                            if(fromSlot.slotItem.equipPart == EquipPart.Weapon)
-                                Global.PlayerWeaponEquip(fromSlot.slotItem);
-                            else
-                                Global.PlayerArmorEquip(fromSlot.slotItem);
+                            Global.PlayerArmorEquip(fromSlot.slotItem);
                             Slot deleteSlot = fromSlotLines[originYIndex].mySlots[originXIndex];
                             DeleteBoxItem(deleteSlot, fromItemBoxType);
                             //Debug.Log(GameObject.Find(targetImagePath).GetComponent<Image>().sprite);
