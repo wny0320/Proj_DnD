@@ -18,7 +18,7 @@ public class DataManager
     public bool dataImportFlag = false;
     const string ITEM_PATH = "Items/";
     #endregion
-    public int gold = 0;
+    public int gold = 1000;
     public void OnAwake()
     {
         SaveItemDataToJson();

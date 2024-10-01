@@ -790,9 +790,8 @@ public class InvenManager
     /// </summary>
     /// <param name="_item">들어갈 아이템의 원본 Data</param>
     /// <param name="_itemBoxType">아이템이 들어갈 ItemBox</param>
-    /// <param name="_itemRarity">들어갈 아이템이 될 등급</param>
     /// <returns></returns>
-    public Item AddItem(Item _item, ItemBoxType _itemBoxType, ItemRarity _itemRarity = ItemRarity.Non)
+    public Item AddItem(Item _item, ItemBoxType _itemBoxType)
     {
         // 비어있는 슬롯을 다 가져오는 코드
         bool[,] emptyFlag = null;
@@ -1087,7 +1086,29 @@ public class InvenManager
         if(itemStat != null)
             stat2 = itemStat.MoveSpeed;
         bool equipFlag = false;
-        if(_item.itemType == ItemType.Equipment)
+        Image infoPanel = itemInfo.GetComponent<Image>();
+        switch (_item.itemRarity)
+        {
+            case ItemRarity.Junk:
+                infoPanel.color = new Color32(60, 60, 60, 200);
+                break;
+            case ItemRarity.Poor:
+                infoPanel.color = new Color32(140, 140, 140, 200);
+                break;
+            case ItemRarity.Common:
+                infoPanel.color = new Color32(70, 200, 70, 200);
+                break;
+            case ItemRarity.Rare:
+                infoPanel.color = new Color32(60, 130, 200, 200);
+                break;
+            case ItemRarity.Epic:
+                infoPanel.color = new Color32(120, 60, 200, 200);
+                break;
+            case ItemRarity.Legendary:
+                infoPanel.color = new Color32(200, 40, 40, 200);
+                break;
+        }
+        if (_item.itemType == ItemType.Equipment)
         {
             switch(_item.equipPart)
             {

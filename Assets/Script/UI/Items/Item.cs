@@ -23,14 +23,16 @@ public class Item : ScriptableObject
     public float[] randomRange = new float[2];
     public float duration;
     public float effect;
-    public Item ItemDeepCopy()
+    public Item ItemDeepCopy(ItemRarity _itemRarity = ItemRarity.Non)
     {
         Item item = (Item)CreateInstance(typeof(Item));
         item.itemName = itemName;
         item.itemIndex = itemIndex;
         item.itemText = itemText;
         item.itemPrice = itemPrice;
-        if (itemRarity != ItemRarity.Non)
+        if(_itemRarity != ItemRarity.Non)
+            item.itemRarity = _itemRarity;
+        else if (itemRarity != ItemRarity.Non)
             item.itemRarity = itemRarity;
         else
         {

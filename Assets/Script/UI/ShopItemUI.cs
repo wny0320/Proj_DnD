@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class ShopItemUI : MonoBehaviour
 {
     public Item item;
+    public Image itemRarityImage;
     public Image itemImage;
     public Text itemName;
     public Text itemCost;
@@ -13,13 +14,14 @@ public class ShopItemUI : MonoBehaviour
     public void ItemPurchase()
     {
         // 아이템 가격보다 돈이 많은 경우
-        if(Manager.Data.gold >= item.itemPrice)
+        if(Manager.Data.gold >= item.itemPrice * 2)
         {
+            Item newItem = item.ItemDeepCopy();
             // 아이템 추가 시도
-            if(Manager.Inven.AddItem(item.ItemDeepCopy(), ItemBoxType.Inventory, ItemRarity.Junk) == true)
+            if (Manager.Inven.AddItem(newItem, ItemBoxType.Inventory) != null)
             {
                 // 성공시 돈을 뺌
-                Manager.Data.gold -= item.itemPrice;
+                Manager.Data.gold -= item.itemPrice * 2;
                 GetComponent<Button>().interactable = false;
             }
             else

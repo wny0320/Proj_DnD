@@ -101,6 +101,7 @@ public enum ButtonFunc
     MerchantConsumButton,
     MerchantEquipButton,
     MerchantSellButton,
+    MerchantSpecialButton,
 }
 
 public enum ItemBoxType

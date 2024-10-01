@@ -26,5 +26,5 @@ MonoBehaviour:
   randomRange:
   - 0
   - 0
-  duration: 0
-  effect: 0
+  duration: 10
+  effect: 1

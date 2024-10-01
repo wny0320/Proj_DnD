@@ -11,6 +11,8 @@ public class ShopUI : MonoBehaviour
     [SerializeField]
     GameObject sellCatalog;
     [SerializeField]
+    GameObject specialCatalog;
+    [SerializeField]
     GameObject shopItemPrefab;
     [SerializeField]
     GameObject sellItemPrefab;
@@ -41,7 +43,7 @@ public class ShopUI : MonoBehaviour
                 {
                     GameObject newSellItem = Instantiate(sellItemPrefab);
                     newSellItem.transform.SetParent(sellCatalog.transform);
-                    ShopUISync(newSellItem, item);
+                    ShopUISync(newSellItem, item, true);
                 }
             }
         }
@@ -51,7 +53,7 @@ public class ShopUI : MonoBehaviour
             {
                 GameObject newSellItem = Instantiate(sellItemPrefab);
                 newSellItem.transform.SetParent(sellCatalog.transform);
-                ShopUISync(newSellItem, item);
+                ShopUISync(newSellItem, item, true);
             }
         }
         foreach(ShopItemUI sellItemUI in sellUIs)
@@ -111,7 +113,8 @@ public class ShopUI : MonoBehaviour
             }
             GameObject newShopItem = Instantiate(shopItemPrefab);
             newShopItem.transform.SetParent(consumCatalog.transform);
-            ShopUISync(newShopItem, consumItemList[targetIndex]);
+            Item newItem = consumItemList[targetIndex].ItemDeepCopy(ItemRarity.Junk);
+            ShopUISync(newShopItem, newItem, false);
         }
         // prevIndex List 초기화
         // 장비 아이템 목록 갱신
@@ -138,7 +141,36 @@ public class ShopUI : MonoBehaviour
             }
             GameObject newShopItem = Instantiate(shopItemPrefab);
             newShopItem.transform.SetParent(equipCatalog.transform);
-            ShopUISync(newShopItem, equipItemList[targetIndex]);
+            Item newItem = equipItemList[targetIndex].ItemDeepCopy(ItemRarity.Junk);
+            ShopUISync(newShopItem, newItem, false);
+        }
+        // prevIndex List 초기화
+        // 스페셜 아이템 목록 갱신
+        prevIndex = new List<int>();
+        for (int i = 0; i < 5; i++)
+        {
+            int targetIndex;
+            int count = 0;
+            while (true)
+            {
+                count++;
+                targetIndex = Random.Range(0, equipItemList.Count);
+                if (prevIndex.Contains(targetIndex))
+                {
+                    if (count > 10)
+                        break;
+                    continue;
+                }
+                else
+                {
+                    prevIndex.Add(targetIndex);
+                    break;
+                }
+            }
+            GameObject newShopItem = Instantiate(shopItemPrefab);
+            newShopItem.transform.SetParent(specialCatalog.transform);
+            Item newItem = equipItemList[targetIndex].ItemDeepCopy();
+            ShopUISync(newShopItem, newItem, false);
         }
         shopRefreshFlag = true;
     }
@@ -147,15 +179,40 @@ public class ShopUI : MonoBehaviour
     /// </summary>
     /// <param name="_shopItemObj">생성한 ShopItemPrefab</param>
     /// <param name="_item">데이터가 들어갈 Item</param>
-    private void ShopUISync(GameObject _shopItemObj, Item _item)
+    /// <param name="_sellFlag">유저가 판매하는 UI라면 true</param>
+    private void ShopUISync(GameObject _shopItemObj, Item _item, bool _sellFlag)
     {
         _shopItemObj.TryGetComponent<ShopItemUI>(out ShopItemUI shopItemUI);
-        if (shopItemUI != null)
+        if (shopItemUI != null && _item != null)
         {
             shopItemUI.item = _item;
+            switch (_item.itemRarity)
+            {
+                case ItemRarity.Junk:
+                    shopItemUI.itemRarityImage.color = new Color32(255, 255, 255, 0);
+                    break;
+                case ItemRarity.Poor:
+                    shopItemUI.itemRarityImage.color = new Color32(255, 255, 255, 60);
+                    break;
+                case ItemRarity.Common:
+                    shopItemUI.itemRarityImage.color = new Color32(100, 255, 100, 60);
+                    break;
+                case ItemRarity.Rare:
+                    shopItemUI.itemRarityImage.color = new Color32(90, 160, 255, 60);
+                    break;
+                case ItemRarity.Epic:
+                    shopItemUI.itemRarityImage.color = new Color32(150, 90, 255, 60);
+                    break;
+                case ItemRarity.Legendary:
+                    shopItemUI.itemRarityImage.color = new Color32(255, 70, 70, 60);
+                    break;
+            }
             shopItemUI.itemImage.sprite = Manager.Data.itemSprite[_item.itemIndex];
             shopItemUI.itemName.text = _item.itemName;
-            shopItemUI.itemCost.text = _item.itemPrice.ToString();
+            if(_sellFlag == true)
+                shopItemUI.itemCost.text = _item.itemPrice.ToString();
+            else
+                shopItemUI.itemCost.text = (_item.itemPrice * 2).ToString();
         }
     }
     public void ShopItemSell()
@@ -167,6 +224,7 @@ public class ShopUI : MonoBehaviour
         consumCatalog.SetActive(true);
         equipCatalog.SetActive(false);
         sellCatalog.SetActive(false);
+        specialCatalog.SetActive(false);
     }
 
     public void ActiveEquipUI()
@@ -174,6 +232,7 @@ public class ShopUI : MonoBehaviour
         consumCatalog.SetActive(false);
         equipCatalog.SetActive(true);
         sellCatalog.SetActive(false);
+        specialCatalog.SetActive(false);
     }
 
     public void ActiveSellUI()
@@ -181,5 +240,13 @@ public class ShopUI : MonoBehaviour
         consumCatalog.SetActive(false);
         equipCatalog.SetActive(false);
         sellCatalog.SetActive(true);
+        specialCatalog.SetActive(false);
+    }
+    public void ActiveSpecialUI()
+    {
+        consumCatalog.SetActive(false);
+        equipCatalog.SetActive(false);
+        sellCatalog.SetActive(false);
+        specialCatalog.SetActive(true);
     }
 }

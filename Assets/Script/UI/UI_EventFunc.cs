@@ -23,6 +23,8 @@ public class UI_EventFunc : MonoBehaviour
     GameObject armorObject;
     [SerializeField]
     GameObject sellObject;
+    [SerializeField]
+    GameObject specialObject;
     [Header("ShopUI Button Resources")]
     [SerializeField]
     ShopUI shopUI;
@@ -103,5 +105,10 @@ public class UI_EventFunc : MonoBehaviour
     {
         if (shopUI == null) return;
         shopUI.ActiveSellUI();
+    }
+    public void MerchantSpecialButton()
+    {
+        if (shopUI == null) return;
+        shopUI.ActiveSpecialUI();
     }
 }
