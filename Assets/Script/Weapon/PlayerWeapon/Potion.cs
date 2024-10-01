@@ -66,7 +66,26 @@ public class Potion : Weapon
                 yield return new WaitForSeconds(1f);
             }
         }
-
+        if (potionName.Equals(POTION_BLUE_NAME))
+        {
+            stat.MoveSpeed += potionEffect;
+            while (timer < potionDuration)
+            {
+                timer += 1;
+                yield return new WaitForSeconds(1f);
+            }
+            stat.MoveSpeed -= potionEffect;
+        }
+        if (potionName.Equals(POTION_GREEN_NAME))
+        {
+            stat.JumpForce += potionEffect;
+            while (timer < potionDuration)
+            {
+                timer += 1;
+                yield return new WaitForSeconds(1f);
+            }
+            stat.JumpForce -= potionEffect;
+        }
         Destroy(gameObject);
     }
 }

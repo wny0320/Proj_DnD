@@ -101,23 +101,23 @@ public class Item : ScriptableObject
         {
             case ItemRarity.Poor:
                 duration += 2;
-                effect += 1;
+                effect += 0;
                 break;
             case ItemRarity.Common:
-                duration += 3;
-                effect += 1;
+                duration += 4;
+                effect += 0;
                 break;
             case ItemRarity.Rare:
-                duration += 4;
-                effect += 2;
+                duration += 6;
+                effect += 0;
                 break;
             case ItemRarity.Epic:
-                duration += 5;
-                effect += 2;
+                duration += 8;
+                effect += 0;
                 break;
             case ItemRarity.Legendary:
-                duration += 6;
-                effect += 3;
+                duration += 10;
+                effect += 0;
                 break;
         }
         duration += Random.Range(0, (int)randomRange[0]);

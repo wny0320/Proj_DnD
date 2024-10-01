@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PotionGreen
   m_EditorClassIdentifier: 
   itemName: PotionGreen
-  itemIndex: 17
+  itemIndex: 21
   itemText: 
   itemPrice: 15
   itemRarity: 0
@@ -21,7 +21,7 @@ MonoBehaviour:
   itemType: 1
   itemSize: 17
   equipPart: 0
-  weaponType: -1
+  weaponType: 3
   equipStatSetFlag: 0
   randomRange:
   - 0
