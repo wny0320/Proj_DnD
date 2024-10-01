@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu]
 public class Item : ScriptableObject
 {
+    [Header("Item Basic Data")]
     public string itemName;
     public int itemIndex;
     public string itemText;
@@ -12,12 +13,16 @@ public class Item : ScriptableObject
     public ItemRarity itemRarity;
     public Stat itemStat;
     public ItemType itemType;
-    public EquipPart equipPart;
     public ItemSize itemSize;
+    [Header("Equip or Consum Item Data")]
+    [Tooltip("If item is not equip. this data isn't used")]
+    public EquipPart equipPart;
     public WeaponType weaponType;
     public bool equipStatSetFlag;
+    [Tooltip("Random Stat Range. if Equip, Atk or Def. if Cunsum, Dur or Eft")]
     public float[] randomRange = new float[2];
-    //attack, defense, price
+    public float duration;
+    public float effect;
     public Item ItemDeepCopy()
     {
         Item item = (Item)CreateInstance(typeof(Item));
@@ -89,6 +94,34 @@ public class Item : ScriptableObject
         }
         itemStat.Attack += Random.Range(0, (int)randomRange[0]);
         itemStat.Defense += Random.Range(0, (int)randomRange[1]);
+    }
+    public void ConsumStatSet()
+    {
+        switch (itemRarity)
+        {
+            case ItemRarity.Poor:
+                duration += 2;
+                effect += 1;
+                break;
+            case ItemRarity.Common:
+                duration += 3;
+                effect += 1;
+                break;
+            case ItemRarity.Rare:
+                duration += 4;
+                effect += 2;
+                break;
+            case ItemRarity.Epic:
+                duration += 5;
+                effect += 2;
+                break;
+            case ItemRarity.Legendary:
+                duration += 6;
+                effect += 3;
+                break;
+        }
+        duration += Random.Range(0, (int)randomRange[0]);
+        effect += Random.Range(0, (int)randomRange[1]);
     }
 
     public ItemRarity ItemRarirySet()

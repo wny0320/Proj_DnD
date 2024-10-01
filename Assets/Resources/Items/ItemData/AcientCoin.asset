@@ -15,14 +15,16 @@ MonoBehaviour:
   itemName: AcientCoin
   itemIndex: 0
   itemText: 
-  itemPrice: 20
+  itemPrice: 10
   itemRarity: 0
   itemStat: {fileID: 0}
   itemType: 2
-  equipPart: 0
   itemSize: 17
+  equipPart: 0
   weaponType: -1
   equipStatSetFlag: 0
   randomRange:
   - 0
   - 0
+  duration: 0
+  effect: 0

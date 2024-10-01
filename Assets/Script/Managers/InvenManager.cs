@@ -43,6 +43,9 @@ public class InvenManager
     private const string INVENTORY_SLOT_TAG = "InvenSlot";
     private const string EQUIP_SLOT_TAG = "EquipSlot";
     private const string TEMP_SLOT_PATH = "TempItemSlots";
+
+    //여기부터는 테스트용 데이터들
+    private const string TEST_LOBBY_NAME = "LobbyMerchantWork";
     #endregion
 
     #region variable
@@ -241,7 +244,8 @@ public class InvenManager
                 //Debug.Log("Canvas Is Invisible");
                 continue;
             }
-            if (equipUI == null && Manager.Instance.GetNowScene().name != SceneName.MainLobbyScene.ToString())
+            if (equipUI == null && Manager.Instance.GetNowScene().name != SceneName.MainLobbyScene.ToString()
+                && Manager.Instance.GetNowScene().name != TEST_LOBBY_NAME) // 테스트용
                 equipUI = GameObject.Find(EQUIP_UI_PATH).GetComponent<EquipUI>();
             // 일단 마우스의 위치를 계속 탐색해서 정보 띄우는게 우선
             PointerEventData pointer = new PointerEventData(EventSystem.current);
@@ -850,6 +854,11 @@ public class InvenManager
         if (targetSlot.slotItem.equipStatSetFlag == false && targetSlot.slotItem.itemType == ItemType.Equipment)
         {
             targetSlot.slotItem.EquipStatSet();
+            targetSlot.slotItem.equipStatSetFlag = true;
+        }
+        if(targetSlot.slotItem.equipStatSetFlag == false && targetSlot.slotItem.itemType == ItemType.Consumable)
+        {
+            targetSlot.slotItem.ConsumStatSet();
             targetSlot.slotItem.equipStatSetFlag = true;
         }
         // 눈에 보이는 아이템 프리팹 생성

@@ -16,9 +16,15 @@ public class TestItemAdd : MonoBehaviour
         Item targetItem = Manager.Data.itemData[targetItemName];
         //Manager.Inven.AddItem(targetItem);
     }
-    public void SceneMove()
+    public void SceneMoveTestLobby()
     {
-        Manager.Instance.LoadScene($"LobbyMerchantWork");
+        Manager.Instance.LoadScene("LobbyMerchantWork");
         Manager.Inven.ConcealInvenCanvasByBt();
+        Cursor.lockState = CursorLockMode.None;
+    }
+    public void SceneMoveTestDungeon()
+    {
+        Manager.Instance.LoadScene("PlayerAndInven");
+        Cursor.lockState = CursorLockMode.Locked;
     }
 }
