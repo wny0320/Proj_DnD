@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8ce6d82775af0ce438e646f65aa1c573, type: 3}
-  m_Name: PotionRed
+  m_Name: AcientBowl
   m_EditorClassIdentifier: 
-  itemName: PotionRed
-  itemIndex: 18
+  itemName: AcientBowl
+  itemIndex: 0
   itemText: 
   itemPrice: 15
   itemRarity: 0
-  itemStat: {fileID: 11400000, guid: 499eb59a1f2a4ce4ab7dbbc2355e7799, type: 2}
-  itemType: 1
-  itemSize: 17
+  itemStat: {fileID: 0}
+  itemType: 3
+  itemSize: 18
   equipPart: 0
-  weaponType: 3
+  weaponType: -1
   equipStatSetFlag: 0
   randomRange:
   - 0
   - 0
-  duration: 10
-  effect: 2
+  duration: 0
+  effect: 0

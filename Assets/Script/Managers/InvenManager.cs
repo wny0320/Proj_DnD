@@ -182,14 +182,61 @@ public class InvenManager
         List<Item> randomItemList = new List<Item>();
         // 현재 생성될 갯수를 랜덤하게 정함
         int itemNum = UnityEngine.Random.Range(_minInclusiveItemNum, _maxExclusiveItemNum);
-        // 아이템의 최대 갯수(최대 인덱스)
-        int maxItemIndex = Manager.Data.itemData.Values.Count;
+
         List<Item> itemList = Manager.Data.itemData.Values.ToList();
+
+        List<Item> consumItemList = new List<Item>();
+        List<Item> equipItemList = new List<Item>();
+        List<Item> coinItemList = new List<Item>();
+        List<Item> antiqueItemList = new List<Item>();
+
+        // 아이템의 타입에 따른 분류
+        foreach (var item in itemList)
+        {
+            if (item.itemType == ItemType.Consumable)
+            {
+                consumItemList.Add(item);
+            }
+            else if (item.itemType == ItemType.Equipment)
+            {
+                equipItemList.Add(item);
+            }
+            else if(item.itemType == ItemType.Coin)
+            {
+                coinItemList.Add(item);
+            }
+            else if(item.itemType == ItemType.Antique)
+            {
+                antiqueItemList.Add(item);
+            }
+        }
         for (int i = 0; i < itemNum; i++)
         {
-            // 생성할 아이템의 갯수만큼 생성될 아이템의 Index를 고름
-            int targetIndex = UnityEngine.Random.Range(0, maxItemIndex);
-            randomItemList.Add(itemList[targetIndex]);
+            int dice = UnityEngine.Random.Range(0, 100);
+            if(dice < 3) // 3% 비싼 coin Item
+            {
+                // 생성할 아이템의 갯수만큼 생성될 아이템의 Index를 고름
+                int targetIndex = UnityEngine.Random.Range(0, coinItemList.Count);
+                randomItemList.Add(coinItemList[targetIndex]);
+            }
+            else if(dice < 20) // 17% Consumable
+            {
+                // 생성할 아이템의 갯수만큼 생성될 아이템의 Index를 고름
+                int targetIndex = UnityEngine.Random.Range(0, consumItemList.Count);
+                randomItemList.Add(consumItemList[targetIndex]);
+            }
+            else if(dice < 50) // 30% Antique
+            {
+                // 생성할 아이템의 갯수만큼 생성될 아이템의 Index를 고름
+                int targetIndex = UnityEngine.Random.Range(0, antiqueItemList.Count);
+                randomItemList.Add(antiqueItemList[targetIndex]);
+            }
+            else
+            {
+                // 생성할 아이템의 갯수만큼 생성될 아이템의 Index를 고름
+                int targetIndex = UnityEngine.Random.Range(0, equipItemList.Count);
+                randomItemList.Add(equipItemList[targetIndex]);
+            }
         }
         return randomItemList;
     }
@@ -561,36 +608,27 @@ public class InvenManager
                         continue;
                     if (itemVisual == null)
                         continue;
-                    // 장비창에서 해제하는 경우
-                    // targetSlot이 EquipSlot일 경우
-                    // 장착 해제할 것이 무기일 경우
-                    if(equipArea.weaponList.Contains(fromSlot))
+                    // 장착 해제 시도
+                    // AddItem이 실패한경우 장착한 아이템을 바닥에 버림
+                    Item newItem = AddItem(fromSlot.slotItem, ItemBoxType.Inventory);
+                    if (newItem == null && Manager.Instance.GetNowScene().name.ToString() != SceneName.MainLobbyScene.ToString()
+                        && Manager.Instance.GetNowScene().name.ToString() != TEST_LOBBY_NAME) // 테스트용
+                        DumpItem(fromSlot.slotItem);
+                    else if (newItem == null)
                     {
-                        if (equipUI != null)
-                        {
-                            for (int i = 0; i < equipArea.weaponList.Count; i++)
-                            {
-                                if (fromSlot.Equals(equipArea.weaponList[i]))
-                                {
-                                    if(Manager.Game.isPlayerAttacking == false)
-                                    {
-                                        equipUI.uiSlots[i].itemImage.sprite = null;
-                                        if (i == Manager.Input.currentWeaponSlot)
-                                            Global.PlayerWeaponEquip(null);
-                                    }
-                                }
-                            }
-                        }
+                        Debug.Log("Can't Unequip. Inven Is Full");
+                        continue;
                     }
-                    else if(equipArea.consumList.Contains(fromSlot))
+                    // 공격하지 않을때 장착해제하려고 하는 경우
+                    if (interactEquipFlag == true && !Manager.Game.isPlayerAttacking)
                     {
-                        if (equipUI != null)
+                        if(equipArea.consumList.Contains(fromSlot))
                         {
-                            for (int i = 0; i < equipArea.consumList.Count; i++)
+                            if(equipUI != null)
                             {
-                                if (fromSlot.Equals(equipArea.consumList[i]))
+                                for (int i = 0; i < equipArea.consumList.Count; i++)
                                 {
-                                    if (Manager.Game.isPlayerAttacking == false)
+                                    if (fromSlot.Equals(equipArea.consumList[i]))
                                     {
                                         equipUI.uiSlots[i + equipArea.weaponList.Count].itemImage.sprite = null;
                                         if (i == Manager.Input.currentUtilitySlot)
@@ -599,16 +637,23 @@ public class InvenManager
                                 }
                             }
                         }
-                    }
-                    if (interactEquipFlag == true && !Manager.Game.isPlayerAttacking)
-                    {
-                        Global.PlayerArmorUnEquip(fromSlot);
-                        // AddItem이 실패한경우 장착한 아이템을 바닥에 버림
-                        Item newItem = AddItem(fromSlot.slotItem, ItemBoxType.Inventory);
-                        if (newItem == null && Manager.Instance.GetNowScene().name.ToString() != SceneName.MainLobbyScene.ToString())
-                            DumpItem(fromSlot.slotItem);
-                        else if (newItem == null)
-                            Debug.Log("Can't Unequip. Inven Is Full");
+                        if (equipArea.consumList.Contains(fromSlot))
+                        {
+                            if (equipUI != null)
+                            {
+                                for (int i = 0; i < equipArea.weaponList.Count; i++)
+                                {
+                                    if (fromSlot.Equals(equipArea.weaponList[i]))
+                                    {
+                                        equipUI.uiSlots[i + equipArea.weaponList.Count].itemImage.sprite = null;
+                                        if (i == Manager.Input.currentWeaponSlot)
+                                            Global.PlayerWeaponEquip(null);
+                                    }
+                                }
+                            }
+                        }
+                        else
+                            Global.PlayerArmorUnEquip(fromSlot);
                         // AddItem이 성공한 경우는 그냥 장비창 리셋만 하면 됨
                         GameObject.Destroy(itemVisual);
                         fromSlot.SlotReset();
@@ -710,7 +755,10 @@ public class InvenManager
                                         itemVisual.transform.GetChild(0).GetComponent<Image>().sprite;
                                 }
                             }
-                            Global.PlayerArmorEquip(fromSlot.slotItem);
+                            if(fromSlot.slotItem.equipPart == EquipPart.Weapon)
+                                Global.PlayerWeaponEquip(fromSlot.slotItem);
+                            else
+                                Global.PlayerArmorEquip(fromSlot.slotItem);
                             Slot deleteSlot = fromSlotLines[originYIndex].mySlots[originXIndex];
                             DeleteBoxItem(deleteSlot, fromItemBoxType);
                             //Debug.Log(GameObject.Find(targetImagePath).GetComponent<Image>().sprite);
