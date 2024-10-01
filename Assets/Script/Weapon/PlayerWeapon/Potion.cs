@@ -32,7 +32,8 @@ public class Potion : Weapon
         Item item = GetComponent<Item3D>().myItem;
         potionDuration = item.duration;
         potionEffect = item.effect;
-        potionName = item.name.ToString();
+        potionName = item.itemName;
+
         SetGlobalWeapon();
     }
 
@@ -41,23 +42,31 @@ public class Potion : Weapon
         float timer = 0f;
         if (Manager.Game.isPlayerAlive)
         {
-                Manager.Inven.DeleteBoxItem
-                    (Manager.Inven.equipSlots[ItemType.Consumable.ToString() + Manager.Input.currentUtilitySlot], ItemBoxType.Equip);
-                Manager.Input.currentUtilitySlot = -1;
+            //사용 후 인벤에서 삭제
+            Manager.Inven.DeleteBoxItem
+                (Manager.Inven.equipSlots[ItemType.Consumable.ToString() + Manager.Input.currentUtilitySlot], ItemBoxType.Equip);
+            Manager.Input.currentUtilitySlot = -1;
 
-                Global.PlayerWeaponEquip(null);
+            //사용 후 빈손으로
+            Global.PlayerWeapon = null;
+            Global.PlayerWeaponEquip(null);
 
-                Destroy(gameObject);
+            Destroy(GetComponent<Collider>());
+            Destroy(GetComponent<MeshRenderer>());
+            Destroy(GetComponent<MeshFilter>());
+            Destroy(GetComponent<Interactive>());
         }
+
         if (potionName.Equals(POTION_RED_NAME))
         {
-            while(timer > potionDuration)
+            while (timer < potionDuration)
             {
+                timer += 1;
+                stat.Hp = Mathf.Min(stat.Hp + Mathf.RoundToInt(potionEffect), stat.MaxHp);
                 yield return new WaitForSeconds(1f);
-                float deltaTime = Time.deltaTime;
-                timer += deltaTime;
-                stat.Hp = Mathf.Min(stat.Hp + Mathf.RoundToInt(potionEffect * deltaTime), stat.MaxHp);
             }
         }
+
+        Destroy(gameObject);
     }
 }

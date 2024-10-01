@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ce6d82775af0ce438e646f65aa1c573, type: 3}
   m_Name: CandleHolder
   m_EditorClassIdentifier: 
-  itemName: AcientBowl
-  itemIndex: 0
+  itemName: CandleHolder
+  itemIndex: 7
   itemText: 
   itemPrice: 40
   itemRarity: 0

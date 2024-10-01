@@ -4,7 +4,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEditor.Animations;
-using UnityEditor.Experimental.GraphView;
 using UnityEditor.PackageManager;
 using UnityEngine;
 
@@ -101,7 +100,7 @@ public class PlayerController : BaseController, IReceiveAttack
             yield return null;
         }
         Item weapon = Manager.Inven.equipSlots[EquipPart.Weapon.ToString() + 0].slotItem;
-        
+
         WeaponEquip(weapon);
     }
 
@@ -168,6 +167,8 @@ public class PlayerController : BaseController, IReceiveAttack
     #region 장비 장착 및 해제
     private void EquipArmor(Item armor)
     {
+        if (armor.equipPart == EquipPart.Weapon) return;
+
         stat.MoveSpeed += armor.itemStat.MoveSpeed;
         stat.Defense += armor.itemStat.Defense;
         stat.ItemDegree += (int)armor.itemRarity;
@@ -175,6 +176,8 @@ public class PlayerController : BaseController, IReceiveAttack
 
     private void UnEquipArmor(Slot slot)
     {
+        if (slot.slotItem.equipPart == EquipPart.Weapon) return;
+
         stat.MoveSpeed -= slot.slotItem.itemStat.MoveSpeed;
         stat.Defense -= slot.slotItem.itemStat.Defense;
         stat.ItemDegree -= (int)slot.slotItem.itemRarity;
