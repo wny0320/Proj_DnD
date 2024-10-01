@@ -18,8 +18,6 @@ public class UI_EventFunc : MonoBehaviour
     [SerializeField]
     GameObject merchantObject;
     [SerializeField]
-    GameObject stashObject;
-    [SerializeField]
     GameObject potionObject;
     [SerializeField]
     GameObject armorObject;
@@ -70,31 +68,25 @@ public class UI_EventFunc : MonoBehaviour
     {
         if (merchantObject == null)
             return;
-        if (stashObject == null)
-            return;
         Manager.Inven.RevealInvenCanvasByBt();
         merchantObject.SetActive(true);
-        stashObject.SetActive(false);
+        Manager.Inven.ConcealStashCanvas();
     }
     public void AdventureButton()
     {
         if (merchantObject == null)
             return;
-        if (stashObject == null)
-            return;
         Manager.Inven.ConcealInvenCanvasByBt();
         merchantObject.SetActive(false);
-        stashObject.SetActive(false);
+        Manager.Inven.ConcealStashCanvas();
     }
     public void StashButton()
     {
         if (merchantObject == null)
             return;
-        if (stashObject == null)
-            return;
         Manager.Inven.RevealInvenCanvasByBt();
         merchantObject.SetActive(false);
-        stashObject.SetActive(true);
+        Manager.Inven.RevealStashCanvas();
     }
 
     public void MerchantConsumButton()

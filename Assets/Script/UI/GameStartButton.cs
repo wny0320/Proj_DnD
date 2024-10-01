@@ -8,4 +8,8 @@ public class GameStartButton : MonoBehaviour
     {
         Manager.Instance.LoadScene(SceneName.DungeonScene.ToString());
     }
+    public void TestLobbyMove()
+    {
+        Manager.Instance.LoadScene(SceneName.MainLobbyScene.ToString());
+    }
 }

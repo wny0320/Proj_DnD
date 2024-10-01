@@ -1085,4 +1085,12 @@ public class InvenManager
     {
         dropCanvas.gameObject.SetActive(false);
     }
+    public void RevealStashCanvas()
+    {
+        stashCanvas.gameObject.SetActive(true);
+    }
+    public void ConcealStashCanvas()
+    {
+        stashCanvas.gameObject.SetActive(false);
+    }
 }
