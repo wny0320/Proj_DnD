@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: Torch
   m_EditorClassIdentifier: 
   itemName: Torch
-  itemIndex: 21
+  itemIndex: 25
   itemText: 
   itemPrice: 10
   itemRarity: 1
   itemStat: {fileID: 11400000, guid: 18d273da4934ce34eaf578f0f32f0792, type: 2}
   itemType: 1
   itemSize: 33
-  equipPart: 0
+  equipPart: 5
   weaponType: 1
   equipStatSetFlag: 0
   randomRange:
