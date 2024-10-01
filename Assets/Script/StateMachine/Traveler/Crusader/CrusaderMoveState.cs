@@ -1,3 +1,4 @@
+using DG.Tweening.Core.Easing;
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
@@ -36,6 +37,9 @@ public class CrusaderMoveState : BaseState
     private Vector3 fleePos= Vector3.zero;
     private float fleeDistance = 10f;
     private bool isFleeing = false;
+
+    private bool isBranchSetted = false;
+    private int branchInt = 0;
 
     public CrusaderMoveState(BaseController controller, Rigidbody rb = null, Animator animator = null) : base(controller, rb, animator)
     {
@@ -82,10 +86,10 @@ public class CrusaderMoveState : BaseState
         else
         {
             //Á¶°Ç
-            if (false)
-                Flee();
-            else
+            if (BranchChaseFlee())
                 Chase();
+            else
+                Flee();
         }
 
         if (Mathf.Abs(agent.velocity.x) > 0.2f || Mathf.Abs(agent.velocity.z) > 0.2f)
@@ -161,6 +165,8 @@ public class CrusaderMoveState : BaseState
             isFleeing = false;
             isFind = false;
             randomPos = Vector3.zero;
+
+            isBranchSetted = false;
         }
     }
 
@@ -242,7 +248,7 @@ public class CrusaderMoveState : BaseState
             {
                 Attack();
             }
-
+            isBranchSetted = false;
             return;
         }
 
@@ -255,14 +261,17 @@ public class CrusaderMoveState : BaseState
             {
                 agent.SetDestination(originPos);
                 isFind = false;
+                isBranchSetted = false;
                 return;
             }
         }
         else if (distance <= chaseDistance)
             agent.SetDestination(target.position);
         else
+        {
             isFind = false;
-
+            isBranchSetted = false;
+        }
     }
 
     private void Attack()
@@ -271,7 +280,7 @@ public class CrusaderMoveState : BaseState
         agent.velocity = Vector3.zero;
         transform.LookAt(new Vector3(target.position.x, transform.position.y, target.position.z));
 
-        if (!Manager.Game.isPlayerAlive) return;
+        if (!target.GetComponent<BaseController>().isAlive) return;
 
         if (canAttack)
         {
@@ -303,5 +312,22 @@ public class CrusaderMoveState : BaseState
         }
 
         return distance;
+    }
+
+    private bool BranchChaseFlee()
+    {
+        //true - chase, false - flee
+        if (target == null) return false;
+
+        if(!isBranchSetted)
+        {
+            isBranchSetted = true;
+            branchInt = (int)Random.Range(20, 20 + (float)controller.stat.Hp / (float)controller.stat.MaxHp * 50);
+        }
+
+        if (target.GetComponent<BaseController>().stat.ItemDegree > branchInt)
+            return false;
+
+        return true;
     }
 }

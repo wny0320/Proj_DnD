@@ -11,6 +11,7 @@ public class BaseController : MonoBehaviour
     public Stat stat;
 
     public bool isAlive = true;
+
     //상태 패턴
     #region StateMachine
     protected StateMachine stateMachine;

@@ -19,3 +19,4 @@ MonoBehaviour:
   _moveSpeed: 3
   _jumpForce: 0
   _attackSpeed: 2
+  _itemDegree: 10

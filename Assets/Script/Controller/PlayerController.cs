@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEditor.Animations;
 using UnityEditor.Experimental.GraphView;
+using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class PlayerController : BaseController, IReceiveAttack
@@ -159,7 +160,6 @@ public class PlayerController : BaseController, IReceiveAttack
 
         stat.MoveSpeed -= equipWeapon.itemStat.MoveSpeed;
         Destroy(Global.PlayerWeapon.gameObject);
-        //맨주먹으로 변경하는 애니 넣어야됨
 
         Global.PlayerWeapon = null;
     }
@@ -170,12 +170,14 @@ public class PlayerController : BaseController, IReceiveAttack
     {
         stat.MoveSpeed += armor.itemStat.MoveSpeed;
         stat.Defense += armor.itemStat.Defense;
+        stat.ItemDegree += (int)armor.itemRarity;
     }
 
     private void UnEquipArmor(Slot slot)
     {
         stat.MoveSpeed -= slot.slotItem.itemStat.MoveSpeed;
         stat.Defense -= slot.slotItem.itemStat.Defense;
+        stat.ItemDegree -= (int)slot.slotItem.itemRarity;
     }
     #endregion
 }

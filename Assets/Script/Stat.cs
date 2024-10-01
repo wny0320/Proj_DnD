@@ -6,7 +6,8 @@ using UnityEngine;
 public class Stat : ScriptableObject
 {
     //생성자로 아이템의 스탯을 만들 수 있게
-    public Stat(int hp, int maxhp, int attack, int defense, float movespeed, float jumpforce, float attackspeed)
+    public Stat(int hp, int maxhp, int attack, int defense, 
+        float movespeed, float jumpforce, float attackspeed, int itemdegree)
     {
         _hp = hp;
         _maxHp = maxhp;
@@ -32,6 +33,8 @@ public class Stat : ScriptableObject
 
     [SerializeField]
     protected float _attackSpeed;
+    [SerializeField]
+    protected int _itemDegree; //아이템 등급
 
     public int Hp { get { return _hp; } set { _hp = value; } }
     public int MaxHp { get { return _maxHp; } set { _maxHp = value; } }
@@ -40,6 +43,8 @@ public class Stat : ScriptableObject
     public float MoveSpeed { get { return _moveSpeed; } set { _moveSpeed = value; } }
     public float AttackSpeed { get { return _attackSpeed; } set { _attackSpeed = value; } }
     public float JumpForce { get { return _jumpForce; } set { _jumpForce = value; } }
+    public int ItemDegree { get { return _itemDegree; } set { _itemDegree = value;} }
+
     public Stat StatDeepCopy()
     {
         Stat stat = (Stat)CreateInstance(typeof(Stat));
@@ -50,6 +55,7 @@ public class Stat : ScriptableObject
         stat.MoveSpeed = _moveSpeed;
         stat.JumpForce = _jumpForce;
         stat.AttackSpeed = _attackSpeed;
+        stat.ItemDegree = _itemDegree;
         return stat;
     }
 }
