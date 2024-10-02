@@ -83,6 +83,7 @@ public class Manager : MonoBehaviour
     public void LoadScene(string sceneName)
     {
         sceneLoaderCanvasGroup = Instantiate(loadingSceneUI).GetComponent<CanvasGroup>();
+        sceneLoaderCanvasGroup.transform.parent = transform;
         progressBar = sceneLoaderCanvasGroup.transform.GetChild(1).GetComponent<Image>();
 
         SceneManager.sceneLoaded += LoadSceneEnd;
@@ -145,9 +146,9 @@ public class Manager : MonoBehaviour
 
         while (timer <= 1f)
         {
-            yield return null;
-            timer += Time.unscaledDeltaTime * 2f;
+            timer += Time.unscaledDeltaTime * 1.5f;
             sceneLoaderCanvasGroup.alpha = Mathf.Lerp(isFadeIn ? 0 : 1, isFadeIn ? 1 : 0, timer);
+            yield return null;
         }
 
         if (!isFadeIn)
