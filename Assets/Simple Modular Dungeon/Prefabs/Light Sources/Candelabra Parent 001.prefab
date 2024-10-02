@@ -9,9 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7975666200123183704}
-  m_Layer: 0
+  - component: {fileID: 6035247474949536875}
+  - component: {fileID: 5814186159973960314}
+  m_Layer: 12
   m_Name: Candelabra Parent 001
-  m_TagString: Untagged
+  m_TagString: Torch
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23,6 +25,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 624752744987018861}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -30,8 +33,38 @@ Transform:
   m_Children:
   - {fileID: 8394707100884400296}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6035247474949536875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 624752744987018861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f2e20cf07f718448917f17bca4979b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  torchLightList:
+  - {fileID: 7824720632977751669}
+  - {fileID: 4082325293840274018}
+  - {fileID: 3224730497516245887}
+  - {fileID: 4533264178787711199}
+  - {fileID: 7756067775762798678}
+--- !u!114 &5814186159973960314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 624752744987018861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae3b41df4ff6385439d1bd7403de2a30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropItemList: []
 --- !u!1 &2779500171993721041
 GameObject:
   m_ObjectHideFlags: 0
@@ -56,13 +89,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2779500171993721041}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4899780053965368512}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &857345001543193393
 Light:
@@ -138,7 +171,7 @@ GameObject:
   - component: {fileID: 1583472027055484573}
   - component: {fileID: 5760527529945816234}
   - component: {fileID: 5098010922530159678}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Candelabra Variation 001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -152,6 +185,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8160027554156078074}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -163,7 +197,6 @@ Transform:
   - {fileID: 1261040650171476586}
   - {fileID: 4956889267517950691}
   m_Father: {fileID: 7975666200123183704}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1583472027055484573
 MeshFilter:
@@ -363,6 +396,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5537283635842207538, guid: f62b31a3464faf14f934e38f9ee55eba, type: 3}
   m_PrefabInstance: {fileID: 581539017140454865}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &7756067775762798678 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7183553855393488263, guid: f62b31a3464faf14f934e38f9ee55eba, type: 3}
+  m_PrefabInstance: {fileID: 581539017140454865}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1092089781427577842
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -489,6 +527,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5537283635842207538, guid: f62b31a3464faf14f934e38f9ee55eba, type: 3}
   m_PrefabInstance: {fileID: 1092089781427577842}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &7824720632977751669 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7183553855393488263, guid: f62b31a3464faf14f934e38f9ee55eba, type: 3}
+  m_PrefabInstance: {fileID: 1092089781427577842}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5724523067977158392
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -610,6 +653,11 @@ PrefabInstance:
 --- !u!4 &264011740645917130 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5537283635842207538, guid: f62b31a3464faf14f934e38f9ee55eba, type: 3}
+  m_PrefabInstance: {fileID: 5724523067977158392}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3224730497516245887 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7183553855393488263, guid: f62b31a3464faf14f934e38f9ee55eba, type: 3}
   m_PrefabInstance: {fileID: 5724523067977158392}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6563513849057431525
@@ -735,6 +783,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5537283635842207538, guid: f62b31a3464faf14f934e38f9ee55eba, type: 3}
   m_PrefabInstance: {fileID: 6563513849057431525}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &4082325293840274018 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7183553855393488263, guid: f62b31a3464faf14f934e38f9ee55eba, type: 3}
+  m_PrefabInstance: {fileID: 6563513849057431525}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6726266691950028120
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -856,5 +909,10 @@ PrefabInstance:
 --- !u!4 &1261040650171476586 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5537283635842207538, guid: f62b31a3464faf14f934e38f9ee55eba, type: 3}
+  m_PrefabInstance: {fileID: 6726266691950028120}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4533264178787711199 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7183553855393488263, guid: f62b31a3464faf14f934e38f9ee55eba, type: 3}
   m_PrefabInstance: {fileID: 6726266691950028120}
   m_PrefabAsset: {fileID: 0}

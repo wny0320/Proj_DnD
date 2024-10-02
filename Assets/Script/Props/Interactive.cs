@@ -56,6 +56,9 @@ public class Interactive : MonoBehaviour
                 isInteractiving = true;
                 MonsterFunc();
                 break;
+            case "Torch":
+                TorchFunc();
+                break;
         }
     }
 
@@ -98,5 +101,11 @@ public class Interactive : MonoBehaviour
         Manager.Inven.ItemBoxReset(ItemBoxType.Drop);
         foreach (Item item in dropItemList)
             Manager.Inven.AddItem(item, ItemBoxType.Drop);
+    }
+
+    private void TorchFunc()
+    {
+        Debug.Log("torch");
+        gameObject.GetComponent<Torch>().LightChange();
     }
 }
