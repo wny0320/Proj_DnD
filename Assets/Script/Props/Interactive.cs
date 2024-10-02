@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -74,7 +75,17 @@ public class Interactive : MonoBehaviour
     }
     private void DoorFunc()
     {
-        Debug.Log("door");
+        if (!isOpened)
+        {
+            GetComponent<Animation>().Play();
+            isOpened = true;
+        }
+        else
+        {
+            transform.GetChild(0).DORotate(Vector3.zero, 1);
+            isOpened = false;
+        }
+
     }
     private void ChestFunc()
     {
