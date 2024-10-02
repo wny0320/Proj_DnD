@@ -85,14 +85,18 @@ public class CameraController : MonoBehaviour
 
         if (isPickupActivate && Input.GetKeyDown(KeyCode.F))
         {
-            if (hit.transform.root.tag.Equals("Item"))
+            Interactive inter = CheckInteractive(hitted.transform);
+            if (inter == null) return;
+
+            if (inter.tag.Equals("Item"))
             {
                 //아이템은 바로 실행
-                hitted.transform.root.GetComponent<Interactive>()?.InteractiveFunc();
+                inter.InteractiveFunc();
             }
             else
             {
-                if(interactingCo == null) interactingCo = StartCoroutine(InteractionLoading(hitted));
+                if(interactingCo == null)
+                    interactingCo = StartCoroutine(InteractionLoading(inter));
             }
         }
     }
@@ -124,7 +128,7 @@ public class CameraController : MonoBehaviour
         }
     }
 
-    IEnumerator InteractionLoading(RaycastHit hitted)
+    IEnumerator InteractionLoading(Interactive inter)
     {
         processText.enabled = true;
         circleProcess.enabled = true;
@@ -144,8 +148,16 @@ public class CameraController : MonoBehaviour
         processText.enabled = false;
         circleProcess.enabled = false;
         interactingCo = null;
-        if (hit.transform.root.tag.Equals("Door") == false)
-            Manager.Inven.nowInteractive = hitted.transform.root.GetComponent<Interactive>();
-        hitted.transform.root.GetComponent<Interactive>()?.InteractiveFunc();
+        if (inter.tag.Equals("Door") == false || inter.tag.Equals("Torch"))
+            Manager.Inven.nowInteractive = inter;
+        inter.InteractiveFunc();
+    }
+
+    private Interactive CheckInteractive(Transform trans)
+    {
+        if (trans.GetComponent<Interactive>() == null)
+            return CheckInteractive(trans.parent);
+        else
+            return trans.GetComponent<Interactive>();
     }
 }
