@@ -13,7 +13,7 @@ public class Box : MonoBehaviour, IReceiveAttack
         if(hp <= 0)
         {
             Destroy(gameObject);
-            Global.sfx.Play(Global.Sound.breakBoxClip, transform.position);
+            Global.sfx.Play(Global.Sound.BoxBreak, transform.position);
         }
     }
 }

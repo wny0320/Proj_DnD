@@ -78,11 +78,13 @@ public class Interactive : MonoBehaviour
         if (!isOpened)
         {
             GetComponent<Animation>().Play();
+            Global.sfx.Play(Global.Sound.DoorOpen, transform.position);
             isOpened = true;
         }
         else
         {
             transform.GetChild(0).DORotate(Vector3.zero, 1);
+            Global.sfx.Play(Global.Sound.DoorClose, transform.position);
             isOpened = false;
         }
 

@@ -68,6 +68,8 @@ public class WatcherController : BaseController, IReceiveAttack
 
     private void OnDead()
     {
+        Global.sfx.Play(Global.Sound.WatcherDead, transform.position);
+
         transform.rotation = Quaternion.Euler(Vector3.zero);
 
         animator.SetBool("EnemyMove", false);

@@ -71,6 +71,8 @@ public class EnemyController : BaseController, IReceiveAttack
 
     private void OnDead()
     {
+        Global.sfx.Play(Global.Sound.SkeletonDead, transform.position);
+
         weapon.GetComponent<Collider>().enabled = false;
         GetComponent<NavMeshAgent>().SetDestination(transform.position);
         GetComponent<NavMeshAgent>().velocity = Vector3.zero;

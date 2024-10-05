@@ -71,6 +71,8 @@ public class BanditController : BaseController, IReceiveAttack
 
     private void OnDead()
     {
+        Global.sfx.Play(Global.Sound.BanditDead, transform.position);
+
         weapon.GetComponent<Collider>().enabled = false;
         GetComponent<NavMeshAgent>().SetDestination(transform.position);
         GetComponent<NavMeshAgent>().velocity = Vector3.zero;

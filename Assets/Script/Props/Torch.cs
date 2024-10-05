@@ -18,6 +18,7 @@ public class Torch : MonoBehaviour
                 torchLightList[i].SetActive(false);
             }
             lightOnFlag = false;
+            Global.sfx.Play(Global.Sound.TorchOff, transform.position);
         }
         else
         {
@@ -26,6 +27,7 @@ public class Torch : MonoBehaviour
                 torchLightList[i].SetActive(true);
             }
             lightOnFlag = true;
+            Global.sfx.Play(Global.Sound.TorchOn, transform.position);
         }
     }
 }
