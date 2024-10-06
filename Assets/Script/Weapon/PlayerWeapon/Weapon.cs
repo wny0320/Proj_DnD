@@ -43,7 +43,7 @@ public class Weapon : MonoBehaviour
     {
         //Debug.Log("attack start");
 
-        totalDamage = damage + Manager.Game.Player.GetComponent<PlayerController>().stat.Attack;
+        totalDamage = damage;
         totalDamage += (totalDamage * (0.1f * level));
 
         hittedObject.Clear();
@@ -59,6 +59,16 @@ public class Weapon : MonoBehaviour
 
         foreach (Collider collider in cols)
             collider.enabled = false;
+    }
+
+    public virtual void SubAttackStart()
+    {
+        totalDamage = damage;
+
+        hittedObject.Clear();
+
+        foreach (Collider collider in cols)
+            collider.enabled = true;
     }
 
     private void OnTriggerEnter(Collider other)

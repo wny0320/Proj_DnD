@@ -21,7 +21,7 @@ MonoBehaviour:
   itemType: 1
   itemSize: 33
   equipPart: 5
-  weaponType: 1
+  weaponType: 4
   equipStatSetFlag: 0
   randomRange:
   - 0

@@ -22,6 +22,7 @@ public enum WeaponType
     Onehanded = 1,
     Twohanded = 2,
     Consumable = 3,
+    Torch = 4,
 }
 
 

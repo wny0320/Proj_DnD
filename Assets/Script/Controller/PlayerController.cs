@@ -140,12 +140,15 @@ public class PlayerController : BaseController, IReceiveAttack
                     go.AddComponent<Sword>();
                     break;
                 case WeaponType.Twohanded:
-                    go.AddComponent<Sword>();
+                    go.AddComponent<Sword>(); //두손검 스크립트 만들어야함
                     break;
                 case WeaponType.Consumable:
                     go.transform.localPosition = new Vector3(0.13f, 0.05f, 1);
                     go.transform.localRotation = Quaternion.Euler(180f, 0, 0);
                     go.AddComponent<Potion>().stat = stat;
+                    break;
+                case WeaponType.Torch:
+                    go.AddComponent<TorchWeapon>();
                     break;
             }
         }

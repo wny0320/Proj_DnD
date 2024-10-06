@@ -7,6 +7,7 @@ public class PlayerMoveState : BaseState
     const string PLAYER_MOVE = "PlayerMove";
     const string PLAYER_JUMP = "PlayerJump";
     const string PLAYER_ATTACK = "PlayerAttack";
+    const string PLAYER_SUBATTACK = "PlayerSubAttack";
 
     Vector3 dir = Vector3.zero;
     Transform transform;
@@ -93,5 +94,7 @@ public class PlayerMoveState : BaseState
 
         if (Input.GetMouseButtonDown(0))
             animator.SetTrigger(PLAYER_ATTACK);
+        else if (Input.GetMouseButtonDown(1))
+            animator.SetTrigger(PLAYER_SUBATTACK);
     }
 }
