@@ -21,7 +21,7 @@ MonoBehaviour:
   PlayerDead: {fileID: 8300000, guid: bf7a6cfd9e9eabd4990026f0f767defe, type: 3}
   SkeletonDead: {fileID: 8300000, guid: 96a803bcf5fe6e04bb57aaf4834a6b53, type: 3}
   WatcherDead: {fileID: 8300000, guid: 96e96f3c00ae92f47b2783e5b8ea1698, type: 3}
-  MinotaurDead: {fileID: 0}
+  MinotaurDead: {fileID: 8300000, guid: 4c5de9f8833897d4595bf81c3968507b, type: 3}
   CrusaderDead: {fileID: 8300000, guid: 487434ef5934f904f8a4f94ddf08e8c5, type: 3}
   BanditDead: {fileID: 8300000, guid: 1e6fe687aa315a645b63f78fcbe1c795, type: 3}
   ShopEnter: {fileID: 8300000, guid: 476df7849881115458394a370e8e21e5, type: 3}
