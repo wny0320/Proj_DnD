@@ -85,6 +85,11 @@ public class MinotaurMoveState : BaseState
         }
         else
         {
+            if (target.GetComponent<BaseController>() == null)
+            {
+                isFind = false;
+                return;
+            }
             Chase();
         }
 

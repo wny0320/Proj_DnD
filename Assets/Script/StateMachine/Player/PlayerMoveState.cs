@@ -14,11 +14,8 @@ public class PlayerMoveState : BaseState
 
     public PlayerMoveState(BaseController controller, Rigidbody rb = null, Animator animator = null) : base(controller, rb, animator)
     {
-        Manager.Input.PlayerMove -= PlayerMove;
-        Manager.Input.PlayerAttack -= PlayerAttack;
-
-        Manager.Input.PlayerMove += PlayerMove;
-        Manager.Input.PlayerAttack += PlayerAttack;
+        Manager.Input.PlayerMove = PlayerMove;
+        Manager.Input.PlayerAttack = PlayerAttack;
 
         transform = controller.transform;
     }

@@ -80,7 +80,15 @@ public class EnemyMoveState : BaseState
             Patrol();
             DetectPlayer(senseDetectRange);
         }
-        else Chase();
+        else
+        {
+            if (target.GetComponent<BaseController>() == null)
+            {
+                isFind = false;
+                return;
+            }
+            Chase();
+        }
 
         if (Mathf.Abs(agent.velocity.x) > 0.2f || Mathf.Abs(agent.velocity.z) > 0.2f) animator.SetBool(ENEMY_MOVE, true);
         else animator.SetBool(ENEMY_MOVE, false);

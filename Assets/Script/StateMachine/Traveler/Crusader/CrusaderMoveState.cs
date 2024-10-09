@@ -85,6 +85,11 @@ public class CrusaderMoveState : BaseState
         }
         else
         {
+            if (target.GetComponent<BaseController>() == null)
+            {
+                isFind = false;
+                return;
+            }
             //Á¶°Ç
             if (BranchChaseFlee())
                 Chase();

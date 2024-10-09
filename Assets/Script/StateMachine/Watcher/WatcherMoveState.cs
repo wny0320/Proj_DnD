@@ -66,7 +66,15 @@ public class WatcherMoveState : BaseState
                 rb.velocity = Vector3.zero;
             DetectPlayer(senseDetectRange);
         }
-        else Chase();
+        else
+        {
+            if (target.GetComponent<BaseController>() == null)
+            {
+                isFind = false;
+                return;
+            }
+            Chase();
+        }
 
         if (Mathf.Abs(rb.velocity.x) > 0.2f || Mathf.Abs(rb.velocity.z) > 0.2f) animator.SetBool(ENEMY_MOVE, true);
         else animator.SetBool(ENEMY_MOVE, false);
@@ -77,7 +85,7 @@ public class WatcherMoveState : BaseState
         float distance = 999f;
         Transform t = null;
         //ÁÖº¯ Å½Áö
-        Collider[] cols = Physics.OverlapSphere(transform.position, DetectDistance, 1 << LayerMask.NameToLayer("Player") | 1 << LayerMask.NameToLayer("Monster"));
+        Collider[] cols = Physics.OverlapSphere(transform.position, DetectDistance, 1 << LayerMask.NameToLayer("Player") | 1 << LayerMask.NameToLayer("Traveler"));
         foreach (Collider col in cols)
         {
             if (!col.GetComponent<BaseController>().isAlive) continue;

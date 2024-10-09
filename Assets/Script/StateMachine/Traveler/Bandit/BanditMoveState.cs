@@ -78,6 +78,11 @@ public class BanditMoveState : BaseState
         }
         else
         {
+            if (target.GetComponent<BaseController>() == null)
+            {
+                isFind = false;
+                return;
+            }
             //Á¶°Ç
             if (doFlee)
                 Flee();

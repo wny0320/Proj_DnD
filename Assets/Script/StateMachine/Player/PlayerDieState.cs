@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Timeline.Actions;
 using UnityEngine;
 
 public class PlayerDieState : BaseState
@@ -19,6 +20,8 @@ public class PlayerDieState : BaseState
         controller.isAlive = false;
         Manager.Game.isPlayerAlive = false;
         Debug.Log("DEAD");
+
+        Manager.Game.OnGameEnd(false);
     }
 
     public override void OnStateExit()

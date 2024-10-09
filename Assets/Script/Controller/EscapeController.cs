@@ -24,7 +24,7 @@ public class EscapeController : MonoBehaviour
     {
         if(other.tag == "Player")
         {
-            //이쪽에 탈출 관련 함수
+            Manager.Game.OnGameEnd(true);
         }
     }
 }

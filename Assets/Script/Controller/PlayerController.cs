@@ -87,7 +87,6 @@ public class PlayerController : BaseController, IReceiveAttack
         if (stat.Hp <= 0)
         {
             stat.Hp = 0;
-
             Global.sfx.Play(Global.Sound.PlayerDead, transform.position);
             ChangeState(PlayerState.Die);
         }

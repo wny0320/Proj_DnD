@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -54,16 +55,24 @@ public class GameManager
             isPlayerAlive = false;
             Player.GetComponent<PlayerController>().ChangeState(PlayerState.Die);
             HpUI.value = 0;
-            OnGameEnd();
             return;
         }
 
         CheckTimeToEscape();
     }
 
-    public void OnGameEnd()
+    public async void OnGameEnd(bool isAlive)
     {
+        if (!isAlive)
+        {
+            //ªÁ∏¡Ω√ ¿Œ∫• ªË¡¶
+            Manager.Inven.ItemBoxReset(ItemBoxType.Inventory);
+        }
 
+        await Task.Delay(3000);
+        
+        //æ¿ ∫Ø∞Ê
+        Manager.Instance.LoadScene(SceneName.MainLobbyScene.ToString());
     }
 
     public void CursorLock(bool cursurLock)

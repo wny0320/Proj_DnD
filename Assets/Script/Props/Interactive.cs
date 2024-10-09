@@ -10,6 +10,7 @@ public class Interactive : MonoBehaviour
     private float distance = 3f;
 
     public List<Item> dropItemList;
+    private Quaternion originRotation;
 
     private void Start()
     {
@@ -20,6 +21,9 @@ public class Interactive : MonoBehaviour
                 break;
             case "Monster":
                 dropItemList = Manager.Inven.GetRandomItem(1, 4);
+                break;
+            case "Door":
+                originRotation = transform.rotation;
                 break;
         }
     }
@@ -83,7 +87,7 @@ public class Interactive : MonoBehaviour
         }
         else
         {
-            transform.GetChild(0).DORotate(Vector3.zero, 1);
+            transform.GetChild(0).DORotateQuaternion(originRotation, 1);
             Global.sfx.Play(Global.Sound.DoorClose, transform.position);
             isOpened = false;
         }

@@ -157,7 +157,10 @@ public class CameraController : MonoBehaviour
     private Interactive CheckInteractive(Transform trans)
     {
         if (trans.GetComponent<Interactive>() == null)
+        {
+            if (trans.parent == null) return null;
             return CheckInteractive(trans.parent);
+        }
         else
             return trans.GetComponent<Interactive>();
     }
