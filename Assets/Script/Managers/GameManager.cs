@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager
@@ -13,7 +14,7 @@ public class GameManager
     public bool isCursorLock = true;
     public bool isPlayerAttacking = false;
 
-    private GameObject GameUI;
+    public GameObject GameUI;
     private Slider TimeUI;
     private Slider HpUI;
 
@@ -21,27 +22,29 @@ public class GameManager
     private float passedTimer = 0f;
 
     //≈ª√‚±∏ ∞¸∑√
-    private List<EscapeController> escapeList = new();
-    private int escapeCount = 0;
+    public List<EscapeController> escapeList = new();
+    public int escapeCount = 0;
 
-    public void OnAwake()
+    public void OnGameSceneLoad()
     {
-        Cursor.lockState = CursorLockMode.Locked;
+        isPlayerAlive = true;
+
+        CursorLock(true);
         Application.targetFrameRate = 60;
-        GameUI = GameObject.Find("GameUI");
+
         TimeUI = GameUI.transform.GetChild(0).GetComponent<Slider>();
         HpUI = GameUI.transform.GetChild(1).GetComponent<Slider>();
 
         passedTimer = 0f;
 
-        GetEscape();
+        ResetEscape();
     }
 
     public void OnFixedUpdate()
     {
         //player hp ui
 
-        if (Player == null) return;
+        if (Manager.Instance.sceneName != SceneName.DungeonScene || Player == null) return;
 
         HpUI.value = (float)Player.GetComponent<BaseController>().stat.Hp / (float)Player.GetComponent<BaseController>().stat.MaxHp;
         if (!isPlayerAlive)
@@ -61,8 +64,10 @@ public class GameManager
         CheckTimeToEscape();
     }
 
-    public async void OnGameEnd(bool isAlive)
+    public async void OnGameEnd(bool isAlive, SceneName sceneName)
     {
+        Manager.Instance.sceneName = sceneName;
+
         if (!isAlive)
         {
             //ªÁ∏¡Ω√ ¿Œ∫• ªË¡¶
@@ -72,7 +77,7 @@ public class GameManager
         await Task.Delay(3000);
         
         //æ¿ ∫Ø∞Ê
-        Manager.Instance.LoadScene(SceneName.MainLobbyScene.ToString());
+        Manager.Instance.LoadScene(SceneName.MainLobbyScene);
     }
 
     public void CursorLock(bool cursurLock)
@@ -85,12 +90,9 @@ public class GameManager
             Cursor.lockState = CursorLockMode.None;
     }
 
-    private void GetEscape()
+    private void ResetEscape()
     {
-        Transform EscapeWay = GameObject.Find("EscapeWay").transform;
-        foreach(Transform child in EscapeWay)
-            escapeList.Add(child.GetComponent<EscapeController>());
-        escapeCount = escapeList.Count;
+        escapeList.Clear();
     }
 
     private void CheckTimeToEscape()

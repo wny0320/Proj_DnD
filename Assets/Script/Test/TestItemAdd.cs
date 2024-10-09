@@ -18,13 +18,13 @@ public class TestItemAdd : MonoBehaviour
     }
     public void SceneMoveTestLobby()
     {
-        Manager.Instance.LoadScene("LobbyMerchantWork");
+        Manager.Instance.LoadScene(SceneName.LobbyMerchantWork);
         Manager.Inven.ConcealInvenCanvasByBt();
         Cursor.lockState = CursorLockMode.None;
     }
     public void SceneMoveTestDungeon()
     {
-        Manager.Instance.LoadScene("PlayerAndInven");
+        Manager.Instance.LoadScene(SceneName.PlayerAndInven);
         Cursor.lockState = CursorLockMode.Locked;
     }
 }

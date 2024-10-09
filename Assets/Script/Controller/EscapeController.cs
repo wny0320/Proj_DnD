@@ -11,6 +11,8 @@ public class EscapeController : MonoBehaviour
     private void Start()
     {
         door = transform.GetChild(0);
+        Manager.Game.escapeList.Add(this);
+        Manager.Game.escapeCount++;
     }
 
     public void EscapeDoorOpen()
@@ -24,7 +26,7 @@ public class EscapeController : MonoBehaviour
     {
         if(other.tag == "Player")
         {
-            Manager.Game.OnGameEnd(true);
+            Manager.Game.OnGameEnd(true, SceneName.MainLobbyScene);
         }
     }
 }

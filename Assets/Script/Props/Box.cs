@@ -8,7 +8,6 @@ public class Box : MonoBehaviour, IReceiveAttack
 
     public void OnHit(float damage)
     {
-        Debug.Log("AA");
         hp--;
         if(hp <= 0)
         {

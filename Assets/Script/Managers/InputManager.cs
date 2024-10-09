@@ -16,6 +16,8 @@ public class InputManager
 
     public void OnUpdate()
     {
+        if (Manager.Instance.sceneName != SceneName.DungeonScene) return;
+
         if (!Manager.Game.isPlayerAlive) return;
 
         PlayerMove?.Invoke();

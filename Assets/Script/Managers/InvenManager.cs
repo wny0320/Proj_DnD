@@ -13,7 +13,7 @@ public class InvenManager
     public Interactive nowInteractive;
 
     private List<SlotLine> dropSlotLines = new List<SlotLine>();
-    private List<SlotLine> stashSlotLines = new List<SlotLine>();
+    public List<SlotLine> stashSlotLines = new List<SlotLine>();
 
     #region itemBoxSize
     private int invenSlotRowSize = 5;
@@ -60,6 +60,11 @@ public class InvenManager
     private EquipUI equipUI;
     private SlotLine tempSlotLine;
     #endregion
+
+    public void OnGameSceneLoad(GameObject go)
+    {
+        equipUI = go.GetComponentInChildren<EquipUI>();
+    }
 
     public void OnStart()
     {
@@ -291,9 +296,11 @@ public class InvenManager
                 //Debug.Log("Canvas Is Invisible");
                 continue;
             }
-            if (equipUI == null && Manager.Instance.GetNowScene().name != SceneName.MainLobbyScene.ToString()
-                && Manager.Instance.GetNowScene().name != TEST_LOBBY_NAME) // 테스트용
-                equipUI = GameObject.Find(EQUIP_UI_PATH).GetComponent<EquipUI>();
+
+            //if (equipUI == null && Manager.Instance.GetNowScene().name != SceneName.MainLobbyScene.ToString()
+            //    && Manager.Instance.GetNowScene().name != TEST_LOBBY_NAME) // 테스트용
+            //    equipUI = GameObject.Find(EQUIP_UI_PATH).GetComponent<EquipUI>();
+
             // 일단 마우스의 위치를 계속 탐색해서 정보 띄우는게 우선
             PointerEventData pointer = new PointerEventData(EventSystem.current);
             pointer.position = Input.mousePosition;

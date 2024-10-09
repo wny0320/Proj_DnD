@@ -45,3 +45,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loadingSceneUI: {fileID: 1905048125197421305, guid: 4860328115f367f48aa736ff07e5db40, type: 3}
+  sceneName: 1
+  GameUI: {fileID: 991892528852507633, guid: 94a3ae432d288864eaacf853916023e6, type: 3}

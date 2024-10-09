@@ -28,7 +28,6 @@ public class Manager : MonoBehaviour
     {
         Init();
         Application.targetFrameRate = 60;
-        //Game.OnAwake();
         Data.OnAwake();
     }
 
@@ -47,7 +46,7 @@ public class Manager : MonoBehaviour
     private void FixedUpdate()
     {
         Input.OnFixedUpdate();
-        //Game.OnFixedUpdate();
+        Game.OnFixedUpdate();
     }
 
     private static void Init()
@@ -79,16 +78,34 @@ public class Manager : MonoBehaviour
     private CanvasGroup sceneLoaderCanvasGroup;
     private Image progressBar;
 
+    public SceneName sceneName = SceneName.MainLobbyScene;
+    public GameObject GameUI;
+
     private string loadSceneName;
-    public void LoadScene(string sceneName)
+    public void LoadScene(SceneName sceneName)
     {
+        this.sceneName = sceneName;
         sceneLoaderCanvasGroup = Instantiate(loadingSceneUI).GetComponent<CanvasGroup>();
         sceneLoaderCanvasGroup.transform.parent = transform;
         progressBar = sceneLoaderCanvasGroup.transform.GetChild(1).GetComponent<Image>();
 
         SceneManager.sceneLoaded += LoadSceneEnd;
-        loadSceneName = sceneName;
-        StartCoroutine(Load(sceneName));
+        loadSceneName = sceneName.ToString();
+
+        //씬 이동시 그 해당 씬 관련 함수
+        if(sceneName == SceneName.DungeonScene)
+        {
+            Game.GameUI = Instantiate(GameUI);
+            Game.GameUI.transform.parent = transform;
+            Game.OnGameSceneLoad();
+            Inven.OnGameSceneLoad(Game.GameUI);
+        }
+        else
+        {
+            Destroy(Game.GameUI);
+        }
+
+        StartCoroutine(Load(loadSceneName));
     }
     public Scene GetNowScene()
     {

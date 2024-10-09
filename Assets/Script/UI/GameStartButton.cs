@@ -6,10 +6,12 @@ public class GameStartButton : MonoBehaviour
 {
     public void GameStart()
     {
-        Manager.Instance.LoadScene(SceneName.DungeonScene.ToString());
+        Manager.Instance.LoadScene(SceneName.DungeonScene);
     }
+
     public void TestLobbyMove()
     {
-        Manager.Instance.LoadScene(SceneName.MainLobbyScene.ToString());
+        Debug.Log(SceneName.MainLobbyScene.ToString());
+        Manager.Instance.LoadScene(SceneName.MainLobbyScene);
     }
 }

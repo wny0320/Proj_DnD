@@ -118,4 +118,8 @@ public enum SceneName
 {
     DungeonScene,
     MainLobbyScene,
+
+    //test
+    LobbyMerchantWork,
+    PlayerAndInven,
 }

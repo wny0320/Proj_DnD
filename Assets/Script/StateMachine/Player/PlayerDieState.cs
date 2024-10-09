@@ -21,7 +21,7 @@ public class PlayerDieState : BaseState
         Manager.Game.isPlayerAlive = false;
         Debug.Log("DEAD");
 
-        Manager.Game.OnGameEnd(false);
+        Manager.Game.OnGameEnd(false, SceneName.MainLobbyScene);
     }
 
     public override void OnStateExit()
