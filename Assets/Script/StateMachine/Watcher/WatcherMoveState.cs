@@ -88,7 +88,8 @@ public class WatcherMoveState : BaseState
         Collider[] cols = Physics.OverlapSphere(transform.position, DetectDistance, 1 << LayerMask.NameToLayer("Player") | 1 << LayerMask.NameToLayer("Traveler"));
         foreach (Collider col in cols)
         {
-            if (!col.GetComponent<BaseController>().isAlive) continue;
+            BaseController bc = col.GetComponent<BaseController>();
+            if (bc == null || !bc.isAlive) continue;
 
             if (Vector3.Magnitude(col.transform.position - transform.position) < distance)
             {

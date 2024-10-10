@@ -18,7 +18,7 @@ public class GameManager
     private Slider TimeUI;
     private Slider HpUI;
 
-    private float gameTimer = 300f;
+    private float gameTimer = 10f;
     private float passedTimer = 0f;
 
     //Å»Ãâ±¸ °ü·Ã
@@ -42,8 +42,6 @@ public class GameManager
 
     public void OnFixedUpdate()
     {
-        //player hp ui
-
         if (Manager.Instance.sceneName != SceneName.DungeonScene || Player == null) return;
 
         HpUI.value = (float)Player.GetComponent<BaseController>().stat.Hp / (float)Player.GetComponent<BaseController>().stat.MaxHp;
@@ -99,7 +97,7 @@ public class GameManager
     {
         if(TimeUI.value > (10f - escapeCount)/10)
         {
-            int n = Random.Range(0, escapeCount + 1);
+            int n = Random.Range(0, escapeCount);
             escapeList[n].EscapeDoorOpen();
             escapeList.RemoveAt(n);
             escapeCount--;

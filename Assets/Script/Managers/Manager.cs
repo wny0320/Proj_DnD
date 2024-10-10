@@ -102,6 +102,7 @@ public class Manager : MonoBehaviour
         }
         else
         {
+            Game.CursorLock(false);
             Destroy(Game.GameUI);
         }
 

@@ -128,7 +128,7 @@ public class BanditMoveState : BaseState
                 randomPos = Vector3.zero;
         }
 
-        if ((transform.position - randomPos).magnitude <= 0.5f)
+        if ((transform.position - randomPos).magnitude <= agent.radius * 2)
         {
             randomPos = Vector3.zero;
         }
@@ -153,7 +153,7 @@ public class BanditMoveState : BaseState
                 fleePos = Vector3.zero;
         }
 
-        if ((transform.position - fleePos).magnitude <= 1f)
+        if ((transform.position - fleePos).magnitude <= agent.radius * 2)
         {
             fleePos = Vector3.zero;
             isFleeing = false;
@@ -170,7 +170,8 @@ public class BanditMoveState : BaseState
         Collider[] cols = Physics.OverlapSphere(transform.position, DetectDistance, 1 << LayerMask.NameToLayer("Player") | 1 << LayerMask.NameToLayer("Monster"));
         foreach (Collider col in cols)
         {
-            if (!col.GetComponent<BaseController>().isAlive) continue;
+            BaseController bc = col.GetComponent<BaseController>();
+            if (bc == null || !bc.isAlive) continue;
 
             if (Vector3.Magnitude(col.transform.position - transform.position) < distance)
             {
@@ -191,7 +192,8 @@ public class BanditMoveState : BaseState
         Collider[] cols2 = Physics.OverlapSphere(transform.position, forwardDetectRange, 1 << LayerMask.NameToLayer("Player") | 1 << LayerMask.NameToLayer("Monster"));
         foreach (Collider col in cols2)
         {
-            if (!col.GetComponent<BaseController>().isAlive) continue;
+            BaseController bc = col.GetComponent<BaseController>();
+            if (bc == null || !bc.isAlive) continue;
 
             Vector3 dist = col.transform.position - transform.position;
             if (dist.magnitude <= forwardDetectRange)
@@ -200,7 +202,7 @@ public class BanditMoveState : BaseState
                 float theta = Mathf.Acos(dot);
                 float degree = Mathf.Rad2Deg * theta;
 
-                if (degree <= 40f)
+                if (degree <= 80f)
                 {
                     RaycastHit hit;
                     Physics.Raycast(transform.position, dist.normalized, out hit, forwardDetectRange + 3);
