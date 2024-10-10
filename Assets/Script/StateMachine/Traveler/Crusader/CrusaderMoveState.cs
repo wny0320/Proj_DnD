@@ -63,7 +63,12 @@ public class CrusaderMoveState : BaseState
     public override void OnStateEnter()
     {
         isAttacking = false;
-        isArrived = false;
+        if ((agent.destination - transform.position).magnitude <= agent.radius * 2)
+        {
+            isArrived = true;
+            randomPos = Vector3.zero;
+        }
+        else isArrived = false;
 
         if (!DetectPlayer(10f)) isFind = false;
 

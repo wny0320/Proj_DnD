@@ -18,7 +18,7 @@ public class GameManager
     private Slider TimeUI;
     private Slider HpUI;
 
-    private float gameTimer = 10f;
+    private float gameTimer = 300f;
     private float passedTimer = 0f;
 
     //탈출구 관련
