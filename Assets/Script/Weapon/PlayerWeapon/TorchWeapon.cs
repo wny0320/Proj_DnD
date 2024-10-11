@@ -22,6 +22,7 @@ public class TorchWeapon : Weapon
         transform.parent = null;
 
         Rigidbody rb = gameObject.AddComponent<Rigidbody>();
+        rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
         rb.AddForce(Camera.main.transform.forward * 10f, ForceMode.Impulse);
 
         Collider col = GetComponent<Collider>();
