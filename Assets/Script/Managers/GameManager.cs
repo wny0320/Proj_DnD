@@ -70,6 +70,7 @@ public class GameManager
         {
             //사망시 인벤 삭제
             Manager.Inven.ItemBoxReset(ItemBoxType.Inventory);
+            Manager.Inven.ResetEquipSlots();
         }
 
         await Task.Delay(3000);

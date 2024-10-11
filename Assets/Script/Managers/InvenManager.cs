@@ -247,7 +247,6 @@ public class InvenManager
     }
     public void ItemBoxReset(ItemBoxType _itemBoxType)
     {
-        GameObject targetGameObject = null;
         int targetRowSize = 0;
         int targetColumnSize = 0;
         List<SlotLine> targetSlotLines = new List<SlotLine>();
@@ -997,24 +996,19 @@ public class InvenManager
     {
         for(int i = 0; i < equipArea.weaponList.Count; i++)
         {
+            GameObject.Destroy(equipArea.weaponList[i].itemVisual);
             equipArea.weaponList[i].SlotReset();
-            if (equipUI != null)
-                equipUI.uiSlots[i].itemImage.sprite = null;
         }
         for (int i = 0; i < equipArea.consumList.Count; i++)
         {
+            GameObject.Destroy(equipArea.consumList[i].itemVisual);
             equipArea.consumList[i].SlotReset();
-            if (equipUI != null)
-                equipUI.uiSlots[i + equipArea.weaponList.Count].itemImage.sprite = null;
         }
         for (int i = 0; i < equipArea.armorList.Count; i++)
         {
-            equipArea.weaponList[i].SlotReset();
+            GameObject.Destroy(equipArea.armorList[i].itemVisual);
+            equipArea.armorList[i].SlotReset();
         }
-    }
-    public void ResetEquipUI()
-    {
-        equipUI = null;
     }
     public void DumpItem(Item _item)
     {

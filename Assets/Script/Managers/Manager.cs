@@ -118,7 +118,6 @@ public class Manager : MonoBehaviour
         progressBar.fillAmount = 0f;
         yield return StartCoroutine(Fade(true));
 
-        Inven.ResetEquipUI();
         AsyncOperation op = SceneManager.LoadSceneAsync(sceneName);
         op.allowSceneActivation = false;
 
