@@ -6,6 +6,7 @@ using System.Linq;
 using UnityEditor.Animations;
 using UnityEditor.PackageManager;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : BaseController, IReceiveAttack
 {
@@ -13,17 +14,15 @@ public class PlayerController : BaseController, IReceiveAttack
     [SerializeField] Transform weaponTrans;
     [SerializeField] Transform leftweaponTrans;
 
+    [SerializeField] GameObject HitEffectCanvas;
+    Coroutine hitEffectCo;
+
     private void Awake()
     {
-        Global.PlayerWeaponEquip -= WeaponEquip;
-        Global.PlayerWeaponUnEquip -= WeaponUnequip;
-        Global.PlayerArmorEquip -= EquipArmor;
-        Global.PlayerArmorUnEquip -= UnEquipArmor;
-
-        Global.PlayerWeaponEquip += WeaponEquip;
-        Global.PlayerWeaponUnEquip += WeaponUnequip;
-        Global.PlayerArmorEquip += EquipArmor;
-        Global.PlayerArmorUnEquip += UnEquipArmor;
+        Global.PlayerWeaponEquip = WeaponEquip;
+        Global.PlayerWeaponUnEquip = WeaponUnequip;
+        Global.PlayerArmorEquip = EquipArmor;
+        Global.PlayerArmorUnEquip = UnEquipArmor;
     }
 
     void Start()
@@ -86,6 +85,14 @@ public class PlayerController : BaseController, IReceiveAttack
         stat.Hp -= (int)dmg;
         Global.sfx.Play(Global.Sound.hitClip, transform.position);
 
+        if (hitEffectCo != null)
+        {
+            StopCoroutine(hitEffectCo);
+            HitSlow(false);
+        }
+        hitEffectCo = StartCoroutine(HitEffectCo());
+
+
         if (stat.Hp <= 0)
         {
             stat.Hp = 0;
@@ -93,6 +100,22 @@ public class PlayerController : BaseController, IReceiveAttack
             ChangeState(PlayerState.Die);
         }
     }
+
+    IEnumerator HitEffectCo()
+    {
+        HitSlow(true);
+        HitEffectCanvas.SetActive(true);
+        HitEffectCanvas.GetComponentInChildren<Image>().DOFade(0.25f, 0.3f).SetEase(Ease.OutElastic)
+            .OnComplete(() => HitEffectCanvas.GetComponentInChildren<Image>().DOFade(0.0f, 0.2f));
+        yield return new WaitForSeconds(0.5f);
+
+        HitEffectCanvas.SetActive(false);
+        HitSlow(false);
+        hitEffectCo = null;
+    }
+
+    void HitSlow(bool debuff) { stat.MoveSpeed = debuff ? stat.MoveSpeed - 0.5f : stat.MoveSpeed + 0.5f; }
+
 
     #region 무기 장착 및 해제
     IEnumerator CheckWeaponOnStart()

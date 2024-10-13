@@ -68,6 +68,8 @@ public class GameManager
 
         if (!isAlive)
         {
+            HpUI.value = 0f;
+
             //사망시 인벤 삭제
             Manager.Inven.ItemBoxReset(ItemBoxType.Inventory);
             Manager.Inven.ResetEquipSlots();
