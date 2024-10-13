@@ -35,7 +35,9 @@ public class PlayerController : BaseController, IReceiveAttack
         stat = stat.StatDeepCopy();
 
         InitStateMachine();
-        StartCoroutine(CheckWeaponOnStart());
+
+        if(Manager.Instance.sceneName == SceneName.DungeonScene)
+            StartCoroutine(CheckWeaponOnStart());
     }
 
     void Update()
