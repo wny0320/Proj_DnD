@@ -1012,10 +1012,6 @@ public class InvenManager
     }
     public void DumpItem(Item _item)
     {
-        //Debug.Log("Item Dumped");
-        Debug.Log(_item.itemIndex);
-        Debug.Log(Manager.Data.itemData.Count);
-        Debug.Log(Manager.Data.item3DPrefab.Count);
         GameObject dumpedItem3D = GameObject.Instantiate(Manager.Data.item3DPrefab[_item.itemIndex]);
         Item newItem = _item.ItemDeepCopy();
         dumpedItem3D.GetComponent<Item3D>().myItem = newItem;
