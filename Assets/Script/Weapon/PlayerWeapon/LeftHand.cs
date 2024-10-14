@@ -15,11 +15,22 @@ public class LeftHand : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         damage = Manager.Game.Player.GetComponent<PlayerController>().stat.Attack;
-        IReceiveAttack attacked = other.transform.root.GetComponent<IReceiveAttack>();
+        IReceiveAttack attacked = GetHittedObj(other.transform);
         if (attacked == null) return;
         if (hittedObject.Contains(attacked)) return;
         hittedObject.Add(attacked);
 
         attacked.OnHit(damage);
+    }
+
+    IReceiveAttack GetHittedObj(Transform trans)
+    {
+        if (trans.GetComponent<IReceiveAttack>() == null)
+        {
+            if (trans.parent == null) return null;
+            return GetHittedObj(trans.parent);
+        }
+        else
+            return trans.GetComponent<IReceiveAttack>();
     }
 }
