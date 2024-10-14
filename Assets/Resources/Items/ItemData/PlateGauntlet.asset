@@ -13,16 +13,18 @@ MonoBehaviour:
   m_Name: PlateGauntlet
   m_EditorClassIdentifier: 
   itemName: PlateGauntlet
-  itemIndex: 10
+  itemIndex: 17
   itemText: 
   itemPrice: 23
   itemRarity: 0
   itemStat: {fileID: 11400000, guid: 7b2939901c1f2a14b8d03ef82be2dad3, type: 2}
   itemType: 0
-  equipPart: 3
   itemSize: 34
+  equipPart: 3
   weaponType: -1
   equipStatSetFlag: 0
   randomRange:
   - 0
   - 3
+  duration: 0
+  effect: 0

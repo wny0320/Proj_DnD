@@ -13,16 +13,18 @@ MonoBehaviour:
   m_Name: Sword
   m_EditorClassIdentifier: 
   itemName: Sword
-  itemIndex: 15
+  itemIndex: 24
   itemText: 
   itemPrice: 40
   itemRarity: 0
   itemStat: {fileID: 11400000, guid: 32e0a5321763eaf41a7e7c99ff7c95ba, type: 2}
   itemType: 0
-  equipPart: 5
   itemSize: 65
+  equipPart: 5
   weaponType: 2
   equipStatSetFlag: 0
   randomRange:
   - 5
   - 0
+  duration: 0
+  effect: 0

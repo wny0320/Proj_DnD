@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: AcientBowl
   m_EditorClassIdentifier: 
   itemName: AcientBowl
-  itemIndex: 0
+  itemIndex: 1
   itemText: 
   itemPrice: 15
   itemRarity: 0

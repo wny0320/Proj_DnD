@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System;
 using System.Linq;
+using static UnityEditor.Progress;
 
 public class InvenManager
 {
@@ -15,6 +16,7 @@ public class InvenManager
     private List<SlotLine> dropSlotLines = new List<SlotLine>();
     public List<SlotLine> stashSlotLines = new List<SlotLine>();
 
+    private List<SlotLine> recoverSlotLines = new List<SlotLine>();
     #region itemBoxSize
     private int invenSlotRowSize = 5;
     private int invenSlotColumnSize = 9;
@@ -54,6 +56,7 @@ public class InvenManager
     private Canvas dropCanvas;
     private Canvas dragItemCanvas;
     private CanvasGroup invenCanvasGroup;
+    private CanvasGroup stashCanvasGroup;
     private ItemInfo itemInfo;
     private bool canvasVisualFlag;
     private EquipArea equipArea;
@@ -105,6 +108,7 @@ public class InvenManager
         equipArea = invenCanvas.GetComponentInChildren<EquipArea>();
 
         stashCanvas = GameObject.Find(STASH_CANVAS_PATH).GetComponent<Canvas>();
+        stashCanvasGroup = stashCanvas.GetComponent<CanvasGroup>();
 
         dropCanvas = GameObject.Find(DROP_CANVAS_PATH).GetComponent<Canvas>();
 
@@ -127,6 +131,8 @@ public class InvenManager
 
         invenCanvasGroup.alpha = 0f;
         invenCanvasGroup.interactable = false;
+        stashCanvasGroup.alpha = 0f;
+        stashCanvasGroup.interactable = false;
         canvasVisualFlag = false;
         string typeName = null;
         int count = 0;
@@ -169,7 +175,6 @@ public class InvenManager
         MonoBehaviour.DontDestroyOnLoad(stashCanvas);
         MonoBehaviour.DontDestroyOnLoad(dropCanvas);
         MonoBehaviour.DontDestroyOnLoad(dragItemCanvas);
-        stashCanvas.gameObject.SetActive(false);
         dropCanvas.gameObject.SetActive(false);
     }
     public Vector2 InvenPosCal(Vector2 _originPos, Vector2 _slotIndex)
@@ -518,7 +523,7 @@ public class InvenManager
                             if (toSlotLines[y].mySlots.Contains(toSlot))
                                 toPos = new Vector2Int(y, toSlotLines[y].mySlots.IndexOf(toSlot));
                             if (equipSlots.Values.Contains(toSlot))
-                                toKey = toSlot.gameObject.name;
+                                toKey = toSlot.name;
                         }
                         // 드래그로 장착하려는 경우
                         if(toKey != null)
@@ -737,12 +742,13 @@ public class InvenManager
                             equipSlot.slotItem = fromSlot.slotItem;
                             equipSlot.emptyFlag = false;
                             equipSlot.mainSlotFlag = true;
+                            equipSlot.itemIndex = equipSlot.slotItem.itemIndex;
 
                             // itemvisual 사이즈와 위치 동일시 시키기
                             GameObject newVisual = GameObject.Instantiate(itemVisual);
                             newVisual.transform.SetParent(equipArea.itemVisualTrans);
                             equipSlot.itemVisual = newVisual;
-                            RectTransform equipRectTrans = equipSlot.gameObject.GetComponent<RectTransform>();
+                            RectTransform equipRectTrans = equipSlot.GetComponent<RectTransform>();
 
                             RectTransform equipVisualRectTrans = newVisual.GetComponent<RectTransform>();
                             equipVisualRectTrans.anchorMin = new Vector2(0, 0);
@@ -913,6 +919,7 @@ public class InvenManager
         targetSlot.mainSlotFlag = true;
         targetSlot.itemDataPos = targetSlotIndex;
         targetSlot.slotItem = _item.ItemDeepCopy();
+        targetSlot.itemIndex = targetSlot.slotItem.itemIndex;
         if (targetSlot.slotItem.equipStatSetFlag == false && targetSlot.slotItem.itemType == ItemType.Equipment)
         {
             targetSlot.slotItem.EquipStatSet();
@@ -925,7 +932,7 @@ public class InvenManager
         }
         // 눈에 보이는 아이템 프리팹 생성
         GameObject itemVisual = GameObject.Instantiate(Manager.Data.itemUIPrefab[_item.itemIndex]);
-        itemVisual.transform.SetParent(GameObject.Find(targetSlot.transform.root.name.ToString() + "Panel/ItemArea/ItemVisual").transform);
+        itemVisual.transform.SetParent(GameObject.Find(targetSlot.transform.root.name.ToString() + "/Panel/ItemArea/ItemVisual").transform);
         RectTransform visualRect = itemVisual.GetComponent<RectTransform>();
         RectTransform targetSlotRect = targetSlot.GetComponent<RectTransform>();
         visualRect.anchoredPosition = targetSlotRect.anchoredPosition + new Vector2(0, -targetSlotIndex.x * UNITSIZE)
@@ -952,6 +959,7 @@ public class InvenManager
                 nowSlot.itemDataPos = targetSlotIndex;
             }
         }
+        Manager.Data.PlayerDataExport();
         return targetItem;
     }
     public void DeleteBoxItem(Slot _slot, ItemBoxType _itemBoxType)
@@ -1163,9 +1171,93 @@ public class InvenManager
     public void RevealStashCanvas()
     {
         stashCanvas.gameObject.SetActive(true);
+        stashCanvasGroup.alpha = 1f;
+        stashCanvasGroup.interactable = true;
     }
     public void ConcealStashCanvas()
     {
         stashCanvas.gameObject.SetActive(false);
+    }
+    public void RecoverPlayerItemData(SlotJsonClass _slotJsonclass)
+    {
+        List<SlotLine> slotLines = invenSlotLines;
+
+        int yCnt = _slotJsonclass.invenSlotLines.Count;
+        for (int y = 0; y < yCnt; y++)
+        {
+            for(int x = 0; x < slotLines[y].mySlots.Count; x++)
+            {
+                Slot nowSlot = slotLines[y].mySlots[x];
+                JsonSlot nowJsonSlot = _slotJsonclass.invenSlotLines[y].mySlots[x];
+                nowSlot.JsonSlotToSlot(nowJsonSlot);
+                // 여기서 itemVisual 관련 작업을 해야함
+                if(nowSlot.mainSlotFlag == true)
+                {
+                    nowSlot.slotItem = Manager.Data.itemData.ElementAt(nowJsonSlot.itemIndex).Value;
+                    int[] itemSize = GetItemSize(nowSlot.slotItem);
+                    GameObject itemVisual = GameObject.Instantiate(Manager.Data.itemUIPrefab[nowSlot.slotItem.itemIndex]);
+                    itemVisual.transform.SetParent(GameObject.Find(nowSlot.transform.root.name.ToString() + "/Panel/ItemArea/ItemVisual").transform);
+                    RectTransform visualRect = itemVisual.GetComponent<RectTransform>();
+                    RectTransform targetSlotRect = nowSlot.GetComponent<RectTransform>();
+                    visualRect.anchoredPosition = targetSlotRect.anchoredPosition + new Vector2(0, -nowSlot.itemDataPos.x * UNITSIZE)
+                        + new Vector2((itemSize[1] - 1) * (UNITSIZE / 2), -(itemSize[0] - 1) * (UNITSIZE / 2));
+                    // itemVisual 정보 저장
+                    nowSlot.itemVisual = itemVisual;
+                }
+            }
+        }
+
+        slotLines = stashSlotLines;
+
+        yCnt = _slotJsonclass.stashSlotLines.Count;
+        for (int y = 0; y < yCnt; y++)
+        {
+            for (int x = 0; x < slotLines[y].mySlots.Count; x++)
+            {
+                // 여기서 itemVisual 관련 작업을 해야함
+                Slot nowSlot = slotLines[y].mySlots[x];
+                JsonSlot nowJsonSlot = _slotJsonclass.stashSlotLines[y].mySlots[x];
+                nowSlot.JsonSlotToSlot(nowJsonSlot);
+                // 여기서 itemVisual 관련 작업을 해야함
+                if (nowSlot.mainSlotFlag == true)
+                {
+                    nowSlot.slotItem = Manager.Data.itemData.ElementAt(nowJsonSlot.itemIndex).Value;
+                    int[] itemSize = GetItemSize(nowSlot.slotItem);
+                    GameObject itemVisual = GameObject.Instantiate(Manager.Data.itemUIPrefab[nowSlot.slotItem.itemIndex], 
+                        GameObject.Find(nowSlot.transform.root.name.ToString() + "/Panel/ItemArea/ItemVisual").transform);
+                    RectTransform visualRect = itemVisual.GetComponent<RectTransform>();
+                    Debug.Log(visualRect.anchoredPosition);
+                    Debug.Log(-nowSlot.itemDataPos);
+                    visualRect.anchoredPosition = visualRect.anchoredPosition + new Vector2(nowSlot.itemDataPos.y * UNITSIZE, -nowSlot.itemDataPos.x * UNITSIZE)
+                        + new Vector2((itemSize[1] - 1) * (UNITSIZE / 2), -(itemSize[0] - 1) * (UNITSIZE / 2));
+                    // itemVisual 정보 저장
+                    nowSlot.itemVisual = itemVisual;
+                }
+            }
+        }
+
+        foreach(string key in _slotJsonclass.equipSlotDict.Keys)
+        {
+            Slot nowSlot = equipSlots[key];
+            nowSlot.JsonSlotToSlot(_slotJsonclass.equipSlotDict[key]);
+
+            JsonSlot nowJsonSlot = _slotJsonclass.equipSlotDict[key];
+
+            nowSlot.JsonSlotToSlot(nowJsonSlot);
+            if(nowJsonSlot.emptyFlag == false)
+            {
+                nowSlot.slotItem = Manager.Data.itemData.ElementAt(nowJsonSlot.itemIndex).Value;
+                GameObject itemVisual = GameObject.Instantiate(Manager.Data.itemUIPrefab[nowSlot.slotItem.itemIndex]);
+                itemVisual.transform.SetParent(equipArea.itemVisualTrans);
+                nowSlot.itemVisual = itemVisual;
+                RectTransform equipRectTrans = nowSlot.GetComponent<RectTransform>();
+
+                RectTransform equipVisualRectTrans = itemVisual.GetComponent<RectTransform>();
+                equipVisualRectTrans.anchorMin = new Vector2(0, 0);
+                equipVisualRectTrans.anchorMax = new Vector2(1, 1);
+                equipVisualRectTrans.anchoredPosition = equipRectTrans.anchoredPosition;
+                equipVisualRectTrans.sizeDelta = equipRectTrans.sizeDelta;
+            }
+        }
     }
 }

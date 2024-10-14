@@ -13,16 +13,18 @@ MonoBehaviour:
   m_Name: LeatherGauntlet
   m_EditorClassIdentifier: 
   itemName: LeatherGauntlet
-  itemIndex: 4
+  itemIndex: 11
   itemText: 
   itemPrice: 13
   itemRarity: 0
   itemStat: {fileID: 11400000, guid: 07452d725f75f354189f8beed74962b0, type: 2}
   itemType: 0
-  equipPart: 3
   itemSize: 34
+  equipPart: 3
   weaponType: -1
   equipStatSetFlag: 0
   randomRange:
   - 0
   - 1
+  duration: 0
+  effect: 0

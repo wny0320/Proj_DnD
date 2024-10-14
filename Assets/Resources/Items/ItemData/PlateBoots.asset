@@ -13,16 +13,18 @@ MonoBehaviour:
   m_Name: PlateBoots
   m_EditorClassIdentifier: 
   itemName: PlateBoots
-  itemIndex: 8
+  itemIndex: 15
   itemText: 
   itemPrice: 24
   itemRarity: 0
   itemStat: {fileID: 11400000, guid: 1ad89886be57e4847b9e4f83b4fd7d86, type: 2}
   itemType: 0
-  equipPart: 4
   itemSize: 34
+  equipPart: 4
   weaponType: -1
   equipStatSetFlag: 0
   randomRange:
   - 0
   - 3
+  duration: 0
+  effect: 0

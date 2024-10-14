@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: AcientJug
   m_EditorClassIdentifier: 
   itemName: AcientJug
-  itemIndex: 0
+  itemIndex: 5
   itemText: 
   itemPrice: 35
   itemRarity: 0

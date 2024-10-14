@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using Newtonsoft.Json;
 using UnityEngine;
 
@@ -21,21 +22,24 @@ public class DataManager
     public int gold = 1000;
     public void OnAwake()
     {
-        SaveItemDataToJson();
+        ItemDataResourceLoad();
         ItemDataImport();
-
+    }
+    public void OnStart()
+    {
+        PlayerDataImport();
+        Manager.Inven.ConcealStashCanvas();
     }
     public string JsonSerialize(object _obj)
     {
         return JsonConvert.SerializeObject(_obj, Formatting.Indented);
     }
-    public object JsonDeserialize(string _jsonDatam, Type _type)
+    public object JsonDeserialize(string _jsonData, Type _type)
     {
-        return JsonConvert.DeserializeObject(_jsonDatam, _type);
+        return JsonConvert.DeserializeObject(_jsonData, _type);
     }
-    public void SaveItemDataToJson()
+    public void ItemDataResourceLoad()
     {
-        string itemJsonPath = Path.Combine(Application.persistentDataPath, "itemData.Json");
         // 해당 부분은 파일이 있을때 업데이트 안하게 하는걸로 리소스 아끼고 싶을때 추가
         //if (File.Exists(itemJsonPath))
         //{
@@ -54,12 +58,7 @@ public class DataManager
         //}
         Item[] items = Resources.LoadAll<Item>(ITEM_PATH);
         foreach (Item item in items)
-        {
             itemData.Add(item.itemName, item);
-        }
-        string json = JsonSerialize(itemData);
-        File.WriteAllText(itemJsonPath, json);
-        Debug.Log(itemJsonPath);
     }
     public void SaveItemJson(string _json)
     {
@@ -104,5 +103,67 @@ public class DataManager
             index++;
         }
         dataImportFlag = true;
+        string itemJsonPath = Path.Combine(Application.persistentDataPath, "itemData.Json");
+        string json = JsonSerialize(itemData);
+        File.WriteAllText(itemJsonPath, json);
+        Debug.Log(itemJsonPath);
+    }
+    public void PlayerDataExport()
+    {
+        SlotJsonClass slotJsonClass = new SlotJsonClass();
+        PlayerDataTransfer(slotJsonClass, Manager.Inven.invenSlotLines, ItemBoxType.Inventory);
+        PlayerDataTransfer(slotJsonClass, Manager.Inven.stashSlotLines, ItemBoxType.Stash);
+        PlayerDataTransfer(slotJsonClass, Manager.Inven.equipSlots);
+        string playerItemDataJson = JsonSerialize(slotJsonClass);
+        string jsonPath = Path.Combine(Application.persistentDataPath, "playerItemData.Json");
+        File.WriteAllText(jsonPath, playerItemDataJson);
+    }
+    public void PlayerDataImport()
+    {
+        string jsonPath = Path.Combine(Application.persistentDataPath, "playerItemData.Json");
+        if(File.Exists(jsonPath) == true)
+        {
+            string jsonFile = File.ReadAllText(jsonPath);
+            SlotJsonClass slotJsonClass = (SlotJsonClass)JsonDeserialize(jsonFile, typeof(SlotJsonClass));
+            Manager.Inven.RecoverPlayerItemData(slotJsonClass);
+        }
+    }
+    public void PlayerDataTransfer(SlotJsonClass _slotJsonClass, List<SlotLine> _targetSlotLines, ItemBoxType _itemBoxType)
+    {
+        List<JsonSlotLine> jsonSlotLines = new List<JsonSlotLine>();
+        int cnt = _targetSlotLines.Count;
+        for(int y = 0; y < cnt; y++)
+        {
+            JsonSlotLine jsonSlotLine = new JsonSlotLine();
+            jsonSlotLines.Add(jsonSlotLine);
+            for(int x = 0;  x < _targetSlotLines[y].mySlots.Count; x++)
+            {
+                JsonSlot jsonSlot = new JsonSlot();
+                jsonSlot.SlotToJsonSlot(_targetSlotLines[y].mySlots[x]);
+                jsonSlotLines[y].mySlots.Add(jsonSlot);
+            }
+        }
+        switch(_itemBoxType)
+        {
+            case ItemBoxType.Inventory:
+                _slotJsonClass.invenSlotLines = jsonSlotLines;
+                break;
+            case ItemBoxType.Stash:
+                _slotJsonClass.stashSlotLines = jsonSlotLines;
+                break;
+            default:
+                break;
+        }
+    }
+    public void PlayerDataTransfer(SlotJsonClass _slotJsonClass, Dictionary<string, Slot> _targetSlots)
+    {
+        Dictionary<string, JsonSlot> jsonSlots = new Dictionary<string, JsonSlot>();
+        foreach(string key in _targetSlots.Keys)
+        {
+            JsonSlot jsonSlot = new JsonSlot();
+            jsonSlot.SlotToJsonSlot(_targetSlots[key]);
+            jsonSlots.Add(key, jsonSlot);
+        }
+        _slotJsonClass.equipSlotDict = jsonSlots;
     }
 }

@@ -34,6 +34,7 @@ public class Manager : MonoBehaviour
     private void Start()
     {
         Inven.OnStart();
+        Data.OnStart();
         StartInvenCoroutine();
     }
 

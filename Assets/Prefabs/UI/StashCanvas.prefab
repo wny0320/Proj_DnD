@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1815263937656203657}
   - component: {fileID: 6830981870735463465}
   - component: {fileID: 5842785723724466786}
+  - component: {fileID: 1998482717465785214}
   m_Layer: 5
   m_Name: StashCanvas
   m_TagString: Untagged
@@ -102,6 +103,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!225 &1998482717465785214
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1143995359972617420}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &2271317632689867007
 GameObject:
   m_ObjectHideFlags: 0

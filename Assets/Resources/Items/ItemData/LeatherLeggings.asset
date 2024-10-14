@@ -13,16 +13,18 @@ MonoBehaviour:
   m_Name: LeatherLeggings
   m_EditorClassIdentifier: 
   itemName: LeatherLeggings
-  itemIndex: 6
+  itemIndex: 13
   itemText: 
   itemPrice: 18
   itemRarity: 0
   itemStat: {fileID: 11400000, guid: eb1162ccf4fa21442b41cac5b6713beb, type: 2}
   itemType: 0
-  equipPart: 2
   itemSize: 50
+  equipPart: 2
   weaponType: -1
   equipStatSetFlag: 0
   randomRange:
   - 0
   - 2
+  duration: 0
+  effect: 0

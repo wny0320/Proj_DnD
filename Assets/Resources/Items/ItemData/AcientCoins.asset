@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: AcientCoins
   m_EditorClassIdentifier: 
   itemName: AcientCoins
-  itemIndex: 0
+  itemIndex: 3
   itemText: 
   itemPrice: 25
   itemRarity: 0

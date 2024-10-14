@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: AcientGoldBar
   m_EditorClassIdentifier: 
   itemName: AcientGoldBar
-  itemIndex: 2
+  itemIndex: 4
   itemText: 
   itemPrice: 100
   itemRarity: 0
