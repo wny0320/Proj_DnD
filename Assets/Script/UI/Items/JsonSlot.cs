@@ -10,12 +10,14 @@ public class JsonSlot
     // 해당 아이템의 정보가 저장된 칸의 정보를 담고 있음
     // 음수값이 나올 수 없으므로 초기값은 음수로 지정, x좌표값이 실제론 y 좌표(Row)값
     public Vector2Int itemDataPos = -Vector2Int.one;
-    public int itemIndex;
-    public void SlotToJsonSlot(Slot _slot)
+    public JsonItem slotItem;
+    public JsonSlot SlotToJsonSlot(Slot _slot)
     {
         emptyFlag = _slot.emptyFlag;
         mainSlotFlag = _slot.mainSlotFlag;
         itemDataPos = _slot.itemDataPos;
-        itemIndex = _slot.itemIndex;
+        if(_slot.slotItem != null)
+            slotItem = _slot.slotItem.ItemToJsonItem();
+        return this;
     }
 }

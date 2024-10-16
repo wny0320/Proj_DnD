@@ -59,8 +59,8 @@ public class InvenManager
     private CanvasGroup stashCanvasGroup;
     private ItemInfo itemInfo;
     private bool canvasVisualFlag;
-    private EquipArea equipArea;
-    private EquipUI equipUI;
+    public EquipArea equipArea;
+    public EquipUI equipUI;
     private SlotLine tempSlotLine;
     #endregion
 
@@ -742,7 +742,6 @@ public class InvenManager
                             equipSlot.slotItem = fromSlot.slotItem;
                             equipSlot.emptyFlag = false;
                             equipSlot.mainSlotFlag = true;
-                            equipSlot.itemIndex = equipSlot.slotItem.itemIndex;
 
                             // itemvisual 사이즈와 위치 동일시 시키기
                             GameObject newVisual = GameObject.Instantiate(itemVisual);
@@ -919,7 +918,6 @@ public class InvenManager
         targetSlot.mainSlotFlag = true;
         targetSlot.itemDataPos = targetSlotIndex;
         targetSlot.slotItem = _item.ItemDeepCopy();
-        targetSlot.itemIndex = targetSlot.slotItem.itemIndex;
         if (targetSlot.slotItem.equipStatSetFlag == false && targetSlot.slotItem.itemType == ItemType.Equipment)
         {
             targetSlot.slotItem.EquipStatSet();
@@ -1193,7 +1191,6 @@ public class InvenManager
                 // 여기서 itemVisual 관련 작업을 해야함
                 if(nowSlot.mainSlotFlag == true)
                 {
-                    nowSlot.slotItem = Manager.Data.itemData.ElementAt(nowJsonSlot.itemIndex).Value;
                     int[] itemSize = GetItemSize(nowSlot.slotItem);
                     GameObject itemVisual = GameObject.Instantiate(Manager.Data.itemUIPrefab[nowSlot.slotItem.itemIndex]);
                     itemVisual.transform.SetParent(GameObject.Find(nowSlot.transform.root.name.ToString() + "/Panel/ItemArea/ItemVisual").transform);
@@ -1221,7 +1218,6 @@ public class InvenManager
                 // 여기서 itemVisual 관련 작업을 해야함
                 if (nowSlot.mainSlotFlag == true)
                 {
-                    nowSlot.slotItem = Manager.Data.itemData.ElementAt(nowJsonSlot.itemIndex).Value;
                     int[] itemSize = GetItemSize(nowSlot.slotItem);
                     GameObject itemVisual = GameObject.Instantiate(Manager.Data.itemUIPrefab[nowSlot.slotItem.itemIndex], 
                         GameObject.Find(nowSlot.transform.root.name.ToString() + "/Panel/ItemArea/ItemVisual").transform);
@@ -1246,7 +1242,6 @@ public class InvenManager
             nowSlot.JsonSlotToSlot(nowJsonSlot);
             if(nowJsonSlot.emptyFlag == false)
             {
-                nowSlot.slotItem = Manager.Data.itemData.ElementAt(nowJsonSlot.itemIndex).Value;
                 GameObject itemVisual = GameObject.Instantiate(Manager.Data.itemUIPrefab[nowSlot.slotItem.itemIndex]);
                 itemVisual.transform.SetParent(equipArea.itemVisualTrans);
                 nowSlot.itemVisual = itemVisual;

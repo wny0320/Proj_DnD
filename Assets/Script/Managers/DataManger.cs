@@ -139,7 +139,7 @@ public class DataManager
             for(int x = 0;  x < _targetSlotLines[y].mySlots.Count; x++)
             {
                 JsonSlot jsonSlot = new JsonSlot();
-                jsonSlot.SlotToJsonSlot(_targetSlotLines[y].mySlots[x]);
+                jsonSlot = jsonSlot.SlotToJsonSlot(_targetSlotLines[y].mySlots[x]);
                 jsonSlotLines[y].mySlots.Add(jsonSlot);
             }
         }

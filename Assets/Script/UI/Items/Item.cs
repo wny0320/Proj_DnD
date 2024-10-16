@@ -165,4 +165,22 @@ public class Item : ScriptableObject
         }
         return price;
     }
+    public JsonItem ItemToJsonItem()
+    {
+        JsonItem jsonItem = new JsonItem();
+        jsonItem.itemName = itemName;
+        jsonItem.itemIndex = itemIndex;
+        jsonItem.itemText = itemText;
+        jsonItem.itemPrice = itemPrice;
+        jsonItem.itemRarity = itemRarity;
+        if(itemStat != null)
+            jsonItem.itemStat = itemStat.StatToJsonStat();
+        jsonItem.itemType = itemType;
+        jsonItem.equipPart = equipPart;
+        jsonItem.itemSize = itemSize;
+        jsonItem.randomRange = randomRange;
+        jsonItem.equipStatSetFlag = equipStatSetFlag;
+        jsonItem.weaponType = weaponType;
+        return jsonItem;
+    }
 }

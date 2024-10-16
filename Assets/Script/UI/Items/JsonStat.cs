@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
-public class Stat : ScriptableObject
+public class JsonStat
 {
     [SerializeField]
     protected int _hp;
@@ -30,32 +29,19 @@ public class Stat : ScriptableObject
     public float MoveSpeed { get { return _moveSpeed; } set { _moveSpeed = value; } }
     public float AttackSpeed { get { return _attackSpeed; } set { _attackSpeed = value; } }
     public float JumpForce { get { return _jumpForce; } set { _jumpForce = value; } }
-    public int ItemDegree { get { return _itemDegree; } set { _itemDegree = value;} }
+    public int ItemDegree { get { return _itemDegree; } set { _itemDegree = value; } }
 
-    public Stat StatDeepCopy()
+    public Stat JsonStatToStat()
     {
-        Stat stat = (Stat)CreateInstance(typeof(Stat));
-        stat.Hp = _hp;
-        stat.MaxHp = _maxHp;
-        stat.Attack = _attack;
-        stat.Defense = _defense;
-        stat.MoveSpeed = _moveSpeed;
-        stat.JumpForce = _jumpForce;
-        stat.AttackSpeed = _attackSpeed;
-        stat.ItemDegree = _itemDegree;
+        Stat stat = (Stat)ScriptableObject.CreateInstance(typeof(Stat));
+        stat.Hp = Hp;
+        stat.MaxHp = MaxHp;
+        stat.Attack = Attack;
+        stat.Defense =Defense;
+        stat.MoveSpeed = MoveSpeed;
+        stat.JumpForce = JumpForce;
+        stat.AttackSpeed = AttackSpeed;
+        stat.ItemDegree = ItemDegree;
         return stat;
-    }
-    public JsonStat StatToJsonStat()
-    {
-        JsonStat jsonStat = new JsonStat();
-        jsonStat.Hp = Hp;
-        jsonStat.MaxHp = MaxHp;
-        jsonStat.Attack = Attack;
-        jsonStat.Defense = Defense;
-        jsonStat.MoveSpeed = MoveSpeed;
-        jsonStat.JumpForce = JumpForce;
-        jsonStat.AttackSpeed = AttackSpeed;
-        jsonStat.ItemDegree = ItemDegree;
-        return jsonStat;
     }
 }

@@ -13,7 +13,6 @@ public class Slot : MonoBehaviour
     // 해당 슬롯이 가지고 있는 아이템
     public Item slotItem;
     public GameObject itemVisual;
-    public int itemIndex;
 
     public void SlotReset()
     {
@@ -22,7 +21,6 @@ public class Slot : MonoBehaviour
         itemDataPos = -Vector2Int.one;
         slotItem = null;
         itemVisual = null;
-        itemIndex = -1;
         Manager.Data.PlayerDataExport();
     }
     public void SlotCopy(Slot _slot, Vector2Int _itemDataPos)
@@ -34,7 +32,6 @@ public class Slot : MonoBehaviour
             slotItem = _slot.slotItem.ItemDeepCopy();
         else
             slotItem = _slot.slotItem;
-        itemIndex = _slot.itemIndex;
         itemVisual = _slot.itemVisual;
     }
     public void JsonSlotToSlot(JsonSlot _jsonSlot)
@@ -42,6 +39,7 @@ public class Slot : MonoBehaviour
         emptyFlag = _jsonSlot.emptyFlag;
         mainSlotFlag = _jsonSlot.mainSlotFlag;
         itemDataPos = _jsonSlot.itemDataPos;
-        itemIndex = _jsonSlot.itemIndex;
+        if(_jsonSlot.slotItem != null )
+            slotItem = _jsonSlot.slotItem.JsonItemToItem();
     }
 }
