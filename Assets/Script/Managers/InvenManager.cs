@@ -100,13 +100,17 @@ public class InvenManager
             {
                 canvasVisualFlag = false;
                 invenCanvasGroup.alpha = 0f;
-                Cursor.lockState = CursorLockMode.Locked;
+                invenCanvasGroup.blocksRaycasts = false;
+                if (Manager.Instance.GetNowScene().name == SceneName.DungeonScene.ToString())
+                    Cursor.lockState = CursorLockMode.Locked;
             }
             else
             {
                 canvasVisualFlag = true;
                 invenCanvasGroup.alpha = 1f;
-                Cursor.lockState = CursorLockMode.None;
+                invenCanvasGroup.blocksRaycasts = true;
+                if (Manager.Instance.GetNowScene().name == SceneName.DungeonScene.ToString())
+                    Cursor.lockState = CursorLockMode.None;
             }
         }
     }
@@ -141,6 +145,7 @@ public class InvenManager
 
         invenCanvasGroup.alpha = 0f;
         invenCanvasGroup.interactable = false;
+        invenCanvasGroup.blocksRaycasts = false;
         stashCanvasGroup.alpha = 0f;
         stashCanvasGroup.interactable = false;
         canvasVisualFlag = false;
@@ -1162,11 +1167,13 @@ public class InvenManager
     {
         canvasVisualFlag = true;
         invenCanvasGroup.alpha = 1f;
+        invenCanvasGroup.blocksRaycasts = true;
     }
     public void ConcealInvenCanvasByBt()
     {
         canvasVisualFlag = false;
         invenCanvasGroup.alpha = 0f;
+        invenCanvasGroup.blocksRaycasts = false;
     }
     public void RevealDropCanvas()
     {
