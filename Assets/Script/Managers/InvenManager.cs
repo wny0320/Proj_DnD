@@ -1192,7 +1192,7 @@ public class InvenManager
     {
         stashCanvas.gameObject.SetActive(false);
     }
-    public void RecoverPlayerItemData(SlotJsonClass _slotJsonclass)
+    public void RecoverPlayerItemData(JsonClass _slotJsonclass)
     {
         List<SlotLine> slotLines = invenSlotLines;
 
