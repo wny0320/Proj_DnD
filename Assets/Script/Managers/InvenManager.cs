@@ -1238,10 +1238,7 @@ public class InvenManager
                     GameObject itemVisual = GameObject.Instantiate(Manager.Data.itemUIPrefab[nowSlot.slotItem.itemIndex], 
                         GameObject.Find(nowSlot.transform.root.name.ToString() + "/Panel/ItemArea/ItemVisual").transform);
                     RectTransform visualRect = itemVisual.GetComponent<RectTransform>();
-                    Debug.Log(visualRect.anchoredPosition);
-                    Debug.Log(-nowSlot.itemDataPos);
-                    visualRect.anchoredPosition = visualRect.anchoredPosition + new Vector2(nowSlot.itemDataPos.y * UNITSIZE, -nowSlot.itemDataPos.x * UNITSIZE)
-                        + new Vector2((itemSize[1] - 1) * (UNITSIZE / 2), -(itemSize[0] - 1) * (UNITSIZE / 2));
+                    visualRect.anchoredPosition = visualRect.anchoredPosition + new Vector2(nowSlot.itemDataPos.y * UNITSIZE, -nowSlot.itemDataPos.x * UNITSIZE);
                     // itemVisual 정보 저장
                     nowSlot.itemVisual = itemVisual;
                 }
