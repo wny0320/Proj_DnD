@@ -14,7 +14,10 @@ public class QuitButton : MonoBehaviour
     {
         Debug.Log("Quit");
         if (Manager.Instance.GetNowScene().name == SceneName.DungeonScene.ToString())
+        {
             Manager.Inven.ItemBoxReset(ItemBoxType.Inventory);
+            Manager.Inven.ResetEquipSlots();
+        }
         Application.Quit();
     }
     public void QuitConfirmFunc()

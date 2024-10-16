@@ -48,13 +48,14 @@ public class PlayerMoveState : BaseState
         if (!controller.isAlive) return;
 
         dir = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        dir = transform.TransformDirection(dir) * controller.stat.MoveSpeed;
-
+        dir = transform.TransformDirection(dir) * controller.stat.MoveSpeed * Time.deltaTime;
+        
         Vector3 velocity = rb.velocity;
         Vector3 velocityChange = (dir - velocity);
         velocityChange.y = 0;
-        
-        rb.AddForce(velocityChange, ForceMode.VelocityChange);
+
+        rb.MovePosition(rb.position + dir);
+        //rb.AddForce(velocityChange, ForceMode.VelocityChange);
         if (Mathf.Abs(velocity.x) > 0.2f || Mathf.Abs(velocity.z) > 0.2f) animator.SetBool(PLAYER_MOVE, true);
         else animator.SetBool(PLAYER_MOVE, false);
         if (CheckGround() && Input.GetKeyDown(KeyCode.Space)) Jump();

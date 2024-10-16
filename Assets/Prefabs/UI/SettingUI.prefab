@@ -1155,9 +1155,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'You will lose
+  m_Text: 'You will lose all of items
 
-    all of inventory items.
+    in equip and inventory.
 
     Are you Sure?'
 --- !u!1 &4217307964650953665
