@@ -23,7 +23,7 @@ MonoBehaviour:
   WatcherDead: {fileID: 8300000, guid: 96e96f3c00ae92f47b2783e5b8ea1698, type: 3}
   MinotaurDead: {fileID: 8300000, guid: 4c5de9f8833897d4595bf81c3968507b, type: 3}
   CrusaderDead: {fileID: 8300000, guid: 487434ef5934f904f8a4f94ddf08e8c5, type: 3}
-  BanditDead: {fileID: 8300000, guid: 1e6fe687aa315a645b63f78fcbe1c795, type: 3}
+  BanditDead: {fileID: 8300000, guid: 0142b02c0add8de47b458b84b1063e10, type: 3}
   ShopEnter: {fileID: 8300000, guid: 476df7849881115458394a370e8e21e5, type: 3}
   DoorOpen: {fileID: 8300000, guid: 48bcb20868c2660469f4e4f0c9576e7b, type: 3}
   DoorClose: {fileID: 8300000, guid: 4edd15f975b47a6408fa4d779501ad1a, type: 3}

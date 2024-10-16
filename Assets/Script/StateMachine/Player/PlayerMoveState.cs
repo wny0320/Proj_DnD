@@ -12,6 +12,9 @@ public class PlayerMoveState : BaseState
     Vector3 dir = Vector3.zero;
     Transform transform;
 
+    float cantJumpTime = 0.2f;
+    bool canJump = true;
+
     public PlayerMoveState(BaseController controller, Rigidbody rb = null, Animator animator = null) : base(controller, rb, animator)
     {
         Manager.Input.PlayerMove = PlayerMove;
@@ -23,6 +26,10 @@ public class PlayerMoveState : BaseState
     public override void OnFixedUpdate()
     {
         //Debug.Log("isground" + isGrounded);
+        CheckGround();
+
+        if (!canJump) cantJumpTime -= Time.fixedDeltaTime;
+        if (cantJumpTime <= 0f) { cantJumpTime = 0.2f; canJump = true; }
     }
 
     public override void OnStateEnter()
@@ -37,8 +44,6 @@ public class PlayerMoveState : BaseState
     {
         if (!controller.isAlive) return;
 
-        CheckGround();
-
         if (Input.GetKeyDown(KeyCode.LeftControl))
             controller.ChangeState(PlayerState.Crouch);
     }
@@ -47,21 +52,23 @@ public class PlayerMoveState : BaseState
     {
         if (!controller.isAlive) return;
 
-        dir = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        dir = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized;
         dir = transform.TransformDirection(dir) * controller.stat.MoveSpeed;
         
         Vector3 velocity = rb.velocity;
-        Vector3 velocityChange = (dir - velocity);
-        velocityChange.y = 0;
+        //Vector3 velocityChange = (dir - velocity);
+        //velocityChange.y = 0;
 
-        rb.AddForce(velocityChange * 10 * Time.deltaTime, ForceMode.VelocityChange);
+        rb.velocity = new Vector3(dir.x, rb.velocity.y, dir.z);
+        //rb.AddForce(velocityChange, ForceMode.VelocityChange);
         if (Mathf.Abs(velocity.x) > 0.2f || Mathf.Abs(velocity.z) > 0.2f) animator.SetBool(PLAYER_MOVE, true);
         else animator.SetBool(PLAYER_MOVE, false);
-        if (CheckGround() && Input.GetKeyDown(KeyCode.Space)) Jump();
+        if (CheckGround() && canJump && Input.GetKeyDown(KeyCode.Space)) Jump();
     }
 
     private void Jump()
     {
+        canJump = false;
         animator.SetTrigger(PLAYER_JUMP);
         rb.AddForce(Vector3.up * controller.stat.JumpForce, ForceMode.Impulse);
     }
@@ -82,7 +89,6 @@ public class PlayerMoveState : BaseState
             return false;
         }
 
-        //Debug.DrawRay(origin, direction, Color.red);
     }
 
     private void PlayerAttack()
