@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using UnityEditor.Animations;
 using UnityEditor.PackageManager;
 using UnityEngine;
@@ -36,7 +37,10 @@ public class PlayerController : BaseController, IReceiveAttack
         InitStateMachine();
 
         if(Manager.Instance.sceneName == SceneName.DungeonScene)
+        {
             StartCoroutine(CheckWeaponOnStart());
+            StartCoroutine(CheckArmorOnStart());
+        }
     }
 
     void Update()
@@ -209,6 +213,26 @@ public class PlayerController : BaseController, IReceiveAttack
         stat.MoveSpeed -= slot.slotItem.itemStat.MoveSpeed;
         stat.Defense -= slot.slotItem.itemStat.Defense;
         stat.ItemDegree -= (int)slot.slotItem.itemRarity;
+    }
+
+    IEnumerator CheckArmorOnStart()
+    {
+        foreach(var part in Enum.GetValues(typeof(EquipPart)))
+        {
+            while (!Manager.Inven.equipSlots.ContainsKey(part.ToString()))
+            {
+                yield return null;
+            }
+
+            Item armor = Manager.Inven.equipSlots[part.ToString()].slotItem;
+            if (armor == null)
+            {
+                //Debug.Log($"{part} None");
+                continue;
+            }
+            //Debug.Log($"{part} equip");
+            EquipArmor(armor);
+        }
     }
     #endregion
 }
