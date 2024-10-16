@@ -15,6 +15,7 @@ public class SoundManager : MonoBehaviour
     public Slider masterSlider;
     public Slider bgmSlider;
     public Slider effectSlider;
+    public GameObject settingUI;
 
     //효과음 관련    
     [SerializeField] private GameObject sfxInstance;
@@ -25,11 +26,16 @@ public class SoundManager : MonoBehaviour
 
     private void Awake()
     {
+        settingUI.SetActive(false);
         Global.sfx = this;
         sfxParent = new GameObject("Sfx").transform;
         sfxParent.SetParent(transform);
-
-        //Init();
+        DontDestroyOnLoad(this);
+        Init();
+    }
+    private void FixedUpdate()
+    {
+        OnESC();
     }
 
     public void Play(AudioClip clip)
@@ -43,7 +49,24 @@ public class SoundManager : MonoBehaviour
         se.transform.position = position;
         se.Play(clip);
     }
-
+    private void OnESC()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if(settingUI.activeSelf == true)
+            {
+                settingUI.SetActive(false);
+                if (Manager.Instance.GetNowScene().name == SceneName.DungeonScene.ToString())
+                    Cursor.lockState = CursorLockMode.Locked;
+            }
+            else
+            {
+                settingUI.SetActive(true);
+                if (Manager.Instance.GetNowScene().name == SceneName.DungeonScene.ToString())
+                    Cursor.lockState = CursorLockMode.None;
+            }
+        }
+    }
     private SoundEffect Get()
     {
         foreach (SoundEffect sfx in pool) if (sfx.isFree) return sfx;
