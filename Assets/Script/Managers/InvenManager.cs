@@ -59,14 +59,20 @@ public class InvenManager
     private CanvasGroup stashCanvasGroup;
     private ItemInfo itemInfo;
     private bool canvasVisualFlag;
-    public EquipArea equipArea;
-    public EquipUI equipUI;
+    private EquipArea equipArea;
+    private EquipUI equipUI;
     private SlotLine tempSlotLine;
     #endregion
 
     public void OnGameSceneLoad(GameObject go)
     {
         equipUI = go.GetComponentInChildren<EquipUI>();
+
+        for (int i = 0; i < 2; i++)
+        {
+            equipUI.uiSlots[i].itemImage.sprite = Manager.Data.itemSprite[equipArea.armorList[i].slotItem.itemIndex];
+            equipUI.uiSlots[i+2].itemImage.sprite = Manager.Data.itemSprite[equipArea.consumList[i].slotItem.itemIndex];
+        }
     }
 
     public void OnStart()
