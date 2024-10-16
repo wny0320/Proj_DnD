@@ -92,7 +92,10 @@ public class InvenManager
             return;
         if (Manager.Instance.GetNowScene().name != SceneName.DungeonScene.ToString())
             return;
-        // 게임 씬일 경우에만 작동하게 바꿔야함
+        if (Manager.Instance.sceneLoadFlag == true)
+            return;
+        if (Manager.Game.isPlayerAlive == false)
+            return;
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             if (canvasVisualFlag == true)

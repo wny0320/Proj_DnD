@@ -73,9 +73,10 @@ public class GameManager
             Manager.Inven.ItemBoxReset(ItemBoxType.Inventory);
             Manager.Inven.ResetEquipSlots();
         }
+        Manager.Inven.ConcealInvenCanvasByBt();
 
         await Task.Delay(3000);
-        
+
         //¾À º¯°æ
         Manager.Instance.LoadScene(SceneName.MainLobbyScene);
     }
