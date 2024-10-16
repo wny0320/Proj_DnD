@@ -81,7 +81,7 @@ public class InvenManager
     {
         if (invenCanvas == null)
             return;
-        if (Manager.Instance.GetNowScene().name == SceneName.MainLobbyScene.ToString())
+        if (Manager.Instance.GetNowScene().name != SceneName.DungeonScene.ToString())
             return;
         // 게임 씬일 경우에만 작동하게 바꿔야함
         if (Input.GetKeyDown(KeyCode.Tab))
