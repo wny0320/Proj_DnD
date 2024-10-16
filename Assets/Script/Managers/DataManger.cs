@@ -19,7 +19,7 @@ public class DataManager
     public bool dataImportFlag = false;
     const string ITEM_PATH = "Items/";
     #endregion
-    public int gold = 1000;
+    public int gold;
     public void OnAwake()
     {
         ItemDataResourceLoad();
@@ -110,10 +110,11 @@ public class DataManager
     }
     public void PlayerDataExport()
     {
-        SlotJsonClass slotJsonClass = new SlotJsonClass();
+        JsonClass slotJsonClass = new JsonClass();
         PlayerDataTransfer(slotJsonClass, Manager.Inven.invenSlotLines, ItemBoxType.Inventory);
         PlayerDataTransfer(slotJsonClass, Manager.Inven.stashSlotLines, ItemBoxType.Stash);
         PlayerDataTransfer(slotJsonClass, Manager.Inven.equipSlots);
+        slotJsonClass.gold = gold;
         string playerItemDataJson = JsonSerialize(slotJsonClass);
         string jsonPath = Path.Combine(Application.persistentDataPath, "playerItemData.Json");
         File.WriteAllText(jsonPath, playerItemDataJson);
@@ -121,14 +122,21 @@ public class DataManager
     public void PlayerDataImport()
     {
         string jsonPath = Path.Combine(Application.persistentDataPath, "playerItemData.Json");
-        if(File.Exists(jsonPath) == true)
+        if (File.Exists(jsonPath) == true)
         {
             string jsonFile = File.ReadAllText(jsonPath);
-            SlotJsonClass slotJsonClass = (SlotJsonClass)JsonDeserialize(jsonFile, typeof(SlotJsonClass));
+            JsonClass slotJsonClass = (JsonClass)JsonDeserialize(jsonFile, typeof(JsonClass));
+            gold = slotJsonClass.gold;
             Manager.Inven.RecoverPlayerItemData(slotJsonClass);
         }
+        else
+        {
+            gold = 0;
+            Item initialItem = itemData["ShortSword"].ItemDeepCopy(ItemRarity.Junk);
+            Manager.Inven.AddItem(initialItem, ItemBoxType.Inventory);
+        }
     }
-    public void PlayerDataTransfer(SlotJsonClass _slotJsonClass, List<SlotLine> _targetSlotLines, ItemBoxType _itemBoxType)
+    public void PlayerDataTransfer(JsonClass _slotJsonClass, List<SlotLine> _targetSlotLines, ItemBoxType _itemBoxType)
     {
         List<JsonSlotLine> jsonSlotLines = new List<JsonSlotLine>();
         int cnt = _targetSlotLines.Count;
@@ -155,7 +163,7 @@ public class DataManager
                 break;
         }
     }
-    public void PlayerDataTransfer(SlotJsonClass _slotJsonClass, Dictionary<string, Slot> _targetSlots)
+    public void PlayerDataTransfer(JsonClass _slotJsonClass, Dictionary<string, Slot> _targetSlots)
     {
         Dictionary<string, JsonSlot> jsonSlots = new Dictionary<string, JsonSlot>();
         foreach(string key in _targetSlots.Keys)

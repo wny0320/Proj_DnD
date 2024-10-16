@@ -23,6 +23,7 @@ public class Manager : MonoBehaviour
     public static UIManager UI { get { return instance._ui; } }
     public static InvenManager Inven { get { return instance._inven; } }
     #endregion
+    public bool sceneLoadFlag = false;
 
     private void Awake()
     {
@@ -86,6 +87,7 @@ public class Manager : MonoBehaviour
     private string loadSceneName;
     public void LoadScene(SceneName sceneName)
     {
+        sceneLoadFlag = true;
         this.sceneName = sceneName;
         sceneLoaderCanvasGroup = Instantiate(loadingSceneUI).GetComponent<CanvasGroup>();
         sceneLoaderCanvasGroup.transform.parent = transform;
@@ -107,7 +109,14 @@ public class Manager : MonoBehaviour
             Game.CursorLock(false);
             Destroy(Game.GameUI);
         }
-
+        // 씬이 이동됐을때 돈이 없고 아이템이 하나도 없다면 초기 아이템 추가
+        if (Data.gold == 0 && Inven.GetBoxItems(ItemBoxType.Inventory).Count == 0
+            && Inven.GetBoxItems(ItemBoxType.Stash).Count == 0
+            && Inven.GetBoxItems(ItemBoxType.Equip).Count == 0)
+        {
+            Item initialItem = Data.itemData["ShortSword"].ItemDeepCopy(ItemRarity.Junk);
+            Inven.AddItem(initialItem, ItemBoxType.Inventory);
+        }
         StartCoroutine(Load(loadSceneName));
     }
     public Scene GetNowScene()
@@ -156,6 +165,7 @@ public class Manager : MonoBehaviour
         {
             StartCoroutine(Fade(false));
             SceneManager.sceneLoaded -= LoadSceneEnd;
+            sceneLoadFlag = false;
         }
     }
 

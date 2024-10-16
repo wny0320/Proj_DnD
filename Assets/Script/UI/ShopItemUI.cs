@@ -23,6 +23,8 @@ public class ShopItemUI : MonoBehaviour
                 // 성공시 돈을 뺌
                 Manager.Data.gold -= item.itemPrice * 2;
                 GetComponent<Button>().interactable = false;
+                // 데이터 출력
+                Manager.Data.PlayerDataExport();
             }
             else
             {
@@ -43,6 +45,8 @@ public class ShopItemUI : MonoBehaviour
                     Manager.Inven.DeleteBoxItem(invenSlotLines[y].mySlots[x], ItemBoxType.Inventory);
                     Manager.Data.gold += item.itemPrice;
                     Destroy(gameObject);
+                    // 데이터 출력
+                    Manager.Data.PlayerDataExport();
                     return;
                 }
             }

@@ -215,10 +215,6 @@ public class ShopUI : MonoBehaviour
                 shopItemUI.itemCost.text = (_item.itemPrice * 2).ToString();
         }
     }
-    public void ShopItemSell()
-    {
-
-    }
     public void ActiveConsumUI()
     {
         consumCatalog.SetActive(true);
