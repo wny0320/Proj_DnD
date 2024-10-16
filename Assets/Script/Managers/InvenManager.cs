@@ -70,8 +70,12 @@ public class InvenManager
 
         for (int i = 0; i < 2; i++)
         {
-            equipUI.uiSlots[i].itemImage.sprite = Manager.Data.itemSprite[equipArea.armorList[i].slotItem.itemIndex];
-            equipUI.uiSlots[i+2].itemImage.sprite = Manager.Data.itemSprite[equipArea.consumList[i].slotItem.itemIndex];
+            if (equipSlots[EquipPart.Weapon.ToString() + i].itemVisual != null)
+                equipUI.uiSlots[i].itemImage.sprite = equipSlots[EquipPart.Weapon.ToString() + i]
+                    .itemVisual.transform.GetChild(0).GetComponent<Image>().sprite;
+            if (equipSlots[ItemType.Consumable.ToString() + i].itemVisual != null)
+                equipUI.uiSlots[i+2].itemImage.sprite = equipSlots[ItemType.Consumable.ToString() + i]
+                    .itemVisual.transform.GetChild(0).GetComponent<Image>().sprite;
         }
     }
 
