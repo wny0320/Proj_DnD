@@ -30,7 +30,6 @@ public class GameManager
         isPlayerAlive = true;
 
         CursorLock(true);
-        Application.targetFrameRate = 60;
 
         TimeUI = GameUI.transform.GetChild(0).GetComponent<Slider>();
         HpUI = GameUI.transform.GetChild(1).GetComponent<Slider>();

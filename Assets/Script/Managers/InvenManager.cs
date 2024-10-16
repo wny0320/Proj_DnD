@@ -5,7 +5,6 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System;
 using System.Linq;
-using static UnityEditor.Progress;
 
 public class InvenManager
 {

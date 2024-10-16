@@ -14,10 +14,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BuildScene/DungeonScene.unity
     guid: 7daedeaeaf82d5149966fe2c6f93ce0d
-  - enabled: 1
-    path: Assets/Scenes/LobbyMerchantWork.unity
-    guid: 9bd4ccfb674b5504593a034537329c08
-  - enabled: 1
-    path: Assets/Scenes/PlayerAndInven.unity
-    guid: ca19eb06a0e89754fb063a982efba37e
   m_configObjects: {}
