@@ -3,15 +3,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices.ComTypes;
-using UnityEditor.Animations;
-using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerController : BaseController, IReceiveAttack
 {
-    [SerializeField] List<AnimatorController> animators = new List<AnimatorController>();
+    [SerializeField] List<RuntimeAnimatorController> animators = new List<RuntimeAnimatorController>();
     [SerializeField] Transform weaponTrans;
     [SerializeField] Transform leftweaponTrans;
 
