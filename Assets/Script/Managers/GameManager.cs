@@ -13,6 +13,7 @@ public class GameManager
     public bool isPlayerAlive = true;
     public bool isCursorLock = true;
     public bool isPlayerAttacking = false;
+    public bool isSettingUIActive = false;
 
     public GameObject GameUI;
     private Slider TimeUI;
@@ -28,6 +29,7 @@ public class GameManager
     public void OnGameSceneLoad()
     {
         isPlayerAlive = true;
+        isSettingUIActive = false;
 
         CursorLock(true);
 

@@ -17,8 +17,6 @@ public class SoundManager : MonoBehaviour
     public Slider effectSlider;
     public GameObject settingUI;
 
-    public bool settingUIFlag;
-
     //효과음 관련    
     [SerializeField] private GameObject sfxInstance;
     private Transform sfxParent;
@@ -33,8 +31,14 @@ public class SoundManager : MonoBehaviour
         sfxParent = new GameObject("Sfx").transform;
         sfxParent.SetParent(transform);
         DontDestroyOnLoad(this);
+    }
+
+    private void Start()
+    {
+        SetPlayerPrefs();
         Init();
     }
+
     private void Update()
     {
         OnESC();
@@ -56,14 +60,14 @@ public class SoundManager : MonoBehaviour
         if (settingUI.activeSelf == true)
         {
             settingUI.SetActive(false);
-            settingUIFlag = false;
+            Manager.Game.isSettingUIActive = false;
             if (Manager.Instance.GetNowScene().name == SceneName.DungeonScene.ToString())
                 Cursor.lockState = CursorLockMode.Locked;
         }
         else
         {
             settingUI.SetActive(true);
-            settingUIFlag = true;
+            Manager.Game.isSettingUIActive = true;
             if (Manager.Instance.GetNowScene().name == SceneName.DungeonScene.ToString())
                 Cursor.lockState = CursorLockMode.None;
         }
@@ -75,14 +79,14 @@ public class SoundManager : MonoBehaviour
             if(settingUI.activeSelf == true)
             {
                 settingUI.SetActive(false);
-                settingUIFlag = false;
+                Manager.Game.isSettingUIActive = false;
                 if (Manager.Instance.GetNowScene().name == SceneName.DungeonScene.ToString())
                     Cursor.lockState = CursorLockMode.Locked;
             }
             else
             {
                 settingUI.SetActive(true);
-                settingUIFlag = true;
+                Manager.Game.isSettingUIActive = true;
                 if (Manager.Instance.GetNowScene().name == SceneName.DungeonScene.ToString())
                     Cursor.lockState = CursorLockMode.None;
             }
@@ -101,23 +105,44 @@ public class SoundManager : MonoBehaviour
         return instance;
     }
 
+    private void SetPlayerPrefs()
+    {
+        if (PlayerPrefs.HasKey(Master) && PlayerPrefs.HasKey(Bgm) && PlayerPrefs.HasKey(Effect)) return;
+
+        PlayerPrefs.SetFloat(Master, 0.5f);
+        PlayerPrefs.SetFloat(Bgm, 0.5f);
+        PlayerPrefs.SetFloat(Effect, 0.5f);
+    }
+
     private void Init()
     {
         //playerprefs로 값 저장해도 좋을 듯
-        float value;
-        audioMixer.GetFloat(Master, out value);
-        masterSlider.value = Mathf.Pow(10, value / 20);
-        audioMixer.GetFloat(Bgm, out value);
-        bgmSlider.value = Mathf.Pow(10, value / 20);
-        audioMixer.GetFloat(Effect, out value);
-        effectSlider.value = Mathf.Pow(10, value / 20);
+        masterSlider.value = PlayerPrefs.GetFloat(Master);
+        bgmSlider.value = PlayerPrefs.GetFloat(Bgm);
+        effectSlider.value = PlayerPrefs.GetFloat(Effect);
+
+        SetMasterVolume(masterSlider.value);
+        SetBgmVolume(bgmSlider.value);
+        SetEffectVolume(effectSlider.value);
 
         masterSlider.onValueChanged.AddListener(SetMasterVolume);
         bgmSlider.onValueChanged.AddListener(SetBgmVolume);
         effectSlider.onValueChanged.AddListener(SetEffectVolume);
     }
 
-    public void SetMasterVolume(float value) => audioMixer.SetFloat(Master, Mathf.Log10(value) * 20);
-    public void SetBgmVolume(float value) => audioMixer.SetFloat(Bgm, Mathf.Log10(value) * 20);
-    public void SetEffectVolume(float value) => audioMixer.SetFloat(Effect, Mathf.Log10(value) * 20);
+    public void SetMasterVolume(float value)
+    {
+        audioMixer.SetFloat(Master, Mathf.Log10(value) * 20);
+        PlayerPrefs.SetFloat(Master, value);
+    }
+    public void SetBgmVolume(float value)
+    {
+        audioMixer.SetFloat(Bgm, Mathf.Log10(value) * 20);
+        PlayerPrefs.SetFloat(Bgm, value);
+    }
+    public void SetEffectVolume(float value)
+    {
+        audioMixer.SetFloat(Effect, Mathf.Log10(value) * 20);
+        PlayerPrefs.SetFloat(Effect, value);
+    }
 }
