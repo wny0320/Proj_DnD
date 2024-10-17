@@ -62,7 +62,7 @@ public class CameraController : MonoBehaviour
 
     private void CameraMove()
     {
-        if (!Manager.Game.isPlayerAlive) return;
+        if (!Manager.Game.isPlayerAlive || Manager.Inven.canvasVisualFlag) return;
 
         //플레이어가 인벤 열 때, 죽었을 때 안움직이게 조건 추가애햐됨
 

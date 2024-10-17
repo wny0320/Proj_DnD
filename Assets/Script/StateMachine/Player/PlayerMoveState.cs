@@ -93,7 +93,7 @@ public class PlayerMoveState : BaseState
 
     private void PlayerAttack()
     {
-        if (!controller.isAlive) return;
+        if (!controller.isAlive || Manager.Inven.canvasVisualFlag) return;
 
         if (Input.GetMouseButtonDown(0))
             animator.SetTrigger(PLAYER_ATTACK);
