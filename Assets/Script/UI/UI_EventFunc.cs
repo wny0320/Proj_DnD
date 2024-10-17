@@ -28,9 +28,12 @@ public class UI_EventFunc : MonoBehaviour
     [Header("ShopUI Button Resources")]
     [SerializeField]
     ShopUI shopUI;
+
+    AudioSource audioSource;
     private void Awake()
     {
         GetButtonFunc();
+        audioSource = GetComponent<AudioSource>();
     }
     private void Start()
     {
@@ -70,9 +73,13 @@ public class UI_EventFunc : MonoBehaviour
     {
         if (merchantObject == null)
             return;
+        if (merchantObject.activeSelf == true)
+            return;
         Manager.Inven.RevealInvenCanvasByBt();
         merchantObject.SetActive(true);
         Manager.Inven.ConcealStashCanvas();
+        audioSource.clip = Global.Sound.ShopEnter;
+        audioSource.Play();
     }
     public void AdventureButton()
     {
