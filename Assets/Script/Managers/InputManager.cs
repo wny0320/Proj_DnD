@@ -16,10 +16,6 @@ public class InputManager
 
     public void OnUpdate()
     {
-
-    }
-    public void OnFixedUpdate()
-    {
         if (Manager.Instance.sceneName != SceneName.DungeonScene) return;
 
         if (!Manager.Game.isPlayerAlive) return;
@@ -29,6 +25,10 @@ public class InputManager
 
         if (Manager.Game.isPlayerAttacking) return;
         SelectWeapon();
+    }
+    public void OnFixedUpdate()
+    {
+
     }
 
     private void SelectWeapon()

@@ -10,6 +10,8 @@ public class CameraController : MonoBehaviour
     float pitch = 0f; // 수직
     float yaw = 0f; // 수평
 
+    [SerializeField] float openTime = 3f;
+
     //현재 눈이 인스펙터에서 끌어다 쓰고 있음 수정 해야됨
     Animator animator = null;
 
@@ -140,12 +142,14 @@ public class CameraController : MonoBehaviour
         circleProcess.fillAmount = 0f;
         processText.text = "0%";
 
-        while(t <= 3f)
+        //이곳에서 tag 비교해서 openTime 관련 해야됨
+
+        while(t <= openTime)
         {
             t += Time.deltaTime;    
             yield return null;
-            processText.text = $"{Mathf.FloorToInt(t / 3 * 100)}%";
-            circleProcess.fillAmount = t / 3;
+            processText.text = $"{Mathf.FloorToInt(t / openTime * 100)}%";
+            circleProcess.fillAmount = t / openTime;
         }
 
         processText.enabled = false;
