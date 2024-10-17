@@ -112,8 +112,10 @@ public class CameraController : MonoBehaviour
             InteractiveUI.SetActive(true);
             intText.enabled = true;
             fImg.enabled = true;
-            if (hit.transform.root.tag.Equals("Item")) intText.text = $"{hit.transform.root.name} 줍기";
-            else intText.text = $"{hit.transform.root.name} 열기";
+            if (hit.transform.root.tag.Equals("Item")) intText.text = $"{hit.transform.root.GetComponent<Item3D>().myItem.itemName} 줍기";
+            else if (hit.transform.root.tag.Equals("Monster")) intText.text = "시체 약탈";
+            else if (hit.transform.root.tag.Equals("Door")) intText.text = "문 열기";
+            else if (hit.transform.root.tag.Equals("Chest")) intText.text = "상자 열기";
         }
         else
         {
