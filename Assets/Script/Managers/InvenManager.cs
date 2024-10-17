@@ -56,12 +56,14 @@ public class InvenManager
     private Canvas dragItemCanvas;
     private CanvasGroup invenCanvasGroup;
     private CanvasGroup stashCanvasGroup;
+    private CanvasGroup dropItemCanvasGroup;
     private ItemInfo itemInfo;
     private EquipArea equipArea;
     private EquipUI equipUI;
     private SlotLine tempSlotLine;
 
     public bool canvasVisualFlag;
+    private bool dragItemFlag;
     #endregion
 
     public void OnGameSceneLoad(GameObject go)
@@ -97,6 +99,8 @@ public class InvenManager
             return;
         if (Manager.Game.isPlayerAlive == false)
             return;
+        if (dragItemFlag == true)
+            return;
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             if (canvasVisualFlag == true)
@@ -128,6 +132,7 @@ public class InvenManager
         stashCanvasGroup = stashCanvas.GetComponent<CanvasGroup>();
 
         dropCanvas = GameObject.Find(DROP_CANVAS_PATH).GetComponent<Canvas>();
+        dropItemCanvasGroup = dropCanvas.GetComponent<CanvasGroup>();
 
         dragItemCanvas = GameObject.Find(DRAG_CANVAS_PATH).GetComponent<Canvas>();
 
@@ -149,8 +154,15 @@ public class InvenManager
         invenCanvasGroup.alpha = 0f;
         invenCanvasGroup.interactable = false;
         invenCanvasGroup.blocksRaycasts = false;
+
         stashCanvasGroup.alpha = 0f;
         stashCanvasGroup.interactable = false;
+        stashCanvasGroup.blocksRaycasts = false;
+
+        dropItemCanvasGroup.alpha = 0f;
+        dropItemCanvasGroup.interactable = false;
+        dropItemCanvasGroup.blocksRaycasts = false;
+
         canvasVisualFlag = false;
         string typeName = null;
         int count = 0;
@@ -193,7 +205,6 @@ public class InvenManager
         MonoBehaviour.DontDestroyOnLoad(stashCanvas);
         MonoBehaviour.DontDestroyOnLoad(dropCanvas);
         MonoBehaviour.DontDestroyOnLoad(dragItemCanvas);
-        dropCanvas.gameObject.SetActive(false);
     }
     public Vector2 InvenPosCal(Vector2 _originPos, Vector2 _slotIndex)
     {
@@ -436,6 +447,20 @@ public class InvenManager
                     // 장비창에 있는 아이템은 드래그 불가능하게 우선 설정
                     if (interactEquipFlag == true)
                         break;
+                    if (Manager.Game.isPlayerAlive == false)
+                    {
+                        GameObject.Destroy(itemVisual);
+                        dragItemFlag = false;
+                        for (int y = 0; y < itemSize[0]; y++)
+                        {
+                            for (int x = 0; x < itemSize[1]; x++)
+                            {
+                                tempSlotLine.mySlots[y * itemSize[1] + x].SlotReset();
+                            }
+                        }
+                        break;
+                    }
+                    dragItemFlag = true;
                     // 드래그한 아이템 tempSlot으로 이동
                     if (tempSlotLine.mySlots[0].slotItem == null)
                     {
@@ -463,6 +488,7 @@ public class InvenManager
                     // 마우스를 뗐을 때
                     if (Input.GetMouseButtonUp(0))
                     {
+                        dragItemFlag = false;
                         pointer = new PointerEventData(EventSystem.current);
                         pointer.position = Input.mousePosition;
 
@@ -477,7 +503,7 @@ public class InvenManager
                         if (toSlot == null && fromCanvas.Equals(invenCanvas))
                         {
                             // 마우스가 인벤 밖인데 메인화면이면 아무것도 안함
-                            if(pointer.position.x > 1050 || Manager.Instance.GetNowScene().name.ToString() == SceneName.MainLobbyScene.ToString())
+                            if (pointer.position.x > 1050 || Manager.Instance.GetNowScene().name.ToString() == SceneName.MainLobbyScene.ToString())
                             {
                                 itemVisual.GetComponent<Image>().color = new Color32(255, 255, 255, 0);
                                 itemVisual.transform.SetParent(GameObject.Find(fromSlot.transform.root.name.ToString() + "Panel/ItemArea/ItemVisual").transform);
@@ -514,6 +540,23 @@ public class InvenManager
                                 break;
                             }
                         }
+                        // invenCanvas가 fromSlot이 아닌데 toSlot은 null인 경우
+                        else if (toSlot == null)
+                        {
+                            GameObject.Destroy(itemVisual);
+                            for (int y = 0; y < itemSize[0]; y++)
+                            {
+                                for (int x = 0; x < itemSize[1]; x++)
+                                {
+                                    Slot nowFrom = fromSlotLines[fromPos.x + y].mySlots[fromPos.y + x];
+                                    nowFrom.SlotCopy(tempSlotLine.mySlots[y * itemSize[1] + x], fromPos);
+                                    tempSlotLine.mySlots[y * itemSize[1] + x].SlotReset();
+                                }
+                            }
+                            DumpItem(fromSlot.slotItem);
+                            DeleteBoxItem(fromSlot, fromItemBoxType);
+                            break;
+                        }
                         List<SlotLine> toSlotLines = new List<SlotLine>();
                         Vector2Int toPos = -Vector2Int.one;
                         Vector2Int toStorageSize = -Vector2Int.one;
@@ -543,8 +586,8 @@ public class InvenManager
                             if (equipSlots.Values.Contains(toSlot))
                                 toKey = toSlot.name;
                         }
-                        // 드래그로 장착하려는 경우
-                        if(toKey != null)
+                        // 드래그로 장착하려는 경우, 인벤토리라면 팅겨내기
+                        if(toKey != null && fromCanvas == invenCanvas)
                         {
                             itemVisual.GetComponent<Image>().color = new Color32(255, 255, 255, 0);
                             itemVisual.transform.SetParent(GameObject.Find(fromSlot.transform.root.name.ToString() + "Panel/ItemArea/ItemVisual").transform);
@@ -560,6 +603,23 @@ public class InvenManager
                             }
                             Debug.LogError("ToSlot Is EquipSlot. Can't Move");
                             break;
+                        }
+                        else if(toKey != null && fromCanvas == dropCanvas)
+                        {
+                            GameObject.Destroy(itemVisual);
+                            for (int y = 0; y < itemSize[0]; y++)
+                            {
+                                for (int x = 0; x < itemSize[1]; x++)
+                                {
+                                    Slot nowFrom = fromSlotLines[fromPos.x + y].mySlots[fromPos.y + x];
+                                    nowFrom.SlotCopy(tempSlotLine.mySlots[y * itemSize[1] + x], fromPos);
+                                    tempSlotLine.mySlots[y * itemSize[1] + x].SlotReset();
+                                }
+                            }
+                            DumpItem(fromSlot.slotItem);
+                            DeleteBoxItem(fromSlot, fromItemBoxType);
+                            break;
+
                         }
                         if (toPos.x + itemSize[0] > toStorageSize.x || toPos.y + itemSize[1] > toStorageSize.y)
                             canMoveFlag = false;
@@ -820,7 +880,7 @@ public class InvenManager
     /// <param name="_item">들어갈 아이템의 원본 Data</param>
     /// <param name="_itemBoxType">아이템이 들어갈 ItemBox</param>
     /// <returns></returns>
-    public Item AddItem(Item _item, ItemBoxType _itemBoxType)
+    public Item AddItem(Item _item, ItemBoxType _itemBoxType, float _luck = 0f)
     {
         // 비어있는 슬롯을 다 가져오는 코드
         bool[,] emptyFlag = null;
@@ -935,7 +995,7 @@ public class InvenManager
         targetSlot.emptyFlag = false;
         targetSlot.mainSlotFlag = true;
         targetSlot.itemDataPos = targetSlotIndex;
-        targetSlot.slotItem = _item.ItemDeepCopy();
+        targetSlot.slotItem = _item.ItemDeepCopy(_luck);
         if (targetSlot.slotItem.equipStatSetFlag == false && targetSlot.slotItem.itemType == ItemType.Equipment)
         {
             targetSlot.slotItem.EquipStatSet();
@@ -1093,8 +1153,10 @@ public class InvenManager
         if (_item == null)
             return;
         itemInfo.gameObject.SetActive(true);
-        Vector3 offset = new Vector3(-200, 200);
         RectTransform infoRect = itemInfo.gameObject.GetComponent<RectTransform>();
+        RectTransform invenRect = invenCanvas.GetComponent<RectTransform>();
+        Vector3 offset = new Vector3(-(invenRect.offsetMax.x - Mathf.Abs(infoRect.offsetMax.x) - Mathf.Abs(infoRect.offsetMin.x)),
+            invenRect.offsetMax.y - Mathf.Abs(infoRect.offsetMax.y) - Mathf.Abs(infoRect.offsetMin.y)) / 2;
         infoRect.position = Input.mousePosition + offset;
         Vector3 zeroPoint = Camera.main.ViewportToScreenPoint(Vector3.zero);
         Vector3 onePoint = Camera.main.ViewportToScreenPoint(Vector3.one);
@@ -1180,11 +1242,15 @@ public class InvenManager
     }
     public void RevealDropCanvas()
     {
-        dropCanvas.gameObject.SetActive(true);
+        dropItemCanvasGroup.alpha = 1f;
+        dropItemCanvasGroup.interactable = true;
+        dropItemCanvasGroup.blocksRaycasts = true;
     }
     public void ConcealDropCanvas()
     {
-        dropCanvas.gameObject.SetActive(false);
+        dropItemCanvasGroup.alpha = 0f;
+        dropItemCanvasGroup.interactable = false;
+        dropItemCanvasGroup.blocksRaycasts = false;
     }
     public void RevealStashCanvas()
     {

@@ -23,7 +23,7 @@ public class Item : ScriptableObject
     public float[] randomRange = new float[2];
     public float duration;
     public float effect;
-    public Item ItemDeepCopy(ItemRarity _itemRarity = ItemRarity.Non)
+    public Item ItemDeepCopy(float _luck = 0f, ItemRarity _itemRarity = ItemRarity.Non)
     {
         Item item = (Item)CreateInstance(typeof(Item));
         item.itemName = itemName;
@@ -36,7 +36,7 @@ public class Item : ScriptableObject
             item.itemRarity = itemRarity;
         else
         {
-            item.itemRarity = ItemRarirySet();
+            item.itemRarity = ItemRarirySet(_luck);
             item.itemPrice = item.ItemPriceSet();
         }
         if (itemStat != null)
@@ -126,19 +126,19 @@ public class Item : ScriptableObject
         effect += Random.Range(0, (int)randomRange[1]);
     }
 
-    public ItemRarity ItemRarirySet()
+    public ItemRarity ItemRarirySet(float _luck = 0f)
     {
         ItemRarity rarity = ItemRarity.Non;
-        int itemChance = Random.Range(0, 100);
-        if (itemChance < 1) // 1%
+        float itemChance = Random.Range(0f, 100f - _luck);
+        if (itemChance < 0.5f) // 0.5%
             rarity = ItemRarity.Legendary;
-        else if (itemChance < 5) // 4%
+        else if (itemChance < 1.5f) // 1%
             rarity = ItemRarity.Epic;
-        else if (itemChance < 15) // 10%
+        else if (itemChance < 6.5f) // 5%
             rarity = ItemRarity.Rare;
-        else if (itemChance < 40) // 25%
+        else if (itemChance < 26.5f) // 20%
             rarity = ItemRarity.Common;
-        else if (itemChance < 100) // 60%
+        else if (itemChance < 100) // 73.5%
             rarity = ItemRarity.Poor;
         return rarity;
     }

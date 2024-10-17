@@ -10,18 +10,26 @@ public class ShopItemUI : MonoBehaviour
     public Image itemImage;
     public Text itemName;
     public Text itemCost;
+    public int mul = 0;
 
+    public void ItemPriceSet()
+    {
+        if (item.itemType == ItemType.Equipment)
+            mul = 6;
+        else
+            mul = 2;
+    }
     public void ItemPurchase()
     {
         // 아이템 가격보다 돈이 많은 경우
-        if(Manager.Data.gold >= item.itemPrice * 2)
+        if(Manager.Data.gold >= item.itemPrice * mul)
         {
             Item newItem = item.ItemDeepCopy();
             // 아이템 추가 시도
             if (Manager.Inven.AddItem(newItem, ItemBoxType.Inventory) != null)
             {
                 // 성공시 돈을 뺌
-                Manager.Data.gold -= item.itemPrice * 2;
+                Manager.Data.gold -= item.itemPrice * mul;
                 GetComponent<Button>().interactable = false;
                 // 데이터 출력
                 Manager.Data.PlayerDataExport();

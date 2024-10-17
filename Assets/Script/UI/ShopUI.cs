@@ -113,7 +113,7 @@ public class ShopUI : MonoBehaviour
             }
             GameObject newShopItem = Instantiate(shopItemPrefab);
             newShopItem.transform.SetParent(consumCatalog.transform);
-            Item newItem = consumItemList[targetIndex].ItemDeepCopy(ItemRarity.Junk);
+            Item newItem = consumItemList[targetIndex].ItemDeepCopy(0f, ItemRarity.Junk);
             ShopUISync(newShopItem, newItem, false);
         }
         // prevIndex List 초기화
@@ -141,7 +141,7 @@ public class ShopUI : MonoBehaviour
             }
             GameObject newShopItem = Instantiate(shopItemPrefab);
             newShopItem.transform.SetParent(equipCatalog.transform);
-            Item newItem = equipItemList[targetIndex].ItemDeepCopy(ItemRarity.Junk);
+            Item newItem = equipItemList[targetIndex].ItemDeepCopy(0f, ItemRarity.Junk);
             ShopUISync(newShopItem, newItem, false);
         }
         // prevIndex List 초기화
@@ -186,6 +186,8 @@ public class ShopUI : MonoBehaviour
         if (shopItemUI != null && _item != null)
         {
             shopItemUI.item = _item;
+            shopItemUI.ItemPriceSet();
+            int mul = shopItemUI.mul;
             switch (_item.itemRarity)
             {
                 case ItemRarity.Junk:
@@ -212,7 +214,7 @@ public class ShopUI : MonoBehaviour
             if(_sellFlag == true)
                 shopItemUI.itemCost.text = _item.itemPrice.ToString();
             else
-                shopItemUI.itemCost.text = (_item.itemPrice * 2).ToString();
+                shopItemUI.itemCost.text = (_item.itemPrice * mul).ToString();
         }
     }
     public void ActiveConsumUI()

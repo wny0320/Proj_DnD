@@ -17,10 +17,10 @@ public class Interactive : MonoBehaviour
         switch (transform.tag)
         {
             case "Chest":
-                dropItemList = Manager.Inven.GetRandomItem(2, 5);
+                dropItemList = Manager.Inven.GetRandomItem(1, 3);
                 break;
             case "Monster":
-                dropItemList = Manager.Inven.GetRandomItem(1, 4);
+                dropItemList = Manager.Inven.GetRandomItem(2, 4);
                 break;
             case "Door":
                 originRotation = transform.rotation;
@@ -112,12 +112,19 @@ public class Interactive : MonoBehaviour
     private void MonsterFunc()
     {
         Debug.Log("monster");
+        string monsterName = transform.name;
         Cursor.lockState = CursorLockMode.None;
         Manager.Inven.RevealDropCanvas();
         Manager.Inven.RevealInvenCanvasByBt();
         Manager.Inven.ItemBoxReset(ItemBoxType.Drop);
-        foreach (Item item in dropItemList)
-            Manager.Inven.AddItem(item, ItemBoxType.Drop);
+        if (monsterName.Split()[0].Equals("Minotaur"))
+        {
+            foreach (Item item in dropItemList)
+                Manager.Inven.AddItem(item, ItemBoxType.Drop, 73.5f);
+        }
+        else
+            foreach (Item item in dropItemList)
+                Manager.Inven.AddItem(item, ItemBoxType.Drop);
     }
 
     private void TorchFunc()

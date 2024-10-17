@@ -178,3 +178,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae3b41df4ff6385439d1bd7403de2a30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dropItemList: []

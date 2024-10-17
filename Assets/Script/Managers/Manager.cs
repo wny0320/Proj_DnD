@@ -124,9 +124,9 @@ public class Manager : MonoBehaviour
             }
             if (equipEmptyFlag == true)
             {
-                Item initialItem = Data.itemData["ShortSword"].ItemDeepCopy(ItemRarity.Junk);
+                Item initialItem = Data.itemData["ShortSword"].ItemDeepCopy(0f, ItemRarity.Junk);
                 Inven.AddItem(initialItem, ItemBoxType.Inventory);
-                Item initialTorch = Data.itemData["Torch"].ItemDeepCopy(ItemRarity.Junk);
+                Item initialTorch = Data.itemData["Torch"].ItemDeepCopy(0f, ItemRarity.Junk);
                 Inven.AddItem(initialTorch, ItemBoxType.Inventory);
             }
         }

@@ -116,7 +116,8 @@ public class CameraController : MonoBehaviour
             fImg.enabled = true;
             if (CheckInteractive(hit.transform).tag.Equals("Item")) intText.text = $"{hit.transform.root.GetComponent<Item3D>().myItem.itemName} 줍기";
             else if (CheckInteractive(hit.transform).tag.Equals("Monster")) intText.text = "시체 약탈";
-            else if (CheckInteractive(hit.transform).tag.Equals("Door")) intText.text = "문 열기";
+            else if (CheckInteractive(hit.transform).tag.Equals("Door")) intText.text = "문 상호작용";
+            else if (CheckInteractive(hit.transform).tag.Equals("Torch")) intText.text = "횃불 상호작용";
             else if (CheckInteractive(hit.transform).tag.Equals("Chest")) intText.text = "상자 열기";
         }
         else
@@ -143,7 +144,10 @@ public class CameraController : MonoBehaviour
         processText.text = "0%";
 
         //이곳에서 tag 비교해서 openTime 관련 해야됨
-
+        if (inter.transform.tag.Equals("Door"))
+            openTime = 1.5f;
+        else
+            openTime = 3f;
         while(t <= openTime)
         {
             t += Time.deltaTime;    

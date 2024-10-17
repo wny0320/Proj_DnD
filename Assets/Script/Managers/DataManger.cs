@@ -132,9 +132,9 @@ public class DataManager
         else
         {
             gold = 0;
-            Item initialItem = itemData["ShortSword"].ItemDeepCopy(ItemRarity.Junk);
+            Item initialItem = itemData["ShortSword"].ItemDeepCopy(0f, ItemRarity.Junk);
             Manager.Inven.AddItem(initialItem, ItemBoxType.Inventory);
-            Item initialTorch = itemData["Torch"].ItemDeepCopy(ItemRarity.Junk);
+            Item initialTorch = itemData["Torch"].ItemDeepCopy(0f, ItemRarity.Junk);
             Manager.Inven.AddItem(initialTorch, ItemBoxType.Inventory);
         }
     }
