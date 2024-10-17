@@ -32,7 +32,6 @@ public class GameManager
         isSettingUIActive = false;
 
         CursorLock(true);
-        escapeList.Clear();
 
         TimeUI = GameUI.transform.GetChild(0).GetComponent<Slider>();
         HpUI = GameUI.transform.GetChild(1).GetComponent<Slider>();
@@ -97,6 +96,7 @@ public class GameManager
     private void ResetEscape()
     {
         escapeList.Clear();
+        escapeCount = 0;
     }
 
     private void CheckTimeToEscape()
