@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: PotionRed
   itemIndex: 22
-  itemText: "\uBAB8\uC758 \uC0C1\uCC98\uB97C \uCE58\uC720\uD574\uC8FC\uB294 \uC2E0\uBE44\uD55C
-    \uBB3C\uC57D\uC785\uB2C8\uB2E4."
+  itemText: A mysterious potion that heals damage on the body
   itemPrice: 15
   itemRarity: 0
   itemStat: {fileID: 11400000, guid: 499eb59a1f2a4ce4ab7dbbc2355e7799, type: 2}

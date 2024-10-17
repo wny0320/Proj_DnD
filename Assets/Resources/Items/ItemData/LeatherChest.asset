@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: LeatherChest
   itemIndex: 10
-  itemText: "\uC804\uD22C\uC5D0\uC11C \uAC2C\uBE44\uC2A8\uC740 \uAC00\uC131\uBE44
-    \uC88B\uC740 \uAC00\uC8FD \uBAB8\uD1B5 \uBCF4\uD638\uAD6C\uC785\uB2C8\uB2E4."
+  itemText: In battle, a gambeson is a cost-effective leather body armor.
   itemPrice: 25
   itemRarity: 0
   itemStat: {fileID: 11400000, guid: 11ddd3fd0fe58e842bce22e71c2a9ff1, type: 2}

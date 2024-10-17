@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: AcientGoldBar
   itemIndex: 4
-  itemText: "\uACE0\uB300\uC5D0 \uD654\uD3D0\uB85C \uC0AC\uC6A9\uB41C \uAE08\uAD34\uC785\uB2C8\uB2E4."
+  itemText: A gold bar that was used as currency in ancient times.
   itemPrice: 100
   itemRarity: 0
   itemStat: {fileID: 0}

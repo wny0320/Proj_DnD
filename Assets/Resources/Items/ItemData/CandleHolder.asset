@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: CandleHolder
   itemIndex: 7
-  itemText: "\uACE0\uB300\uC5D0\uC11C \uC4F0\uC774\uB358 \uCD1B\uB300\uB85C \uBCF4\uC785\uB2C8\uB2E4.
-    \uC740\uC73C\uB85C \uC774\uB8E8\uC5B4\uC838\uC788\uC5B4 \uAC12\uBE44\uC2F8\uBCF4\uC785\uB2C8\uB2E4."
+  itemText: It is presumed to be a candleholder from ancient times, made of silver,
+    giving it a valuable appearance.
   itemPrice: 40
   itemRarity: 0
   itemStat: {fileID: 0}

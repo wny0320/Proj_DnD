@@ -14,9 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: LeatherLeggings
   itemIndex: 13
-  itemText: "\uC544\uBB34\uAC83\uB3C4 \uC5C6\uB294\uAC70\uBCF4\uB2E8 \uAC00\uC8FD\uC774\uB77C\uB3C4
-    \uC785\uB294 \uAC83\uC774 \uC88B\uACA0\uC8E0. \uB2E4\uB9AC\uB97C \uBCF4\uD638\uD558\uB294
-    \uAC00\uC8FD \uBCF4\uD638\uAD6C\uC785\uB2C8\uB2E4."
+  itemText: It's better to wear leather than nothing at all. A leather armor that
+    protects the legs.
   itemPrice: 18
   itemRarity: 0
   itemStat: {fileID: 11400000, guid: eb1162ccf4fa21442b41cac5b6713beb, type: 2}

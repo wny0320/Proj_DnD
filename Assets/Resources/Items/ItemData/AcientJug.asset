@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: AcientJug
   itemIndex: 5
-  itemText: "\uACE0\uB300\uC5D0\uC11C \uC4F0\uC774\uB358 \uC8FC\uC804\uC790\uC758
-    \uC5ED\uD560\uC744 \uD558\uB358 \uD56D\uC544\uB9AC\uB85C \uCD94\uC815\uB429\uB2C8\uB2E4."
+  itemText: It is presumed to be a jar that served as a kettle in ancient times.
   itemPrice: 35
   itemRarity: 0
   itemStat: {fileID: 0}

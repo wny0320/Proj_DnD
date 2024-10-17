@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: AcientCoin
   itemIndex: 2
-  itemText: "\uACE0\uB300\uC5D0 \uD654\uD3D0\uB85C \uC0AC\uC6A9\uB41C \uB3D9\uC804\uC785\uB2C8\uB2E4."
+  itemText: A coin that was used as currency in ancient times.
   itemPrice: 10
   itemRarity: 0
   itemStat: {fileID: 0}

@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: PlateChest
   itemIndex: 16
-  itemText: "\uAC00\uC7A5 \uD070 \uBA74\uC801\uC744 \uCC28\uC9C0\uD558\uB294 \uBAB8\uC744
-    \uBCF4\uD638\uD574\uC8FC\uB294 \uCCA0\uC81C \uBAB8\uD1B5 \uBCF4\uD638\uAD6C\uC785\uB2C8\uB2E4."
+  itemText: A chestplate that protects the body that occupies the largest area.
   itemPrice: 35
   itemRarity: 0
   itemStat: {fileID: 11400000, guid: b0d2ca9b015876249a69754788805fac, type: 2}
