@@ -57,10 +57,11 @@ public class InvenManager
     private CanvasGroup invenCanvasGroup;
     private CanvasGroup stashCanvasGroup;
     private ItemInfo itemInfo;
-    private bool canvasVisualFlag;
     private EquipArea equipArea;
     private EquipUI equipUI;
     private SlotLine tempSlotLine;
+
+    public bool canvasVisualFlag;
     #endregion
 
     public void OnGameSceneLoad(GameObject go)

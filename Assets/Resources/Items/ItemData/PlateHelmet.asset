@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: PlateHelmet
   itemIndex: 18
-  itemText: 
+  itemText: "\uC2DC\uC57C\uC758 \uBC29\uD574\uB97C \uCD5C\uC18C\uD654\uD55C \uCCA0\uC81C
+    \uBA38\uB9AC \uBCF4\uD638\uAD6C\uC785\uB2C8\uB2E4."
   itemPrice: 25
   itemRarity: 0
   itemStat: {fileID: 11400000, guid: 5757102aa0d16f8448e88ab052582acb, type: 2}

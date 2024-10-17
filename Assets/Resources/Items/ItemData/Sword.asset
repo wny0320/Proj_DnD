@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Sword
   itemIndex: 24
-  itemText: 
+  itemText: "\uC608\uB85C\uBD80\uD130 \uCE7C\uC740 \uBAA8\uB4E0 \uBB34\uAE30\uC758
+    \uADFC\uBCF8\uC785\uB2C8\uB2E4."
   itemPrice: 40
   itemRarity: 0
   itemStat: {fileID: 11400000, guid: 32e0a5321763eaf41a7e7c99ff7c95ba, type: 2}

@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: AcientBowl
   itemIndex: 1
-  itemText: 
+  itemText: "\uACE0\uB300\uC5D0\uC11C \uC4F0\uC774\uB358 \uC0AC\uAE30\uADF8\uB987\uC73C\uB85C
+    \uCD94\uC815\uB429\uB2C8\uB2E4."
   itemPrice: 15
   itemRarity: 0
   itemStat: {fileID: 0}

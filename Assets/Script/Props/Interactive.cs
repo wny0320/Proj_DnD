@@ -28,7 +28,7 @@ public class Interactive : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         if (!isInteractiving) return;
         if (Manager.Game.Player == null) return;

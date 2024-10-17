@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: PlateBoots
   itemIndex: 15
-  itemText: 
+  itemText: "\uB2E4\uB9AC\uB9CC \uC788\uC5B4\uC11C\uB294 \uC6C0\uC9C1\uC774\uAE30
+    \uD798\uB4E4\uC8E0. \uBC1C\uC744 \uBCF4\uD638\uD574\uC8FC\uB294 \uCCA0\uC81C
+    \uBCF4\uD638\uAD6C\uC785\uB2C8\uB2E4."
   itemPrice: 24
   itemRarity: 0
   itemStat: {fileID: 11400000, guid: 1ad89886be57e4847b9e4f83b4fd7d86, type: 2}

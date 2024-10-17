@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: LeatherGauntlet
   itemIndex: 11
-  itemText: 
+  itemText: "\uC608\uC0C1\uD558\uC9C0 \uBABB\uD55C \uC704\uD5D8\uC73C\uB85C\uBD80\uD130
+    \uC190\uC744 \uC9C0\uCF1C\uC8FC\uB294 \uAC00\uC8FD \uBCF4\uD638\uAD6C\uC785\uB2C8\uB2E4."
   itemPrice: 13
   itemRarity: 0
   itemStat: {fileID: 11400000, guid: 07452d725f75f354189f8beed74962b0, type: 2}

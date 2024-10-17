@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: LeatherBoots
   itemIndex: 9
-  itemText: 
+  itemText: "\uAC70\uCE5C \uBC14\uB2E5\uC73C\uB85C\uBD80\uD130 \uBC1C\uC744 \uBCF4\uD638\uD574\uC8FC\uB294
+    \uAC00\uC8FD \uBCF4\uD638\uAD6C\uC785\uB2C8\uB2E4."
   itemPrice: 14
   itemRarity: 0
   itemStat: {fileID: 11400000, guid: 3fc003cebede6c143aacaee7f13061b3, type: 2}

@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: PotionGreen
   itemIndex: 21
-  itemText: 
+  itemText: "\uB2E4\uB9AC\uC758 \uAC01\uB825\uC744 \uAC15\uD654\uC2DC\uCF1C \uC810\uD504\uB825\uC744
+    \uB192\uC5EC\uC8FC\uB294 \uC2E0\uBE44\uD55C \uBB3C\uC57D\uC785\uB2C8\uB2E4."
   itemPrice: 15
   itemRarity: 0
   itemStat: {fileID: 11400000, guid: f56f18e156ce1ac468435dc61c2cbc59, type: 2}

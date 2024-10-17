@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: LeatherHelmet
   itemIndex: 12
-  itemText: 
+  itemText: "\uCCA0\uC81C\uBCF4\uB2E4\uB294 \uC544\uB2C8\uC9C0\uB9CC \uB208 \uBA40\uC740
+    \uACF5\uACA9\uC5D0 \uC8FD\uC9C0 \uC54A\uB3C4\uB85D \uB3C4\uC640\uC8FC\uB294 \uAC00\uC8FD
+    \uBA38\uB9AC \uBCF4\uD638\uAD6C\uC785\uB2C8\uB2E4."
   itemPrice: 15
   itemRarity: 0
   itemStat: {fileID: 11400000, guid: 015d3418ea88d8d47acbaa105c6255c2, type: 2}

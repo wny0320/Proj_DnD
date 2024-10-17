@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: PlateLeggings
   itemIndex: 19
-  itemText: 
+  itemText: "\uC804\uD22C\uC5D0\uC11C \uC911\uC2EC\uC744 \uC7A1\uAC70\uB098 \uC774\uB3D9\uC5D0
+    \uD544\uC218\uC801\uC778 \uB2E4\uB9AC\uB97C \uBCF4\uD638\uD574\uC8FC\uB294 \uCCA0\uC81C
+    \uB2E4\uB9AC \uBCF4\uD638\uAD6C\uC785\uB2C8\uB2E4."
   itemPrice: 28
   itemRarity: 0
   itemStat: {fileID: 11400000, guid: f0b61a4ebd277884ca5b3665b1f02f3a, type: 2}

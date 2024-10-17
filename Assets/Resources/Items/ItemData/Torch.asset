@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Torch
   itemIndex: 25
-  itemText: 
+  itemText: "\uC5B4\uB460\uC744 \uBC1D\uD600\uC8FC\uB294 \uBAA8\uD5D8\uC758 \uD544\uC218\uD488\uC785\uB2C8\uB2E4."
   itemPrice: 10
   itemRarity: 1
   itemStat: {fileID: 11400000, guid: 18d273da4934ce34eaf578f0f32f0792, type: 2}
