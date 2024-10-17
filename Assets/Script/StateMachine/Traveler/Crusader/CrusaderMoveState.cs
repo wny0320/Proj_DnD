@@ -334,7 +334,7 @@ public class CrusaderMoveState : BaseState
         if(!isBranchSetted)
         {
             isBranchSetted = true;
-            branchInt = (int)Random.Range(20, 20 + (float)controller.stat.Hp / (float)controller.stat.MaxHp * 50);
+            branchInt = (int)Random.Range(20, 21 + (float)controller.stat.Hp / (float)controller.stat.MaxHp * 50);
         }
 
         if (target.GetComponent<BaseController>().stat.ItemDegree > branchInt)
