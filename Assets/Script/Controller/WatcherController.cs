@@ -68,6 +68,7 @@ public class WatcherController : BaseController, IReceiveAttack
 
     private void OnDead()
     {
+        ChangeLayer(transform);
         Global.sfx.Play(Global.Sound.WatcherDead, transform.position);
 
         transform.rotation = Quaternion.Euler(Vector3.zero);
@@ -83,5 +84,21 @@ public class WatcherController : BaseController, IReceiveAttack
 
         gameObject.AddComponent<Interactive>();
         Destroy(gameObject.GetComponent<BaseController>());
+    }
+
+    private void ChangeLayer(Transform trans)
+    {
+        trans.gameObject.layer = LayerMask.NameToLayer("Interactive");
+        Rigidbody r = trans.GetComponent<Rigidbody>();
+        Collider c = trans.GetComponent<Collider>();
+        if (r != null)
+            r.isKinematic = false;
+        if (c != null)
+            c.excludeLayers = 1 << LayerMask.NameToLayer("Player") |
+                1 << LayerMask.NameToLayer("Monster") | 1 << LayerMask.NameToLayer("Traveler");
+        foreach (Transform child in trans)
+        {
+            ChangeLayer(child);
+        }
     }
 }
