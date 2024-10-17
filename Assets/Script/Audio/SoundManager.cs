@@ -17,6 +17,8 @@ public class SoundManager : MonoBehaviour
     public Slider effectSlider;
     public GameObject settingUI;
 
+    public bool settingUIFlag;
+
     //효과음 관련    
     [SerializeField] private GameObject sfxInstance;
     private Transform sfxParent;
@@ -33,7 +35,7 @@ public class SoundManager : MonoBehaviour
         DontDestroyOnLoad(this);
         Init();
     }
-    private void FixedUpdate()
+    private void Update()
     {
         OnESC();
     }
@@ -49,6 +51,23 @@ public class SoundManager : MonoBehaviour
         se.transform.position = position;
         se.Play(clip);
     }
+    public void SettingUIActive()
+    {
+        if (settingUI.activeSelf == true)
+        {
+            settingUI.SetActive(false);
+            settingUIFlag = false;
+            if (Manager.Instance.GetNowScene().name == SceneName.DungeonScene.ToString())
+                Cursor.lockState = CursorLockMode.Locked;
+        }
+        else
+        {
+            settingUI.SetActive(true);
+            settingUIFlag = true;
+            if (Manager.Instance.GetNowScene().name == SceneName.DungeonScene.ToString())
+                Cursor.lockState = CursorLockMode.None;
+        }
+    }
     private void OnESC()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -56,12 +75,14 @@ public class SoundManager : MonoBehaviour
             if(settingUI.activeSelf == true)
             {
                 settingUI.SetActive(false);
+                settingUIFlag = false;
                 if (Manager.Instance.GetNowScene().name == SceneName.DungeonScene.ToString())
                     Cursor.lockState = CursorLockMode.Locked;
             }
             else
             {
                 settingUI.SetActive(true);
+                settingUIFlag = true;
                 if (Manager.Instance.GetNowScene().name == SceneName.DungeonScene.ToString())
                     Cursor.lockState = CursorLockMode.None;
             }

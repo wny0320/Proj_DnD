@@ -111,11 +111,24 @@ public class Manager : MonoBehaviour
         }
         // 씬이 이동됐을때 돈이 없고 아이템이 하나도 없다면 초기 아이템 추가
         if (Data.gold == 0 && Inven.GetBoxItems(ItemBoxType.Inventory).Count == 0
-            && Inven.GetBoxItems(ItemBoxType.Stash).Count == 0
-            && Inven.GetBoxItems(ItemBoxType.Equip).Count == 0)
+            && Inven.GetBoxItems(ItemBoxType.Stash).Count == 0)
         {
-            Item initialItem = Data.itemData["ShortSword"].ItemDeepCopy(ItemRarity.Junk);
-            Inven.AddItem(initialItem, ItemBoxType.Inventory);
+            bool equipEmptyFlag = true;
+            foreach (Slot slot in Inven.equipSlots.Values)
+            {
+                if (slot.slotItem != null)
+                {
+                    equipEmptyFlag = false;
+                    break;
+                }
+            }
+            if (equipEmptyFlag == true)
+            {
+                Item initialItem = Data.itemData["ShortSword"].ItemDeepCopy(ItemRarity.Junk);
+                Inven.AddItem(initialItem, ItemBoxType.Inventory);
+                Item initialTorch = Data.itemData["Torch"].ItemDeepCopy(ItemRarity.Junk);
+                Inven.AddItem(initialTorch, ItemBoxType.Inventory);
+            }
         }
         StartCoroutine(Load(loadSceneName));
     }

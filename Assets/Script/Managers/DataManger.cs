@@ -134,6 +134,8 @@ public class DataManager
             gold = 0;
             Item initialItem = itemData["ShortSword"].ItemDeepCopy(ItemRarity.Junk);
             Manager.Inven.AddItem(initialItem, ItemBoxType.Inventory);
+            Item initialTorch = itemData["Torch"].ItemDeepCopy(ItemRarity.Junk);
+            Manager.Inven.AddItem(initialTorch, ItemBoxType.Inventory);
         }
     }
     public void PlayerDataTransfer(JsonClass _slotJsonClass, List<SlotLine> _targetSlotLines, ItemBoxType _itemBoxType)
