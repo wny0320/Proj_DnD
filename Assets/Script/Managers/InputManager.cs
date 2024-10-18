@@ -37,11 +37,13 @@ public class InputManager
         {
             //¸Ç¼Õ
             Global.PlayerWeaponEquip(null);
+            Manager.Inven.MainEquipUIAlpha();
         }
         else if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             if (currentWeaponSlot == 0) return;
             Item weapon = CheckSlot(0, EquipPart.Weapon);
+            Manager.Inven.MainEquipUIAlpha(0);
 
             Global.PlayerWeaponEquip(weapon);
         }
@@ -49,6 +51,7 @@ public class InputManager
         {
             if (currentWeaponSlot == 1) return;
             Item weapon = CheckSlot(1, EquipPart.Weapon);
+            Manager.Inven.MainEquipUIAlpha(1);
 
             Global.PlayerWeaponEquip(weapon);
         }
@@ -56,12 +59,14 @@ public class InputManager
         {
             Item item = CheckSlot(0, ItemType.Consumable);
             if (item == null) return;
+            Manager.Inven.MainEquipUIAlpha(2);
             Global.PlayerWeaponEquip(item);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             Item item = CheckSlot(1, ItemType.Consumable);
             if (item == null) return;
+            Manager.Inven.MainEquipUIAlpha(3);
             Global.PlayerWeaponEquip(item);
         }
     }

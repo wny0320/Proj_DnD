@@ -1338,4 +1338,16 @@ public class InvenManager
             }
         }
     }
+    public void MainEquipUIAlpha(int _index = -1)
+    {
+        int cnt = equipUI.uiSlots.Count;
+        for(int i = 0; i < cnt; i++)
+        {
+            Image targetImage = equipUI.uiSlots[i].itemImage;
+            if(_index == i)
+                targetImage.color = new Color(targetImage.color.r, targetImage.color.g, targetImage.color.b, 1f);
+            else
+                targetImage.color = new Color(targetImage.color.r, targetImage.color.g, targetImage.color.b, 0.3f);
+        }
+    }
 }
