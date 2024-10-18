@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: SoundCollector
   m_EditorClassIdentifier: 
   hitClip: {fileID: 8300000, guid: 5867b6f82cf9f5d4790afc9f8e166842, type: 3}
+  punching: {fileID: 8300000, guid: f583291996373dc418bf2345b4961ea0, type: 3}
+  potionDrinking: {fileID: 8300000, guid: 488dba29c195e2c4daf81d57b0f430d8, type: 3}
   onehandedSwing1: {fileID: 8300000, guid: 6bb5218fa94172b4f90b10e98c9e8963, type: 3}
   onehandedSwing2: {fileID: 8300000, guid: 89a5eff006cd4704ca82a49b1fe3bf9d, type: 3}
   onehandedStab: {fileID: 8300000, guid: 6bbcf4d0171011e44b25cd7100994e4c, type: 3}
@@ -25,6 +27,7 @@ MonoBehaviour:
   CrusaderDead: {fileID: 8300000, guid: 487434ef5934f904f8a4f94ddf08e8c5, type: 3}
   BanditDead: {fileID: 8300000, guid: 0142b02c0add8de47b458b84b1063e10, type: 3}
   ShopEnter: {fileID: 8300000, guid: 476df7849881115458394a370e8e21e5, type: 3}
+  ShopCoin: {fileID: 8300000, guid: 4a0cdccc08a1dca4890723d40abbadce, type: 3}
   DoorOpen: {fileID: 8300000, guid: 48bcb20868c2660469f4e4f0c9576e7b, type: 3}
   DoorClose: {fileID: 8300000, guid: 4edd15f975b47a6408fa4d779501ad1a, type: 3}
   TorchOn: {fileID: 8300000, guid: 13952b1524b80c742ab1b6494b120c0c, type: 3}

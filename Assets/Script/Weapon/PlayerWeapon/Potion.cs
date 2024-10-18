@@ -17,6 +17,7 @@ public class Potion : Weapon
     public override void AttackStart(int level)
     {
         isDrink = true;
+        Global.sfx.Play(Global.Sound.potionDrinking);
     }
 
     public override void AttackEnd()

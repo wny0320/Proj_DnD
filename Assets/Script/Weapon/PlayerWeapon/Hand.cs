@@ -11,7 +11,9 @@ public class Hand : Weapon
         totalDamage = Manager.Game.Player.GetComponent<PlayerController>().stat.Attack;
         totalDamage += level;
 
-        if(level == 0)
+        Global.sfx.Play(Global.Sound.punching);
+
+        if (level == 0)
         {
             //¿À¸¥¼Õ
             cols[0].enabled = true;

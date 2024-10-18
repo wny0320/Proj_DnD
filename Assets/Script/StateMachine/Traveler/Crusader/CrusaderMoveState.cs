@@ -18,7 +18,7 @@ public class CrusaderMoveState : BaseState
     private float chaseDistance = 20f; //플레이어 추격 거리
     private float forwardDetectRange = 15f; //전방 감지 거리
     private float senseDetectRange = 5f; //주변 감지 거리
-    private float attackDistance = 1.5f;
+    private float attackDistance = 1.2f;
 
     private float attackSpeed;
     private float attackCooldown = 0f;
