@@ -22,7 +22,7 @@ public class ShopUI : MonoBehaviour
     public AudioSource audioSource;
     private bool shopRefreshFlag = false;
 
-    private void Awake()
+    private void Start()
     {
         audioSource.clip = Global.Sound.ShopCoin;
     }
