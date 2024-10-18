@@ -6,4 +6,5 @@ using UnityEngine.UI;
 public class UISlots : MonoBehaviour
 {
     public Image itemImage;
+    public Image itemBackground;
 }

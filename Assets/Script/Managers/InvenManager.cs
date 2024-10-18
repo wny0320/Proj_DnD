@@ -721,6 +721,9 @@ public class InvenManager
                                     if (fromSlot.Equals(equipArea.weaponList[i]))
                                     {
                                         equipUI.uiSlots[i].itemImage.sprite = null;
+                                        //장착 해제시 해당 장비의 배경 삭제
+                                        equipUI.uiSlots[i].itemBackground.gameObject.SetActive(false);
+                                        //장착 해제하는 아이템이 현재 들고있는거라면 손에서 내리기
                                         if (i == Manager.Input.currentWeaponSlot)
                                             Global.PlayerWeaponEquip(null);
                                     }
@@ -739,6 +742,8 @@ public class InvenManager
                                         if (Manager.Game.isPlayerAttacking == false)
                                         {
                                             equipUI.uiSlots[i + equipArea.weaponList.Count].itemImage.sprite = null;
+                                            //장착 해제시 해당 장비의 배경 삭제
+                                            equipUI.uiSlots[i].itemBackground.gameObject.SetActive(false);
                                             if (i == Manager.Input.currentUtilitySlot)
                                                 Global.PlayerWeaponEquip(null);
                                         }
@@ -841,6 +846,8 @@ public class InvenManager
                                     if (targetEquipPart == EquipPart.Weapon)
                                     {
                                         int index = equipArea.weaponList.IndexOf(equipSlot);
+                                        //장착시 해당 장비의 배경 활성화
+                                        equipUI.uiSlots[index].itemBackground.gameObject.SetActive(true);
                                         equipUI.uiSlots[index].itemImage.sprite = 
                                             itemVisual.transform.GetChild(0).GetComponent<Image>().sprite;
                                     }
@@ -848,6 +855,8 @@ public class InvenManager
                                 else if (targetItemType == ItemType.Consumable)
                                 {
                                     int index = equipArea.consumList.IndexOf(equipSlot);
+                                    //장착시 해당 장비의 배경 활성화
+                                    equipUI.uiSlots[index + equipArea.weaponList.Count].itemBackground.gameObject.SetActive(true);
                                     equipUI.uiSlots[index + equipArea.weaponList.Count].itemImage.sprite =
                                         itemVisual.transform.GetChild(0).GetComponent<Image>().sprite;
                                 }
@@ -1343,11 +1352,29 @@ public class InvenManager
         int cnt = equipUI.uiSlots.Count;
         for(int i = 0; i < cnt; i++)
         {
-            Image targetImage = equipUI.uiSlots[i].itemImage;
+            Image targetItemImage = equipUI.uiSlots[i].itemImage;
+            Image targetBackgroundImage = equipUI.uiSlots[i].itemBackground;
             if(_index == i)
-                targetImage.color = new Color(targetImage.color.r, targetImage.color.g, targetImage.color.b, 1f);
+            {
+                targetItemImage.color = new Color(targetItemImage.color.r, targetItemImage.color.g, targetItemImage.color.b, 1f);
+                targetBackgroundImage.gameObject.SetActive(true);
+                targetBackgroundImage.color = new Color(targetItemImage.color.r, targetItemImage.color.g, targetItemImage.color.b, 1f);
+            }
             else
-                targetImage.color = new Color(targetImage.color.r, targetImage.color.g, targetImage.color.b, 0.3f);
+            {
+                if(targetItemImage.sprite != null) // 아이템이 있다면
+                {
+                    // 배경 이미지 활성화
+                    targetBackgroundImage.gameObject.SetActive(true);
+                    targetBackgroundImage.color = new Color(targetItemImage.color.r, targetItemImage.color.g, targetItemImage.color.b, 0.5f);
+                }
+                else
+                {
+                    targetBackgroundImage.gameObject.SetActive(false);
+                }
+                targetItemImage.color = new Color(targetItemImage.color.r, targetItemImage.color.g, targetItemImage.color.b, 0.5f);
+            }
+
         }
     }
 }

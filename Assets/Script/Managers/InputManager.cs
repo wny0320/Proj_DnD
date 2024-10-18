@@ -1,8 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Net;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class InputManager
@@ -43,7 +41,10 @@ public class InputManager
         {
             if (currentWeaponSlot == 0) return;
             Item weapon = CheckSlot(0, EquipPart.Weapon);
-            Manager.Inven.MainEquipUIAlpha(0);
+            if (weapon != null)
+                Manager.Inven.MainEquipUIAlpha(0);
+            else
+                Manager.Inven.MainEquipUIAlpha();
 
             Global.PlayerWeaponEquip(weapon);
         }
@@ -51,7 +52,10 @@ public class InputManager
         {
             if (currentWeaponSlot == 1) return;
             Item weapon = CheckSlot(1, EquipPart.Weapon);
-            Manager.Inven.MainEquipUIAlpha(1);
+            if (weapon != null)
+                Manager.Inven.MainEquipUIAlpha(1);
+            else
+                Manager.Inven.MainEquipUIAlpha();
 
             Global.PlayerWeaponEquip(weapon);
         }
