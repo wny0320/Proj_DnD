@@ -19,7 +19,13 @@ public class ShopUI : MonoBehaviour
 
     List<Item> prevInvenItems;
 
+    public AudioSource audioSource;
     private bool shopRefreshFlag = false;
+
+    private void Awake()
+    {
+        audioSource.clip = Global.Sound.ShopCoin;
+    }
     private void Update()
     {
         ShopItemRefresh();
@@ -186,6 +192,7 @@ public class ShopUI : MonoBehaviour
         if (shopItemUI != null && _item != null)
         {
             shopItemUI.item = _item;
+            shopItemUI.GetShopUI(this);
             shopItemUI.ItemPriceSet();
             int mul = shopItemUI.mul;
             switch (_item.itemRarity)

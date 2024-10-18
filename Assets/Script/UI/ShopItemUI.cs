@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,14 +11,19 @@ public class ShopItemUI : MonoBehaviour
     public Image itemImage;
     public Text itemName;
     public Text itemCost;
-    public int mul = 0;
+    private ShopUI shopUI;
 
+    public int mul = 0;
     public void ItemPriceSet()
     {
         if (item.itemType == ItemType.Equipment)
             mul = 6;
         else
             mul = 2;
+    }
+    public void GetShopUI(ShopUI _shopUI)
+    {
+        shopUI = _shopUI;
     }
     public void ItemPurchase()
     {
@@ -30,6 +36,7 @@ public class ShopItemUI : MonoBehaviour
             {
                 // 성공시 돈을 뺌
                 Manager.Data.gold -= item.itemPrice * mul;
+                shopUI.audioSource.Play();
                 GetComponent<Button>().interactable = false;
                 // 데이터 출력
                 Manager.Data.PlayerDataExport();
@@ -52,6 +59,7 @@ public class ShopItemUI : MonoBehaviour
                 {
                     Manager.Inven.DeleteBoxItem(invenSlotLines[y].mySlots[x], ItemBoxType.Inventory);
                     Manager.Data.gold += item.itemPrice;
+                    shopUI.audioSource.Play();
                     Destroy(gameObject);
                     // 데이터 출력
                     Manager.Data.PlayerDataExport();

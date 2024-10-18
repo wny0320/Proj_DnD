@@ -478,7 +478,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -538,3 +538,4 @@ MonoBehaviour:
   itemImage: {fileID: 1902505264779816302}
   itemName: {fileID: 4971646991920041696}
   itemCost: {fileID: 5301214041227741640}
+  mul: 0
