@@ -96,6 +96,7 @@ public class Interactive : MonoBehaviour
     private void ChestFunc()
     {
         Debug.Log("chest");
+        string chestName = transform.name;
         if (!isOpened)
         {
             GetComponent<Animation>().Play();
@@ -106,8 +107,21 @@ public class Interactive : MonoBehaviour
         Manager.Inven.RevealDropCanvas();
         Manager.Inven.RevealInvenCanvasByBt();
         Manager.Inven.ItemBoxReset(ItemBoxType.Drop);
-        foreach (Item item in dropItemList)
-            Manager.Inven.AddItem(item, ItemBoxType.Drop);
+        if (chestName.Split()[0].Equals("Chest1"))
+        {
+            foreach (Item item in dropItemList)
+                Manager.Inven.AddItem(item, ItemBoxType.Drop, 10f);
+        }
+        else if (chestName.Split()[0].Equals("Chest2"))
+        {
+            foreach (Item item in dropItemList)
+                Manager.Inven.AddItem(item, ItemBoxType.Drop);
+        }
+        else if (chestName.Split()[0].Equals("Chest3"))
+        {
+            foreach (Item item in dropItemList)
+                Manager.Inven.AddItem(item, ItemBoxType.Drop, 20f);
+        }
     }
     private void MonsterFunc()
     {
