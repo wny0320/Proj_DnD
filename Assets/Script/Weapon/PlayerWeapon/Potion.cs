@@ -47,6 +47,7 @@ public class Potion : Weapon
             Manager.Inven.DeleteBoxItem
                 (Manager.Inven.equipSlots[ItemType.Consumable.ToString() + Manager.Input.currentUtilitySlot], ItemBoxType.Equip);
             Manager.Input.currentUtilitySlot = -1;
+            Manager.Inven.MainEquipUIAlpha();
 
             //사용 후 빈손으로
             Global.PlayerWeapon = null;

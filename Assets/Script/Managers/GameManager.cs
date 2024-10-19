@@ -17,6 +17,7 @@ public class GameManager
 
     public GameObject GameUI;
     private Slider TimeUI;
+    private Text TimeText;
     private Slider HpUI;
 
     private float gameTimer = 600f;
@@ -35,6 +36,7 @@ public class GameManager
         escapeList.Clear();
 
         TimeUI = GameUI.transform.GetChild(0).GetComponent<Slider>();
+        TimeText = GameUI.transform.GetChild(0).GetComponentInChildren<Text>();
         HpUI = GameUI.transform.GetChild(1).GetComponent<Slider>();
 
         passedTimer = 0f;
@@ -53,6 +55,7 @@ public class GameManager
         //½Ã°£ui
         passedTimer += Time.fixedDeltaTime;
         TimeUI.value = passedTimer / gameTimer;
+        TimeText.text = $"{((int)(gameTimer - passedTimer) / 60):D2} : {(int)((gameTimer - passedTimer) % 60):D2}";
         if(passedTimer >= gameTimer+5)
         {
             isPlayerAlive = false;

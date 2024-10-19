@@ -725,7 +725,10 @@ public class InvenManager
                                         equipUI.uiSlots[i].itemBackground.gameObject.SetActive(false);
                                         //장착 해제하는 아이템이 현재 들고있는거라면 손에서 내리기
                                         if (i == Manager.Input.currentWeaponSlot)
+                                        {
+                                            MainEquipUIAlpha();
                                             Global.PlayerWeaponEquip(null);
+                                        }
                                     }
                                 }
                             }
@@ -745,7 +748,10 @@ public class InvenManager
                                             //장착 해제시 해당 장비의 배경 삭제
                                             equipUI.uiSlots[i].itemBackground.gameObject.SetActive(false);
                                             if (i == Manager.Input.currentUtilitySlot)
+                                            {
+                                                MainEquipUIAlpha();
                                                 Global.PlayerWeaponEquip(null);
+                                            }
                                         }
                                     }
                                 }
@@ -1263,13 +1269,15 @@ public class InvenManager
     }
     public void RevealStashCanvas()
     {
-        stashCanvas.gameObject.SetActive(true);
         stashCanvasGroup.alpha = 1f;
         stashCanvasGroup.interactable = true;
+        stashCanvasGroup.blocksRaycasts = true;
     }
     public void ConcealStashCanvas()
     {
-        stashCanvas.gameObject.SetActive(false);
+        stashCanvasGroup.alpha = 0f;
+        stashCanvasGroup.interactable = false;
+        stashCanvasGroup.blocksRaycasts = false;
     }
     public void RecoverPlayerItemData(JsonClass _slotJsonclass)
     {

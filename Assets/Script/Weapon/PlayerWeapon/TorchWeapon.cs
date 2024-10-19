@@ -18,6 +18,7 @@ public class TorchWeapon : Weapon
         Manager.Inven.DeleteBoxItem
             (Manager.Inven.equipSlots[ItemType.Consumable.ToString() + Manager.Input.currentUtilitySlot], ItemBoxType.Equip);
         Manager.Input.currentUtilitySlot = -1;
+        Manager.Inven.MainEquipUIAlpha();
 
         transform.parent = null;
 
