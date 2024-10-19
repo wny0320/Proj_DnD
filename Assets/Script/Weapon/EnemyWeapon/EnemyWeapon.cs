@@ -2,6 +2,7 @@ using DG.Tweening.Core.Easing;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class EnemyWeapon : MonoBehaviour
@@ -10,7 +11,7 @@ public class EnemyWeapon : MonoBehaviour
 
     protected BaseController controller;
     protected Collider col;
-    protected List<Collider> hittedObject = new();
+    protected List<IReceiveAttack> hittedObject = new();
 
     private void Start()
     {
@@ -23,12 +24,26 @@ public class EnemyWeapon : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        IReceiveAttack attacked = other.GetComponent<IReceiveAttack>();
+        IReceiveAttack attacked = GetHittedObj(other.transform);
         if (attacked == null) return;
-        if (hittedObject.Contains(other)) return;
-
-        hittedObject.Add(other);
+        if (hittedObject.Contains(attacked)) return;
+        hittedObject.Add(attacked);
 
         attacked.OnHit(totalDamage);
+    }
+
+    IReceiveAttack GetHittedObj(Transform trans)
+    {
+        if (trans.GetComponent<IReceiveAttack>() == null)
+        {
+            if (trans.parent == null) return null;
+            return GetHittedObj(trans.parent);
+        }
+        else
+        {
+            if (trans.GetComponent<IReceiveAttack>() == transform.root.GetComponent<IReceiveAttack>())
+                return null;
+            return trans.GetComponent<IReceiveAttack>();
+        }
     }
 }

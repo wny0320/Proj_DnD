@@ -15,9 +15,9 @@ public class CrusaderMoveState : BaseState
     //적 추적 및 이동
     private bool isFind = false;
     private float travelingDistance = 30f;
-    private float chaseDistance = 20f; //플레이어 추격 거리
-    private float forwardDetectRange = 15f; //전방 감지 거리
-    private float senseDetectRange = 5f; //주변 감지 거리
+    private float chaseDistance = 60f; //플레이어 추격 거리
+    private float forwardDetectRange = 20f; //전방 감지 거리
+    private float senseDetectRange = 7f; //주변 감지 거리
     private float attackDistance = 1.2f;
 
     private float attackSpeed;
@@ -142,6 +142,7 @@ public class CrusaderMoveState : BaseState
 
         if ((transform.position - randomPos).magnitude <= agent.radius*2)
         {
+            originPos= transform.position;
             randomPos = Vector3.zero;
             isArrived= true;
             if(Random.Range(0,10) > 5)

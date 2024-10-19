@@ -10,10 +10,10 @@ public class MinotaurMoveState : BaseState
 
     //적 추적 및 이동
     private bool isFind = false;
-    private float chaseDistance = 20f; //플레이어 추격 거리
-    private float forwardDetectRange = 15f; //전방 감지 거리
-    private float senseDetectRange = 5f; //주변 감지 거리
-    private float attackDistance = 2f;
+    private float chaseDistance = 80f; //플레이어 추격 거리
+    private float forwardDetectRange = 20f; //전방 감지 거리
+    private float senseDetectRange = 8f; //주변 감지 거리
+    private float attackDistance = 2.5f;
 
     private float attackSpeed;
     private float attackCooldown = 0f;
@@ -115,6 +115,7 @@ public class MinotaurMoveState : BaseState
         if ((transform.position - wayPoints[idx]).magnitude <= 1)
         {
             isArrived = true;
+            originPos = transform.position;
         }
     }
 
@@ -160,7 +161,6 @@ public class MinotaurMoveState : BaseState
                 {
                     RaycastHit hit;
                     Physics.Raycast(transform.position, dist.normalized, out hit, forwardDetectRange + 3);
-
                     if (hit.collider == col)
                     {
                         if (Vector3.Magnitude(col.transform.position - transform.position) < distance)
@@ -196,6 +196,7 @@ public class MinotaurMoveState : BaseState
             return;
         }
 
+        //지금 이부분이 문제임
         float moveDist = (originPos - transform.position).magnitude;
         if (moveDist > chaseDistance)
         {
