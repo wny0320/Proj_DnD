@@ -36,6 +36,8 @@ public class BanditMoveState : BaseState
 
     public bool doFlee = false;
 
+    NavMeshPath path = new NavMeshPath();
+
     public BanditMoveState(BaseController controller, Rigidbody rb = null, Animator animator = null) : base(controller, rb, animator)
     {
         agent = controller.GetComponent<NavMeshAgent>();
@@ -121,11 +123,20 @@ public class BanditMoveState : BaseState
             NavMeshHit hit;
             if (NavMesh.SamplePosition(rand + transform.position, out hit, travelingDistance, NavMesh.AllAreas))
             {
-                randomPos = hit.position;
-                agent.SetDestination(randomPos);
+                if (agent.CalculatePath(hit.position, path) && path.status != NavMeshPathStatus.PathPartial && path.status != NavMeshPathStatus.PathInvalid)
+                {
+                    randomPos = hit.position;
+                    agent.SetDestination(randomPos);
+                }
+                else
+                {
+                    randomPos = Vector3.zero;
+                }
             }
             else
+            {
                 randomPos = Vector3.zero;
+            }
         }
 
         if ((transform.position - randomPos).magnitude <= agent.radius * 2)
@@ -134,6 +145,7 @@ public class BanditMoveState : BaseState
             originPos =transform.position;
         }
     }
+
 
     private void Flee()
     {
@@ -147,8 +159,13 @@ public class BanditMoveState : BaseState
             NavMeshHit hit;
             if (NavMesh.SamplePosition(rand + transform.position, out hit, fleeDistance, NavMesh.AllAreas))
             {
-                fleePos = hit.position;
-                agent.SetDestination(fleePos);
+                if (agent.CalculatePath(hit.position, path) && path.status != NavMeshPathStatus.PathPartial && path.status != NavMeshPathStatus.PathInvalid)
+                {
+                    fleePos = hit.position;
+                    agent.SetDestination(fleePos);
+                }
+                else
+                    fleePos = Vector3.zero;
             }
             else
                 fleePos = Vector3.zero;

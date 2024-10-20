@@ -18,7 +18,7 @@ public class CrusaderMoveState : BaseState
     private float chaseDistance = 60f; //플레이어 추격 거리
     private float forwardDetectRange = 20f; //전방 감지 거리
     private float senseDetectRange = 7f; //주변 감지 거리
-    private float attackDistance = 1.2f;
+    private float attackDistance = 1.25f;
 
     private float attackSpeed;
     private float attackCooldown = 0f;
@@ -40,6 +40,8 @@ public class CrusaderMoveState : BaseState
 
     private bool isBranchSetted = false;
     private int branchInt = 0;
+
+    NavMeshPath path = new NavMeshPath();
 
     public CrusaderMoveState(BaseController controller, Rigidbody rb = null, Animator animator = null) : base(controller, rb, animator)
     {
@@ -83,6 +85,8 @@ public class CrusaderMoveState : BaseState
 
     public override void OnStateUpdate()
     {
+        //CheckStuck();
+
         if (!isFind)
         {
             Traveling();
@@ -133,14 +137,23 @@ public class CrusaderMoveState : BaseState
             NavMeshHit hit;
             if (NavMesh.SamplePosition(rand + transform.position, out hit, travelingDistance, NavMesh.AllAreas))
             {
-                randomPos = hit.position;
-                agent.SetDestination(randomPos);
+                if (agent.CalculatePath(hit.position, path) && path.status != NavMeshPathStatus.PathPartial && path.status != NavMeshPathStatus.PathInvalid)
+                {
+                    randomPos = hit.position;
+                    agent.SetDestination(randomPos);
+                }
+                else
+                {
+                    randomPos = Vector3.zero;
+                }
             }
             else
+            {
                 randomPos = Vector3.zero;
+            }
         }
 
-        if ((transform.position - randomPos).magnitude <= agent.radius*2)
+        if ((transform.position - randomPos).magnitude <= 1 + agent.radius*2)
         {
             originPos= transform.position;
             randomPos = Vector3.zero;
@@ -163,8 +176,13 @@ public class CrusaderMoveState : BaseState
             NavMeshHit hit;
             if (NavMesh.SamplePosition(rand + transform.position, out hit, fleeDistance, NavMesh.AllAreas))
             {
-                fleePos = hit.position;
-                agent.SetDestination(fleePos);
+                if (agent.CalculatePath(hit.position, path) && path.status != NavMeshPathStatus.PathPartial && path.status != NavMeshPathStatus.PathInvalid)
+                {
+                    fleePos = hit.position;
+                    agent.SetDestination(fleePos);
+                }
+                else
+                    fleePos = Vector3.zero;
             }
             else
                 fleePos = Vector3.zero;

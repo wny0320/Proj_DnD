@@ -8773,6 +8773,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2021802217378561908, guid: 151f83b98e768084eb1061defb4a8f22, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3435543858386588038, guid: 151f83b98e768084eb1061defb4a8f22, type: 3}
       propertyPath: m_IsActive
       value: 0
