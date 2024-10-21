@@ -252,7 +252,10 @@ public class BanditMoveState : BaseState
     private void Chase()
     {
         float distance = CheckDistance();
-        if (distance <= attackDistance + agent.radius)
+        float subAtkDistance = 0f;
+        if (target != null && target.GetComponent<MinotaurController>() != null)
+            subAtkDistance = 1.5f;
+        if (distance <= attackDistance + agent.radius + subAtkDistance)
         {
             if (!isAttacking)
             {
