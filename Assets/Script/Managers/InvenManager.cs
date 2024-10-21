@@ -105,6 +105,8 @@ public class InvenManager
             return;
         if (dragItemFlag == true)
             return;
+        if (Manager.Game.isSettingUIActive == true)
+            return;
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             if (canvasVisualFlag == true)

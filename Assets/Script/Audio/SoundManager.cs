@@ -76,7 +76,9 @@ public class SoundManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if(settingUI.activeSelf == true)
+            if(Manager.Instance.GetNowScene().name.ToString().Equals(SceneName.DungeonScene.ToString()))
+                Manager.Inven.ConcealInvenCanvasByBt();
+            if (settingUI.activeSelf == true)
             {
                 settingUI.SetActive(false);
                 Manager.Game.isSettingUIActive = false;
