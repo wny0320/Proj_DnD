@@ -79,6 +79,10 @@ public class InvenManager
                 equipUI.uiSlots[i+2].itemImage.sprite = equipSlots[ItemType.Consumable.ToString() + i]
                     .itemVisual.transform.GetChild(0).GetComponent<Image>().sprite;
         }
+        if(equipUI.uiSlots[0].itemImage.sprite == null)
+            MainEquipUIAlpha();
+        else
+            MainEquipUIAlpha(0);
     }
 
     public void OnStart()
@@ -721,12 +725,10 @@ public class InvenManager
                                     if (fromSlot.Equals(equipArea.weaponList[i]))
                                     {
                                         equipUI.uiSlots[i].itemImage.sprite = null;
-                                        //장착 해제시 해당 장비의 배경 삭제
-                                        equipUI.uiSlots[i].itemBackground.gameObject.SetActive(false);
+                                        MainEquipUIAlpha();
                                         //장착 해제하는 아이템이 현재 들고있는거라면 손에서 내리기
                                         if (i == Manager.Input.currentWeaponSlot)
                                         {
-                                            MainEquipUIAlpha();
                                             Global.PlayerWeaponEquip(null);
                                         }
                                     }
@@ -745,11 +747,9 @@ public class InvenManager
                                         if (Manager.Game.isPlayerAttacking == false)
                                         {
                                             equipUI.uiSlots[i + equipArea.weaponList.Count].itemImage.sprite = null;
-                                            //장착 해제시 해당 장비의 배경 삭제
-                                            equipUI.uiSlots[i].itemBackground.gameObject.SetActive(false);
+                                            MainEquipUIAlpha();
                                             if (i == Manager.Input.currentUtilitySlot)
                                             {
-                                                MainEquipUIAlpha();
                                                 Global.PlayerWeaponEquip(null);
                                             }
                                         }
@@ -852,8 +852,6 @@ public class InvenManager
                                     if (targetEquipPart == EquipPart.Weapon)
                                     {
                                         int index = equipArea.weaponList.IndexOf(equipSlot);
-                                        //장착시 해당 장비의 배경 활성화
-                                        equipUI.uiSlots[index].itemBackground.gameObject.SetActive(true);
                                         equipUI.uiSlots[index].itemImage.sprite = 
                                             itemVisual.transform.GetChild(0).GetComponent<Image>().sprite;
                                     }
@@ -861,11 +859,10 @@ public class InvenManager
                                 else if (targetItemType == ItemType.Consumable)
                                 {
                                     int index = equipArea.consumList.IndexOf(equipSlot);
-                                    //장착시 해당 장비의 배경 활성화
-                                    equipUI.uiSlots[index + equipArea.weaponList.Count].itemBackground.gameObject.SetActive(true);
                                     equipUI.uiSlots[index + equipArea.weaponList.Count].itemImage.sprite =
                                         itemVisual.transform.GetChild(0).GetComponent<Image>().sprite;
                                 }
+                                MainEquipUIAlpha();
                             }
                             if (targetItemType == ItemType.Equipment)
                             {
@@ -1361,28 +1358,17 @@ public class InvenManager
         for(int i = 0; i < cnt; i++)
         {
             Image targetItemImage = equipUI.uiSlots[i].itemImage;
-            Image targetBackgroundImage = equipUI.uiSlots[i].itemBackground;
             if(_index == i)
             {
                 targetItemImage.color = new Color(targetItemImage.color.r, targetItemImage.color.g, targetItemImage.color.b, 1f);
-                targetBackgroundImage.gameObject.SetActive(true);
-                targetBackgroundImage.color = new Color(targetItemImage.color.r, targetItemImage.color.g, targetItemImage.color.b, 1f);
             }
             else
             {
-                if(targetItemImage.sprite != null) // 아이템이 있다면
-                {
-                    // 배경 이미지 활성화
-                    targetBackgroundImage.gameObject.SetActive(true);
-                    targetBackgroundImage.color = new Color(targetItemImage.color.r, targetItemImage.color.g, targetItemImage.color.b, 0.5f);
-                }
+                if(targetItemImage.sprite != null)
+                    targetItemImage.color = new Color(targetItemImage.color.r, targetItemImage.color.g, targetItemImage.color.b, 0.3f);
                 else
-                {
-                    targetBackgroundImage.gameObject.SetActive(false);
-                }
-                targetItemImage.color = new Color(targetItemImage.color.r, targetItemImage.color.g, targetItemImage.color.b, 0.5f);
+                    targetItemImage.color = new Color(targetItemImage.color.r, targetItemImage.color.g, targetItemImage.color.b, 0f);
             }
-
         }
     }
 }
