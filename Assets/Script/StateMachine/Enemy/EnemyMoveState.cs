@@ -33,6 +33,8 @@ public class EnemyMoveState : BaseState
     private bool isArrived = false;
     private float lookAroundTime = 0f;
 
+    NavMeshPath path = new NavMeshPath();
+
     public EnemyMoveState(BaseController controller, Rigidbody rb = null, Animator animator = null) : base(controller, rb, animator)
     {
         agent = controller.GetComponent<NavMeshAgent>();
@@ -199,7 +201,12 @@ public class EnemyMoveState : BaseState
         if (moveDist > chaseDistance)
         {
             if (distance < senseDetectRange)
-                agent.SetDestination(target.position);
+            {
+                if (agent.CalculatePath(target.position, path) && path.status != NavMeshPathStatus.PathPartial && path.status != NavMeshPathStatus.PathInvalid)
+                {
+                    agent.SetDestination(target.position);
+                }
+            }
             else
             {
                 agent.SetDestination(originPos);
@@ -208,7 +215,12 @@ public class EnemyMoveState : BaseState
             }
         }
         else if (distance <= chaseDistance)
-            agent.SetDestination(target.position);
+        {
+            if (agent.CalculatePath(target.position, path) && path.status != NavMeshPathStatus.PathPartial && path.status != NavMeshPathStatus.PathInvalid)
+            {
+                agent.SetDestination(target.position);
+            }
+        }
         else
             isFind = false;
 

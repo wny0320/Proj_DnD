@@ -269,7 +269,12 @@ public class BanditMoveState : BaseState
         if (moveDist > chaseDistance)
         {
             if (distance < senseDetectRange)
-                agent.SetDestination(target.position);
+            {
+                if (agent.CalculatePath(target.position, path) && path.status != NavMeshPathStatus.PathPartial && path.status != NavMeshPathStatus.PathInvalid)
+                {
+                    agent.SetDestination(target.position);
+                }
+            }
             else
             {
                 agent.SetDestination(originPos);
@@ -278,7 +283,12 @@ public class BanditMoveState : BaseState
             }
         }
         else if (distance <= chaseDistance)
-            agent.SetDestination(target.position);
+        {
+            if (agent.CalculatePath(target.position, path) && path.status != NavMeshPathStatus.PathPartial && path.status != NavMeshPathStatus.PathInvalid)
+            {
+                agent.SetDestination(target.position);
+            }
+        }
         else
             isFind = false;
 

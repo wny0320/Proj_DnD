@@ -30,6 +30,8 @@ public class MinotaurMoveState : BaseState
     private bool isArrived = false;
     private float lookAroundTime = 0f;
 
+    NavMeshPath path = new NavMeshPath();
+
     public MinotaurMoveState(BaseController controller, Rigidbody rb = null, Animator animator = null) : base(controller, rb, animator)
     {
         agent = controller.GetComponent<NavMeshAgent>();
@@ -196,12 +198,16 @@ public class MinotaurMoveState : BaseState
             return;
         }
 
-        //지금 이부분이 문제임
         float moveDist = (originPos - transform.position).magnitude;
         if (moveDist > chaseDistance)
         {
             if (distance < senseDetectRange)
-                agent.SetDestination(target.position);
+            {
+                if (agent.CalculatePath(target.position, path) && path.status != NavMeshPathStatus.PathPartial && path.status != NavMeshPathStatus.PathInvalid)
+                {
+                    agent.SetDestination(target.position);
+                }
+            }
             else
             {
                 agent.SetDestination(originPos);
@@ -210,7 +216,12 @@ public class MinotaurMoveState : BaseState
             }
         }
         else if (distance <= chaseDistance)
-            agent.SetDestination(target.position);
+        {
+            if (agent.CalculatePath(target.position, path) && path.status != NavMeshPathStatus.PathPartial && path.status != NavMeshPathStatus.PathInvalid)
+            {
+                agent.SetDestination(target.position);
+            }
+        }
         else
             isFind = false;
 
